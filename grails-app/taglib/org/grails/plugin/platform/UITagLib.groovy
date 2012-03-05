@@ -23,13 +23,15 @@ import java.util.concurrent.ConcurrentHashMap
 import org.grails.plugin.platform.ui.UIConstants
 import org.grails.plugin.platform.ui.UITagException
 
+import org.springframework.beans.factory.InitializingBean
 import org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib
 import org.grails.plugin.platform.util.TagLibUtils
 import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.springframework.web.servlet.support.RequestContextUtils as RCU
+import org.codehaus.groovy.grails.plugins.GrailsPlugin
 
-class UITagLib {
+class UITagLib implements InitializingBean {
     static namespace = "ui"
  
     static BLOCK_CLASS = "block"
@@ -57,6 +59,13 @@ class UITagLib {
 
     def grailsThemes
     def grailsUISets
+
+    GrailsPlugin platformUiPlugin
+    def grailsApplication
+    
+    void afterPropertiesSet() {
+        platformUiPlugin = grailsApplication.mainContext.pluginManager.getGrailsPlugin('platformUi')
+    }
     
     private renderResources() {
         if (!request['plugin.pluginPlaform.uiset.loaded']) {
@@ -702,7 +711,7 @@ class UITagLib {
             def theme = grailsThemes.getRequestTheme(request)
             if (theme) {
                 if (theme.definingPlugin) {
-                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}/${uri}"
+                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}"
                     if (servletContext.getResource(themeUri)) {
                         if (log.debugEnabled) {
                             log.debug "Resolving logo for size: $w x $h to theme logo $themeUri"
@@ -714,8 +723,8 @@ class UITagLib {
         }
         
         if (!logoUri) {
-            // OK fall back to our default logo
-            logoUri = "/plugins/platform-ui${stretchyUri}"
+            // OK fall back to our default stretchy logo
+            logoUri = "/plugins/${platformUiPlugin.fileSystemName}${stretchyUri}"
         }
         if (log.debugEnabled) {
             log.debug "Resolve logo for size: $w x $h to $logoUri"
