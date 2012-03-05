@@ -1,0 +1,17 @@
+The @_mesage.gsp@ template is used to render the [ui:message|Tags UI] tag.
+
+The GSP receives the following model:
+
+* classes - A string containing the list of CSS classes to apply to the outer container
+* type - The kind of message to use. See [ui:message|Tags UI] for the 
+* text - The body of the message
+* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+
+Example template:
+
+{code:xml}
+<div class="message${classes} msg_${type}"${ui.attributes()}>
+    <p>${text}</p>
+</div>
+{code}
+

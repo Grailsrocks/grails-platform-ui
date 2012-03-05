@@ -1,0 +1,43 @@
+h1. ui:tab
+
+h2. Purpose
+
+This tag defines a tab within a [ui:tabs|Tags UI] set.
+
+A tab can have a body which is used as that tab's content, or it can just link directly to another URL.
+
+h2. Example
+
+{code:xml}
+<ui:tabs prefix="my.tab.title">
+    <ui:tab title="a" controller="books"/>
+    <ui:tab title="b" controller="books" action="search" active="true"/>
+    <ui:tab title="c">
+        <p>Here is some inlinecontent</p>
+    </ui:tab>
+</ui:tabs>
+{code}
+
+The body is used for inline content for the tab unless one of the link-generating attributes is present, in which case the tab title will just be a link to the resulting URL.
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+title | yes | The title text to be used on the tabs
+active | | Boolean to indicate whether or not the tab is active
+tabId | | A unique id for this tab and its target. If not supplied, a value is automatically generated
+controller | | A controller name. Creates a tab that is a link to other content, instead of embedding the tab panel content in the page
+action | | An action name. Creates a tab that is a link to other content, instead of embedding the tab panel content in the page
+id | | An id for the link. Creates a tab that is a link to other content, instead of embedding the tab panel content in the page
+uri | | A uri for the link. Creates a tab that is a link to other content, instead of embedding the tab panel content in the page
+url | | A url for the link. Creates a tab that is a link to other content, instead of embedding the tab panel content in the page
+{table}
+
+All other attributes are passed through. 
+
+h2. Localization
+
+This supports i18n of the tabe title out of the box. Any prefix specified in the parent @ui:tabs@ tag is added (plus '.') to the title of the tab to look up the i18n string
+
+

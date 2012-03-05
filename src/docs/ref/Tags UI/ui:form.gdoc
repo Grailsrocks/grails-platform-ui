@@ -1,0 +1,24 @@
+h1. ui:form
+
+h2. Purpose
+
+This tag renders an HTML form.
+
+It is a drop-in replacement for the Grails @g:form@ tag, and supports all the attributes of this by passing them through. The actual UI Set that renders it may or may not delegate to @g:form@ internally.
+
+UI Sets and Themes can customize the rendering of the form to suit their HTML/CSS requirements.
+
+h2. Example
+
+{code:xml}
+<ui:form controller="book">
+  <p>This is my form</p>
+  <ui:field name="comment" type="textarea"/>
+  <ui:button type="submit">Save</ui:button>
+</ui:form>
+{code}
+
+h2. Attributes
+
+All attributes are pass-through. See the Grails core @g:form@ tag documentation for details.
+

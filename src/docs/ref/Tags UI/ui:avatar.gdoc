@@ -1,0 +1,23 @@
+h1. ui:avatar
+
+h2. Purpose
+
+This tag renders an a user avatar image.
+
+The avatar will be retrieved by the UI Set implementation from a remote service or other mechanism. Some systems may require an email address, others an account user name. The application and plugins will need to know what value to use.
+
+h2. Example
+
+{code:xml}
+<ui:avatar user="marc@grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/>
+{code}
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+user | yes  | The user id (typically email address) that is used to retrieve the avatar image
+size |  | The size in pixels of the avatar. Avatars are assumed to be square 
+defaultSrc |  | An absolute URL pointing to the default image to use if the user has no avatar
+{table}
+

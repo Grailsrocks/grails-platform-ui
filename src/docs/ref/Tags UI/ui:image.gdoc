@@ -1,0 +1,25 @@
+h1. ui:image
+
+h2. Purpose
+
+This tag renders an HTML image that represents some user content, for example a photo or diagram. UI Sets may add decoration to the presentation of it, or functionality such as a lightbox.
+
+h2. Example
+
+{code:xml}
+<ui:image uri="/images/photo1" width="200" title="A Photo" alt="This isa photo"/>
+{code}
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+title |  | Title to use for the image text or i18n code
+uri |  | If used, @uri@ is assumed to be an application relative URI, as used by Resources r:img tag. One of @uri@ or @dir@/@file@ must be supplied. 
+dir |  | One of @uri@ or @dir@/@file@ must be supplied. Same as normal g:resource tag
+file |  | One of @uri@ or @dir@/@file@ must be supplied. Same as normal g:resource tag
+plugin |  | One of @uri@ or @dir@/@file@ must be supplied. Same as normal g:resource tag
+{table}
+
+All other attributes are passed through. 
+

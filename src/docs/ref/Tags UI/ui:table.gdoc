@@ -1,0 +1,40 @@
+h1. ui:table
+
+h2. Purpose
+
+This tag renders an HTML table representing content for the user to view (as opposed to any layout hacks etc).
+
+This tag automatically tracks row number when used with [ui:tr|Tags UI] tag.
+
+h2. Example
+
+{code:xml}
+<ui:table>
+    <thead>
+    <tr>
+        <ui:th text="table.id"/>
+        <ui:th text="table.title"/>
+        <ui:th text="table.description"/>
+        <ui:th text="table.date"/>
+    </tr>
+    </thead>
+    <tbody>
+    <g:each in="${1..10}" var="i">
+    <ui:tr>
+        <td>${i.encodeAsHTML()}</td>
+        <td>The Inbetweeners</td>
+        <td>A comedy about teenagers and cl*nge</td>
+        <td>26 September 2011</td>
+    </ui:tr>
+    </g:each>
+    <ui:tr>
+        <td colspan="4">This final row is ${row}</td>
+    </ui:tr>
+    </tbody>
+</ui:table>
+{code}
+
+h2. Attributes
+
+All attributes are passed through. 
+

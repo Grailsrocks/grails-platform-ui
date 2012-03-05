@@ -1,0 +1,23 @@
+h1. ui:message
+
+h2. Purpose
+
+This tag renders a message for the user, such as an info or warning message.
+
+See also [ui:displayMessage|Tags UI] for the variant that renders the message set by the controller.
+
+h2. Example
+
+{code:xml}
+<ui:message type="warning" text="alert.message.something.dodgy"/>
+<ui:message type="info">This is some my inline message</ui:message>
+{code}
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+type |  | The type of the message. Valid values are 'info', 'error', 'warning' and 'debug'. 'debug' messages are only shown in the DEVELOPMENT environment.
+text |  | If specified, will be used as the text content for the cell, translated using i18n message bundle if found. If not specified, the body will be used.
+textArgs |  | Used as the arguments for the "text" i18n message if used.
+{table}

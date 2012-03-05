@@ -1,0 +1,16 @@
+The @_avatar.gsp@ template is used to render the [ui:avatar|Tags UI] tag.
+
+The GSP receives the following model:
+
+* avatarClass - The CSS class to use for the avatar container. Value comes from UI Set config
+* classes - A string containing the list of CSS classes to apply to the outer container
+* user - The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set
+* defaultSrc - The absolute URL of the default avatar image
+* size - The size in pixels of the avatar to retrieve, i.e. "30"
+* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+
+Example template:
+
+{code:xml}
+<img src="https://secure.gravatar.com/avatar/${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}" class="${ui.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>
+{code}

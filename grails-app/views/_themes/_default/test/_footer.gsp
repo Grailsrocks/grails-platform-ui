@@ -1,0 +1,1 @@
+&copy; <ui:year/> <ui:company/>

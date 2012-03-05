@@ -1,0 +1,17 @@
+The @_image.gsp@ template is used to render the [ui:image|Tags UI] tag.
+
+The GSP receives the following model:
+
+* title - Optional title for the image, resolved from an i18n message code if available. The template might render this with special formatting
+* imageClass - The CSS class to use for the primary container of the image HTML, obtained from UI Set config.
+* classes - A string containing the list of CSS classes to apply to the outer container
+* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+
+Example template:
+
+{code:xml}
+<ui:callTag tag="r.img" class="${ui.joinClasses(values:[imageClass,classes])}"
+    attrs="${attrs}" title="${title.encodeAsHTML()}"/>
+{code}
+
+This example simply delegates to r:img.

@@ -1,0 +1,4 @@
+A UI Set is a named collection of GSP templates in a convention-based path.
+
+These provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.
+

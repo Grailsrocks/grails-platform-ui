@@ -1,0 +1,17 @@
+The @_form.gsp@ template is used to render the [ui:form|Tags UI] tag.
+
+The GSP receives the following model:
+
+* formClass - The CSS class to use for the primary container of the form HTML, obtained from UI Set config.
+* classes - A string containing the list of CSS classes to apply to the outer container
+* body - The body of the form to be rendered
+* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+
+Example template:
+
+{code:xml}
+<ui:callTag tag="g.form" class="${ui.joinClasses(values:[formClass,classes])}"
+    attrs="${attrs}" bodyContent="${bodyContent}"/>
+{code}
+
+This example simply delegates to g:form.

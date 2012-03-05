@@ -1,0 +1,24 @@
+There are several UI tags speficically relating to forms, [ui:form|Tags UI], [ui:field|Tags UI] and [ui:actions|Tags UI].
+
+You can create a form using the new UI tags like this:
+
+{code:xml}
+<ui:form action="update">
+    <fieldset>
+        <ui:field name="firstName"/>
+        <ui:field name="lastName"/>
+    </fieldset>
+    <fieldset>
+        <ui:field name="email"/>
+        <ui:field name="twitterName"/>
+    </fieldset>
+    <ui:actions>
+        <ui:button mode="primary">Update</ui:button>
+        <ui:button mode="cancel">Cancel</ui:button>
+    </ui:actions>
+</ui:form>
+{code}
+
+You can see that the GSP has no knowledge of how forms or fields or buttons are rendered. The UI Set in effect determines this. You may get completely different structural HTML and CSS classes depending on the UI Set or theme you are using.
+
+The @ui:form@ tag passes all the attributes specified to the UI Set's template for passing to the g:form tag.

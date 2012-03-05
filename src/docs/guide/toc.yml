@@ -1,0 +1,32 @@
+overview: 
+  title: Overview
+  apis: The APIs
+gettingStarted: Getting Started
+ui:
+  title: UI API
+  uielements:
+      title: The UI Elements
+      widgets: Widgets
+      grouping: Grouping
+      forms: Forms
+      typography: Typography
+      branding: Branding
+  uisets: About UI Sets
+  resources: UI Set Resources
+  gsptemplates: 
+    title: GSP Templates for UI tags
+    form: The Form template
+    field: The Field template
+    image: The Image template
+    table: The Table template
+    tr: The Table Row template
+    th: The Table Heading template
+    message: The Message template
+    paginate: The Paginate template
+    tabs: The Tabs template
+    tab: The Tab template
+    avatar: The Avatar template
+  cssclasses: CSS Classes
+  customuisets: Creating your own UI Sets
+themes:
+  title: Themes API
