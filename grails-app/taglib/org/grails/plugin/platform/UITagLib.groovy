@@ -682,8 +682,9 @@ class UITagLib {
         }
         
         def stretchyUri = "${LOGO_RESOURCE_URI_PREFIX}.png"
+        def sizeSuffix = w || h ? "-${key}.png" : ''
         // Even if width is specified, height is optional
-        def uri = w || h ? "${LOGO_RESOURCE_URI_PREFIX}-${key}.png" : stretchyUri
+        def uri = sizeSuffix ? "${LOGO_RESOURCE_URI_PREFIX}${sizeSuffix}.png" : stretchyUri
         
         // See if app supplies logo
         if (servletContext.getResource(uri)) {
@@ -697,10 +698,11 @@ class UITagLib {
             }
             logoUri = stretchyUri 
         } else {
+            // See if the theme (if there is one) has a default logo
             def theme = grailsThemes.getRequestTheme(request)
             if (theme) {
                 if (theme.definingPlugin) {
-                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${LOGO_RESOURCE_URI_PREFIX}-${key}.png"
+                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}/${uri}"
                     if (servletContext.getResource(themeUri)) {
                         if (log.debugEnabled) {
                             log.debug "Resolving logo for size: $w x $h to theme logo $themeUri"
@@ -708,7 +710,12 @@ class UITagLib {
                         logoUri = themeUri
                     }
                 }
-            }
+            } 
+        }
+        
+        if (!logoUri) {
+            // OK fall back to our default logo
+            logoUri = "/plugins/platform-ui${stretchyUri}"
         }
         if (log.debugEnabled) {
             log.debug "Resolve logo for size: $w x $h to $logoUri"

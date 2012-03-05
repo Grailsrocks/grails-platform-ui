@@ -23,6 +23,9 @@ log4j = {
 
     warn   'org.mortbay.log'
 }
+
+grails.validateable.packages = ['org.grails.plugin.platform.test']
+
 //grails.views.gsp.sitemesh.preprocess = true
 grails.views.gsp.encoding="UTF-8"
 grails.views.default.codec="none" // none, html, base64
