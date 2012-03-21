@@ -17,7 +17,6 @@
  */
 package org.grails.plugin.platform.ui
 
-import org.springframework.web.context.request.RequestContextHolder as RCH
 import org.springframework.beans.factory.InitializingBean
 import org.springframework.context.ApplicationContextAware
 import org.springframework.context.ApplicationContext
@@ -177,26 +176,6 @@ class UISets implements ApplicationContextAware, InitializingBean {
         
     }
 
-    void displayMessage(String text, request = RCH.requestAttributes.request) {
-        request[UIConstants.DISPLAY_MESSAGE] = text
-    }
-
-    void displayMessage(Map args, request = RCH.requestAttributes.request) {
-        request[UIConstants.DISPLAY_MESSAGE] = args.text
-        request[UIConstants.DISPLAY_MESSAGE_ARGS] = args.args
-        request[UIConstants.DISPLAY_MESSAGE_TYPE] = args.type
-    }
-
-    void displayFlashMessage(String text, flash = RCH.requestAttributes.flashScope) {
-        flash[UIConstants.DISPLAY_MESSAGE] = msg
-    }
-
-    void displayFlashMessage(Map args, flash = RCH.requestAttributes.flashScope) {
-        flash[UIConstants.DISPLAY_MESSAGE] = args.text
-        flash[UIConstants.DISPLAY_MESSAGE_ARGS] = args.args
-        flash[UIConstants.DISPLAY_MESSAGE_TYPE] = args.type
-    }
-    
     ViewInfo getTemplateView(request, String templateName, boolean strict = true) {
         if (strict && !(templateName in UI_TAG_NAMES)) {
             throw new IllegalArgumentException("Cannot get UI template for tag [${templateName}] because it is not in the list of UI_TAG_NAMES")
@@ -233,23 +212,4 @@ class UISets implements ApplicationContextAware, InitializingBean {
     }
     
 
-    def injectedMethods = {
-        def UIConstants = getClass().getClassLoader().loadClass('org.grails.plugin.platform.ui.UIConstants')
-        def self = this
-        
-        controller { clazz ->
-            displayMessage { String msg ->
-                self.displayMessage(msg, delegate.request)
-            }
-            displayMessage { Map args ->
-                self.displayMessage(args, delegate.request)
-            }
-            displayFlashMessage { String msg ->
-                self.displayFlashMessage(msg, delegate.flash)
-            }
-            displayFlashMessage { Map args ->
-                self.displayFlashMessage(args, delegate.flash)
-            }
-        }
-    }
 }

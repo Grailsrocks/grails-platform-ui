@@ -20,7 +20,6 @@ package org.grails.plugin.platform
 import grails.util.Environment
 import grails.converters.JSON
 import java.util.concurrent.ConcurrentHashMap
-import org.grails.plugin.platform.ui.UIConstants
 import org.grails.plugin.platform.ui.UITagException
 
 import org.springframework.beans.factory.InitializingBean
@@ -59,6 +58,7 @@ class UITagLib implements InitializingBean {
 
     def grailsThemes
     def grailsUISets
+    def grailsUiHelper
 
     GrailsPlugin platformUiPlugin
     def grailsApplication
@@ -296,24 +296,16 @@ class UITagLib implements InitializingBean {
         out << renderUITemplate('navigation', [classes:classes, attrs:attrs, navClass:navClass, items:items, active:active])
     }
 
-    def displayMessage = { attrs ->
+    def displayMessage = { attrs, body ->
         for (scope in [request, flash]) {
-            def msg
-            def msgType
-            def msgArgs
-            if (scope[UIConstants.DISPLAY_MESSAGE]) {
-                msg = scope[UIConstants.DISPLAY_MESSAGE]
-                msgArgs = scope[UIConstants.DISPLAY_MESSAGE_ARGS]
-                msgType = scope[UIConstants.DISPLAY_MESSAGE_TYPE]
-            }
-            if (msg) {
-                if (msgType && !attrs.type) {
-                    attrs.type = msgType
-                }
-                attrs.text = msg
-                attrs.textArgs = msgArgs
-                
-                out << ui.message(attrs)
+            def msgParams = grailsUiHelper.getDisplayMessage(scope)
+            if (msgParams) {
+                def msgAttribs = [
+                    text:msgParams.msg,
+                    textArgs:msgParams.msgArgs,
+                    type:msgParams.type
+                ]
+                out << ui.message(msgAttribs)
             }
         }
     }
@@ -691,7 +683,7 @@ class UITagLib implements InitializingBean {
         }
         
         def stretchyUri = "${LOGO_RESOURCE_URI_PREFIX}.png"
-        def sizeSuffix = w || h ? "-${key}.png" : ''
+        def sizeSuffix = w || h ? "-${key}" : ''
         // Even if width is specified, height is optional
         def uri = sizeSuffix ? "${LOGO_RESOURCE_URI_PREFIX}${sizeSuffix}.png" : stretchyUri
         
@@ -711,7 +703,7 @@ class UITagLib implements InitializingBean {
             def theme = grailsThemes.getRequestTheme(request)
             if (theme) {
                 if (theme.definingPlugin) {
-                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}"
+                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}.png"
                     if (servletContext.getResource(themeUri)) {
                         if (log.debugEnabled) {
                             log.debug "Resolving logo for size: $w x $h to theme logo $themeUri"

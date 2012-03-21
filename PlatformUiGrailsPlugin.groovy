@@ -39,8 +39,6 @@ class PlatformUiGrailsPlugin {
             "grails-app/views/test/**/*.gsp",
     ]
 
-    def observe = ['*'] // We observe everything so we can re-apply dynamic methods, conventions etc
-
     def title = "Plugin Platform UI"
     def author = "Marc Palmer"
     def authorEmail = "marc@grailsrocks.com"
@@ -144,9 +142,6 @@ Grails Plugin Platform APIs
     }
 
     def doWithInjection = { ctx ->
-        def config = ctx.grailsApplication.config
-
-        register ctx.grailsUISets.injectedMethods
     }
 
     def doWithApplicationContext = { applicationContext ->
