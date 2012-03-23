@@ -53,9 +53,6 @@ class UITagLib implements InitializingBean {
 
     Map logosBySize = new ConcurrentHashMap()
     
-    // @todo OK if the machine stays up over new year this will become invalid...
-    def thisYear = new Date()[Calendar.YEAR].toString()
-
     def grailsThemes
     def grailsUISets
     def grailsUiHelper
@@ -659,14 +656,6 @@ class UITagLib implements InitializingBean {
         ])
     }
     
-    def link = { attrs ->
-        def con = attrs.controller ?: controllerName
-        def defaultAction = 'index' // make this ask the artefact which is default
-        def act = attrs.action ?: defaultAction
-        def text = g.message(code:"action.${con}.${act}", encodeAs:'HTML')
-        out << g.link(attrs, text)
-    }
-    
     private resolveLogo(w, h) {
         if (log.debugEnabled) {
             log.debug "Resolving logo for size: $w x $h"
@@ -742,32 +731,6 @@ class UITagLib implements InitializingBean {
         out << renderUITemplate('logo', args)
     }
     
-    def company = { attrs ->
-        def codec = attrs.encodeAs ?: 'HTML'
-        def s = pluginConfig.company.name
-        out << (codec != 'none' ? s.encodeAsHTML() : s)
-    }
-    
-    def siteName = { attrs ->
-        def codec = attrs.encodeAs ?: 'HTML'
-        def s = pluginConfig.site.name
-        out << (codec != 'none' ? s.encodeAsHTML() : s)
-    }
-    
-    def siteLink = { attrs ->
-        out << g.link(absolute:'true', uri:'/') { 
-            out << ui.siteName()
-        }
-    }
-    
-    def siteURL = { attrs ->
-        out << g.createLink(absolute:'true', uri:'/')
-    }
-    
-    def year = { attrs ->
-        out << thisYear
-    }    
-
     // @todo move this to TagLibUtils and use messageSource
     protected getMessageOrBody(Map attrs, Closure body) {
         def textCode = attrs.remove('text')

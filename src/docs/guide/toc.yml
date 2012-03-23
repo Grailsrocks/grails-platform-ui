@@ -10,7 +10,6 @@ ui:
       grouping: Grouping
       forms: Forms
       typography: Typography
-      branding: Branding
   uisets: About UI Sets
   resources: UI Set Resources
   gsptemplates: 

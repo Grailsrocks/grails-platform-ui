@@ -58,7 +58,7 @@
 </ui:block>
 
 <ui:block title="Links">
-    <p>Perhaps there is custom styling for <a href="#">inline links</a> and what about the smart i18n support in ui:link? <ui:link controller="test" action="list"/>.
+    <p>Perhaps there is custom styling for <a href="#">inline links</a>.
     </p>
 </ui:block>
 
