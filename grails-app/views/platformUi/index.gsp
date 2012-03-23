@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>Plugin Platform UI</title>
-		<meta name="layout" content="main">
+        <meta name="layout" content="platform/dev"/>
 	</head>
 	<body>
         <h1>Grails Plugin Platform UI</h1>
