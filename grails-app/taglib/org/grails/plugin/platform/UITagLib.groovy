@@ -49,7 +49,7 @@ class UITagLib implements InitializingBean {
     
     static LOGO_RESOURCE_URI_PREFIX = "/images/theme-logo"
     
-    static returnObjectForTags = ['joinClasses', 'list']
+    static returnObjectForTags = ['list']
 
     Map logosBySize = new ConcurrentHashMap()
     
@@ -192,6 +192,7 @@ class UITagLib implements InitializingBean {
         return args
     }
 
+    // @todo Move to core
     private consumePageUniqueId(request) {
         def id = request.'pluginPlatform.pageTabId' ?: 0
         request.'pluginPlatform.pageTabId' = ++id
@@ -298,8 +299,8 @@ class UITagLib implements InitializingBean {
             def msgParams = grailsUiHelper.getDisplayMessage(scope)
             if (msgParams) {
                 def msgAttribs = [
-                    text:msgParams.msg,
-                    textArgs:msgParams.msgArgs,
+                    text:msgParams.text,
+                    textArgs:msgParams.args,
                     type:msgParams.type
                 ]
                 out << ui.message(msgAttribs)
@@ -514,22 +515,6 @@ class UITagLib implements InitializingBean {
         ])
     }
     
-    def joinClasses = { attrs ->
-        StringBuilder res = new StringBuilder()
-        def first = true
-        attrs.values?.each { v ->
-            if (v) {
-                if (!first) {
-                    res << ' '
-                } else {
-                    first = false
-                }
-                res << v
-            }
-        }
-        return res.toString()
-    }
-    
     def themedTag = { attrs, body ->
         def tagInfo = pageScope.tagInfo
         doThemedTag(attrs, tagInfo?.body)
@@ -544,23 +529,6 @@ class UITagLib implements InitializingBean {
     def originalBody = { attrs ->
         def b = pageScope._body
         out << b()
-    }
-    
-    def callTag = { attrs, body ->
-        def name = attrs.remove('tag')
-        def bodyAttr = attrs.remove('bodyContent')
-        def (ns, tagName) = resolveTagName(name)
-        def mergedAttrs
-        if (attrs.attrs != null) {
-            mergedAttrs = attrs.remove('attrs')
-        }
-        if (mergedAttrs) {
-            mergedAttrs.putAll(attrs)
-        } else {
-            mergedAttrs = attrs
-        }
-        def taglib = this[ns]
-        out << taglib."${tagName}"(mergedAttrs, bodyAttr ?: body)
     }
     
     def form = { attrs, body ->
@@ -743,6 +711,7 @@ class UITagLib implements InitializingBean {
         return v
     }
     
+/*
     def jsModel = { attrs, body ->
         def model = [i18n:[:], model:[:], params:[:]]
         def varName = attrs.var ?: 'model'
@@ -778,4 +747,5 @@ var ${varName} = ${model as JSON}
 </script>
 """ 
     }
+    */
 }

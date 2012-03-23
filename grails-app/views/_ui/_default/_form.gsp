@@ -1,1 +1,1 @@
-<ui:callTag tag="g.form" class="${ui.joinClasses(values:[formClass,classes])}" attrs="${attrs}" bodyContent="${bodyContent}"/>
+<g:callTag tag="g:form" class="${g.joinClasses(values:[formClass,classes])}" attrs="${attrs}" bodyContent="${bodyContent}"/>

@@ -1,2 +1,2 @@
 ui:attributes
-ui:callTag
+ui:<g:callTag

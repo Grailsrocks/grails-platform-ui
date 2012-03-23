@@ -125,8 +125,6 @@ Grails Plugin Platform APIs
 
         'theme.default'(type: String, defaultValue: null)
         'theme.layout.default'(type: String, defaultValue: "main")
-        'company.name'(type: String, defaultValue: 'Our Startup (set plugin.pluginPlatform.company.name in Config)')
-        'site.name'(type: String, defaultValue: 'Our Startup (set plugin.pluginPlatform.company.name in Config)')
 
         'ui.set'(type: String, defaultValue: "_default")
         // @todo '*' syntax not supported yet

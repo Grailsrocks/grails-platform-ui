@@ -11,4 +11,4 @@
   defaultSrc - an absolute URL to a default avatar image to use if none is found for the user
 --%>
 <img src="https://secure.gravatar.com/avatar/${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}" 
-    class="${ui.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>
+    class="${g.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>

@@ -19,6 +19,8 @@ package org.grails.plugin.platform.controllers
 
 class PlatformUiController {
     
+    static navigation = "platform"
+    
     def grailsUISets
     
     def index = {

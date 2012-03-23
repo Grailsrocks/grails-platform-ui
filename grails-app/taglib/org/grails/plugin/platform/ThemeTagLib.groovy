@@ -248,7 +248,9 @@ class ThemeTagLib {
         return v
     }
     
+    // @todo Move to core
     def title = { attrs, body ->
+        // @todo store just the args + body text so that if it is i18n we can resolve SEO title string by convention
         def text = getMessageOrBody(attrs, body)
         request[ThemeTagLib.REQ_ATTR_TITLE] = text
     }
@@ -323,6 +325,7 @@ class ThemeTagLib {
         request['theme.debug.mode'] = true
     }
     
+    // @todo Move to core
     boolean tagExists(namespace, tag) {
         gspTagLibraryLookup.lookupTagLibrary(namespace, tag)
     }
@@ -340,6 +343,7 @@ class ThemeTagLib {
         }
     }
     
+    // @todo Move to core
     def ipsum = { attrs -> 
         def n = attrs.size ? attrs.size.toString().toInteger() : 0
         if (!n) {
@@ -357,6 +361,7 @@ class ThemeTagLib {
         request['theme.ipsum.counter'] = i
     }
     
+    // @todo Move to core
     @Lazy List DUMMY_TEXT = """
 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Nam eu nulla. Donec lobortis purus vel urna. Nunc laoreet lacinia nunc. In volutpat sodales ipsum. Sed vestibulum. Integer in ante. Sed posuere ligula rhoncus erat. Fusce urna dui, sollicitudin ac, pulvinar quis, tincidunt et, risus. Quisque a nunc eget nibh interdum fringilla. Fusce dapibus odio in est. Nunc egestas mauris ac leo. Nullam orci.
 Morbi volutpat leo in ligula. Integer vel magna. Quisque ut magna et nisi bibendum sagittis. Fusce elit ligula, sodales sit amet, tincidunt in, ullamcorper condimentum, lectus. Aliquam ut massa. Suspendisse dolor. Cras quam augue, consectetuer id, auctor ut, tincidunt a, velit. Quisque euismod tortor sed nulla. Nunc dapibus, nisi et iaculis feugiat, leo ipsum venenatis enim, a nonummy magna ante vitae diam. Proin sapien. Duis eleifend. Praesent tempor velit molestie neque. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mollis justo eget augue. Donec tempus, urna a congue ultrices, lacus magna convallis nulla, non ultrices metus justo et purus. In leo lorem, dapibus at, volutpat sed, posuere a, justo. Donec varius, erat in placerat pharetra, lorem est gravida erat, nec accumsan turpis erat sed velit. Duis malesuada, lacus sit amet dictum lobortis, arcu velit sodales lectus, ac mattis ipsum lacus in magna. Curabitur sed ante ac enim consequat porttitor. Suspendisse bibendum turpis a magna.

@@ -1,3 +1,3 @@
-<table class="${ui.joinClasses(values:[tableClass, classes])}"${ui.attributes()}>
+<table class="${g.joinClasses(values:[tableClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </table>

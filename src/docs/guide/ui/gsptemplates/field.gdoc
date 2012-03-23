@@ -28,7 +28,7 @@ Example template:
     <g:else>
         <f:field property="${name}" label="${label}" default="${default}"
                 invalid="${invalid}" required="${required}">
-            <input class="${ui.joinClasses(values:[classes, error ? 'error' : ''])}"
+            <input class="${g.joinClasses(values:[classes, error ? 'error' : ''])}"
                 type="${type}" name="${name}" value="${value}"/>
             <span class="help-inline" class="${error ? 'error' : ''}" >
                 <g:message code="field.hint.${name}" encodeAs="HTML"/>

@@ -12,5 +12,5 @@ The GSP receives the following model:
 Example template:
 
 {code:xml}
-<img src="https://secure.gravatar.com/avatar/${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}" class="${ui.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>
+<img src="https://secure.gravatar.com/avatar/${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}" class="${g.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>
 {code}

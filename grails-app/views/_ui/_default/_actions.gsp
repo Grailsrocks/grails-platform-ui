@@ -8,6 +8,6 @@
   actionsClass - Class to apply to the actions container
   body - The body of the actions container
 --%>
-<div class="${ui.joinClasses(values:[actionsClass, classes])}">
+<div class="${g.joinClasses(values:[actionsClass, classes])}">
     ${bodyContent}
 </div>

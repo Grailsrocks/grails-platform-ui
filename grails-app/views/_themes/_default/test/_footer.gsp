@@ -1,1 +1,1 @@
-&copy; <ui:year/> <ui:company/>
+&copy; <g:year/> <g:company/>

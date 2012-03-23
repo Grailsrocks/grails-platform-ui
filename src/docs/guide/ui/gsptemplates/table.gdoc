@@ -10,7 +10,7 @@ The GSP receives the following model:
 Example template:
 
 {code:xml}
-<table class="${ui.joinClasses(values:[tableClass, classes])}"${ui.attributes()}>
+<table class="${g.joinClasses(values:[tableClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </table>
 {code}

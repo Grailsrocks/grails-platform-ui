@@ -1,2 +1,2 @@
-<ui:callTag tag="r.img" class="${ui.joinClasses(values:[imageClass,classes])}" 
+<g:callTag tag="r:img" class="${g.joinClasses(values:[imageClass,classes])}" 
     kind="${kind}" attrs="${attrs}"/>
