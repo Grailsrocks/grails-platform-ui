@@ -19,7 +19,7 @@ package org.grails.plugin.platform.controllers
 
 class PlatformUiController {
     
-    static navigation = "platform"
+    static navigationScope = "platform"
     
     def grailsUISets
     
