@@ -7,7 +7,7 @@ void initLayout(base, n) {
     def year = new Date()[Calendar.YEAR]
 
     new File(new File(base), "${n}.gsp") << """
-<g:html>
+<!DOCTYPE html><html>
     <%-- add a body to this head tag to add any meta / common resources --%>
     <theme:head/>
     <theme:body>
@@ -24,7 +24,7 @@ void initLayout(base, n) {
             &copy; ${year}
         </div>
     </theme:body>
-</g:html>
+</html>
 """
 }
 

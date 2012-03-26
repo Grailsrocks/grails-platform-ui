@@ -1,4 +1,4 @@
-<g:html>
+<!DOCTYPE html><html>
     <theme:head/>
     <theme:body>
         <ui:logo/>
@@ -13,4 +13,4 @@
         <theme:layoutZone name="panel3"/>
         <theme:layoutZone name="footer"/>
     </theme:body>
-</g:html>
+</html>

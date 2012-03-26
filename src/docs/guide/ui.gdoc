@@ -25,7 +25,6 @@ There are tags for rendering:
 * pagination
 * images
 * messages
-* branding info (company name, site name, logos)
 
 Applications can choose which UI Set the tags should use, and this integrates with the theming mechanism so that code using the UI tags will render correctly according to the theme currently being used. In this instance the Theme selects the appropriate UI set.
 

@@ -348,7 +348,7 @@ So for example a theme called "sunshine" that has a page layout called "main" wo
 
 Filename: grails-app/views/layouts/themes/sunshine/main.gsp
     
-    <g:html>
+    <!DOCTYPE html><html>
         <theme:head/>
         <theme:body bodyAttrs="['id', 'onload']">
             <div class="span-6">
@@ -359,7 +359,7 @@ Filename: grails-app/views/layouts/themes/sunshine/main.gsp
                 <theme:layoutZone name="body"/>
             </div>
         </theme:body>
-    </g:html>
+    </html>
     
 Here the g:html tag supplied as a convenience is used to render the DTD and body of the page.
 You can pass a "doctype" attribute to this tag to set the HTML variant you wish to use - e.g. "html 5", "html 4.01", "xhtml 1.1"
