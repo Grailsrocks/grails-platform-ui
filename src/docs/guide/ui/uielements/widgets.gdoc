@@ -167,9 +167,9 @@ Tabbed pages are a familiar and frequently UI element. You can use the [ui:tabs|
 
 <%-- Tabs with i18n titles and inin content panels only --%>
 <ui:tabs prefix="other.tabtitle">
-    <ui:tab title="d"><ui:h4>Tab D Content</ui:h4><theme:ipsum size="2"/></ui:tab>
-    <ui:tab title="e"><ui:h4>Tab E Content</ui:h4><theme:ipsum size="2"/></ui:tab>
-    <ui:tab title="f" action="true"><ui:h4>Tab F Content</ui:h4><theme:ipsum size="2"/></ui:tab>
+    <ui:tab title="d"><ui:h4>Tab D Content</ui:h4><g:dummyText size="2"/></ui:tab>
+    <ui:tab title="e"><ui:h4>Tab E Content</ui:h4><g:dummyText size="2"/></ui:tab>
+    <ui:tab title="f" action="true"><ui:h4>Tab F Content</ui:h4><g:dummyText size="2"/></ui:tab>
 </ui:tabs>
 {code}
 

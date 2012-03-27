@@ -192,13 +192,6 @@ class UITagLib implements InitializingBean {
         return args
     }
 
-    // @todo Move to core
-    private consumePageUniqueId(request) {
-        def id = request.'pluginPlatform.pageTabId' ?: 0
-        request.'pluginPlatform.pageTabId' = ++id
-        return id
-    }
-    
     def tab = { attrs, body ->
         def buffer = pageScope.variables.tabBodies
         if (buffer == null) {
@@ -214,7 +207,7 @@ class UITagLib implements InitializingBean {
         def linkArgs = extractCreateLinkArgs(attrs)
         def link = linkArgs ? g.createLink(linkArgs) : null
 
-        def tabId = params.tabId != null ? params.tabId : consumePageUniqueId(request)
+        def tabId = params.tabId != null ? params.tabId : TagLibUtils.newUniqueId(request)
         
         def bodyPanelArgs = [
             id:tabId,
