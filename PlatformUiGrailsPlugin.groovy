@@ -21,7 +21,7 @@ import org.springframework.core.io.FileSystemResource
 
 class PlatformUiGrailsPlugin {
     // the plugin version
-    def version = "1.0.M1-SNAPSHOT"
+    def version = "1.0.M1"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
@@ -54,15 +54,14 @@ Grails Plugin Platform APIs
     def loadAfter = ['platformCore', 'logging']
 
     // URL to the plugin's documentation
-    def documentation = "http://grails.org/plugin/platform-ui"
+    def documentation = "http://grailsrocks.github.com/grails-platform-ui"
 
     def license = "APACHE"
 
     def organization = [name: "Grailsrocks", url: "http://grailsrocks.com/"]
 
     def developers = [
-            [name: "Marc Palmer", email: "marc@grailsrocks.com"],
-            [name: "Stéphane Maldini", email: "stephane.maldini@gmail.com"]
+            [name: "Marc Palmer", email: "marc@grailsrocks.com"]
     ]
 
     def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPPLATFORMUI" ]
@@ -79,8 +78,6 @@ Grails Plugin Platform APIs
      * This happens all the time, but dWWD may not have run if we're in a WAR
      */
     def doWithSpring = {        
-        xmlns task: "http://www.springframework.org/schema/task"
-
         def deployed = application.warDeployed
 
         grailsViewFinder(org.grails.plugin.platform.views.Grails13ViewFinder) {
@@ -151,7 +148,6 @@ Grails Plugin Platform APIs
         switch (event.source) {
             case FileSystemResource:
                 // @todo this is too promiscuous
-
                 ctx.grailsThemes.reload()
                 break
         }
