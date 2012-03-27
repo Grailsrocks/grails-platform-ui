@@ -26,7 +26,7 @@ class PlatformUiGrailsPlugin {
     def grailsVersion = "1.3 > *"
     // the other plugins this plugin depends on
     def dependsOn = [
-            resources: '1.1.6 > *'
+        resources: '1.1.6 > *'
     ]
     
     // resources that are excluded from plugin packaging
