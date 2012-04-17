@@ -1,1 +1,1 @@
-&copy; <g:year/> <g:organization/>
+&copy; <p:year/> <p:organization/>

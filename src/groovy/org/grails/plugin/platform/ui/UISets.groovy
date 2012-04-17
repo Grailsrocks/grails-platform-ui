@@ -43,6 +43,8 @@ class UISets implements ApplicationContextAware, InitializingBean {
         'avatar', 
         'button', 
         'navigation',
+        'primaryNavigation',
+        'secondaryNavigation',
         'paginate',
         'form',
         'field',

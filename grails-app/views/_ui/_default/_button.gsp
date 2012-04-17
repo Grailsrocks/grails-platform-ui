@@ -1,2 +1,2 @@
-<g:callTag tag="g:button" class="${g.joinClasses(values:[buttonClass,classes,mode])}" 
+<p:callTag tag="p:button" class="${p.joinClasses(values:[buttonClass,classes,mode])}" 
     kind="${kind}" attrs="${attrs}" bodyContent="${text}"/>

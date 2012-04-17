@@ -329,7 +329,7 @@ class ThemeTagLib {
             out << g.render(template:view.path, plugin:view.plugin) 
         } else {
             out << ui.h2([:], "Zone [${attrs.zone}]")
-            out << g.dummyText(size:1)
+            out << p.dummyText(size:1)
         }
     }
     

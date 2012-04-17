@@ -274,17 +274,34 @@ class UITagLib implements InitializingBean {
     
     /**
      * Render navigation items. The Theme controls how they are rendered.
-     * The input items must have the attributes: text, id, link and enabled. The text will be resolved against i18n.
+     * The input items, if specified, must have the attributes: text, id, link and enabled. The text will be resolved against i18n.
      * The link must be the app-relative or absolute link to the target. "id" must be a unique id, which is
      * used as the value of "active" to denote which item is currently active
      */
-    def navigation = { attrs, body ->
+    def primaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
         def items = attrs.remove('items') 
         def active = attrs.remove('active') 
 
-        def navClass = grailsUISets.getUICSSClass(request, 'navigation', 'navigation')
-        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, navClass:navClass, items:items, active:active])
+        def navClass = grailsUISets.getUICSSClass(request, 'primaryNavigation', 'nav secondary')
+        out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
+    }
+
+    def secondaryNavigation = { attrs, body ->
+        def classes = attrs.remove('class')
+        def items = attrs.remove('items') 
+
+        def navClass = grailsUISets.getUICSSClass(request, 'secondaryNavigation', 'nav primary')
+        out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
+    }
+    
+    def navigation = { attrs, body ->
+        def classes = attrs.remove('class')
+        def items = attrs.remove('items') 
+        def scope = attrs.remove('scope') 
+
+        def navClass = grailsUISets.getUICSSClass(request, 'navigation', 'nav')
+        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, scope:scope, navClass:navClass, items:items])
     }
 
     def displayMessage = { attrs, body ->

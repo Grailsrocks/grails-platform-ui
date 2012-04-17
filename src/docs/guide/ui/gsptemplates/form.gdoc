@@ -10,7 +10,7 @@ The GSP receives the following model:
 Example template:
 
 {code:xml}
-<g:callTag tag="g:form" class="${g.joinClasses(values:[formClass,classes])}"
+<p:callTag tag="g:form" class="${p.joinClasses(values:[formClass,classes])}"
     attrs="${attrs}" bodyContent="${bodyContent}"/>
 {code}
 

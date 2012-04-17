@@ -47,8 +47,10 @@ Grails Plugin Platform APIs
 '''
 
     def watchedResources = [
-            "file:./grails-app/views/_themes/**/*.gsp",
-            "file:./grails-app/views/layouts/themes/**/*.gsp"
+        "file:./grails-app/views/_ui/**/*.gsp",
+        "file:./grails-app/views/_themes/**/*.gsp",
+        "file:./grails-app/views/layouts/themes/**/*.gsp"
+        // We don't monitor plugins, it is only needed for inline plugins and slows it all down
     ]
 
     def loadAfter = ['platformCore', 'logging']

@@ -3,7 +3,7 @@
     <ui:h2>Theme-relative Heading 2</ui:h2>
     <ui:h3>Theme-relative Heading 3</ui:h3>
     <ui:h4>Theme-relative Heading 4</ui:h4>
-    <p>Paragraph text: <g:dummyText size="1"/></p>
+    <p>Paragraph text: <p:dummyText size="1"/></p>
 
     <em>Unordered lists</em>
     <ul>
@@ -39,8 +39,14 @@
 </ui:block>
 
 <ui:block title="Navigation">
-    <ui:navigation items="[ [text:'Home', link:'index', id:'home'], [text:'About', link:'about', id:'about'], [text:'Contact', link:'contact', id:'contact'] ]" 
-        active="about"/>
+    <ui:h1>Primary Navigation</ui:h1>
+    <ui:primaryNavigation/>
+    
+    <ui:h1>Secondary Navigation</ui:h1>
+    <ui:secondaryNavigation/>
+    
+    <ui:h1>General Navigation</ui:h1>
+    <ui:navigation scope="dev"/>
 </ui:block>
 
 <ui:block title="Logo">
@@ -54,7 +60,7 @@
 <ui:block title="blocks.with.titles.from.message.bundle">
     <p>Blocks like this use <code>ui:block</code> and take a <code>title</code> that 
         has i18n applied. The theme controls how a block is rendered, typically adding an outer div and a class, and a heading.</p>
-    <g:dummyText size="2"/>
+    <p:dummyText size="2"/>
 </ui:block>
 
 <ui:block title="Links">
@@ -102,9 +108,9 @@
     </ui:tabs>
     <ui:h3>Tabs with i18n titles and bodies defined</ui:h3>
     <ui:tabs prefix="other.tabtitle">
-        <ui:tab title="d"><ui:h4>Tab D Content</ui:h4><g:dummyText size="2"/></ui:tab>
-        <ui:tab title="e"><ui:h4>Tab E Content</ui:h4><g:dummyText size="2"/></ui:tab>
-        <ui:tab title="f" active="true"><ui:h4>Tab F Content</ui:h4><g:dummyText size="2"/></ui:tab>
+        <ui:tab title="d"><ui:h4>Tab D Content</ui:h4><p:dummyText size="2"/></ui:tab>
+        <ui:tab title="e"><ui:h4>Tab E Content</ui:h4><p:dummyText size="2"/></ui:tab>
+        <ui:tab title="f" active="true"><ui:h4>Tab F Content</ui:h4><p:dummyText size="2"/></ui:tab>
      </ui:tabs>
 </ui:block>
 

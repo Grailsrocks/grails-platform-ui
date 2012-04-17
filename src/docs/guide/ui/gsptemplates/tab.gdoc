@@ -11,7 +11,7 @@ The GSP receives the following model:
 Example template:
 
 {code:xml}
-<tr class="${g.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
+<tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </tr>
 {code}
