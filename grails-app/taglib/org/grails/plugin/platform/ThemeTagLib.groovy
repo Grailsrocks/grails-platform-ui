@@ -133,7 +133,7 @@ class ThemeTagLib {
      * These also allow the page to override the content. The content is located so:
      * 1. A check is made for a "zone" with the name "template.<name>", if found this is rendered
      * 2. A check is made for a GSP template in the application at the path /_theme_templates/_<name>.gsp
-     * 3. Failing (1) and (2), some default text is rendered in a <div> stating how to supply content for this element
+     * 3. Failing (1) and (2), the body is rendered, assumed to contain theme's default sample content
      */
     def layoutZone = { attrs -> 
         mustBeInALayout('layoutZone')
@@ -145,15 +145,15 @@ class ThemeTagLib {
         def zones = request[REQ_ATTR_ZONE_LIST]
 
         if (!zones || !zones.contains(id)) {
-            def templatePath = "/_themes/_templates/${id}"
+            // Location of app's standard content for theme zones
+            def templatePath = "/_themes/zones/${id}"
             
-            // First see if the template provides default content for this zone (e.g. a footer or social panel)
+            // First see if the application provides default content for this zone (e.g. a footer or social panel)
             if (grailsViewFinder.templateExists(templatePath)) {
                 out << g.render(template:templatePath) 
             } else {
-                if (debugMode) {
-                    out << dummyText(zone:id)
-                } else {
+                out << theme.defaultContent([zone:id])
+                if (!debugMode) {
                     if (log.warnEnabled) {
                         log.warn "Could not layout zone [$id], there is no content for it from the GSP page, and no application template at ${templatePath}"
                     }
@@ -320,15 +320,15 @@ class ThemeTagLib {
         out << g.render(template:templateView.path, plugin:templateView.plugin)
     }
 
-    def dummyText = { attrs -> 
+    def defaultContent = { attrs -> 
         if (!attrs.zone) {
-            throwTagError "The attribute 'zone' is required to denote the zone for which dummy text is required"
+            throwTagError "The attribute 'zone' is required to denote the zone for which default content is required"
         }
-        def view = grailsThemes.getDummyTextTemplateForZone(request, attrs.zone)
+        def view = grailsThemes.getDefaultTemplateForZone(request, attrs.zone)
         if (view) {
             out << g.render(template:view.path, plugin:view.plugin) 
         } else {
-            out << ui.h2([:], "Zone [${attrs.zone}]")
+            out << ui.h2([:], "Dummy content for zone [${attrs.zone}]")
             out << p.dummyText(size:1)
         }
     }

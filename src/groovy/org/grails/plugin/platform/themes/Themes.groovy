@@ -292,30 +292,30 @@ class Themes implements InitializingBean {
      * If not found falls back to _default provided by the platform.
      * If there is no default for the specified zone in the platform, returns null
      */
-    ViewInfo getDummyTextTemplateForZone(request, zone) {
+    ViewInfo getDefaultTemplateForZone(request, zone) {
         def t = getRequestTheme(request)
         def l = getRequestStyle(request)
         def plugin = t?.definingPlugin
         def v
         if (t) {
-            v = "/_themes/${t.name}/test/$l/$zone"
+            v = "/_themes/${t.name}/default/$l/$zone"
         }
         if (!grailsViewFinder.templateExists(v, plugin)) {
             if (log.debugEnabled) {
-                log.debug "Theme [$t.name] does not supply a layout-specific test text template for zone [${zone}] in theme layout [${l}], trying theme default"
+                log.debug "Theme [$t.name] does not supply a layout-specific default text template for zone [${zone}] in theme layout [${l}], trying theme default"
             }
-            v = "/_themes/${t.name}/test/$zone"
+            v = "/_themes/${t.name}/default/$zone"
             if (!grailsViewFinder.templateExists(v, plugin)) {
                 plugin = platformUiPlugin
                 if (log.debugEnabled) {
-                    log.debug "Theme [$t] does not supply a test text template for zone [${zone}], trying platform layout-specific default"
+                    log.debug "Theme [$t] does not supply a default text template for zone [${zone}], trying platform layout-specific default"
                 }
-                v = "/_themes/${DEFAULT_THEME_NAME}/test/$l/$zone"
+                v = "/_themes/${DEFAULT_THEME_NAME}/default/$l/$zone"
                 if (!grailsViewFinder.templateExists(v, plugin)) {
                     if (log.debugEnabled) {
-                        log.debug "Theme [$t] does not supply a test text template for zone [${zone}], using platform default"
+                        log.debug "Theme [$t] does not supply a default text template for zone [${zone}], using platform default"
                     }
-                    v = "/_themes/${DEFAULT_THEME_NAME}/test/$zone"
+                    v = "/_themes/${DEFAULT_THEME_NAME}/default/$zone"
                     if (!grailsViewFinder.templateExists(v, plugin)) {
                         return null
                     }

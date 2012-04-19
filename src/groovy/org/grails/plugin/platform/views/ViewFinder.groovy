@@ -56,9 +56,4 @@ interface ViewFinder {
     List<String> listPluginViewFoldersAt(GrailsPlugin plugin, String path, String markerView)
 
     List<String> listAppViewFoldersAt(String path, String markerView)
-/*
-    List<String> listAppViewResourcesAt(path)
-
-    List<String> listPluginViewResourcesAt(plugin, path)
-    */
 }

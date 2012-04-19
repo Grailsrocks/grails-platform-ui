@@ -73,6 +73,10 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
         return res?.exists()
     }
     
+    /** 
+     * See if a GSP template exists in a plugin
+     * If plugin is null, reverts to application views
+     */
     boolean templateExists(String path, GrailsPlugin plugin) {
         if (!plugin) {
             return templateExists(path)
