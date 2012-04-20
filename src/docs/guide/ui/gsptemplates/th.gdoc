@@ -1,4 +1,4 @@
-The @_th.gsp@ template is used to render the [ui:th|Tags UI] tag.
+The @_th.gsp@ template is used to render the [th|uiTags]tag.
 
 The GSP receives the following model:
 

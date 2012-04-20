@@ -4,7 +4,7 @@ h2. Purpose
 
 This tag renders a message for the user, such as an info or warning message.
 
-See also [ui:displayMessage|Tags UI] for the variant that renders the message set by the controller.
+See also [displayMessage|uiTags]for the variant that renders the message set by the controller.
 
 h2. Example
 

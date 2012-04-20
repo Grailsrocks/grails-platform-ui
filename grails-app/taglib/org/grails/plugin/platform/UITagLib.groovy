@@ -195,7 +195,7 @@ class UITagLib implements InitializingBean {
     def tab = { attrs, body ->
         def buffer = pageScope.variables.tabBodies
         if (buffer == null) {
-            throwTagError("The [tab] tag can only be invoked inside a [tabs] tag body")
+            throwTagError("The [ui:tab] tag can only be invoked inside a [tabs] tag body")
         }
         
         def title = attrs.remove('title')
@@ -405,7 +405,7 @@ class UITagLib implements InitializingBean {
     def paginate = { attrs ->
         def writer = out
         if (attrs.total == null) {
-            throwTagError("Tag [paginate] is missing required attribute [total]")
+            throwTagError("Tag [ui:paginate] is missing required attribute [total]")
         }
         def messageSource = grailsAttributes.messageSource
         def locale = RCU.getLocale(request)

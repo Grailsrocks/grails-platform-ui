@@ -78,7 +78,7 @@ class ThemeTagLib {
         def htmlPage = getPage()
         def propertyName = id.toString()
         if(!(htmlPage instanceof GSPSitemeshPage)) {
-            throwTagError("Tag [zone] requires 'grails.views.gsp.sitemesh.preprocess = true' -mode")
+            throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' -mode")
         }
         appendToContentBuffer(propertyName, body)
         return null

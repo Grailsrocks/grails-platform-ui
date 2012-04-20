@@ -1,4 +1,4 @@
-The @_tab.gsp@ template is used to render the [ui:tab|Tags UI] tag.
+The @_tab.gsp@ template is used to render the [tab|uiTags]tag.
 
 The GSP receives the following model:
 

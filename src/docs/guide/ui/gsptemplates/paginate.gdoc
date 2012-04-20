@@ -1,4 +1,4 @@
-The @_paginate.gsp@ template is used to render the [ui:paginate|Tags UI] tag.
+The @_paginate.gsp@ template is used to render the [paginate|uiTags]tag.
 
 The GSP receives the following model:
 

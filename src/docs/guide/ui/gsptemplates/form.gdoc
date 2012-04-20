@@ -1,4 +1,4 @@
-The @_form.gsp@ template is used to render the [ui:form|Tags UI] tag.
+The @_form.gsp@ template is used to render the [form|uiTags]tag.
 
 The GSP receives the following model:
 

@@ -1,4 +1,4 @@
-The @_image.gsp@ template is used to render the [ui:image|Tags UI] tag.
+The @_image.gsp@ template is used to render the [image|uiTags]tag.
 
 The GSP receives the following model:
 

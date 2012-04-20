@@ -1,11 +1,11 @@
-The @_field.gsp@ template is used to render the [ui:field|Tags UI] tag.
+The @_field.gsp@ template is used to render the [field|uiTags]tag.
 
 The GSP receives the following model:
 
 * fieldClass - The CSS class to use for the primary container of the field HTML, obtained from UI Set config.
 * invalidClass - The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config
 * classes - A string containing the list of CSS classes to apply to the outer container
-* label - The label text or i18n message code to use for the label. If no value specified, must default the rules set out in [ui:field|Tags UI]
+* label - The label text or i18n message code to use for the label. If no value specified, must default the rules set out in [field|uiTags]
 * labelArgs - An optional list of arguments to use when building the label i18n message
 * hint - An optional hint string or i18n code to render with the field
 * hintArgs - Optional argument list to accompany the value of "hint"

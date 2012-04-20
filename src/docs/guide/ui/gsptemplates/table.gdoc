@@ -1,4 +1,4 @@
-The @_table.gsp@ template is used to render the [ui:table|Tags UI] tag.
+The @_table.gsp@ template is used to render the [table|uiTags]tag.
 
 The GSP receives the following model:
 

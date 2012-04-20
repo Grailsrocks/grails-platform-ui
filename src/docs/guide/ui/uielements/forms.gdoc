@@ -1,4 +1,4 @@
-There are several UI tags speficically relating to forms, [ui:form|Tags UI], [ui:field|Tags UI] and [ui:actions|Tags UI].
+There are several UI tags speficically relating to forms, [form|uiTags], [field|uiTags]and [actions|uiTags].
 
 You can create a form using the new UI tags like this:
 

@@ -1,10 +1,10 @@
-h1. ui:tr
+h1. ui:table
 
 h2. Purpose
 
-This tag renders an HTML table row.
+This tag renders an HTML table representing content for the user to view (as opposed to any layout hacks etc).
 
-This tag automatically uses row number information tracked by the parent [ui:table|Tags UI] tag.
+This tag automatically tracks row number when used with [tr|uiTags]tag.
 
 h2. Example
 

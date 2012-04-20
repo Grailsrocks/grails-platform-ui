@@ -2,7 +2,7 @@ h1. ui:tab
 
 h2. Purpose
 
-This tag defines a tab within a [ui:tabs|Tags UI] set.
+This tag defines a tab within a [tabs|uiTags]set.
 
 A tab can have a body which is used as that tab's content, or it can just link directly to another URL.
 

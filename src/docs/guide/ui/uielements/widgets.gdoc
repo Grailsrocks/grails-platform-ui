@@ -4,7 +4,7 @@ For full details see the tag reference section.
 
 h3. Button
 
-The [ui:button|Tags UI] tag renders a button with options for:
+The [button|uiTags]tag renders a button with options for:
 * the mode of rendering (input with type submit, button tag, or anchor)
 * resolving the text via i18n messages
 * different cues to the user to indicate e.g. primary buttons
@@ -20,7 +20,7 @@ The [ui:button|Tags UI] tag renders a button with options for:
 
 h3. Field
 
-The [ui:field|Tags UI] tag lets you specify a field that must be rendered - usually within a form. 
+The [field|uiTags]tag lets you specify a field that must be rendered - usually within a form. 
 
 The UI Set is responsible for all structural markup relating to this field, including any required container nodes, the label, per-field errors (if supported) and hints etc. The output depends entirely on the UI Set in use.
 
@@ -41,7 +41,7 @@ You can see that the field type is auto-sensed, which can be overriden with "typ
 
 h3. Image
 
-The [ui:image|Tags UI] tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.
+The [image|uiTags]tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.
 
 {code:xml}
 <ui:image uri="/images/product1.png" width="200" title="Our latest product"
@@ -53,7 +53,7 @@ The [ui:image|Tags UI] tag is used to render images that represent content for t
 
 h3. Table
 
-The [ui:table|Tags UI] tag is used to render tables of information.
+The [table|uiTags]tag is used to render tables of information.
 
 Use just like normal tables, but gives the UI Set/Theme an opportunity to apply extra styling and can count rows.
 
@@ -84,13 +84,13 @@ You must always use @ui:table@ for Theme-compatible table styling.
 
 h3. Table Row
 
-The [ui:tr|Tags UI] tag is used to render a table row. It can only be used in bodies of the [ui:table|Tags UI] tag as it relies on contextual information (row number).
+The [tr|uiTags]tag is used to render a table row. It can only be used in bodies of the [table|uiTags]tag as it relies on contextual information (row number).
 
 See the @ui:table@ example for usage. UI Sets can easily detect if the row being rendered is odd or not using a model variable.
 
 h3. Table Heading
 
-The [ui:th|Tags UI] tag is used to render a table heading cell.
+The [th|uiTags]tag is used to render a table heading cell.
 
 It makes it easy to provide localized text for the heading, and also gives the UI Set the opportunity to add other decoration or functionality like sorting.
 
@@ -112,7 +112,7 @@ The text attribute is translated using your application message bundle.
 
 h3. Messages
 
-The [ui:message|Tags UI] tag used render text messages such as info and warning messages.
+The [message|uiTags]tag used render text messages such as info and warning messages.
 
 {code:xml}
 <ui:message type="info" text="alert.message.something.happened"/>
@@ -126,7 +126,7 @@ The [ui:message|Tags UI] tag used render text messages such as info and warning 
 As with most UI tags you can specify text/textArgs attributes or a body. 
 
 There are dynamic methods added to controllers to make it easy to display messages to the user. Just call [displayMessage|Controller Methods]
-or [displayFlashMessage|Controller Methods] and then add the following tag to your GSP views using the [ui:displayMessage|Tags UI]:
+or [displayFlashMessage|Controller Methods] and then add the following tag to your GSP views using the [displayMessage|uiTags]:
 
 {code:xml}
 <ui:displayMessage/>
@@ -136,7 +136,7 @@ This will render nothing if there is a no message set by the controller. Otherwi
 
 h3. Pagination
 
-The [ui:paginate|Tags UI] tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.
+The [paginate|uiTags]tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.
 
 The attributes are the same as the normal g:paginate tag:
 
@@ -148,7 +148,7 @@ The underlying UI Set is presented with a data structure containing the links re
 
 h3. Tabs
 
-Tabbed pages are a familiar and frequently UI element. You can use the [ui:tabs|Tags UI] tag to define a set of tabs, and [ui:tab] tags inside the body of @ui:tabs@ to define the content:
+Tabbed pages are a familiar and frequently UI element. You can use the [tabs|uiTags]tag to define a set of tabs, and [tab] tags inside the body of @ui:tabs@ to define the content:
 
 {code:xml}
 <%-- Tabs with hardcoded titles and links only --%>
@@ -179,7 +179,7 @@ h3. Avatar
 
 Display of user avatar images is a common feature of many web apps, especially social ones. External services typically supply the actual images, but how these are rendered/decorated is up to the application.
 
-The [ui:avatar|Tags UI] tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:
+The [avatar|uiTags]tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:
 
 {code:xml}
 <ui:avatar user="marc@grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/>
