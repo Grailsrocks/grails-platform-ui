@@ -148,7 +148,7 @@ class UITagLib implements InitializingBean {
         try {
             return g.render(plugin:t.plugin, template:t.path, model:model)        
         } catch (Throwable e) {
-            log.error "Could not render UI tag template $templateName from UI Set $t.owner", e
+            log.error "Could not render UI tag template $templateName from UI Set $t?.owner", e
             throw new UITagException(templateName, t.owner, e) 
         }
     }
@@ -171,7 +171,7 @@ class UITagLib implements InitializingBean {
 
         def tabBodiesBuffer = []
         // collect up the bodies and tab titles
-        def bodyContent = body(tabBodies:tabBodiesBuffer)
+        def bodyContent = body(_ui_tabBodies:tabBodiesBuffer)
         // Output the list of tabs
         out << renderUITemplate('tabs', [
             attrs:attrs,
@@ -193,7 +193,7 @@ class UITagLib implements InitializingBean {
     }
 
     def tab = { attrs, body ->
-        def buffer = pageScope.variables.tabBodies
+        def buffer = pageScope.variables._ui_tabBodies
         if (buffer == null) {
             throwTagError("The [ui:tab] tag can only be invoked inside a [tabs] tag body")
         }
@@ -207,7 +207,7 @@ class UITagLib implements InitializingBean {
         def linkArgs = extractCreateLinkArgs(attrs)
         def link = linkArgs ? g.createLink(linkArgs) : null
 
-        def tabId = params.tabId != null ? params.tabId : TagLibUtils.newUniqueId(request)
+        def tabId = attrs.tabId != null ? attrs.tabId : TagLibUtils.newUniqueId(request)
         
         def bodyPanelArgs = [
             id:tabId,
@@ -381,27 +381,7 @@ class UITagLib implements InitializingBean {
         return [ns, tagName]
     }
     
-    def themeTag = { attrs, body ->
-        def name = attrs.remove('tag')
-        def (ns, tagName) = resolveTagName(name)
-        def taglib = this[ns]
-        def tagInfo = [namespace:ns, tagName:tagName, body:body]
-        out << renderExtendedUITemplate("${ns}_${tagName}", [attrs:attrs, tagInfo:tagInfo])
-    }
 
-    void doThemedTag(attrs, body) {
-        def tagInfo = pageScope.tagInfo
-        if (!tagInfo) {
-            throwTagError "themedTag can only be called inside a UI template for a tag"
-        }
-        def attribs = pageScope.attrs
-        // Override with the attribs we received
-        attribs.putAll(attrs)
-        // Call the original tag
-        def taglib = this[tagInfo.namespace]
-        out << taglib."${tagInfo.tagName}"(attribs, body)
-    }
-    
     def paginate = { attrs ->
         def writer = out
         if (attrs.total == null) {
@@ -525,22 +505,6 @@ class UITagLib implements InitializingBean {
         ])
     }
     
-    def themedTag = { attrs, body ->
-        def tagInfo = pageScope.tagInfo
-        doThemedTag(attrs, tagInfo?.body)
-    }
-
-    def themedTagBody = { attrs, body ->
-        def tagInfo = pageScope.tagInfo
-        pageScope._body = tagInfo?.body
-        doThemedTag(attrs, body)
-    }
-    
-    def originalBody = { attrs ->
-        def b = pageScope._body
-        out << b()
-    }
-    
     def form = { attrs, body ->
         def classes = attrs.remove('class')
         def formClass = grailsUISets.getUICSSClass(request, 'form', 'form')
@@ -633,6 +597,80 @@ class UITagLib implements InitializingBean {
             classes:classes
         ])
     }
+
+    def logo = { attrs ->
+        def args = [applicationName:grailsApplication.metadata['app.name']]
+        args.classes = attrs.remove('class')
+        args.logoClass = grailsUISets.getUICSSClass(request, 'logo', 'logo')
+        def w = attrs.width
+        def h = attrs.height
+        args.w = w
+        args.h = h
+        
+        // This may look for "x" or "300x" or "x500" or "300x500"
+        args.logoUri = resolveLogo(w, h)
+
+        out << renderUITemplate('logo', args)
+    }
+    
+    def carousel = { attrs, body ->
+        def classes = attrs.remove('class')
+        def carouselClass = grailsUISets.getUICSSClass(request, 'carousel', 'carousel')
+
+        def carouselBodiesBuffer = []
+        // collect up the bodies
+        def bodyContent = body(_ui_carouselBodies:carouselBodiesBuffer)
+        // Output the list of tabs
+        out << renderUITemplate('carousel', [
+            attrs:attrs,
+            classes:classes, 
+            carouselClass:carouselClass,
+            slides:carouselBodiesBuffer
+        ])
+    }
+
+    def slide = { attrs, body ->
+        def buffer = pageScope.variables._ui_carouselBodies
+        if (buffer == null) {
+            throwTagError("The [ui:slide] tag can only be invoked inside a [carousel] tag body")
+        }
+        
+        def classes = attrs.remove('class')
+        def active = attrs.remove('active')?.toBoolean()
+
+        def slideClass = grailsUISets.getUICSSClass(request, 'slide', 'slide')
+
+        def slideId = attrs.slideId != null ? attrs.slideId : TagLibUtils.newUniqueId(request)
+        
+        def bodyPanelArgs = [
+            id:slideId,
+            active:active
+        ]
+
+        bodyPanelArgs.body = renderUITemplate('slide', [
+            id:slideId,
+            classes:classes,
+            attrs:attrs,
+            active:active,
+            slideClass:slideClass,
+            bodyContent: body()
+        ])
+        
+        buffer << bodyPanelArgs
+        return null
+    }
+
+    // @todo move this to TagLibUtils and use messageSource
+    protected getMessageOrBody(Map attrs, Closure body) {
+        def textCode = attrs.remove('text')
+        def textCodeArgs = attrs.remove('textArgs')
+        def textFromCode = textCode ? g.message(code:textCode, args:textCodeArgs) : null
+        if (textFromCode) {
+            textFromCode = textFromCode.encodeAsHTML()
+        }
+        def v = textFromCode ?: body()
+        return v
+    }
     
     private resolveLogo(w, h) {
         if (log.debugEnabled) {
@@ -693,35 +731,9 @@ class UITagLib implements InitializingBean {
         }
         return logoUri
     }
-
-    def logo = { attrs ->
-        def args = [applicationName:grailsApplication.metadata['app.name']]
-        args.classes = attrs.remove('class')
-        args.logoClass = grailsUISets.getUICSSClass(request, 'logo', 'logo')
-        def w = attrs.width
-        def h = attrs.height
-        args.w = w
-        args.h = h
-        
-        // This may look for "x" or "300x" or "x500" or "300x500"
-        args.logoUri = resolveLogo(w, h)
-
-        out << renderUITemplate('logo', args)
-    }
     
-    // @todo move this to TagLibUtils and use messageSource
-    protected getMessageOrBody(Map attrs, Closure body) {
-        def textCode = attrs.remove('text')
-        def textCodeArgs = attrs.remove('textArgs')
-        def textFromCode = textCode ? g.message(code:textCode, args:textCodeArgs) : null
-        if (textFromCode) {
-            textFromCode = textFromCode.encodeAsHTML()
-        }
-        def v = textFromCode ?: body()
-        return v
-    }
-    
-/*
+/* Some experimental stuff that probably doesn't belong here
+
     def jsModel = { attrs, body ->
         def model = [i18n:[:], model:[:], params:[:]]
         def varName = attrs.var ?: 'model'

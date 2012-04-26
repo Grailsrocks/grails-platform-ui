@@ -76,7 +76,7 @@ class ThemeTagLib {
         doDefineZone(id)
     
         def htmlPage = getPage()
-        def propertyName = id.toString()
+        def propertyName = "theme.zone."+id.toString()
         if(!(htmlPage instanceof GSPSitemeshPage)) {
             throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' -mode")
         }
@@ -145,6 +145,12 @@ class ThemeTagLib {
         def zones = request[REQ_ATTR_ZONE_LIST]
 
         if (!zones || !zones.contains(id)) {
+            // If this is body zone but none defined, just dump out body
+            if (id == 'body') {
+                out << g.layoutBody()
+                return
+            }
+            
             // Location of app's standard content for theme zones
             def templatePath = "/_themes/zones/${id}"
             
@@ -160,7 +166,7 @@ class ThemeTagLib {
                 }
             }
         } else {
-            out << g.pageProperty(name:'page.'+id)
+            out << g.pageProperty(name:"page.theme.zone."+id)
         }
     }
     
@@ -299,15 +305,8 @@ class ThemeTagLib {
             // We need the body of the debug GSP as it has the panel in it
             // @todo we can probably ditch this layoutBody if theme previewer concats to "body" zone
             out << g.layoutBody()
-            out << tagBody()
-        } else {
-            if (!isZoneDefined('body')) {
-                out << g.layoutBody()
-            } else {
-                // @todo check for empty body and if so just render out 'body' zone by default
-                out << tagBody()
-            }
         }
+        out << tagBody()
         out << r.layoutResources() 
         out << """</body>"""
     }
@@ -326,9 +325,15 @@ class ThemeTagLib {
         }
         def view = grailsThemes.getDefaultTemplateForZone(request, attrs.zone)
         if (view) {
+            if (log.debugEnabled) {
+                log.debug "Rendering default content for zone [$attrs.zone] using view [${view.path} (plugin: ${view.plugin})]"
+            }
             out << g.render(template:view.path, plugin:view.plugin) 
         } else {
-            out << ui.h2([:], "Dummy content for zone [${attrs.zone}]")
+            if (log.debugEnabled) {
+                log.debug "Rendering default inline content for zone [$attrs.zone]"
+            }
+            out << ui.h2([:], "Default content for zone [${attrs.zone}]")
             out << p.dummyText(size:1)
         }
     }

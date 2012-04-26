@@ -53,7 +53,9 @@ class UISets implements ApplicationContextAware, InitializingBean {
         'table',
         'tr',
         'th',
-        'logo'
+        'logo',
+        'carousel',
+        'slide',
     ] as Set
     
     def pluginManager

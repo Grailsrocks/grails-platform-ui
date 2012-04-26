@@ -327,5 +327,6 @@ class Themes implements InitializingBean {
         }
         return new ViewInfo(plugin:plugin?.name, path:v)
     }
+
     
 }

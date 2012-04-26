@@ -114,6 +114,21 @@
      </ui:tabs>
 </ui:block>
 
+<ui:block title="Carousel">
+    <p>Carousels provide a way to show multiple sections of content, transitioning from one to another.</p> 
+    <ui:carousel>
+        <ui:slide active="true">
+            Slide one
+        </ui:slide>
+        <ui:slide>
+            Slide two
+        </ui:slide>
+        <ui:slide>
+            Slide three
+        </ui:slide>
+    </ui:carousel>
+</ui:block>
+
 <ui:block title="Messages">
     <p>These simple UI feedback messages are rendered using <code>ui:message</code>, with Themes typically customizing the CSS class applied.</p>
     <ui:message type="debug"><p>This is some debug output, only for development mode</p></ui:message>
