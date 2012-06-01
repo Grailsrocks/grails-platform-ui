@@ -40,6 +40,15 @@ class Themes implements InitializingBean {
     static DEFAULT_THEME_NAME = '_default'    
     static DEFAULT_LAYOUT = 'main'
 
+    static CORE_LAYOUTS = [
+        'home', 
+        'sidebar', 
+        'report', 
+        'dataentry', 
+        'dialog', // single form area, no site chrome
+        DEFAULT_LAYOUT
+    ]
+
     def pluginManager
     def grailsPluginConfiguration
     def pluginConfig

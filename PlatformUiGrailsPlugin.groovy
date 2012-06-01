@@ -24,10 +24,6 @@ class PlatformUiGrailsPlugin {
     def version = "1.0.M1-SNAPSHOT"
     // the version or versions of Grails the plugin is designed for
     def grailsVersion = "1.3 > *"
-    // the other plugins this plugin depends on
-    def dependsOn = [
-        resources: '1.1.6 > *'
-    ]
     
     // resources that are excluded from plugin packaging
     def pluginExcludes = [
@@ -43,7 +39,7 @@ class PlatformUiGrailsPlugin {
     def author = "Marc Palmer"
     def authorEmail = "marc@grailsrocks.com"
     def description = '''\
-Grails Plugin Platform APIs
+Platform UI - abstracted UI elements and theming for plugin/application interoperability
 '''
 
     def watchedResources = [

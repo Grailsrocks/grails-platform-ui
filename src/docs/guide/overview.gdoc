@@ -1,12 +1,19 @@
-The Plugin Platform provides APIs that provide the glue required for advanced
-Grails plugins to interoperate with each other and applications to achieve
-tight integration and compatibility across multiple Grails versions, and turbo-charge the development of a new generation of plugins.
+The Platform UI is a sister plugin to Platform Core.
 
-The founding principle is that these platform features should not be part of
-Grails core because to do so ties plugins that use the APIs to specific Grails
-versions.
+Where PlatformCore provides "plumbing" for plugins and applications, Platform
+UI provides common UI and Theming support for plugins and applications so that they can achieve higher level visual integration.
 
-This relative freedom from Grails versions means that plugins that use the platform should remain compatible with more Grails versions for longer, and that new features used by all plugins can be added outside of the Grails release cycle.
+Platform UI provides *UI Sets* and *Themes* via APIs and GSP template discovery. It is designed
+to be as lightweight as possible and completely CSS an JS framework agnostic.
 
-The set of APIs that comprise the Grails Plugin Platform is inteded to provide a foundation for plugins to play nicely together in applications. The hope is that plugins can pro-actively work together with each other and your application to create a sum greater than the parts.
+It is however very important to understand that Platform UI *does not attempt to be a universal UI toolkit*.
 
+The goal is to provide *just enough* common UI widgets for plugins to expose basic UI screens that will be automatically styled
+to fit the Application's theme - and to provide *only* the most common site styling elements needed for an effective system
+of replaceable application Themes.
+
+Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
+rendering of fields, forms, tables, logos, buttons etc.
+
+Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
+theme that they choose.

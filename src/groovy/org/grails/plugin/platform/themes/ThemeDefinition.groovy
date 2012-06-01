@@ -89,6 +89,11 @@ class ThemeDefinition {
             log.debug "Theme [${name}] layouts: ${layoutPaths}"
         }
         
+        def missingLayouts = Themes.CORE_LAYOUTS - layoutNames
+        if (missingLayouts) {
+            log.warn "Theme [${name}] is missing core layouts: ${missingLayouts} - things will look bad if your app or plugins use them"
+        }
+        
         overridingUISet = new UISetDefinition(name:'theme.ui.set.'+name, definingPlugin:definingPlugin)
         overridingUISet.resolve(finder)
     }

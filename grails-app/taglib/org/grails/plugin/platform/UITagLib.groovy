@@ -117,9 +117,9 @@ class UITagLib implements InitializingBean {
         }
 
         def mode = attrs.remove('mode')
-        def enabled = attrs.remove('enabled')
-        if (enabled) {
-            enabled = enabled.toString().toBoolean()
+        def disabled = attrs.remove('disabled')
+        if (disabled) {
+            disabled = disabled.toString().toBoolean()
         }
         def classes = attrs.remove('class') 
         if (classes == null) {
@@ -136,7 +136,7 @@ class UITagLib implements InitializingBean {
             kind:type,
             text:text,
             mode:mode,
-            enabled:enabled])
+            disabled:disabled])
     }
 
     protected renderUITemplate(String templateName, Map model) {
