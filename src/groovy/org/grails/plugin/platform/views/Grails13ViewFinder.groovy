@@ -58,6 +58,7 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
     }
     
     private boolean hasNonCompiledGSP(fullpath) {
+        def loader = establishResourceLoader()
         loader.getResource(fullpath)?.exists()
     }
     
@@ -65,15 +66,12 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
      * @param name The path of the view relative to grails-views/ and excluding the .gsp part, but containing relevant underscores
      */
     boolean templateExists(String path) {
-        GrailsApplication application = applicationContext.getBean(GrailsApplication.APPLICATION_ID, GrailsApplication.class)
-
-        def loader = establishResourceLoader()
         String gspView = groovyPagesUriService.getTemplateURI('', path)
         def fullpath = resourcesPrefix+'/grails-app/views'+gspView
         if (log.debugEnabled) {
             log.debug "Checking for template at ${fullpath}"
         }
-        def res = hasNonCompiledGSP(fullpath)
+        def res = viewExists(fullpath)
         if (log.debugEnabled) {
             log.debug "Checking for template at ${fullpath} found: [${res}]"
         }
@@ -88,8 +86,6 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
         if (!plugin) {
             return templateExists(path)
         }
-        GrailsApplication application = applicationContext.getBean(GrailsApplication.APPLICATION_ID, GrailsApplication.class)
-
         String gspView = groovyPagesUriService.getTemplateURI('', path)
         def fullpath = '/plugins/'+plugin.fileSystemName+'/grails-app/views'+gspView
         if (log.debugEnabled) {
@@ -106,8 +102,6 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
      * @param path The path of the layout view relative to grails-views/layouts/ and excluding the .gsp part
      */
     boolean layoutExists(String path) {
-        GrailsApplication application = applicationContext.getBean(GrailsApplication.APPLICATION_ID, GrailsApplication.class);
-
         def fullpath = APP_VIEW_PATH_PREFIX + LAYOUTS_PATH + '/'+path + '.gsp'
         if (log.debugEnabled) {
             log.debug "Checking for layout at ${fullpath}"
@@ -207,7 +201,7 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
     }
 
     protected boolean hasPrecompiledView(String viewPath) {
-        precompiledGspMap.containsKey('/WEB-INF'+viewPath)
+        precompiledGspMap?.containsKey('/WEB-INF'+viewPath)
     }
     
     protected listPrecompiledViews(String path) {
@@ -243,8 +237,8 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
     }
     
     protected boolean viewExists(String path) {
-        List precompiledViews = hasPrecompiledView(path)
-        if (precompiledViews) {
+        boolean precompiledView = hasPrecompiledView(path)
+        if (precompiledView) {
             return true
         }
 
