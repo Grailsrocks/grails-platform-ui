@@ -91,9 +91,9 @@ class UISets implements ApplicationContextAware, InitializingBean {
         }
         
         def testingResult = request?.'plugin.pluginPlatform.ui.sets.preview'
-
+        
         List<UISetDefinition> defs = testingResult ?: []
-
+        
         // Don't get the theme ui overrides mixed up in here when previewing UI Sets
         if (!testingResult) {
             def theme = grailsThemes.getRequestTheme(request)
@@ -113,6 +113,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
             log.debug "UI Sets for this request, as determined by theme are: ${defs*.name}"
         }
 
+        defs = defs.findAll { it }
         if (request) {
             request.'plugin.pluginPlatform.ui.sets' = defs
         }
@@ -207,7 +208,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
         def v
         for (ui in uiSets) {
             if (log.debugEnabled) {
-                log.debug "Seeing if UI Set [${ui.name}] has a CSS class for [${symbolicName}]"
+                log.debug "Seeing if UI Set [${ui?.name}] has a CSS class for [${symbolicName}]"
             }
             def confValue = pluginConfig.ui[ui.name][symbolicName].cssClass
             if (!(confValue instanceof ConfigObject)) {

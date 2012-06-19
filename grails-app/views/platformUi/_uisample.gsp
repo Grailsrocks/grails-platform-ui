@@ -148,6 +148,7 @@
         <ui:field name="field1" type="text" hint="This is a little hint" label="Text field"/>
         <ui:field name="field1" type="checkbox" hint="This is an error hint" label="Checkbox field with an error" error="${true}"/>
         <ui:field name="field1" type="radio" label="Radio field"/>
+        <ui:field name="field1" type="password" label="Password field"/>
         <ui:field name="field1" type="textarea" label="Textarea field">Hello world</ui:field>
         <ui:actions>
             <ui:button kind="submit">Search</ui:button>

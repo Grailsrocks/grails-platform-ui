@@ -9,8 +9,8 @@
   uiArgs
 --%>
 <g:if test="${logoUri}">
-    <a href="${p.siteURL().encodeAsHTML()}"><r:img uri="${logoUri.encodeAsHTML()}" class="${p.joinClasses(values:[classes, logoClass])}" alt="${applicationName.encodeAsHTML()}" width="${w}" height="${h}"/></a>
+    <a href="${p.siteURL().encodeAsHTML()}"><r:img uri="${logoUri.encodeAsHTML()}" class="${p.joinClasses(values:[classes, logoClass])}" alt="${p.siteName()}" width="${w}" height="${h}"/></a>
 </g:if>
 <g:else>
-    <a href="${p.siteURL().encodeAsHTML()}" class="${classes}"><h1>${applicationName.encodeAsHTML()}</h1></a>
+    <a href="${p.siteURL().encodeAsHTML()}" class="${classes}"><h1><p:siteName/></h1></a>
 </g:else>
