@@ -41,7 +41,6 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
 
     ApplicationContext applicationContext
     def grailsApplication
-    def resourceLoader
     def pluginManager
     Map precompiledGspMap
     
