@@ -73,7 +73,7 @@ class UISetDefinition {
     
     void resolve(grailsViewFinder) {
         if (log.debugEnabled) {
-            log.debug "Loading UI view definitions"
+            log.debug "Loading UI Set view definitions for set [$name]"
         }
         layoutPaths.clear()
 

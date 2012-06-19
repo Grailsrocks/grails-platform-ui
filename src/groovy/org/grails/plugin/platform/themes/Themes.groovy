@@ -89,18 +89,28 @@ class Themes implements InitializingBean {
     }
     
     void loadThemes() {
+        if (log.infoEnabled) {
+            log.info "Loading theme definitions..."
+        }
+
         availableThemes.clear()
         
         def themesFound = []
         
         // Discover themes exposed by app 
         def appThemes = grailsViewFinder.listAppViewFoldersAt('/layouts/themes', 'main.gsp')
+        if (log.infoEnabled) {
+            log.info "Application theme definitions: ${appThemes}"
+        }
         themesFound.addAll( appThemes.collect { themeName -> [name:themeName] } )
         
         // Discover themes exposed by all plugins
         pluginManager.allPlugins.each { plugin ->
             def pluginThemes = grailsViewFinder.listPluginViewFoldersAt(plugin, '/layouts/themes', 'main.gsp')
             def themeInfos = pluginThemes.collect { themeName -> [name:themeName, definingPlugin: plugin] } 
+            if (log.infoEnabled) {
+                log.info "Plugin theme definitions found in plugin [${plugin.name}]: ${themeInfos.name}"
+            }
             for (ti in themeInfos) {
                 if (!(ti.name in appThemes)) {
                     themesFound << ti

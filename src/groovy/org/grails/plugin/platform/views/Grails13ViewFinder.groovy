@@ -48,11 +48,18 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
     GroovyPagesUriService groovyPagesUriService
     
     private static final String GROOVY_PAGE_RESOURCE_LOADER = "groovyPageResourceLoader"
-    private static final String RESOURCES_PREFIX = GrailsUtil.grailsVersion.startsWith('1.') ? '/WEB-INF' : ''
     private static final String VIEW_PATH_PREFIX = '/grails-app/views'
     private static final String APP_VIEW_PATH_PREFIX = VIEW_PATH_PREFIX
     private static final String PLUGINS_PATH = "/plugins"
     private static final String LAYOUTS_PATH = "/layouts"
+
+    String getResourcesPrefix() {
+        GrailsUtil.grailsVersion.startsWith('1.') ? '/WEB-INF' : ''
+    }
+    
+    private boolean hasNonCompiledGSP(fullpath) {
+        loader.getResource(fullpath)?.exists()
+    }
     
     /**
      * @param name The path of the view relative to grails-views/ and excluding the .gsp part, but containing relevant underscores
@@ -62,15 +69,15 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
 
         def loader = establishResourceLoader()
         String gspView = groovyPagesUriService.getTemplateURI('', path)
-        def fullpath = RESOURCES_PREFIX+'/grails-app/views'+gspView
+        def fullpath = resourcesPrefix+'/grails-app/views'+gspView
         if (log.debugEnabled) {
             log.debug "Checking for template at ${fullpath}"
         }
-        def res = loader.getResource(fullpath)
+        def res = hasNonCompiledGSP(fullpath)
         if (log.debugEnabled) {
-            log.debug "Checking for template at ${fullpath} found: [${res}] (${res.exists()})"
+            log.debug "Checking for template at ${fullpath} found: [${res}]"
         }
-        return res?.exists()
+        return res
     }
     
     /** 
@@ -144,7 +151,7 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
             log.debug "listPluginViewFoldersAt for [$searchPath]  found: ${resources}"
         }
         resources = extractLastFolderNamesFromPaths(resources, markerView)
-        return resources
+        return resources.unique()
     }
 
     List<String> listAppViewFoldersAt(String path, String markerView) {
@@ -155,7 +162,7 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
             log.debug "listAppViewFoldersAt for [$appPath]  found: ${resources}"
         }
         resources = extractLastFolderNamesFromPaths(resources, markerView)
-        return resources
+        return resources.unique()
     }
 
     List<String> listPluginViewsAt(GrailsPlugin plugin, String path) {
@@ -199,48 +206,60 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
         establishResourceLoader().getResource(pathToPluginViews(plugin)).toString()
     }
 
+    protected boolean hasPrecompiledView(String viewPath) {
+        precompiledGspMap.containsKey('/WEB-INF'+viewPath)
+    }
+    
     protected listPrecompiledViews(String path) {
         def result = []
         if (precompiledAvailable) {
             if (log.debugEnabled) {
                 log.debug "listPrecompiledViews - we have precompiled views"
             }
+            def pathPattern = ~(/\/WEB-INF/ + path + /\/(.+)/)
             def r = precompiledGspMap.keySet().findAll { p -> 
                 if (log.debugEnabled) {
-                    log.debug "listPrecompiledViews - Seeing if precompiled GSP ${p} matches the path $path"
+                    log.debug "listPrecompiledViews - Seeing if precompiled GSP ${p} matches the path $path (regex: $pathPattern)"
                 }
-                // NOTE: does not support wildcards
-                def match = p == path
-                if (log.debugEnabled) {
+                def match = p ==~ pathPattern
+                println "MATCH: ${match}"
+                if (match && log.debugEnabled) {
                     log.debug "listPrecompiledViews -  Found precompiled GSP for path [${path}] at $p"
                 }
                 return match
             }
+            println "MATCHED: ${r}"
             if (r) {
-                result.addAll(r)
+                // Strip off the WEB-INF prefix so the views can be loaded
+                def viewPaths = r.collect { p -> p - '/WEB-INF' }
+                result.addAll(viewPaths)
             }
+        }
+
+        if (log.debugEnabled) {
+            log.debug "listPrecompiledViews - Found precompiled GSPs for path [${path}]: ${result}"
         }
         return result
     }
     
     protected boolean viewExists(String path) {
-        List precompiledViews = listPrecompiledViews(path)
+        List precompiledViews = hasPrecompiledView(path)
         if (precompiledViews) {
             return true
         }
 
         def loader = new PathMatchingResourcePatternResolver(establishResourceLoader())
         
-        def searchPath = RESOURCES_PREFIX+path
+        def searchPath = resourcesPrefix+path
 
         if (log.debugEnabled) {
             log.debug "findView - Looking for non-compiled GSP at: $searchPath"
         }
-        def resource = loader.getResource(searchPath)
+        def hasRes = hasNonCompiledGSP(searchPath)
         if (log.debugEnabled) {
-            log.debug "findView - Found GSP at ${searchPath}: ${resource}"
+            log.debug "findView - Found GSP at ${searchPath}: ${hasRes}"
         }
-        return resource?.exists()
+        return hasRes
     }
 
     protected List<String> listViewsInFolder(String path, String pattern = null, String resourcePropertyToGet = 'filename') {
@@ -249,12 +268,29 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
         }
         def result = listPrecompiledViews(path)
         if (result) {
-            return result
+            // Match shell-like paths */xxxx at end of path
+            def precompPathPattern = ~(pattern.replaceAll(/\*/, '.*')+'$')
+            def results = result.findAll { p -> p ==~ precompPathPattern }
+            
+            // Now we need to pretend we are Spring Resource objects that support URI or filename properties
+            if (resourcePropertyToGet == 'filename') {
+                def fileNamePattern = ~/([.[^\/]]+\.gsp)$/
+                return results.collect { 
+                    def matcher = it =~ fileNamePattern
+                    if (matcher) {
+                        return matcher[0][1]
+                    } else {
+                        return ''
+                    }
+                }
+            } else if (resourcePropertyToGet == 'URI') {
+                return results.collect { it }
+            }
         }
 
         def loader = new PathMatchingResourcePatternResolver(establishResourceLoader())
 
-        def basePath = RESOURCES_PREFIX+path+'/'
+        def basePath = resourcesPrefix+path+'/'
         def searchPattern = basePath
         if (pattern) {
             searchPattern += pattern

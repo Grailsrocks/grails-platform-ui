@@ -82,7 +82,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
     }
     
     /**
-     * Get theme's UISetDefinition, for overrides
+     * Get theme's UISetDefinition, as a list in order of resolution so that app can override templates
      */
     List<UISetDefinition> getUISetsToUse(request = null) {
         def cachedResult = request?.'plugin.pluginPlatform.ui.sets'
@@ -120,6 +120,9 @@ class UISets implements ApplicationContextAware, InitializingBean {
     }
 
     void loadUISets() {
+        if (log.debugEnabled) {
+            log.debug "Loading UI Sets..."
+        }
         availableUISets.clear()
         
         def uiSetsFound = []
