@@ -185,8 +185,10 @@ The [avatar|uiTags]tag renders such an avatar from a user identity string. What 
 <ui:avatar user="marc@grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/>
 {code}
 
-h3. Navigation
+h3. Logo
 
+
+h3. Navigation
 
 
 h3. Carousel
