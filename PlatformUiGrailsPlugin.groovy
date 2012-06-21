@@ -114,10 +114,6 @@ Platform UI - abstracted UI elements and theming for plugin/application interope
     }
 
     def doWithConfigOptions = {
-        'theme.disable'(type: Boolean, defaultValue: false)
-        'events.disable'(type: Boolean, defaultValue: false)
-        'security.disable'(type: Boolean, defaultValue: false)
-
         'theme.default'(type: String, defaultValue: null)
         'theme.layout.default'(type: String, defaultValue: "main")
 
@@ -125,11 +121,12 @@ Platform UI - abstracted UI elements and theming for plugin/application interope
         // @todo '*' syntax not supported yet
         //'themes.layout.mapping.*'(type:String)
         //'themes.*.layout.mapping.*'(type:String)
+        //'themes.*.ui.set'(type:String)
         //'themes.*.ui.*.cssClass'(type:String)
     }
 
     def doWithConfig = {
-        pluginPlatform {
+        platformUi {
             themes.'_default'.ui.set = '_default'
         }
     }

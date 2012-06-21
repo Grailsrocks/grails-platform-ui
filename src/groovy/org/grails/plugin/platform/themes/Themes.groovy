@@ -62,6 +62,7 @@ class Themes implements InitializingBean {
         platformUiPlugin = pluginManager.getGrailsPlugin('platformUi')
         assert platformUiPlugin
         
+        // @todo Can't remember why we can't be given this via injection...
         pluginConfig = grailsPluginConfiguration.getPluginConfigFor(this)
         
         reload()
@@ -73,7 +74,7 @@ class Themes implements InitializingBean {
     }
     
     void loadConfig() {
-        def defThemeName = grailsApplication.config.plugin.pluginPlatform.theme.default
+        def defThemeName = pluginConfig.theme.default
         if (!defThemeName) {
             if (availableThemes) {
                 defThemeName = availableThemes*.name.sort()[0]
