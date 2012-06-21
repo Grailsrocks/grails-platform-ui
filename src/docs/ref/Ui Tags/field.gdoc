@@ -2,9 +2,9 @@ h1. ui:field
 
 h2. Purpose
 
-This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering inclues all UI elements relating to the field, for example the label, any field errors, required indicators and field hints.
+This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering includes all UI elements relating to the field, for example the label, any field errors, required indicators and field hints.
 
-UI Sets and Themes can customize the rendering of the field to suit their HTML/CSS requirements.
+UI Sets and Themes can customize the rendering of the field to suit their HTML/CSS requirements, and the rendering can use any mechanism it likes i.e. grails-fields plugin or something else.
 
 h2. Example
 
