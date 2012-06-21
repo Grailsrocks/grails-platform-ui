@@ -36,6 +36,9 @@ function addJsClass() {
                     <div class="toc-item" style="margin-left:0"><a href="../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
                     </div>
                     
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
+                    </div>
+                    
                 </div>
             </div>
         </li>
@@ -87,7 +90,7 @@ UI provides common UI and Theming support for plugins and applications so that t
 <ol>
 <li>Your code renders its UI using the ui:xxx tags, which output the correct structural HTML</li>
 <li>The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this</li>
-</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "form", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>What is this NOT: A grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
+</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "dialog", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>What is this NOT: A grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
 to fit the Application's theme - and to provide <strong class="bold">only</strong> the most common site styling elements needed for an effective system
 of replaceable application Themes.<p class="paragraph"/>It is not possible to make a single unified UI framework - take a look at what is already out there in the web space and you will see that everyone has different ideas about what different widgets are, how they should work, and apps often add custom widgets that replace or augment others from the library they chose.<p class="paragraph"/>Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
 rendering of fields, forms, tables, logos, buttons etc.<p class="paragraph"/>Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
@@ -134,7 +137,7 @@ theme that they choose.<p class="paragraph"/>What you will typically do in profe
                             <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../ref/Scripts/fork-ui.html">fork-ui</a>
+                            <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                             </div>
                             
                             </div>

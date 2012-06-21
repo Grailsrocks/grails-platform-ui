@@ -36,6 +36,9 @@ function addJsClass() {
                     <div class="toc-item" style="margin-left:0"><a href="../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
                     </div>
                     
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
+                    </div>
+                    
                 </div>
             </div>
         </li>
@@ -65,6 +68,8 @@ function addJsClass() {
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
+                    <div class="toc-item next-right"><a href="../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
+                
 
 
                 <div class="project">
@@ -78,6 +83,17 @@ function addJsClass() {
                 </div>
 
                 
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themeConfiguration"><strong>4.1</strong><span>Configuration</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themeZones"><strong>4.2</strong><span>Content Zones</span></a>
+                    </div>
+                    
+                </div>
+                
 
                 
 
@@ -86,9 +102,20 @@ No docs yet
 
 
 
+<h2 id="themeConfiguration">4.1 Configuration</h2>
+There are a few configuration options that affect details such as which Theme is selected by default.<p class="paragraph"/><h2>Default Theme</h2><p class="paragraph"/>Set the <code>plugin.platformUi.theme.default</code> Config value to the name of the theme to be used by default if no other theme is set on the current request.<p class="paragraph"/>If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"<p class="paragraph"/><h2>Default Layout Name</h2><p class="paragraph"/>If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.<p class="paragraph"/>If you need to change this behaviour, set <code>plugin.platformUi.theme.layout.default</code> in Config.
+
+
+<h2 id="themeZones">4.2 Content Zones</h2>
+Themes use zones to pull in multiple pieces of content to build up the page.<p class="paragraph"/>Typically for example a layout will have a zone for the body content, but maybe also one for a sidebar or a promotional area.<p class="paragraph"/><h2>Setting the content for a given zone from within your GSP page</h2><p class="paragraph"/><h2>What is rendered if a zone has not content?</h2><p class="paragraph"/>TBD: Explain zone default content resolution<p class="paragraph"/><h2>Appending more content to a zone</h2>
+
+
+
                 <div style="clear:both;margin-top:15px;"></div>
                 
                     <div class="toc-item prev-left"><a href="../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>
@@ -125,7 +152,7 @@ No docs yet
                             <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../ref/Scripts/fork-ui.html">fork-ui</a>
+                            <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                             </div>
                             
                             </div>

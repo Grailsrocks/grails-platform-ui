@@ -37,6 +37,9 @@ function addJsClass(el) {
                     <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
                     </div>
                     
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
+                    </div>
+                    
                 </div>
             </div>
         </li>
@@ -61,7 +64,7 @@ function addJsClass(el) {
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
-                <h1>ui:field</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering inclues all UI elements relating to the field, for example the label, any field errors, required indicators and field hints.<p class="paragraph"/>UI Sets and Themes can customize the rendering of the field to suit their HTML/CSS requirements.<p class="paragraph"/><h2>Example</h2><p class="paragraph"/><div class="code"><pre><span class="xml&#45;tag">&#60;ui:field bean=<span class="xml&#45;quote">"$&#123;form&#125;"</span> name=<span class="xml&#45;quote">"name"</span>/&#62;</span>
+                <h1>ui:field</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering includes all UI elements relating to the field, for example the label, any field errors, required indicators and field hints.<p class="paragraph"/>UI Sets and Themes can customize the rendering of the field to suit their HTML/CSS requirements, and the rendering can use any mechanism it likes i.e. grails-fields plugin or something else.<p class="paragraph"/><h2>Example</h2><p class="paragraph"/><div class="code"><pre><span class="xml&#45;tag">&#60;ui:field bean=<span class="xml&#45;quote">"$&#123;form&#125;"</span> name=<span class="xml&#45;quote">"name"</span>/&#62;</span>
 <span class="xml&#45;tag">&#60;ui:field name=<span class="xml&#45;quote">"field1"</span> type=<span class="xml&#45;quote">"text"</span> hint=<span class="xml&#45;quote">"This is a little hint"</span> label=<span class="xml&#45;quote">"Text field"</span>/&#62;</span></pre></div><p class="paragraph"/><h2>Attributes</h2><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Required?</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>name</td><td>yes</td><td>The name of the field or property to use</td></tr><tr class="table-even"><td>type</td><td>&#160;</td><td>The type of field to render. If not specified, the UI Set must attempt to detect an appropriate type of field to use. If specified, must be one of; 'text', 'checkbox', 'radio', 'textarea'</td></tr><tr class="table-odd"><td>bean</td><td>&#160;</td><td>The bean to use when resolving the property specified in "name". Used to render fields for values represented by a property of an object in the current page</td></tr><tr class="table-even"><td>hint</td><td>&#160;</td><td>A hint to be displayed to the user, to explain what it is for. A string or i18n message code.</td></tr><tr class="table-odd"><td>hintArgs</td><td>&#160;</td><td>Arguments to be used when building the i18n string for the hint</td></tr><tr class="table-even"><td>invalid</td><td>&#160;</td><td>Set to boolean true to indicate that the field value is not valid. Used if you need to override the normal mechanisms for detecting field errors.</td></tr><tr class="table-odd"><td>required</td><td>&#160;</td><td>Set to boolean true to indicate that a value is or isn't required for this field. Use only if you need to override the normal mechanism that detects this.</td></tr><tr class="table-even"><td>value</td><td>&#160;</td><td>Use to provide an explicit value for the field, if it must be different from the value of a bean property or if you are not using bean properties</td></tr><tr class="table-odd"><td>label</td><td>&#160;</td><td>Specify the text or i18n message code to use as the label text. If not specified, the label will be resolved as per the rules below</td></tr><tr class="table-even"><td>labelArgs</td><td>&#160;</td><td>Arguments used to build the i18n message label</td></tr></table><p class="paragraph"/><h2>Localization</h2><p class="paragraph"/>If specifying a bean, the label defaults to:
 <ol>
 <li>i18n message retrieved using classname.<strong class="bold">propertyName</strong>.label</li>
@@ -112,7 +115,7 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui.html">fork-ui</a>
+                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                             </div>
                             
                         </div>

@@ -2,12 +2,12 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>Grails Plugin Platform UI 1.0.M1-SNAPSHOT</title>
+    <title>4.1 Configuration 1.0.M1-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
-    <link rel="stylesheet" href="../../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
     <script type="text/javascript">
-function addJsClass(el) {
+function addJsClass() {
     var classes = document.body.className.split(" ");
     classes.push("js");
     document.body.className = classes.join(" ");
@@ -16,14 +16,13 @@ function addJsClass(el) {
 </head>
 
 <body class="body" onload="addJsClass();">
-
 <div id="navigation">
     <ul>
         <li>
             <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
                 <a href="../../guide/index.html" class="button">Table of contents</a>
 
-                <div id="nav-summary-childs">
+                <div id="nav-summary-childs" style="display:none;">
                     
                     <div class="toc-item" style="margin-left:0"><a href="../../guide/overview.html"><strong>1</strong><span>Overview</span></a>
                     </div>
@@ -35,6 +34,9 @@ function addJsClass(el) {
                     </div>
                     
                     <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
                     </div>
                     
                 </div>
@@ -57,11 +59,44 @@ function addJsClass(el) {
 <table id="colset" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td id="col1">
-            <div id="main" class="reference corner-all">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
+                    <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>4.1 Configuration - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com), Stéphane Maldini (stephane.maldini@gmail.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.M1-SNAPSHOT</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h2 id="themeConfiguration">4.1 Configuration</h2>
+There are a few configuration options that affect details such as which Theme is selected by default.<p class="paragraph"/><h2>Default Theme</h2><p class="paragraph"/>Set the <code>plugin.platformUi.theme.default</code> Config value to the name of the theme to be used by default if no other theme is set on the current request.<p class="paragraph"/>If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"<p class="paragraph"/><h2>Default Layout Name</h2><p class="paragraph"/>If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.<p class="paragraph"/>If you need to change this behaviour, set <code>plugin.platformUi.theme.layout.default</code> in Config.
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
+                
+                <div style="clear:both"></div>
             </div>
         </td>
         <td id="col2">
@@ -72,10 +107,8 @@ function addJsClass(el) {
                 </div>
                 <div class="menu">
                     
-                    <div class="menu-block">
-                        <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Beans</h1>
-                        <div class="menu-sub">
-                            
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
                             
                             <div class="menu-item"><a href="../../ref/Beans/grailsThemes.html">grailsThemes</a>
                             </div>
@@ -83,13 +116,11 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Beans/grailsUISets.html">grailsUISets</a>
                             </div>
                             
-                        </div>
+                            </div>
                     </div>
                     
-                    <div class="menu-block">
-                        <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Scripts</h1>
-                        <div class="menu-sub">
-                            
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
                             
                             <div class="menu-item"><a href="../../ref/Scripts/create-theme.html">create-theme</a>
                             </div>
@@ -100,24 +131,19 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui.html">fork-ui</a>
+                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                             </div>
                             
-                        </div>
+                            </div>
                     </div>
                     
-                    <div class="menu-block">
-                        <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Theme Tags</h1>
-                        <div class="menu-sub selected">
-                            
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/body.html">body</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/current.html">current</a>
-                            </div>
-                            
-                            <div class="menu-item"><a href="../../ref/Theme%20Tags/dummyText.html">dummyText</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/head.html">head</a>
@@ -129,9 +155,6 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Theme%20Tags/ipsum.html">ipsum</a>
-                            </div>
-                            
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layout.html">layout</a>
                             </div>
                             
@@ -139,6 +162,9 @@ function addJsClass(el) {
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
@@ -159,15 +185,16 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/zone.html">zone</a>
                             </div>
                             
-                        </div>
+                            </div>
                     </div>
                     
-                    <div class="menu-block">
-                        <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Ui Tags</h1>
-                        <div class="menu-sub">
-                            
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/attributes.html">attributes</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/avatar.html">avatar</a>
@@ -177,6 +204,12 @@ function addJsClass(el) {
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/button.html">button</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/carousel.html">carousel</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/cssClass.html">cssClass</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
@@ -203,6 +236,9 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/image.html">image</a>
                             </div>
                             
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/list.html">list</a>
+                            </div>
+                            
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/logo.html">logo</a>
                             </div>
                             
@@ -213,6 +249,18 @@ function addJsClass(el) {
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/paginate.html">paginate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/slide.html">slide</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/tab.html">tab</a>
@@ -230,7 +278,7 @@ function addJsClass(el) {
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/tr.html">tr</a>
                             </div>
                             
-                        </div>
+                            </div>
                     </div>
                     
                 </div>
@@ -244,8 +292,7 @@ function addJsClass(el) {
     Please contact the authors with any corrections or suggestions
 </div>
 
-
-<script type="text/javascript" src="../../js/docs.js"></script>
+<script type="text/javascript" src="../js/docs.js"></script>
 
 </body>
 </html>

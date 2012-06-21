@@ -2,7 +2,7 @@
                       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>1.1 The APIs 1.0.M1-SNAPSHOT</title>
+    <title>4.2 Content Zones 1.0.M1-SNAPSHOT</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -36,6 +36,9 @@ function addJsClass() {
                     <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
                     </div>
                     
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
+                    </div>
+                    
                 </div>
             </div>
         </li>
@@ -59,16 +62,18 @@ function addJsClass() {
             <div id="main" class="corner-all">
 
                 
+                    <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
                 
-                    <div class="toc-item next-right"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span> >></a></div>
+                    <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
                 
 
 
                 <div class="project">
-                    <h1>1.1 The APIs - Reference Documentation</h1>
+                    <h1>4.2 Content Zones - Reference Documentation</h1>
 
                     <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com), Stéphane Maldini (stephane.maldini@gmail.com)</p>
 
@@ -81,23 +86,16 @@ function addJsClass() {
 
                 
 
-<h2 id="apis">1.1 The APIs</h2>
-The APIs include in this release include:
-<ul class="star">
-<li>Configuration - Plugin-namespaced config, Config merging, validation and default values</li>
-<li>Security - An abstraction of basic security features that most applications require, with implementations to be provided by plugins or your application</li>
-<li>UI - Provides UI tags for plugins and applications to use for basic common UI elements. The rendering of the tags is pluggable and interacts with Themes, though you can use the UI Sets without using themes. Many of these tags also make it easier to internationalize plugins and applications</li>
-<li>Themes - A set of tags and logic for page layout and theming, such that themes can be plugged in or supplied by an application and plugins can provide UI that works within your theme.</li>
-<li>Injection - An API and implementation that greatly simplifies the addition of dynamic methods to application and plugin artefacts</li>
-<li>Events - An API and default implementation for sending synchronous and asynchronous events to other beans. For plugins and applications to communicate with each other in a uniform way</li>
-<li>Navigation - NOT IMPLEMENTED - A simple menu navigation API and tags to establish a standard navigation mechanism</li>
-<li>Convention - NOT IMPLEMENTED - A way for plugins to declare the conventions that they expect on artefacts, and mechanisms for the application and other plugins to override the values of these conventions to alter behaviour originally defined in the plugin that declared the artefact</li>
-</ul><p class="paragraph"/>Each API is covered in more detail later in this documentation.<p class="paragraph"/>The Plugin Platform is very self-referential - it uses own APIs - for example to provide event hooks for Grails application lifecycle, to declare dynamic methods on your controller and service artefacts, and to declare the configuration values that it uses.<p class="paragraph"/>All of these APIs are designed to be as simple as possible while providing some very high level features.<p class="paragraph"/>Use this platform to add tighter and more consistent integration to your own plugins.
+<h2 id="themeZones">4.2 Content Zones</h2>
+Themes use zones to pull in multiple pieces of content to build up the page.<p class="paragraph"/>Typically for example a layout will have a zone for the body content, but maybe also one for a sidebar or a promotional area.<p class="paragraph"/><h2>Setting the content for a given zone from within your GSP page</h2><p class="paragraph"/><h2>What is rendered if a zone has not content?</h2><p class="paragraph"/>TBD: Explain zone default content resolution<p class="paragraph"/><h2>Appending more content to a zone</h2>
+
 
 
                 <div style="clear:both;margin-top:15px;"></div>
                 
-                    <div class="toc-item next-right"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span> >></a></div>
+                    <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
                 
                 <div style="clear:both"></div>
             </div>
@@ -134,7 +132,7 @@ The APIs include in this release include:
                             <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui.html">fork-ui</a>
+                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                             </div>
                             
                             </div>
@@ -149,9 +147,6 @@ The APIs include in this release include:
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/current.html">current</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Theme%20Tags/dummyText.html">dummyText</a>
-                            </div>
-                            
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/head.html">head</a>
                             </div>
                             
@@ -161,9 +156,6 @@ The APIs include in this release include:
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Theme%20Tags/ipsum.html">ipsum</a>
-                            </div>
-                            
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layout.html">layout</a>
                             </div>
                             
@@ -171,6 +163,9 @@ The APIs include in this release include:
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
@@ -200,6 +195,9 @@ The APIs include in this release include:
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>
                             </div>
                             
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/attributes.html">attributes</a>
+                            </div>
+                            
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/avatar.html">avatar</a>
                             </div>
                             
@@ -207,6 +205,12 @@ The APIs include in this release include:
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/button.html">button</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/carousel.html">carousel</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/cssClass.html">cssClass</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
@@ -233,6 +237,9 @@ The APIs include in this release include:
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/image.html">image</a>
                             </div>
                             
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/list.html">list</a>
+                            </div>
+                            
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/logo.html">logo</a>
                             </div>
                             
@@ -243,6 +250,18 @@ The APIs include in this release include:
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/paginate.html">paginate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/slide.html">slide</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/tab.html">tab</a>

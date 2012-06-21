@@ -31,6 +31,8 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0"><a href="#themes"><strong>4</strong><span>Themes API</span></a></div>
                             
+                            <div class="toc-item" style="margin-left:0"><a href="#debugging"><strong>5</strong><span>Debugging</span></a></div>
+                            
                         </div>
                     </div>
                 </li>
@@ -116,6 +118,12 @@ function addJsClass(el) {
                             
                             <div class="toc-item" style="margin-left:0px"><a href="#themes"><strong>4</strong><span>Themes API</span></a></div>
                             
+                            <div class="toc-item" style="margin-left:10px"><a href="#themeConfiguration"><strong>4.1</strong><span>Configuration</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:10px"><a href="#themeZones"><strong>4.2</strong><span>Content Zones</span></a></div>
+                            
+                            <div class="toc-item" style="margin-left:0px"><a href="#debugging"><strong>5</strong><span>Debugging</span></a></div>
+                            
                             <div style="clear:both" ></div>
                         </div>
                         
@@ -127,7 +135,7 @@ UI provides common UI and Theming support for plugins and applications so that t
 <ol>
 <li>Your code renders its UI using the ui:xxx tags, which output the correct structural HTML</li>
 <li>The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this</li>
-</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "form", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>What is this NOT: A grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
+</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "dialog", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>What is this NOT: A grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
 to fit the Application's theme - and to provide <strong class="bold">only</strong> the most common site styling elements needed for an effective system
 of replaceable application Themes.<p class="paragraph"/>It is not possible to make a single unified UI framework - take a look at what is already out there in the web space and you will see that everyone has different ideas about what different widgets are, how they should work, and apps often add custom widgets that replace or augment others from the library they chose.<p class="paragraph"/>Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
 rendering of fields, forms, tables, logos, buttons etc.<p class="paragraph"/>Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
@@ -473,6 +481,19 @@ x
 No docs yet
 
 
+
+<h2 id="themeConfiguration">4.1 Configuration</h2>
+There are a few configuration options that affect details such as which Theme is selected by default.<p class="paragraph"/><h2>Default Theme</h2><p class="paragraph"/>Set the <code>plugin.platformUi.theme.default</code> Config value to the name of the theme to be used by default if no other theme is set on the current request.<p class="paragraph"/>If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"<p class="paragraph"/><h2>Default Layout Name</h2><p class="paragraph"/>If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.<p class="paragraph"/>If you need to change this behaviour, set <code>plugin.platformUi.theme.layout.default</code> in Config.
+
+
+<h2 id="themeZones">4.2 Content Zones</h2>
+Themes use zones to pull in multiple pieces of content to build up the page.<p class="paragraph"/>Typically for example a layout will have a zone for the body content, but maybe also one for a sidebar or a promotional area.<p class="paragraph"/><h2>Setting the content for a given zone from within your GSP page</h2><p class="paragraph"/><h2>What is rendered if a zone has not content?</h2><p class="paragraph"/>TBD: Explain zone default content resolution<p class="paragraph"/><h2>Appending more content to a zone</h2>
+
+
+
+<h1 id="debugging">5 Debugging</h1>
+It can be a bit tricky to work out what is going wrong - is there a problem in the UI set or the theme, what themes and UI sets are available etc.<p class="paragraph"/>There are some tools to help, and tools for you as a Theme author to help developers preview your themes.<p class="paragraph"/><h2>Using the Platform UI browser</h2><p class="paragraph"/>With your app or plugin running in "run-app" development mode, browse to:<p class="paragraph"/><code>http://localhost:8080/&#60;yourprefix&#62;/platform/ui</code><p class="paragraph"/>Here you will find links to the UI Set viewer and the Theme viewer. These let you see each UI Set in action, and also view each Theme's layout with default content supplied, with or without the full set of UI Set samples included.<p class="paragraph"/>Make sure your UISet renders all the widgets correctly in the UI Set viewer.<p class="paragraph"/>Then use the Theme Viewer and turn on UI Sample mode, and view the layout that you are having problems with, and verify the structural markup is all correct.<p class="paragraph"/><h2>Supplying default content for your Theme zones</h2><p class="paragraph"/>TBD<p class="paragraph"/><p class="paragraph"/>
+
                     </div>
                 </td>
                 <td id="col2">
@@ -507,7 +528,7 @@ No docs yet
                         <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
                         </div>
                         
-                        <div class="menu-item"><a href="../ref/Scripts/fork-ui.html">fork-ui</a>
+                        <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
                         </div>
                         
                         </div>
