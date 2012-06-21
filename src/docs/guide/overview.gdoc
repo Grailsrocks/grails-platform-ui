@@ -26,7 +26,7 @@ h2. What is a Theme?
 
 A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.
 
-The standard layouts such as "home", "form", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.
+The standard layouts such as "home", "dialog", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.
 
 It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.
 
