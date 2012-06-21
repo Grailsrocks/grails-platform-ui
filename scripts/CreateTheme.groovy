@@ -1,7 +1,7 @@
 includeTargets << grailsScript('_GrailsInit')
 includeTargets << grailsScript('_GrailsArgParsing')
 
-def coreLayouts = ['home', 'sidebar', 'report', 'dataentry', 'form', 'main']
+def coreLayouts = ['home', 'sidebar', 'report', 'dataentry', 'dialog', 'main']
 
 void initLayout(base, n) {
     def year = new Date()[Calendar.YEAR]
