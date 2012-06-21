@@ -253,18 +253,27 @@ class ThemeTagLib {
         return v
     }
     
-    // @todo Move to core
+    // @todo Move to platform-core?
+    /**
+     * Set the title of the page with i18n support, can be called in a GSP Page or a Layout. 
+     */
     def title = { attrs, body ->
         // @todo store just the args + body text so that if it is i18n we can resolve SEO title string by convention
         def text = getMessageOrBody(attrs, body)
         request[ThemeTagLib.REQ_ATTR_TITLE] = text
     }
     
+    /**
+     * Render the page title in the content 
+     */
     def layoutTitle = { attrs ->
         out << ui.h1(Collections.EMPTY_MAP, 
                 request[ThemeTagLib.REQ_ATTR_TITLE] ?: g.layoutTitle(default:'Untitled') )
     }
     
+    /**
+     * Render the page title in the head section
+     */
     def layoutHTMLTitle = { attrs ->
         out << '<title>'
         def themeTitle = request[REQ_ATTR_TITLE]
@@ -288,8 +297,11 @@ class ThemeTagLib {
         out << """</head>"""
     }
 
+    /**
+     * Defines the body part of a Theme layout, body should contain tags like theme:layoutZone
+     */
     def body = { attrs, tagBody ->
-        mustBeInALayout('layoutZone')
+        mustBeInALayout('body')
 
         def bodyAttrs = attrs.bodyAttrs
         def bodyAttrsStr = ''

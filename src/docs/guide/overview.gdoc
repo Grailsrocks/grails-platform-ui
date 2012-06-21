@@ -1,19 +1,54 @@
-The Platform UI is a sister plugin to Platform Core.
+The Platform UI is a sister plugin to [Platform Core|http://grailsrocks.github.com/grails-platform-core].
 
-Where PlatformCore provides "plumbing" for plugins and applications, Platform
+Where Platform Core provides "plumbing" for plugins and applications, Platform
 UI provides common UI and Theming support for plugins and applications so that they can achieve higher level visual integration.
 
-Platform UI provides *UI Sets* and *Themes* via APIs and GSP template discovery. It is designed
-to be as lightweight as possible and completely CSS an JS framework agnostic.
+It is designed to be as lightweight as possible and completely CSS and JS framework agnostic.
 
-It is however very important to understand that Platform UI *does not attempt to be a universal UI toolkit*.
+Platform UI provides *UI Sets* and *Themes* via APIs and GSP template discovery.
+
+These are two separate mechanisms - UI Sets can be used without using Themes - and most of the time there will be more Themes than UI Sets. Themes use specific UI Sets to render UI elements with the correct markup, CSS and JS in a manner coherent with the layout markup and CSS they are using.
+
+h2. What is a UI Set?
+
+A UI Set is a set of GSP templates and resource that provide the HTML and CSS required to render the standard UI tags.
+
+Applications and plugins can therefore use the standard UI tags from this plugin without worrying about how they are actually rendered or implemented in the application - so in theory your plugin might have its elements rendered by a Twitter Bootstrap plugin in one app, or a jQuery UI plugin in another app.
+
+It doesn't matter which because:
+
+# Your code renders its UI using the ui:xxx tags, which output the correct structural HTML
+# The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this
+
+The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.
+
+h2. What is a Theme?
+
+A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.
+
+The standard layouts such as "home", "form", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.
+
+It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.
+
+For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.
+
+h2. What is this NOT: A grand unified UI framework
+
+It is very important to understand that Platform UI *does not attempt to be a universal UI toolkit*.
 
 The goal is to provide *just enough* common UI widgets for plugins to expose basic UI screens that will be automatically styled
 to fit the Application's theme - and to provide *only* the most common site styling elements needed for an effective system
 of replaceable application Themes.
+
+It is not possible to make a single unified UI framework - take a look at what is already out there in the web space and you will see that everyone has different ideas about what different widgets are, how they should work, and apps often add custom widgets that replace or augment others from the library they chose.
 
 Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
 rendering of fields, forms, tables, logos, buttons etc.
 
 Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
 theme that they choose.
+
+What you will typically do in professional applications is define your own Theme by forking another, and then you can make all the UI tags do exactly what you want for your application.
+
+This is only possible because plugins will be able to use the UI tags to delegate how to actually render elements.
+                                                                                               
