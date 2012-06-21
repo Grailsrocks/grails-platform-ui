@@ -1,0 +1,13 @@
+There are a few configuration options that affect details such as which Theme is selected by default.
+
+h2. Default Theme
+
+Set the @plugin.platformUi.theme.default@ Config value to the name of the theme to be used by default if no other theme is set on the current request.
+
+If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"
+
+h2. Default Layout Name
+
+If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.
+
+If you need to change this behaviour, set @plugin.platformUi.theme.layout.default@ in Config.

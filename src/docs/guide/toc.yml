@@ -26,5 +26,9 @@ ui:
     avatar: The Avatar template
   cssclasses: CSS Classes
   customuisets: Creating your own UI Sets
-themes:
-  title: Themes API
+themes: Themes API
+  themeConfiguration: Configuration
+  themeZones: Content Zones
+debugging: Debugging
+
+

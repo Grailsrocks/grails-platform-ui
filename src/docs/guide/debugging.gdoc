@@ -1,0 +1,22 @@
+It can be a bit tricky to work out what is going wrong - is there a problem in the UI set or the theme, what themes and UI sets are available etc.
+
+There are some tools to help, and tools for you as a Theme author to help developers preview your themes.
+
+h2. Using the Platform UI browser
+
+With your app or plugin running in "run-app" development mode, browse to:
+
+@http://localhost:8080/<yourprefix>/platform/ui@
+
+Here you will find links to the UI Set viewer and the Theme viewer. These let you see each UI Set in action, and also view each Theme's layout with default content supplied, with or without the full set of UI Set samples included.
+
+Make sure your UISet renders all the widgets correctly in the UI Set viewer.
+
+Then use the Theme Viewer and turn on UI Sample mode, and view the layout that you are having problems with, and verify the structural markup is all correct.
+
+h2. Supplying default content for your Theme zones
+
+TBD
+ 
+
+
