@@ -2,8 +2,6 @@ The UI API provides a set of tags for common UI elements, without tieing an appl
 
 The UI tags have implementations that come from a "UI Set" which is a convention-based collection of GSP templates.
 
-!diagrams/ui_render.png!
-
 This semantic identification of UI elements provides a level of abstraction from their actual HTML rendering. While HTML5 is a major step forward, we are still in a situation where UI elements are often built out of multiple markup tags which vary between CSS and JS frameworks. For this reason, we cannot have UI tags that render the actual HTML in a fixed way.
 
 This allows plugins to provide high quality UI to your application, without relying on you to integrate the plugin views with your look and feel.
