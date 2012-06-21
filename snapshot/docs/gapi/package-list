@@ -1,0 +1,7 @@
+DefaultPackage
+org.grails.plugin.platform
+org.grails.plugin.platform.controllers
+org.grails.plugin.platform.test
+org.grails.plugin.platform.themes
+org.grails.plugin.platform.ui
+org.grails.plugin.platform.views

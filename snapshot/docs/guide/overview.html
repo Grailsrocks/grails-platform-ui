@@ -1,0 +1,301 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>1 Overview 1.0.M1-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/ui.html"><strong>3</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for advanced Plugin integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>1 Overview - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com), Stéphane Maldini (stephane.maldini@gmail.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.M1-SNAPSHOT</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h1 id="overview">1 Overview</h1>
+The Platform UI is a sister plugin to <a href="http://grailsrocks.github.com/grails-platform-core" target="blank">Platform Core</a>.<p class="paragraph"/>Where Platform Core provides "plumbing" for plugins and applications, Platform
+UI provides common UI and Theming support for plugins and applications so that they can achieve higher level visual integration.<p class="paragraph"/>It is designed to be as lightweight as possible and completely CSS and JS framework agnostic.<p class="paragraph"/>Platform UI provides <strong class="bold">UI Sets</strong> and <strong class="bold">Themes</strong> via APIs and GSP template discovery.<p class="paragraph"/>These are two separate mechanisms - UI Sets can be used without using Themes - and most of the time there will be more Themes than UI Sets. Themes use specific UI Sets to render UI elements with the correct markup, CSS and JS in a manner coherent with the layout markup and CSS they are using.<p class="paragraph"/><h2>What is a UI Set?</h2><p class="paragraph"/>A UI Set is a set of GSP templates and resource that provide the HTML and CSS required to render the standard UI tags.<p class="paragraph"/>Applications and plugins can therefore use the standard UI tags from this plugin without worrying about how they are actually rendered or implemented in the application - so in theory your plugin might have its elements rendered by a Twitter Bootstrap plugin in one app, or a jQuery UI plugin in another app.<p class="paragraph"/>It doesn't matter which because:
+<ol>
+<li>Your code renders its UI using the ui:xxx tags, which output the correct structural HTML</li>
+<li>The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this</li>
+</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "form", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>What is this NOT: A grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
+to fit the Application's theme - and to provide <strong class="bold">only</strong> the most common site styling elements needed for an effective system
+of replaceable application Themes.<p class="paragraph"/>It is not possible to make a single unified UI framework - take a look at what is already out there in the web space and you will see that everyone has different ideas about what different widgets are, how they should work, and apps often add custom widgets that replace or augment others from the library they chose.<p class="paragraph"/>Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
+rendering of fields, forms, tables, logos, buttons etc.<p class="paragraph"/>Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
+theme that they choose.<p class="paragraph"/>What you will typically do in professional applications is define your own Theme by forking another, and then you can make all the UI tags do exactly what you want for your application.<p class="paragraph"/>This is only possible because plugins will be able to use the UI tags to delegate how to actually render elements.
+                                                                                               
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item next-right"><a href="../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Beans/grailsThemes.html">grailsThemes</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Beans/grailsUISets.html">grailsUISets</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Scripts/create-theme.html">create-theme</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Scripts/create-ui.html">create-ui</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Scripts/fork-ui.html">fork-ui</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/body.html">body</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/current.html">current</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/head.html">head</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/layout.html">layout</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/list.html">list</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/name.html">name</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/title.html">title</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Theme%20Tags/zone.html">zone</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/actions.html">actions</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/attributes.html">attributes</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/avatar.html">avatar</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/block.html">block</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/button.html">button</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/carousel.html">carousel</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/cssClass.html">cssClass</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/field.html">field</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/form.html">form</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/h1.html">h1</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/h2.html">h2</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/h3.html">h3</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/h4.html">h4</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/image.html">image</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/list.html">list</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/logo.html">logo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/message.html">message</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/navigation.html">navigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/paginate.html">paginate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/slide.html">slide</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/tab.html">tab</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/table.html">table</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/tabs.html">tabs</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/th.html">th</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../ref/Ui%20Tags/tr.html">tr</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer & Stéphane Maldini
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

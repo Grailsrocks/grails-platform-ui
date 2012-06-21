@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>3.4.2 The Field template 1.0.M1-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript">
+function addJsClass() {
+    var classes = document.body.className.split(" ");
+    classes.push("js");
+    document.body.className = classes.join(" ");
+}
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/ui.html"><strong>3</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for advanced Plugin integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                    <div class="toc-item prev-left"><a href="../../guide/gettingStarted.html">&lt;&lt; <strong>2</strong><span>Getting Started</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                    <div class="toc-item next-right"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>3.4.2 The Field template - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com), Stéphane Maldini (stephane.maldini@gmail.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.M1-SNAPSHOT</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h2 id="field">3.4.2 The Field template</h2>
+The <code>_field.gsp</code> template is used to render the <a href="../ref/Ui Tags/field.html" class="uiTags">field</a>tag.<p class="paragraph"/>The GSP receives the following model:
+<ul class="star">
+<li>fieldClass - The CSS class to use for the primary container of the field HTML, obtained from UI Set config.</li>
+<li>invalidClass - The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config</li>
+<li>classes - A string containing the list of CSS classes to apply to the outer container</li>
+<li>label - The label text or i18n message code to use for the label. If no value specified, must default the rules set out in <a href="../ref/Ui Tags/field.html" class="uiTags">field</a></li>
+<li>labelArgs - An optional list of arguments to use when building the label i18n message</li>
+<li>hint - An optional hint string or i18n code to render with the field</li>
+<li>hintArgs - Optional argument list to accompany the value of "hint"</li>
+<li>invalid - Optional argument. If value is non-null, indicate that the field is or isn't valid using this value only, disregarding the actual field value.</li>
+<li>required - Optional argument. If value is non-null, indicate that the field is or isn't required, disregarding the value of any constraints on a validateable bean property</li>
+<li>name - The name of the field and/or name of the bean property to render the field for. Used as the name attribute of the field.</li>
+<li>bean - Optional. If non-null, field must be rendered for the property resolved using beanname, using property type and constraints where available to render the appropriate field</li>
+<li>value - Optional. Use as the value of the field even if a the bean property value is different</li>
+<li>default - Optional. Value to use if "value" and the bean field value are null</li>
+<li>type - Optional. A type override for the field, with possible values "text", "checkbox", "radio", "textarea". If specified, this type of HTML input must be used</li>
+<li>attrs - Any extra attributes to pass through - the effect of these is undefined</li>
+</ul><p class="paragraph"/>Example template:<p class="paragraph"/><div class="code"><pre><span class="xml&#45;tag">&#60;g:if test=<span class="xml&#45;quote">"$&#123;bean&#125;"</span>&#62;</span>        
+        <span class="xml&#45;tag">&#60;f:field bean=<span class="xml&#45;quote">"$&#123;bean&#125;"</span> property=<span class="xml&#45;quote">"$&#123;name&#125;"</span> label=<span class="xml&#45;quote">"$&#123;label&#125;"</span> default=<span class="xml&#45;quote">"$&#123;default&#125;"</span>
+            invalid=<span class="xml&#45;quote">"$&#123;invalid&#125;"</span> required=<span class="xml&#45;quote">"$&#123;required&#125;"</span>/&#62;</span>
+    <span class="xml&#45;tag">&#60;/g:if&#62;</span>
+    <span class="xml&#45;tag">&#60;g:else&#62;</span>
+        <span class="xml&#45;tag">&#60;f:field property=<span class="xml&#45;quote">"$&#123;name&#125;"</span> label=<span class="xml&#45;quote">"$&#123;label&#125;"</span> default=<span class="xml&#45;quote">"$&#123;default&#125;"</span>
+                invalid=<span class="xml&#45;quote">"$&#123;invalid&#125;"</span> required=<span class="xml&#45;quote">"$&#123;required&#125;"</span>&#62;</span>
+            <span class="xml&#45;tag">&#60;input class=<span class="xml&#45;quote">"$&#123;p.joinClasses(values:&#91;classes, error ? 'error' : ''&#93;)&#125;"</span>
+                type=<span class="xml&#45;quote">"$&#123;type&#125;"</span> name=<span class="xml&#45;quote">"$&#123;name&#125;"</span> value=<span class="xml&#45;quote">"$&#123;value&#125;"</span>/&#62;</span>
+            <span class="xml&#45;tag">&#60;span class=<span class="xml&#45;quote">"help&#45;inline"</span> class=<span class="xml&#45;quote">"$&#123;error ? 'error' : ''&#125;"</span> &#62;</span>
+                <span class="xml&#45;tag">&#60;g:message code=<span class="xml&#45;quote">"field.hint.$&#123;name&#125;"</span> encodeAs=<span class="xml&#45;quote">"HTML"</span>/&#62;</span>
+            <span class="xml&#45;tag">&#60;/span&#62;</span>
+        <span class="xml&#45;tag">&#60;/f:field&#62;</span>
+    <span class="xml&#45;tag">&#60;/g:else&#62;</span></pre></div><p class="paragraph"/>This example uses the Grails Fields plugin to render the field. This is not a complete example (for example it does not handle type overrides), but is sufficient to demonstrate the mechanism.
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                    <div class="toc-item prev-left"><a href="../../guide/gettingStarted.html">&lt;&lt; <strong>2</strong><span>Getting Started</span></a></div>
+                
+                    <div class="toc-item next-right"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Beans/grailsThemes.html">grailsThemes</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Beans/grailsUISets.html">grailsUISets</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Scripts/create-theme.html">create-theme</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Scripts/create-ui.html">create-ui</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Scripts/fork-ui.html">fork-ui</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/body.html">body</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/current.html">current</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/head.html">head</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layout.html">layout</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/list.html">list</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/name.html">name</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/title.html">title</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/zone.html">zone</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/attributes.html">attributes</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/avatar.html">avatar</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/block.html">block</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/button.html">button</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/carousel.html">carousel</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/cssClass.html">cssClass</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/field.html">field</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/form.html">form</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/h1.html">h1</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/h2.html">h2</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/h3.html">h3</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/h4.html">h4</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/image.html">image</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/list.html">list</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/logo.html">logo</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/message.html">message</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/navigation.html">navigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/paginate.html">paginate</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/resources.html">resources</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/slide.html">slide</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/tab.html">tab</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/table.html">table</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/tabs.html">tabs</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/th.html">th</a>
+                            </div>
+                            
+                            <div class="menu-item"><a href="../../ref/Ui%20Tags/tr.html">tr</a>
+                            </div>
+                            
+                            </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer & Stéphane Maldini
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
