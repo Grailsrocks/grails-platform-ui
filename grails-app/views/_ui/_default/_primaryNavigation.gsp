@@ -1,1 +1,0 @@
-<nav:primary class="${classes}"/>

@@ -1,1 +1,0 @@
-<ui:paginate total="100" controller="dummy" action="dummy"/>

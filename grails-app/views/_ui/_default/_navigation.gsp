@@ -1,1 +1,0 @@
-<p:callTag tag="nav:menu" attrs="${attrs + [class:classes, scope:scope]}"/>
