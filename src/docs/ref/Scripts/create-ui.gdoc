@@ -1,0 +1,3 @@
+h1. create-ui-set
+
+The create-ui=set script creates a new stub UI set with the name specified. You can then edit the GSPs and other elements to customize it.

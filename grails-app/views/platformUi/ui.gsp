@@ -11,7 +11,7 @@
         <div style="width:800px; margin:0 auto 0 auto">
             <h1>UI Sets</h1>
         
-            <g:render template="uisample"/>
+            <g:render plugin="platformUi" template="uisample"/>
         </div>
 
         <p:uiOverlay>

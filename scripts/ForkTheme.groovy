@@ -12,10 +12,9 @@ void discoverThemesInProject(File projectDir, String pluginName, List results) {
     def projectViewsDir = new File(projectDir, 'grails-app'+File.separator+'views')
 
     def projectLayoutsDir = new File(projectViewsDir, 'layouts'+File.separator+'themes')
-//        def pluginTemplatesDir = new File(pluginViewsDir, '_themes')
 
     if (projectLayoutsDir.exists()) {
-        def themeNames = projectLayoutsDir.eachDir { d ->
+        projectLayoutsDir.eachDir { d ->
             results << [name:d.name, plugin:pluginName, layoutsDir:d, viewsDir:projectViewsDir]
         }
     }
@@ -74,7 +73,7 @@ to manually clone the resources provided by that theme and perhaps other Config 
         }
     }
         
-    ant.input(message:"What the new name for your forked theme?", defaultValue:name+'-fork', addProperty:'newName')
+    ant.input(message:"Choose a name for your new forked theme", defaultValue:name+'-fork', addProperty:'newName')
     newName = ant.project.properties.newName
 
     def srcTheme = themes.find { it.name == name }
