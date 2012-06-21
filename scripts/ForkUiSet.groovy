@@ -100,7 +100,6 @@ modules = {
     }
 }
 """
-    }
     resFile << resSpecimen
     
     println """
