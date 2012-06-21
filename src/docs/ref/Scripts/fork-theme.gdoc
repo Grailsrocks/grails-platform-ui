@@ -1,3 +1,3 @@
-h1. fork-theme
+h1. fork-theme <theme-name>
 
-The create-theme script creates a new stub theme with the name specified. You can then edit the layouts and other elements to customize it.
+The fork-theme script copies an existing Theme installed into your app into a new Theme. You can then edit the layouts and other elements to customize it.

@@ -1,0 +1,3 @@
+h1. fork-ui-set <ui-set-name>
+
+The fork-ui-set script copies an existing UI set installed into your app into a new UI Set. You can then edit the layouts and other elements to customize it.
