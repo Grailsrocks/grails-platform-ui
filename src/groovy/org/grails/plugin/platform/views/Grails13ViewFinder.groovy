@@ -215,13 +215,11 @@ class Grails13ViewFinder implements ViewFinder, ApplicationContextAware {
                     log.debug "listPrecompiledViews - Seeing if precompiled GSP ${p} matches the path $path (regex: $pathPattern)"
                 }
                 def match = p ==~ pathPattern
-                println "MATCH: ${match}"
                 if (match && log.debugEnabled) {
                     log.debug "listPrecompiledViews -  Found precompiled GSP for path [${path}] at $p"
                 }
                 return match
             }
-            println "MATCHED: ${r}"
             if (r) {
                 // Strip off the WEB-INF prefix so the views can be loaded
                 def viewPaths = r.collect { p -> p - '/WEB-INF' }
