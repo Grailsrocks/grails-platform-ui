@@ -37,23 +37,31 @@ class UISets implements ApplicationContextAware, InitializingBean {
     static UI_TAG_NAMES = [
         'block', 
         'message', 
+
         'tabs', 
         'tab', 
+
         'image', 
         'avatar', 
+        
         'button', 
+        
         'navigation',
         'primaryNavigation',
         'secondaryNavigation',
+        
         'paginate',
         'form',
         'field',
+        'fieldGroup',
         'actions',
-        'fieldHint',
+
         'table',
         'tr',
         'th',
+
         'logo',
+
         'carousel',
         'slide',
     ] as Set

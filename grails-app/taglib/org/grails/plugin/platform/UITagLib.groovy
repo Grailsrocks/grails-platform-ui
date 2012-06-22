@@ -552,6 +552,12 @@ class UITagLib implements InitializingBean {
         out << renderUITemplate('field', args)
     }
     
+    def fieldGroup = { attrs, body ->
+        def classes = attrs.remove('class')
+        def fieldGroupClass = grailsUISets.getUICSSClass(request, 'fieldGroup', 'fieldGroup')
+        out << renderUITemplate('fieldGroup', [attrs:attrs, bodyContent:body(), fieldGroupClass: fieldGroupClass, classes:classes])
+    }
+    
     def actions = { attrs, body ->
         def classes = attrs.remove('class')
         def actionsClass = grailsUISets.getUICSSClass(request, 'actions', 'actions')
