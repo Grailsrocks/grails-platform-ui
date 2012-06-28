@@ -56,7 +56,7 @@ class ThemeTagLib {
         def zones = request[REQ_ATTR_ZONE_LIST]
         zones?.contains(id)
     }
-    
+
     void doDefineZone(id) {
         def zones = request[REQ_ATTR_ZONE_LIST]
         if (!zones) {
@@ -70,6 +70,18 @@ class ThemeTagLib {
             }
         }
     }
+
+    /**
+     * Set the theme to use for the current request
+     * @attr name The theme name to use
+     */
+    def set = { attrs ->
+        def name = attrs.name
+        if (!name) {
+            throwTagError("Tag [theme:set] requires [name] attribute containing a valid theme name")
+        }
+        grailsThemes.setRequestTheme(request, name)
+    }
     
     def zone = { attrs, body->
         def id = attrs.name ?: 'body'
@@ -78,7 +90,7 @@ class ThemeTagLib {
         def htmlPage = getPage()
         def propertyName = "theme.zone."+id.toString()
         if(!(htmlPage instanceof GSPSitemeshPage)) {
-            throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' -mode")
+            throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' in Config")
         }
         appendToContentBuffer(propertyName, body)
         return null
