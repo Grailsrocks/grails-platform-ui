@@ -1,0 +1,22 @@
+h1. theme:set
+
+h2. Purpose
+
+Sets the theme to use for the current request.
+
+You may want to set the theme in use from inside a controller action or a GSP view. Use this tag to do so. Note that a controller can 
+also call directly into the @grailsThemes.setRequestTheme@ method to do the same without tag overheads.
+
+h2. Example
+
+{code:xml}
+<theme:set name="customAdmin"/>
+{code}
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+name | yes  | The theme name
+{table}
+

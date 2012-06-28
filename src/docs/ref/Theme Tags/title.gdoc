@@ -1,1 +1,21 @@
+h1. theme:title
+
+h2. Purpose
+
+TBC
+
+h2. Example
+
+{code:xml}
+TBC
+{code}
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+TBC | TBC | TBC
+{table}
+
+
 
