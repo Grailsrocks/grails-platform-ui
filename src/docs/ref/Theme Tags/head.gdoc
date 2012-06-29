@@ -2,19 +2,38 @@ h1. theme:head
 
 h2. Purpose
 
-TBC
+Defines the @<head>@ of a Theme layout.
+
+This is a shortcut for rendering the @<head>@ tag of a page.
+
+It automatically renders:
+
+* the opening and closing @<head>@ tag
+* the page title (using <theme:layoutHTMLTitle/>)
+* resource dependencies of the theme (using <r:layoutResources/>)
+* the body of this @theme:head@ tag - any extra body details you supply
+* the @<head>@ section from the GSP page being rendered
+
+It does all these things in the correct order to ensure that Resources render correctly.
+
+You do not need to use this tag to define a theme layout's head - but if you do not you must remember to call the @r:layoutResources@ tag at the correct point in the head.
 
 h2. Example
 
 {code:xml}
-TBC
+<!DOCTYPE html>
+<html>
+    <theme:head>
+        <meta name="extra-incantation" content="abracadabra"/>
+    </theme:head>
+    <theme:body>
+        ...
+    </theme:body>
+</html>
 {code}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
+None.
 
 

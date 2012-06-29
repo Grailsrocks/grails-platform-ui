@@ -1,3 +1,9 @@
 h1. fork-theme <theme-name>
 
-The fork-theme script copies an existing Theme installed into your app into a new Theme. You can then edit the layouts and other elements to customize it.
+The fork-theme script copies an existing Theme installed into your app into a new Theme.
+
+You can then edit the layouts and other elements to customize it.
+
+Note that the Resource modules of a theme will depend on those of the "parent" theme.
+If you remove the original theme (e.g. by installing its plugin) you will need to copy the resource modules
+from the original theme into yours.

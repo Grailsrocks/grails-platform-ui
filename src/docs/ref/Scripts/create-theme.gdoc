@@ -1,3 +1,5 @@
-h1. create-theme
+h1. create-theme <theme-name>
 
-The create-theme script creates a new stub theme with the name specified. You can then edit the layouts and other elements to customize it.
+The create-theme script creates a new stub theme with the name specified.
+
+You can then edit the layouts and other elements to customize it.

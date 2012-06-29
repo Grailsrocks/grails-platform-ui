@@ -1,1 +1,7 @@
-The grailsUiHelper provides some methods to display messages to the user.
+h1. grailsUISets Bean
+
+The @grailsUISets@ bean is an instance of the @UISets@ class provided by Platform UI.
+
+You can call methods on this bean to set the current request's UI Set, discover available UI Sets and so on.
+
+See the [UISets|api:org.grails.plugin.platform.ui.UISets] docs for details.

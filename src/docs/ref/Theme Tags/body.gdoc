@@ -2,19 +2,38 @@ h1. theme:body
 
 h2. Purpose
 
-TBC
+Defines the @<body>@ of a Theme layout.
+
+This is a shortcut for rendering the @<body>@ tag of a page including any Sitemesh attributes to decorate the body with, and will also 
+automatically call Resources <r:layoutResources/> for the "defer" disposition.
+
+Inside the body your theme layout will typically add some structural markup and use @<theme:layoutZone>@ to render the various content zones inside your markup.
+
+You do not need to use this tag to define a theme layout's body - but if you do not you must remember to call the @r:layoutResources@ tag at the end of the body to render the deferred Resources of the page.
 
 h2. Example
 
 {code:xml}
-TBC
+<!DOCTYPE html>
+<html>
+    <theme:head/>
+    <theme:body>
+        <ui:logo/>
+        <theme:layoutZone name="navigation"/>
+        <theme:layoutZone name="user-navigation"/>
+        <theme:layoutTitle/>
+        <ui:displayMessage/>
+        <theme:layoutZone name="body"/>
+        <theme:layoutZone name="footer"/>
+    </theme:body>
+</html>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+bodyAttrs | No | Map of attributes to add to body tag, or list of attribute names to copy from Sitemesh body properties
 {table}
 
 

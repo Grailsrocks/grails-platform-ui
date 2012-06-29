@@ -1,0 +1,7 @@
+h1. grailsThemes Bean
+
+The @grailsThemes@ bean is an instance of the @Themes@ class provided by Platform UI.
+
+You can call methods on this bean to set the current request's theme, discover available themes and so on.
+
+See the [Themes|api:org.grails.plugin.platform.themes.Themes] docs for details.

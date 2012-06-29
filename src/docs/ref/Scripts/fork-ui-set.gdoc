@@ -1,3 +1,7 @@
 h1. fork-ui-set <ui-set-name>
 
 The fork-ui-set script copies an existing UI set installed into your app into a new UI Set. You can then edit the layouts and other elements to customize it.
+
+Note that the Resource modules of a UI Set will depend on those of the "parent" UI Set.
+If you remove the original UI Set (e.g. by installing its plugin) you will need to copy the resource modules
+from the original UI Set into yours.

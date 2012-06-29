@@ -44,6 +44,7 @@ class UITagLib implements InitializingBean {
     static PLUGIN_SCOPE = 'plugin.pluginPlatform.'
 
     static BUTTON_TYPES = ['button', 'anchor', 'submit']
+    static BUTTON_MODES = ['danger', 'primary', 'secondary', 'cancel']
 
     static BASE_HEADING_ATTRIBUTE = 'org.grails.plugin.platform.base.heading'
     
