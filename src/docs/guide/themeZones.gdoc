@@ -1,6 +1,10 @@
 Themes use zones to pull in multiple pieces of content to build up the page.
 
-Typically for example a layout will have a zone for the body content, but maybe also one for a sidebar or a promotional area.
+All layouts will have a zone for the "body" content, but they may also have others for e.g. a sidebar or promotional areas.
+
+Theme layouts determine the structural HTML of the page, and where the content for each zone is rendered using the [layoutZone|themeTags] tag.
+
+The GSP pages themselves use the [zone|themeTags] tag to define the content to be used in a given zone.
 
 h2. Setting the content for a given zone from within your GSP page
 

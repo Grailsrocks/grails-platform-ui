@@ -52,12 +52,19 @@ class ThemeTagLib {
         out << sitemesh.captureMeta(gsp_sm_xmlClosingForEmptyTag:"/", name:"layout",content:layoutName)
     }
     
-    boolean isZoneDefined(id) {
+    private boolean isZoneDefined(id, boolean includeImplicitBody = false) {
         def zones = request[REQ_ATTR_ZONE_LIST]
-        zones?.contains(id)
+        if (zones?.contains(id)) {
+            return true
+        } else if (includeImplicitBody && (id == 'body')) {
+            def htmlPage = getPage()
+            return htmlPage.getContentBuffer('page.body') 
+        } else {
+            return false
+        }
     }
 
-    void doDefineZone(id) {
+    private void doDefineZone(id) {
         def zones = request[REQ_ATTR_ZONE_LIST]
         if (!zones) {
             def s = new HashSet()
@@ -138,6 +145,18 @@ class ThemeTagLib {
         request['plugin.platformUi.theme.debug.mode']
     }
     
+    def ifZoneContent = { attrs, body ->
+        if (isZoneDefined(attrs.name, true)) {
+            out << body()
+        }
+    }
+    
+    def ifNoZoneContent = { attrs, body ->
+        if (!isZoneDefined(attrs.name, true)) {
+            out << body()
+        }
+    }
+
     /**
      * Used by themes to render application-supplied content from zones defined in GSP pages or GSP templates.
      * Typically for "footer" or other common elements that would normally be in the application SiteMesh layout.
@@ -154,9 +173,7 @@ class ThemeTagLib {
         if (!id) {
             throwTagError "Tag [theme:layoutZone] requires a [name] attribute containing the name of the zone to render"
         }
-        def zones = request[REQ_ATTR_ZONE_LIST]
-
-        if (!zones || !zones.contains(id)) {
+        if (!isZoneDefined(id)) {
             // If this is body zone but none defined, just dump out body
             if (id == 'body') {
                 out << g.layoutBody()

@@ -2,7 +2,18 @@ h1. theme:layoutZone
 
 h2. Purpose
 
-TBC
+Renders the content of a given zone. Used by Theme layouts to place the parts of the application's content within the structural HTML of the page. 
+
+h2. How the content for a zone is resolves
+
+Content for the zone is resolved in this order:
+
+# Content defined by the page being rendered, using the [zone:themeTags] tag
+# If the zone is "body" the page body is used (using the default g:layoutBody tag)
+# If the application supplies a GSP fragment in @/grails-app/views/_themes/zones/<zone-name>.gsp@ this is used
+# Finally the [defaultContent|themeTags] tag is used to provide default content, which will check if the Theme itself provides default content, and failing that the default Platform UI theme. If there is still no default content GSP it will revert to @p:dummyText@ from Platform Core to render some Lorem Ipsum-style text.
+
+Through this cascade of content resolution your application can provide default content for zones such as header/footer, or fall back to theme defaults - and even use application or theme defaults for e.g. footer but override these on a page-by-page basis if necessary.
 
 h2. Example
 

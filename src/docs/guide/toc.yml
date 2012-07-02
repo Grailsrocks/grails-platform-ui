@@ -28,8 +28,10 @@ ui:
   customuisets: Creating your own UI Sets
 themes: 
   title: Themes API
-  themeConfiguration: Configuration
+  themeRequirements: Theme requirements
   themeZones: Content Zones
+  themeBranding: Branding
+  themeConfiguration: Configuration
 debugging: Debugging
 
 

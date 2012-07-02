@@ -1,1 +1,12 @@
-No docs yet
+Themes are collections of Sitemesh layouts that follow conventions for template locations.
+
+The define the visual layout of pages rendered by your application. Pages in a plugin or application can choose to use a theme layout
+using the [layout|themeTags] tag instead of the normal @<meta>@ tag to select the Sitemesh layout.
+
+As a theme author, using the @theme@ namespace tags you can create themes that will allow Grails applications and plugins to define their UI largely without any concern for the structural page layout itself - and swap the visual styling without changing the code of the GSPs.
+
+Optionally working together with UI Sets, applications and plugins can then leverage whatever UI technology a theme was written with - because the Theme determines the UI Set to use for the current request.
+
+The end result is that the application or users can change the Theme on a per request or user basis, and the structural HTML markup, the CSS, the Javascript and all other resources will be adapted to suit the Theme.
+
+For example you might have a user-centric site front end that uses a custom theme style by in-house designers using raw jQuery, and a simple back end admin theme that is based directly on Twitter Bootstrap and custom JS code.
