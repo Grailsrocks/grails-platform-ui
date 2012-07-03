@@ -12,5 +12,9 @@ The GSP receives the following model:
 Example template:
 
 {code:xml}
-<img src="https://secure.gravatar.com/avatar/${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}" class="${p.joinClasses(values:[avatarClass,classes])}"${ui.attributes(exclude:'src')}/>
+<g:set var="_gravatarURL" value="https://secure.gravatar.com/avatar/"/>
+<g:set var="_gravatarArgs" value="${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}"/>
+<img src="${_gravatarURL}${_gravatarArgs}"
+     class="${p.joinClasses(values:[avatarClass,classes])}"
+     ${ui.attributes(exclude:'src')}/>
 {code}

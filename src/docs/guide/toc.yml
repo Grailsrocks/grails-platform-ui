@@ -24,10 +24,22 @@ ui:
     tabs: The Tabs template
     tab: The Tab template
     avatar: The Avatar template
+    actions: The Actions template
+    block: The Block template
+    carousel: The Carousel template
+    logo: The Logo template
+    navigation: The Navigation template
+    primaryNavigation: The Primary Navigation template
+    secondaryNavigation: The Secondary Navigation template
+    slide: The Slide template
+  utilitytags: Utility Tags
+  uiConfiguration: Configuration
   cssclasses: CSS Classes
   customuisets: Creating your own UI Sets
 themes: 
   title: Themes API
+  themesUsing: Using Themes in your Application
+  themeCreate: Createing a theme
   themeRequirements: Theme requirements
   themeZones: Content Zones
   themeBranding: Branding

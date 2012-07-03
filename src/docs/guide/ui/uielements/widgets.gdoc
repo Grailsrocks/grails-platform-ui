@@ -125,8 +125,7 @@ The [message|uiTags]tag used render text messages such as info and warning messa
 
 As with most UI tags you can specify text/textArgs attributes or a body. 
 
-There are dynamic methods added to controllers to make it easy to display messages to the user. Just call [displayMessage|Controller Methods]
-or [displayFlashMessage|Controller Methods] and then add the following tag to your GSP views using the [displayMessage|uiTags]:
+There are dynamic methods added to controllers by Platform Core plugin to make it easy to display messages to the user, and this mechanism is reused in Platform UI to allow the UI Set to customise the rendering. Just call the @displayMessage@ or @displayFlashMessage@ and then add the [displayMessage|uiTags]:
 
 {code:xml}
 <ui:displayMessage/>

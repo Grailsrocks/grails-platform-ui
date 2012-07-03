@@ -1,0 +1,79 @@
+Using Platform UI Themes in your Grails applications is simple. 
+
+There are only three things you need to do:
+
+# Provide a theme implementation
+# Tell Platform UI which of the standard theme layouts your GSP requires
+# Define your content zones
+
+h2. Providing a Theme implementation
+
+Out of the box there is a basic default theme called @_default@. This will be used if you don't provide your own.
+
+You can provide a Theme by either installing a Theme plugin (a standard Grails plugin containing a theme), or by creating your own Theme.
+
+Most real apps will supply their own Theme, or a forked version of a Theme from a plugin.
+
+To create your own theme see the [Creating Themes|guide:themeCreate]. Scripts are provided to fork existing themes or create new plain ones.
+
+You don't need to tell the app which Theme to use at this stage because it will default to the first non-default theme you have installed, or fall
+back to the @_default@ theme.
+
+h2. Telling Platform UI which Theme Layout to use
+
+Each GSP that uses Themes needs to use the [layout|themeTags] tag to specify which of the Theme's layouts applies to the page.
+
+This is easily done in the <head> section of your views:
+
+{code:xml}
+<html>
+   <head>
+      <theme:layout name="home"/>
+   </head>
+   .
+   .
+   .
+</html>
+{code}
+
+You can parameterize this if you need to present different layouts based on some runtime variables.
+
+h2. Defining your Content Zones
+
+Now that you have chosen a layout for your GSP, you need to provide the content for the zones defined by that layout.
+
+Zones are chunks of content your page supplies, that the Theme layout will position for you according to its styling.
+
+At the very least all pages have a "body" zone.
+
+See the [Theme Requirements|guide:themeRequirements] section for details of the zones supported by each required layout.
+
+You define the content for a zone using the [zone|themeTags] tag. Note that if you only need to supply a body, you do not need to use this tag,
+but if you are supplying multiple zones, all content including that for the body zone must be wrapped in zone tags:
+
+{code:xml}
+<html>
+    <head>
+      <theme:layout name="home"/>
+    </head>
+    <body>   
+        <theme:zone name="body">
+            <p>Welcome to our site</p>
+        </theme:zone>
+        <theme:zone name="panel1">
+            <p>Marketing text 1</p>
+        </theme:zone>
+        <theme:zone name="panel2">
+            <p>Marketing text 2</p>
+        </theme:zone>
+        <theme:zone name="panel3">
+            <p>Marketing text 3</p>
+        </theme:zone>
+    </body>
+</html>
+{code}
+
+Note that your view does not have to supply content for every zone. There is fallback algorithm that allows your Application and the Theme to provide default content for zones, and as a last resort falling back to Lorem Ipsum filler text. Theme layouts can also adapt to the absence of content for some zones.
+
+See the documentation for the [zone|themeTags] tag and [Creating Themes|guide:themeCreate] for more details of the zone mechanism and behaviour
+for location content.

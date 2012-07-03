@@ -1,7 +1,7 @@
 Themes are collections of Sitemesh layouts that follow conventions for template locations.
 
-The define the visual layout of pages rendered by your application. Pages in a plugin or application can choose to use a theme layout
-using the [layout|themeTags] tag instead of the normal @<meta>@ tag to select the Sitemesh layout.
+They define the visual layout of pages rendered by your application. Views in a plugin or application can choose to use a theme layout
+using the [layout|themeTags] tag instead of the normal @<meta>@ tag to select the Sitemesh layout. So for users of Themes, Sitemesh layouts are no longer explicitly used.
 
 As a theme author, using the @theme@ namespace tags you can create themes that will allow Grails applications and plugins to define their UI largely without any concern for the structural page layout itself - and swap the visual styling without changing the code of the GSPs.
 
