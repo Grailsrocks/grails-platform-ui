@@ -1,7 +1,6 @@
-Themes are collections of Sitemesh layouts that follow conventions for template locations.
+Themes are collections of Sitemesh layouts that follow conventions for template locations and Resource modules, with support for multiple content "zones" per page.
 
-They define the visual layout of pages rendered by your application. Views in a plugin or application can choose to use a theme layout
-using the [layout|themeTags] tag instead of the normal @<meta>@ tag to select the Sitemesh layout. So for users of Themes, Sitemesh layouts are no longer explicitly used.
+Themes define the visual layout of pages rendered by your application and plugins. The views in a plugin or application can choose to use a theme layout using the [layout|themeTags] tag instead of the normal @<meta>@ tag to select the Sitemesh layout. So for users of Themes, Sitemesh layouts are no longer explicitly used.
 
 As a theme author, using the @theme@ namespace tags you can create themes that will allow Grails applications and plugins to define their UI largely without any concern for the structural page layout itself - and swap the visual styling without changing the code of the GSPs.
 
@@ -10,3 +9,13 @@ Optionally working together with UI Sets, applications and plugins can then leve
 The end result is that the application or users can change the Theme on a per request or user basis, and the structural HTML markup, the CSS, the Javascript and all other resources will be adapted to suit the Theme.
 
 For example you might have a user-centric site front end that uses a custom theme style by in-house designers using raw jQuery, and a simple back end admin theme that is based directly on Twitter Bootstrap and custom JS code.
+
+The Theme system is inspired by efforts such as the Wordpress theme community, where you can take an off the shelf theme that instantly styles your site, but may also add extra non-standard features - some of which may follow conventions across other themes.
+
+By formalising some of these conventions - for example by using UI Sets to represent the commonly themed components of a site - we allow our plugin
+ecosystem to rely on a core set of functionality from themes, while avoiding raising the bar too high and being over-prescriptive.
+
+Highly stylized themes will inevitably need extra configuration, custom tags or style conventions to get high quality results. Application content
+may still need to be written to fit the available space in a theme. Colours may need to be tweaked.
+
+However it should all be a lot quicker, and more fun.

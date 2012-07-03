@@ -19,14 +19,11 @@ package org.grails.plugin.platform
 
 import org.codehaus.groovy.grails.plugins.web.taglib.ApplicationTagLib
 
-import org.codehaus.groovy.grails.web.pages.FastStringWriter
-import org.codehaus.groovy.grails.web.sitemesh.GSPSitemeshPage
-import org.codehaus.groovy.grails.web.util.GrailsPrintWriter
-import org.codehaus.groovy.grails.web.util.StreamCharBuffer
 import com.opensymphony.module.sitemesh.RequestConstants
 
 import org.grails.plugin.platform.util.TagLibUtils
 import org.grails.plugin.platform.themes.Themes
+import org.codehaus.groovy.grails.web.sitemesh.GSPSitemeshPage
 
 class ThemeTagLib {
     static namespace = "theme"
@@ -50,6 +47,10 @@ class ThemeTagLib {
         grailsThemes.setRequestStyle(request, attrs.name)
         def layoutName = grailsThemes.getRequestSitemeshLayout(request)
         out << sitemesh.captureMeta(gsp_sm_xmlClosingForEmptyTag:"/", name:"layout",content:layoutName)
+    }
+    
+    protected getPage() {
+        return request[org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.GSP_SITEMESH_PAGE]
     }
     
     private boolean isZoneDefined(id, boolean includeImplicitBody = false) {
@@ -99,48 +100,10 @@ class ThemeTagLib {
         if(!(htmlPage instanceof GSPSitemeshPage)) {
             throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' in Config")
         }
-        appendToContentBuffer(propertyName, body)
+        grailsThemes.appendToZone(request, propertyName, body)
         return null
     }
 
-    protected appendToContentBuffer(bufferName, body) {
-        def htmlPage = getPage()
-        def contentBuffer = htmlPage.getContentBuffer('page.' + bufferName)
-        if(contentBuffer == null) {
-            contentBuffer = wrapContentInBuffer(body)
-            htmlPage.setContentBuffer(bufferName, contentBuffer)
-        } else {
-            new GrailsPrintWriter(contentBuffer.writer) << body()
-        }
-    }
-
-    protected appendToHeadBuffer(body) {
-        def htmlPage = getPage()
-        def contentBuffer = htmlPage.headBuffer
-        if(contentBuffer == null) {
-            htmlPage.setHeadBuffer(wrapContentInBuffer(body))
-        } else {
-            new GrailsPrintWriter(contentBuffer.writer) << body()
-        }
-    }
-
-    protected getPage() {
-        return request[org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.GSP_SITEMESH_PAGE]
-    }
-
-    protected wrapContentInBuffer(content) {
-        if (content instanceof Closure) {
-            content = content()
-        }
-        if (!(content instanceof StreamCharBuffer)) {
-            // the body closure might be a string constant, so wrap it in a StreamCharBuffer in that case
-            def newbuffer = new FastStringWriter()
-            newbuffer.print(content)
-            content = newbuffer.buffer
-        }
-        return content
-    }
-    
     private boolean isDebugMode() {
         request['plugin.platformUi.theme.debug.mode']
     }

@@ -147,7 +147,8 @@ class UITagLib implements InitializingBean {
         }
         def t = grailsUISets.getTemplateView(request, templateName)
         try {
-            return g.render(plugin:t.plugin, template:t.path, model:model)        
+            def output = g.render(plugin:t.plugin, template:t.path, model:model)        
+            return output
         } catch (Throwable e) {
             log.error "Could not render UI tag template $templateName from UI Set $t?.owner", e
             throw new UITagException(templateName, t.owner, e) 
@@ -314,7 +315,8 @@ class UITagLib implements InitializingBean {
                     textArgs:msgParams.args,
                     type:msgParams.type
                 ]
-                out << ui.message(msgAttribs)
+                def msg = ui.message(msgAttribs)
+                out << msg
             }
         }
     }
@@ -325,7 +327,8 @@ class UITagLib implements InitializingBean {
         if (MESSAGE_DEBUG != type || Environment.current == Environment.DEVELOPMENT) {
             def classes = attrs.remove('class')
             def text = getMessageOrBody(attrs, body)
-            out << renderUITemplate('message', [bodyContent:text, type:type, classes:classes, attrs:attrs])
+            def output = renderUITemplate('message', [bodyContent:text, type:type, classes:classes, attrs:attrs])
+            out << output
         }
     }
  

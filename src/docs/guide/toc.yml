@@ -39,8 +39,7 @@ ui:
 themes: 
   title: Themes API
   themesUsing: Using Themes in your Application
-  themeCreate: Createing a theme
-  themeRequirements: Theme requirements
+  themeCreate: Creating a theme
   themeZones: Content Zones
   themeBranding: Branding
   themeConfiguration: Configuration

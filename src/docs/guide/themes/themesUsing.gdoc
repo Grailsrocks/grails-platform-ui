@@ -8,7 +8,7 @@ There are only three things you need to do:
 
 h2. Providing a Theme implementation
 
-Out of the box there is a basic default theme called @_default@. This will be used if you don't provide your own.
+Out of the box there is a default theme called @_default@. This will be used if you don't provide your own. It is deliberately minimal
 
 You can provide a Theme by either installing a Theme plugin (a standard Grails plugin containing a theme), or by creating your own Theme.
 

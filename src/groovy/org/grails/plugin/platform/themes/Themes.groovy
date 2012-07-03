@@ -23,6 +23,10 @@ import org.grails.plugin.platform.views.ViewFinder
 import org.codehaus.groovy.grails.plugins.GrailsPlugin
 import org.grails.plugin.platform.views.ViewInfo
 import org.grails.plugin.platform.ui.UISets
+import org.codehaus.groovy.grails.web.pages.FastStringWriter
+import org.codehaus.groovy.grails.web.sitemesh.GSPSitemeshPage
+import org.codehaus.groovy.grails.web.util.GrailsPrintWriter
+import org.codehaus.groovy.grails.web.util.StreamCharBuffer
 
 /**
  * Script to allow execution of an existing Closure as if it was a Script
@@ -348,5 +352,48 @@ class Themes implements InitializingBean {
         return new ViewInfo(plugin:plugin?.name, path:v)
     }
 
+    public appendToZone(request, String zone, content) {
+        appendToContentBuffer(request, 'page.'+zone, )
+    }
+    
+    protected appendToContentBuffer(request, bufferName, body) {
+        def htmlPage = getPage(request)
+        def contentBuffer = htmlPage.getContentBuffer(bufferName)
+        if(contentBuffer == null) {
+            contentBuffer = wrapContentInBuffer(body)
+            htmlPage.setContentBuffer(bufferName, contentBuffer)
+        } else {
+            new GrailsPrintWriter(contentBuffer.writer) << (body instanceof Closure ? body() : body)
+        }
+    }
+/*
+    protected appendToHeadBuffer(request, body) {
+        def htmlPage = getPage(request)
+        def contentBuffer = htmlPage.headBuffer
+        if(contentBuffer == null) {
+            htmlPage.setHeadBuffer(wrapContentInBuffer(body))
+        } else {
+            new GrailsPrintWriter(contentBuffer.writer) << body()
+        }
+    }
+
+*/
+    protected getPage(request) {
+        return request[org.codehaus.groovy.grails.web.sitemesh.GrailsPageFilter.GSP_SITEMESH_PAGE]
+    }
+
+    protected wrapContentInBuffer(content) {
+        if (content instanceof Closure) {
+            content = content()
+        }
+        if (!(content instanceof StreamCharBuffer)) {
+            // the body closure might be a string constant, so wrap it in a StreamCharBuffer in that case
+            def newbuffer = new FastStringWriter()
+            newbuffer.print(content)
+            content = newbuffer.buffer
+        }
+        return content
+    }
+    
     
 }

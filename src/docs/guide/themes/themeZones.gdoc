@@ -1,15 +1,61 @@
 Themes use zones to pull in multiple pieces of content to build up the page.
 
-All layouts will have a zone for the "body" content, but they may also have others for e.g. a sidebar or promotional areas.
+All layouts usually need a zone for the "body" content, but they may also have others for e.g. a sidebar or promotional areas.
 
 Theme layouts determine the structural HTML of the page, and where the content for each zone is rendered using the [layoutZone|themeTags] tag.
 
 The GSP pages themselves use the [zone|themeTags] tag to define the content to be used in a given zone.
 
+h2. How content for zones is resolved
+
+Content for the zone is resolved in this order:
+
+# Content defined by the page being rendered, using the [zone:themeTags] tag
+# If the zone is "body" the page body is used (using the default g:layoutBody tag)
+# If the application supplies a GSP fragment in @/grails-app/views/_themes/zones/<zone-name>.gsp@ this is used
+# Finally the [defaultContent|themeTags] tag is used to provide default content, which will check if the Theme itself provides default content, and failing that the default Platform UI theme. If there is still no default content GSP it will revert to @p:dummyText@ from Platform Core to render some Lorem Ipsum-style text.
+
+Through this cascade of content resolution your application can provide default content for zones such as header/footer, or fall back to theme defaults - and even use application or theme defaults for e.g. footer but override these on a page-by-page basis if necessary.
+
 h2. Setting the content for a given zone from within your GSP page
 
-h2. What is rendered if a zone has not content?
+You do this using the [zone|themeTags] tag:
 
-TBD: Explain zone default content resolution
+{code:xml}
+<html>
+    <head>
+        <theme:layout name="home"/>
+    </head>
+    <body>
+        <theme:zone name="body">
+            <p>This is the body of my page</p>
+        </theme:zone>
+
+        <theme:zone name="banner">
+            <ui:h1>Our Awesome Startup!</ui:h1>
+        </theme:zone>
+
+        <theme:zone name="panel1">
+            <p>Read about the features you're going to love...</p>
+        </theme:zone>
+
+        <theme:zone name="panel2">
+            <p>Find our more about our pricing model</p>
+        </theme:zone>
+
+        <theme:zone name="panel3">
+            <p>Tell us what you think</p>
+        </theme:zone>
+    </theme:body>
+</html>
+{code}
+
+Note that if a page only requires a body zone you can omit the @zone@ tags and just specify body content as normal.
 
 h2. Appending more content to a zone
+
+It is possible to append content to a zone, for example a sidebar may contain information from various sources.
+
+You can do this by defining a zone multiple times, or by directly accessing the @grailsThemes@ bean to add content to a given zone.
+
+For example you may have plugins that add filters to append content to such zones automatically.
