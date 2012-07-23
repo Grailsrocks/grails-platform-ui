@@ -2,19 +2,25 @@ h1. ui:attributes
 
 h2. Purpose
 
-TBC
+Writes out a map of HTML attributes cleanly, with option to specify a list of attribute names to include and exclude.
+
+Used in UI templates to cleanly output attributes passed in to UI tags.
 
 h2. Example
 
 {code:xml}
-TBC
+<p class="bodytext" ${ui.attributes(from:attrs, exclude:'class')}>
+    ${bodyContent}
+</fieldset>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+from | No | A map of attributes to render. If not specified, defaults to "attrs" variable from the current model.
+include | No | A set of attribute names or comma delimited string list of names to include. Anything not in this set will be excluded. Default is to include all.
+exclude | No | A set of attribute names or comma delimited string list of names to exclude. Anything not in this set will be included, provided it passes the include rule.
 {table}
 
 

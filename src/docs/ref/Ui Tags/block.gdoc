@@ -2,19 +2,25 @@ h1. ui:block
 
 h2. Purpose
 
-TBC
+Renders a "block" of content. A block is visually distinguished from the surrounding content, as determined by the UI Set.
+
+For example the UI Set or theme may add a border or "well" around the content - perhaps as a @div@ with a specific CSS class. A title may also be rendered in a way defined by the UI Set.
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:block title="section.titles.welcome">
+    <p>Thank you for visiting our awesome site.</p>
+</ui:block>
 {code}
+
+The body is rendered as the body of the block section. 
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+title | No | An 18n message code to resolve and render as the title of the block
 {table}
 
 

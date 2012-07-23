@@ -2,19 +2,22 @@ h1. ui:actions
 
 h2. Purpose
 
-TBC
+Renders the section of a form that contains the actions that the user can perform, such as the OK and Cancel buttons or the Edit and Delete buttons.
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:form>
+    <ui:field name="email"/>
+    <ui:actions>
+        <ui:button kind="submit">OK</ui:button>
+        <ui:button kind="anchor" action="cancelRequest">Cancel</ui:button>
+    </ui:actions>
+</ui:form>
 {code}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
+None - all attributes are passed through to the actions UI template.
 
 

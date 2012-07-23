@@ -2,19 +2,30 @@ h1. ui:button
 
 h2. Purpose
 
-TBC
+Renders a UI button. As the semantics of buttons vary depending on the use case in HTML, various types are supported to us either @input@ with type=submit buttons, @button@ tags or an anchor link.
+
+This tag and the UI template the UI Set provides will hide the details of the CSS classes to use to achieve the correct look and feel for the current theme.
+
+Like all UI tags this tag uses i18n bundles.
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:button mode="primary">OK</ui:button>
+<ui:button>Save</ui:button>
+<ui:button disabled="true">Cancel</ui:button>
+<ui:button mode="primary" text="button.ok"/>
+<ui:button kind="anchor" href="#" mode="cancel" text="button.cancel"/>
+<ui:button kind="submit" mode="primary" text="Send"/>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+kind | No | The kind of button to render - which HTML markup to use. One of 'button', 'submit' or 'anchor'. Defaults to 'button'. 
+mode | No | The mode of the button - affects the visual cues given to the user. One of 'danger', 'primary', 'secondary' or 'cancel'. Other values can be used, if the UI set and theme you are using supports them.
+disabled | No | Set to true to show the button as disabled.
 {table}
 
 
