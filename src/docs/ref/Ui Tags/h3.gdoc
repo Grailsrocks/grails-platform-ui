@@ -1,21 +1,25 @@
 h1. ui:h3
 
-h2. Purpose
+h3. Purpose
 
-TBC
+Renders a h3-equivalent heading. The actual heading level used in HTML may not be @h3@, as the UI Set or theme may use upper heading levels for other UI elements.
 
-h2. Example
+Supports i18n strings for headings.
+
+h3. Example
 
 {code:xml}
-TBC
+<ui:h3>This is a title</ui:h3>
+<ui:h3 text="sub.sub.heading"/>
+<ui:h3 text="sub.sub.heading" textArgs="[userName:user.name]"/>
 {code}
 
-h2. Attributes
+h3. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+text | No | Optional i18n message code or default text
+textArgs | No | Optional arguments for i18n message
 {table}
-
 
 

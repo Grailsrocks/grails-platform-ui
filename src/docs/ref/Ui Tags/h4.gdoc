@@ -1,20 +1,25 @@
 h1. ui:h4
 
-h2. Purpose
+h4. Purpose
 
-TBC
+Renders a h4-equivalent heading. The actual heading level used in HTML may not be @h4@, as the UI Set or theme may use upper heading levels for other UI elements.
 
-h2. Example
+Supports i18n strings for headings.
+
+h4. Example
 
 {code:xml}
-TBC
+<ui:h4>This is a title</ui:h4>
+<ui:h4 text="sub.sub.sub.heading"/>
+<ui:h4 text="sub.sub.sub.heading" textArgs="[userName:user.name]"/>
 {code}
 
-h2. Attributes
+h4. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+text | No | Optional i18n message code or default text
+textArgs | No | Optional arguments for i18n message
 {table}
 
 

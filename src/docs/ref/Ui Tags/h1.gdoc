@@ -2,19 +2,24 @@ h1. ui:h1
 
 h2. Purpose
 
-TBC
+Renders a top-level h1-equivalent heading. The actual heading level used in HTML may not be @h1@, as the UI Set or theme may use upper heading levels for other UI elements.
+
+Supports i18n strings for headings.
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:h1>This is a title</ui:h1>
+<ui:h1 text="main.heading"/>
+<ui:h1 text="main.heading" textArgs="[userName:user.name]"/>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+text | No | Optional i18n message code or default text
+textArgs | No | Optional arguments for i18n message
 {table}
 
 

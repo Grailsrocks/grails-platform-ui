@@ -2,19 +2,33 @@ h1. ui:carousel
 
 h2. Purpose
 
-TBC
+Renders a revolving "carousel" of slides, typically used on a site home page. How this is implemented is entirely dependent on the UI Set implementation.
+
+Using nested [slide|uiTags] tags you define the content of each slide, and which is active at the start.
+
+{note}
+This can be a bit cheesy. Mike Monteiro's excellent book on running a design agency titled [Design is a Job|http://itunes.apple.com/book/design-is-a-job/id517240243?mt=11] mentions
+passing "And please, let's all stop with those ridiculous wrap-around banners. Enough already".
+Your PR/UI department may however insist you do include one.
+{note} 
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:carousel>
+    <ui:slide active="true">
+        This is slide one
+    </ui:slide>
+    <ui:slide>
+        This is our second marketing slide
+    </ui:slide>
+    <ui:slide>
+        And here is our third marketing slide
+    </ui:slide>
+</ui:carousel>
 {code}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
-
+None - all passed through to the UI template.
 

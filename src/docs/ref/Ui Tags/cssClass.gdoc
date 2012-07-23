@@ -2,19 +2,52 @@ h1. ui:cssClass
 
 h2. Purpose
 
-TBC
+Retrieves a symbolic CSS class name from UI Set configuration, or falls back to a default.
+
+UI Sets, themes and applications can define the CSS class to be used for certain UI elements. The UI templates should use these classes
+so that themes and applications can override this if necessary, without having to rework all the UI templates.
+
+Used by UI tags to supply the appropriate class. Can also be used to extend configurability of UI templates to promote UI template reuse across different UI Sets.
+
+Plugins and the application can override these symbolic CSS class mappings on a per-UI Set basis in configuration using the key @platformUi@ namespace (@plugin.platformUi@ if specifying in Config.groovy):
+
+{code}
+def doWithConfig = { config ->
+    platformUi {
+        // Define the symbolic CSS class mappings for Bootstrap UI Set
+        ui.Bootstrap.actions.cssClass = 'form-actions'
+        ui.Bootstrap.button.cssClass = 'btn'
+        ui.Bootstrap.tab.cssClass = 'tab-pane'
+        ui.Bootstrap.tabs.cssClass = 'nav nav-tabs'
+        ui.Bootstrap.field.cssClass = 'input'
+        ui.Bootstrap.invalid.cssClass = 'invalid'
+        ui.Bootstrap.table.cssClass = 'table table-striped'
+        ui.Bootstrap.tr.cssClass = ''
+        ui.Bootstrap.trOdd.cssClass = ''
+        ui.Bootstrap.trEven.cssClass = ''
+        ui.Bootstrap.carousel.cssClass = 'carousel'
+        ui.Bootstrap.slide.cssClass = 'item'
+        ui.Bootstrap.form.cssClass = 'form-horizontal'
+    }
+}
+{code}
 
 h2. Example
 
 {code:xml}
-TBC
+<table class="${ui.cssClass(name:'table')}">
+...
+</table>
 {code}
+
+Normally you will not need to use this tag, as the UI tags resolve the CSS class for the UI template automatically and pass it as a model variable.
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | The symbolic name of the CSS class. For example the ui:table tag passes "table". All UI tags pass their name as the symbolic name.
+default | No | Default value to use if no mapping is supplied via Config. If none supplied, defaults to blank.
 {table}
 
 
