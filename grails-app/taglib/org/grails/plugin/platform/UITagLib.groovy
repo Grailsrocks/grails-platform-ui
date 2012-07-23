@@ -345,7 +345,7 @@ class UITagLib implements InitializingBean {
         out << "<h$level"
         out << TagLibUtils.attrsToString(attrs)
         out << '>'
-        out << body()
+        out << getMessageOrBody(attrs, body)
         out << "</h$level>"
     }
     
