@@ -32,7 +32,7 @@ It may do this using any CSS/JS framework it chooses, and it will choose a UI Se
 
 For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.
 
-h2. What is this NOT: A grand unified UI framework
+h2. This is NOT s grand unified UI framework
 
 It is very important to understand that Platform UI *does not attempt to be a universal UI toolkit*.
 
