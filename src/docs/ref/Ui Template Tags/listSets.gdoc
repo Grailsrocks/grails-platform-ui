@@ -1,13 +1,13 @@
-h1. ui:list
+h1. ui:listSets
 
 h2. Purpose
 
-TBC
+Returns the list of available UI Set names.
 
 h2. Example
 
 {code:xml}
-TBC
+<g:select name="" from="${ui.listSets()}"/>
 {code}
 
 h2. Attributes

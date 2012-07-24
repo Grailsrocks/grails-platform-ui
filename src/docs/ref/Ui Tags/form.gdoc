@@ -20,5 +20,5 @@ h2. Example
 
 h2. Attributes
 
-All attributes are pass-through. See the Grails core @g:form@ tag documentation for details.
+All attributes are passed through to the UI template, on the assumption that all attributes of @g:form@ are supported.
 
