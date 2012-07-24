@@ -1,0 +1,31 @@
+The logo template is used by the [logo|uiTags] tag.
+
+h3. Contract
+
+This template must render the application logo inline.
+
+The logo should be a link to the site's primary URL.
+
+Themes that use pure CSS for logos using e.g. background-image should follow the same conventions for the logo file name and location
+as per the [logo|uiTags] tag definition.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+logoUri | URI of the logo to use
+classes | String of CSS classes supplied
+logoClass | Class to apply to the logo element
+w | Width of the logo or empty
+h | Height of the logo or empty
+{table}
+
+h3. Example implementation
+
+{code:xml}
+<a href="${p.siteURL().encodeAsHTML()}">
+  <r:img uri="${logoUri.encodeAsHTML()}" 
+    class="${p.joinClasses(values:[classes, logoClass])}"
+    alt="${p.siteName()}" 
+    width="${w}" height="${h}"/></a>
+{code}

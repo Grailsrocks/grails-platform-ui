@@ -48,7 +48,7 @@ class UITagLib implements InitializingBean {
 
     static BASE_HEADING_ATTRIBUTE = 'org.grails.plugin.platform.base.heading'
     
-    static LOGO_RESOURCE_URI_PREFIX = "/images/theme-logo"
+    static LOGO_RESOURCE_URI_PREFIX = "/images/ui-logo"
     
     static returnObjectForTags = ['list']
 

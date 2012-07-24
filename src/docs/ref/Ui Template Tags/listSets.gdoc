@@ -7,14 +7,10 @@ Returns the list of available UI Set names.
 h2. Example
 
 {code:xml}
-<g:select name="" from="${ui.listSets()}"/>
+<g:select name="allUiSets" from="${ui.listSets()}"/>
 {code}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
-
+None/
 

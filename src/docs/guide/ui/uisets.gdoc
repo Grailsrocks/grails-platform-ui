@@ -2,3 +2,45 @@ A UI Set is a named collection of GSP templates in a convention-based path.
 
 These provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.
 
+h2. Why do we need this?
+
+This level of abstraction is required to make Themes work.
+
+Even with increasing adoption of HTML5, the truth is that there are still
+many ways to render the markup for even the subset of UI elements that UI Sets support.
+
+Take form fields as an example. These can generally be decomposed into the following components:
+
+# A label
+# An input widget of some sort, either standard HTML or some custom JavaScript based widget
+# A field hint and/or field error message
+
+So now you take the design your artists have created using e.g. Twitter Bootstrap and you render your fields using the markup required
+to achieve Bootstrap's look and feel:
+
+{code:xml}
+<label for="firstName" class="control-label">First Name</label>
+<div class="controls">
+    <input name="firstName" value=""/>
+    <span class="help-block">Your first name</span>
+</div>
+{code}
+
+Fine. However if you then switch to another CSS framework, you will often find that this no longer renders anything like the way you wanted
+because there is no standard UI layout and styling mechanism in HTML. Specifically:
+
+
+# The structural markup will often be different. One designer might use nested divs to lay out the label, field and hint. Another may use a single div or no div at all for the components
+# The CSS class names for the structural markup will usually be different
+# The CSS class names for the label, widget and hint/error will often be different
+
+So this is why UI Sets delegate to GSP templates that define the actual structural markup for each UI element, and why tags such as [field|uiTags]
+automatically handle the label, field and hint so that you are not required to make sure these are surrounded by the correct structural markup for the current theme.
+
+This way, an application can write @<ui:field name="x"/>@ and work with existing and future CSS frameworks without modification to the GSP view - which after all only wanted to render a field.
+
+This is how plugins can expose UI that fits in with the application's chosen theme.
+
+Making your UI work with themes is about relinquishing control over the details of HTML markup and CSS classes. 
+
+That is, unless you are also the author of the theme you are using - in which case you still have full control.

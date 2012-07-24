@@ -2,20 +2,38 @@ h1. ui:logo
 
 h2. Purpose
 
-TBC
+Renders your application's logo.
 
-h2. Example
+This tag supports rendering multiple resolution logos inline.
+
+Your GSPs or themes can use this tag to render the logo which is located by convention. Some themes may use pure CSS background images to render logos, in which case they should use the same file name conventions as specified below.
+
+Logos are located according to the following rules:
+
+# If there is no width or height specified, it uses: @/web-app/images/ui-logo.png@
+# If there is only a width specified it looks for @/web-app/images/ui-logo-450x.png@ for a width of 450
+# If there is only a height specified it looks for @/web-app/images/ui-logo-x200.png@ for a height of 200
+# If there are both a width and a height specified it looks for @/web-app/images/ui-logo-450x200.png@ for a width of 450 or a height of 200
+# If the logo chosen by the above rules does not exist in the app, it will look for the logo in the current theme's plugin at the same location as above
+# If the logo still does not exist it will fallback to the default logo provided by the Platform UI plugin
+
+This ensures that even if a specific logo size is required that you have not provided, you should at least see the default logo indicating this.
+
+If one or more dimension is unspecified, the logo will be stretched to fit the target size. The results will usually be bad, and you will want to get a logo made at the correct size for the Theme you have chosen. 
+
+To support multiple themes with different logo sizes without stretching, simply make sure you have a logo file for each size required by the themes you support.
+
+h2. Examples
 
 {code:xml}
-TBC
+<ui:logo/>
+<ui:logo width="450" height="150"/>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+width | No | The width of the logo desired.
+height | No | The height of the logo desired.
 {table}
-
-
-

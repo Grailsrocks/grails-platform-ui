@@ -46,7 +46,7 @@ Zones are chunks of content your page supplies, that the Theme layout will posit
 
 At the very least all pages have a "body" zone.
 
-See the [Theme Requirements|guide:themeRequirements] section for details of the zones supported by each required layout.
+See the [Zone Requirements|guide:themeCreate] section for details of the zones supported by each required layout.
 
 You define the content for a zone using the [zone|themeTags] tag. Note that if you only need to supply a body, you do not need to use this tag,
 but if you are supplying multiple zones, all content including that for the body zone must be wrapped in zone tags:
