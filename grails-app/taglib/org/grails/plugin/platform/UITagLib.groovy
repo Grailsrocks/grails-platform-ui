@@ -81,7 +81,7 @@ class UITagLib implements InitializingBean {
         renderResources()
     }
 
-    def list = { attrs ->
+    def listSets = { attrs ->
         grailsUISets.availableUISets.name
     }
     
