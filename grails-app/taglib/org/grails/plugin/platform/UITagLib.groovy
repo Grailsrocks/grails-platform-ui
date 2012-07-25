@@ -282,24 +282,19 @@ class UITagLib implements InitializingBean {
      */
     def primaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
-        def items = attrs.remove('items') 
-        def active = attrs.remove('active') 
-
-        def navClass = grailsUISets.getUICSSClass(request, 'primaryNavigation', 'nav secondary')
+        def navClass = grailsUISets.getUICSSClass(request, 'primaryNavigation', 'nav primary')
         out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
     }
 
     def secondaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
-        def items = attrs.remove('items') 
 
-        def navClass = grailsUISets.getUICSSClass(request, 'secondaryNavigation', 'nav primary')
+        def navClass = grailsUISets.getUICSSClass(request, 'secondaryNavigation', 'nav secondary')
         out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
     }
     
     def navigation = { attrs, body ->
         def classes = attrs.remove('class')
-        def items = attrs.remove('items') 
         def scope = attrs.remove('scope') 
 
         def navClass = grailsUISets.getUICSSClass(request, 'navigation', 'nav')
