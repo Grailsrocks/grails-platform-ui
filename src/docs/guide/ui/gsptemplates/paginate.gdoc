@@ -1,16 +1,21 @@
-The @_paginate.gsp@ template is used to render the [paginate|uiTags]tag.
+The @_paginate.gsp@ template is used to render the [paginate|uiTags] tag.
 
-The GSP receives the following model:
+h3. Contract
 
-* classes - A string containing the list of CSS classes to apply to the outer container
-* next - The information for the "next" link
-* prev - The information for the "previous" link
-* earlier - The information for the "earlier" link, to the list of pages before the current start page number
-* later - The information for the "later" link, to the list of pages after the last page number listed
-* items - The list of page items to show UI for, each with properties "link", "active" and "text",
-* attrs - Any extra attributes the use passed in. Usage of this is undefined across UI Sets
+h3. Variables available
 
-Example template:
+{table}
+*Name* | *Description*
+classes | A string containing the list of CSS classes to apply to the outer container
+next | The information for the "next" link
+prev | The information for the "previous" link
+earlier | The information for the "earlier" link, to the list of pages before the current start page number
+later | The information for the "later" link, to the list of pages after the last page number listed
+items | The list of page items to show UI for, each with properties "link", "active" and "text",
+attrs | Any extra attributes the use passed in. Usage of this is undefined across UI Sets
+{table}
+
+h3. Example template implementation
 
 {code:xml}
 <ul class="pagination${classes}">

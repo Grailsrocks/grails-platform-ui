@@ -1,13 +1,15 @@
-A UI Set is a named collection of GSP templates in a convention-based path.
+UI Sets provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.
 
-These provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.
+This is typically automatically selected by the Theme currently in use, but you do not have to use themes to use UI Sets.
+
+A UI Set implementation is just a named collection of GSP templates in a convention-based path in a plugin or application.
 
 h2. Why do we need this?
 
-This level of abstraction is required to make Themes work.
-
 Even with increasing adoption of HTML5, the truth is that there are still
-many ways to render the markup for even the subset of UI elements that UI Sets support.
+many ways to render the markup for even the relatively small subset of UI elements that the Platform UI API supports.
+
+Therefore this level of abstraction is required to make Themes work, so that the functionally equivalent visual and input elements can be rendered with completely different structural markup and styling.
 
 Take form fields as an example. These can generally be decomposed into the following components:
 
@@ -27,10 +29,9 @@ to achieve Bootstrap's look and feel:
 {code}
 
 Fine. However if you then switch to another CSS framework, you will often find that this no longer renders anything like the way you wanted
-because there is no standard UI layout and styling mechanism in HTML. Specifically:
+because there is no standard structural UI layout and styling mechanism in HTML. Specifically:
 
-
-# The structural markup will often be different. One designer might use nested divs to lay out the label, field and hint. Another may use a single div or no div at all for the components
+# The structural markup will often be different. One designer might use nested divs to lay out the label, field and hint. Another may use a single div or no div at all for the components, another may rely on the order of sibling elements
 # The CSS class names for the structural markup will usually be different
 # The CSS class names for the label, widget and hint/error will often be different
 
@@ -41,6 +42,6 @@ This way, an application can write @<ui:field name="x"/>@ and work with existing
 
 This is how plugins can expose UI that fits in with the application's chosen theme.
 
-Making your UI work with themes is about relinquishing control over the details of HTML markup and CSS classes. 
+The secret to making your UI work with theming is relinquishing control over the details of HTML markup and CSS classes. 
 
 That is, unless you are also the author of the theme you are using - in which case you still have full control.

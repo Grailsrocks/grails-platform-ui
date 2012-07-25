@@ -1,12 +1,17 @@
-The @_th.gsp@ template is used to render the [th|uiTags]tag.
+The @_th.gsp@ template is used to render the [th|uiTags] tag.
 
-The GSP receives the following model:
+h3. Contract
 
-* classes - A string containing the list of CSS classes to apply to the outer container
-* body - The body of the heading
-* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+h3. Variables available
 
-Example template:
+{table}
+*Name* | *Description*
+classes | A string containing the list of CSS classes to apply to the outer container
+body | The body of the heading
+attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+{table}
+
+h3. Example template implementation
 
 {code:xml}
 <th class="${classes}"${ui.attributes()}>${bodyContent}</th>

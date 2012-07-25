@@ -4,6 +4,8 @@ h2. Purpose
 
 This tag renders a the set of links/buttons for a pagination control. This is functionally equivalent to the Grails g:paginate tag. However it is adapted to not produce markup and instead delegate to the UI Set for this.
 
+The UI Set @paginate@ template is passed all the information needed to render the pagination controls as it sees fit.
+
 h2. Example
 
 {code:xml}

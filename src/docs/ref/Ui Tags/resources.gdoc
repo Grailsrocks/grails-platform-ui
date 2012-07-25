@@ -2,19 +2,28 @@ h1. ui:resources
 
 h2. Purpose
 
-TBC
+Includes the resources required for the current UI Set.
+
+This uses the Resources framework, so you must have r:layoutResources calls to render the resources.
+
+If you are using themes you do not need to use this tag. However if you are using UI Sets standalone, you will need to include this tag in your page or Sitemesh layout before your first r:layoutResources tag.
 
 h2. Example
 
 {code:xml}
-TBC
+<html>
+<head>
+    <ui:resources/>
+    <r:layoutResources/>
+</head>
+<body>
+..
+    <r:layoutResources/>
+</body>
+</html>
 {code}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
-
+None.
 

@@ -1,14 +1,19 @@
-The @_tab.gsp@ template is used to render the [tab|uiTags]tag.
+The @_tab.gsp@ template is used to render the [tab|uiTags] tag.
 
-The GSP receives the following model:
+h3. Contract
 
-* oddEvenClass - The CSS class to use for the row, do indicate if it is even/odd. Value comes from UI Set config
-* classes - A string containing the list of CSS classes to apply to the outer container
-* row - The current row index in the table (zero based)
-* body - The body of the row
-* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+h3. Variables available
 
-Example template:
+{table}
+*Name* | *Description*
+oddEvenClass | The CSS class to use for the row, do indicate if it is even/odd. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+row | The current row index in the table (zero based)
+body | The body of the row
+attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+{table}
+
+h3. Example template implementation
 
 {code:xml}
 <tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>

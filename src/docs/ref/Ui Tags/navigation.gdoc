@@ -2,19 +2,25 @@ h1. ui:navigation
 
 h2. Purpose
 
-TBC
+Renders a navigation menu.
+
+Where the data for the navigation menu comes from is not defined by this tag. The default UI Set template uses the Platform Core Navigation API, but other UI Sets can use any API they like.
+
+As such there is only one attribute here, to indicate what "scope" of navigation to show. How this is interpreted is up to the UI Set's navigation implementation, but by default this maps to a Platform Core Navigation scope.
 
 h2. Example
 
 {code:xml}
-TBC
+<ui:navigation/>
+
+<ui:navigation scope="account-owner"/>
 {code}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+scope | No | A symbolic name for a section of the application's navigation graph.
 {table}
 
 

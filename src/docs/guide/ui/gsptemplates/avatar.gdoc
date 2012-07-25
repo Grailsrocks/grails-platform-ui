@@ -1,15 +1,26 @@
-The @_avatar.gsp@ template is used to render the [avatar|uiTags]tag.
+The @_avatar.gsp@ template is used to render the [avatar|uiTags] tag.
 
-The GSP receives the following model:
+h3. Contract
 
-* avatarClass - The CSS class to use for the avatar container. Value comes from UI Set config
-* classes - A string containing the list of CSS classes to apply to the outer container
-* user - The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set
-* defaultSrc - The absolute URL of the default avatar image
-* size - The size in pixels of the avatar to retrieve, i.e. "30"
-* attrs - The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+The avatar template must render an avatar image for the given user identity.
 
-Example template:
+The template can use any avatar provider. The default implementation uses Gravatar.
+
+The user identity could be any string - but is typically an email address. For example an avatar template implementation that supports local application avatars for account user ids *and* public internet Gravatars could sense the presence of the email address and switch its behaviour for user ids.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+avatarClass | The CSS class to use for the avatar container. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+user | The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set
+defaultSrc | The absolute URL of the default avatar image
+size | The size in pixels of the avatar to retrieve, i.e. "30"
+attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+{table}
+
+h3. Example template implementation
 
 {code:xml}
 <g:set var="_gravatarURL" value="https://secure.gravatar.com/avatar/"/>

@@ -15,6 +15,7 @@ ui:
     title: GSP Templates for UI tags
     form: The Form template
     field: The Field template
+    fieldGroup: The Field Group template
     image: The Image template
     table: The Table template
     tr: The Table Row template
@@ -36,6 +37,7 @@ ui:
   uiConfiguration: Configuration
   cssclasses: CSS Classes
   customuisets: Creating your own UI Sets
+  uiDebugging: Testing and Debugging UI Sets
 themes: 
   title: Themes API
   themesUsing: Using Themes in your Application

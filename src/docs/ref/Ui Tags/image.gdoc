@@ -4,6 +4,8 @@ h2. Purpose
 
 This tag renders an HTML image that represents some user content, for example a photo or diagram. UI Sets may add decoration to the presentation of it, or functionality such as a lightbox.
 
+Use of this tag indicates that the image is a part of the content, and not some other inline @img@ tag, so that it can have the correct styling applied.
+
 h2. Example
 
 {code:xml}

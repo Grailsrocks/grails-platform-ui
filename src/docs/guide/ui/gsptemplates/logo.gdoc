@@ -1,4 +1,4 @@
-The logo template is used by the [logo|uiTags] tag.
+The @_logo.gsp@ template is used by the [logo|uiTags] tag.
 
 h3. Contract
 
@@ -20,7 +20,7 @@ w | Width of the logo or empty
 h | Height of the logo or empty
 {table}
 
-h3. Example implementation
+h3. Example template implementation
 
 {code:xml}
 <a href="${p.siteURL().encodeAsHTML()}">

@@ -1,3 +1,17 @@
-h3. Providing custom CSS + JS resources
+UI Sets typically rely on some resources for styling and functionality.
 
-h2. Previewing and Debugging UI Sets
+The current UI Set's resources are included in a page using the [resources|uiTags] tag - although you do not need to do this if using Themes, as the theme's UI Set resources will be included automatically.
+
+To declare resources for the UI Set you just define a resource module with the name convention @"ui.<uisetname>"@:
+
+{code}
+modules = {
+    // Resources for your custom UI Set
+    'ui.Bootstrap' {
+        dependsOn 'jquery', 'bootstrap'
+        
+        resource id:'styling', url:[plugin:'bootstrap-ui', dir:'css', file:'ui-styling.css']
+        resource id:'hooks', url:[plugin:'bootstrap-ui', dir:'js', file:'bootstrap-hooks.js']
+    }
+}
+{code}

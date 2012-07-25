@@ -17,7 +17,7 @@ h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-type |  | The type of the message. Valid values are 'info', 'error', 'warning' and 'debug'. 'debug' messages are only shown in the DEVELOPMENT environment.
-text |  | If specified, will be used as the text content for the cell, translated using i18n message bundle if found. If not specified, the body will be used.
-textArgs |  | Used as the arguments for the "text" i18n message if used.
+type | No | The type of the message. Valid values are 'info', 'error', 'warning' and 'debug'. 'debug' messages are only shown in the DEVELOPMENT environment.
+text | No | If specified, will be used as the text content for the cell, translated using i18n message bundle if found. If not specified, the body will be used.
+textArgs | No | Used as the arguments for the "text" i18n message if used.
 {table}
