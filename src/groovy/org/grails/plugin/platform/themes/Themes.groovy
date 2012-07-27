@@ -354,12 +354,13 @@ class Themes implements InitializingBean {
     }
 
     public appendToZone(request, String zone, content) {
-        appendToContentBuffer(request, 'page.'+zone, content)
+        def bufferName = 'theme.zone.'+zone
+        appendToContentBuffer(request, bufferName, content)
     }
     
     protected appendToContentBuffer(request, bufferName, body) {
         def htmlPage = getPage(request)
-        def contentBuffer = htmlPage.getContentBuffer(bufferName)
+        def contentBuffer = htmlPage.getContentBuffer('page.'+bufferName)
         if(contentBuffer == null) {
             contentBuffer = wrapContentInBuffer(body)
             htmlPage.setContentBuffer(bufferName, contentBuffer)

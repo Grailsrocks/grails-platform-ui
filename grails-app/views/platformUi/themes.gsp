@@ -19,9 +19,10 @@
                     <div class="actions"><button type="submit">Show</button></div>
                 </form>
             </div>
+            
             <g:if test="${params.uitest}">
                 <theme:zone name="body">
-                    <g:render template='uisample'/>
+                    <g:render plugin="platformUi" template="uisample"/>
                 </theme:zone>
             </g:if>
         </p:uiOverlay>

@@ -91,16 +91,16 @@ class ThemeTagLib {
         grailsThemes.setRequestTheme(request, name)
     }
     
-    def zone = { attrs, body->
+    def zone = { attrs, tagBody ->
         def id = attrs.name ?: 'body'
         doDefineZone(id)
     
         def htmlPage = getPage()
-        def propertyName = "theme.zone."+id.toString()
         if(!(htmlPage instanceof GSPSitemeshPage)) {
             throwTagError("Tag [theme:zone] requires 'grails.views.gsp.sitemesh.preprocess = true' in Config")
         }
-        grailsThemes.appendToZone(request, propertyName, body)
+        def b = tagBody()
+        grailsThemes.appendToZone(request, id, b)
         return null
     }
 
@@ -108,15 +108,15 @@ class ThemeTagLib {
         pluginRequestAttributes['theme.debug.mode']
     }
     
-    def ifZoneContent = { attrs, body ->
+    def ifZoneContent = { attrs, tagBody ->
         if (isZoneDefined(attrs.name, true)) {
-            out << body()
+            out << tagBody()
         }
     }
     
-    def ifNoZoneContent = { attrs, body ->
+    def ifNoZoneContent = { attrs, tagBody ->
         if (!isZoneDefined(attrs.name, true)) {
-            out << body()
+            out << tagBody()
         }
     }
 
@@ -158,7 +158,8 @@ class ThemeTagLib {
                 }
             }
         } else {
-            out << g.pageProperty(name:"page.theme.zone."+id)
+            def bufferedZone = g.pageProperty(name:"page.theme.zone."+id)
+            out << bufferedZone
         }
     }
     
@@ -176,43 +177,43 @@ class ThemeTagLib {
         }
     }
     
-    def ifLayoutIs = { attrs, body ->
+    def ifLayoutIs = { attrs, tagBody ->
         if (!attrs.name) {
             throwTagError "Attribute [name] is required on the ifLayoutIs tag"
         }
         def style = grailsThemes.getRequestStyle(request)
         if (style == attrs.name) {
-            out << body()
+            out << tagBody()
         }
     }
     
-    def ifLayoutIsNot = { attrs, body ->
+    def ifLayoutIsNot = { attrs, tagBody ->
         if (!attrs.name) {
             throwTagError "Attribute [name] is required on the ifLayoutIsNot tag"
         }
         def style = grailsThemes.getRequestStyle(request)
         if (style != attrs.name) {
-            out << body()
+            out << tagBody()
         }
     }
     
-    def ifThemeIs = { attrs, body ->
+    def ifThemeIs = { attrs, tagBody ->
         if (!attrs.name) {
             throwTagError "Attribute [name] is required on the ifThemeIs tag"
         }
         def theme = grailsThemes.getRequestTheme(request)
         if (theme.name == attrs.name) {
-            out << body()
+            out << tagBody()
         }
     }
     
-    def ifThemeIsNot = { attrs, body ->
+    def ifThemeIsNot = { attrs, tagBody ->
         if (!attrs.name) {
             throwTagError "Attribute [name] is required on the ifThemeIsNot tag"
         }
         def theme = grailsThemes.getRequestTheme(request)
         if (theme.name != attrs.name) {
-            out << body()
+            out << tagBody()
         }
     }
     
@@ -234,14 +235,14 @@ class ThemeTagLib {
     }
     
     // @todo move this to TagLibUtils and use messageSource
-    protected getMessageOrBody(Map attrs, Closure body) {
+    protected getMessageOrBody(Map attrs, Closure tagBody) {
         def textCode = attrs.remove('text')
         def textCodeArgs = attrs.remove('textArgs')
         def textFromCode = textCode ? g.message(code:textCode, args:textCodeArgs) : null
         if (textFromCode) {
             textFromCode = textFromCode.encodeAsHTML()
         }
-        def v = textFromCode ?: body()
+        def v = textFromCode ?: tagBody()
         return v
     }
     
@@ -249,9 +250,9 @@ class ThemeTagLib {
     /**
      * Set the title of the page with i18n support, can be called in a GSP Page or a Layout. 
      */
-    def title = { attrs, body ->
+    def title = { attrs, tagBody ->
         // @todo store just the args + body text so that if it is i18n we can resolve SEO title string by convention
-        def text = getMessageOrBody(attrs, body)
+        def text = getMessageOrBody(attrs, tagBody)
         pluginRequestAttributes[ThemeTagLib.REQ_ATTR_TITLE] = text
     }
     
