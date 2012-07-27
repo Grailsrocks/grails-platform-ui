@@ -39,7 +39,7 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile(':platform-core:1.0.M2e-SNAPSHOT')
+        compile(':platform-core:1.0.M2k-SNAPSHOT')
         runtime(':resources:1.1.6')
 /*
         compile(':spock:0.6-SNAPSHOT'){

@@ -97,6 +97,7 @@ Platform UI - abstracted UI elements and theming for plugin/application interope
             grailsViewFinder = ref('grailsViewFinder')
             pluginManager = ref('pluginManager')
             grailsPluginConfiguration = ref('grailsPluginConfiguration')
+            grailsUiExtensions = ref('grailsUiExtensions')
         }
 
         // UI API
@@ -105,6 +106,7 @@ Platform UI - abstracted UI elements and theming for plugin/application interope
             pluginManager = ref('pluginManager')
             grailsPluginConfiguration = ref('grailsPluginConfiguration')
             grailsThemes = ref('grailsThemes')
+            grailsUiExtensions = ref('grailsUiExtensions')
         }
 
     }

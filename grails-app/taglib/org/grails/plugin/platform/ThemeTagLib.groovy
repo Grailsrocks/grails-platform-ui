@@ -28,8 +28,8 @@ import org.codehaus.groovy.grails.web.sitemesh.GSPSitemeshPage
 class ThemeTagLib {
     static namespace = "theme"
 
-    static REQ_ATTR_ZONE_LIST = 'grails.plugin.platform.zone.list'
-    static REQ_ATTR_TITLE = 'grails.plugin.platform.title'
+    static REQ_ATTR_ZONE_LIST = 'zone.list'
+    static REQ_ATTR_TITLE = 'title'
     
     static returnObjectForTags = ['name', 'current', 'list']
 
@@ -54,7 +54,7 @@ class ThemeTagLib {
     }
     
     private boolean isZoneDefined(id, boolean includeImplicitBody = false) {
-        def zones = request[REQ_ATTR_ZONE_LIST]
+        def zones = pluginRequestAttributes[REQ_ATTR_ZONE_LIST]
         if (zones?.contains(id)) {
             return true
         } else if (includeImplicitBody && (id == 'body')) {
@@ -66,15 +66,15 @@ class ThemeTagLib {
     }
 
     private void doDefineZone(id) {
-        def zones = request[REQ_ATTR_ZONE_LIST]
+        def zones = pluginRequestAttributes[REQ_ATTR_ZONE_LIST]
         if (!zones) {
             def s = new HashSet()
             s.add(id)
-            request[REQ_ATTR_ZONE_LIST] = s
+            pluginRequestAttributes[REQ_ATTR_ZONE_LIST] = s
             return
         } else {
             if (!zones.contains(id)) {
-                request[REQ_ATTR_ZONE_LIST] << id
+                pluginRequestAttributes[REQ_ATTR_ZONE_LIST] << id
             }
         }
     }
@@ -105,7 +105,7 @@ class ThemeTagLib {
     }
 
     private boolean isDebugMode() {
-        request['plugin.platformUi.theme.debug.mode']
+        pluginRequestAttributes['theme.debug.mode']
     }
     
     def ifZoneContent = { attrs, body ->
@@ -252,7 +252,7 @@ class ThemeTagLib {
     def title = { attrs, body ->
         // @todo store just the args + body text so that if it is i18n we can resolve SEO title string by convention
         def text = getMessageOrBody(attrs, body)
-        request[ThemeTagLib.REQ_ATTR_TITLE] = text
+        pluginRequestAttributes[ThemeTagLib.REQ_ATTR_TITLE] = text
     }
     
     /**
@@ -260,7 +260,7 @@ class ThemeTagLib {
      */
     def layoutTitle = { attrs ->
         out << ui.h1(Collections.EMPTY_MAP, 
-                request[ThemeTagLib.REQ_ATTR_TITLE] ?: g.layoutTitle(default:'Untitled') )
+                pluginRequestAttributes[ThemeTagLib.REQ_ATTR_TITLE] ?: g.layoutTitle(default:'Untitled') )
     }
     
     /**
@@ -268,7 +268,7 @@ class ThemeTagLib {
      */
     def layoutHTMLTitle = { attrs ->
         out << '<title>'
-        def themeTitle = request[REQ_ATTR_TITLE]
+        def themeTitle = pluginRequestAttributes[REQ_ATTR_TITLE]
         def title = g.layoutTitle(default:themeTitle ?: 'Untitled')
         out << title
         out << '</title>\n'
@@ -343,7 +343,7 @@ class ThemeTagLib {
     }
     
     def debugMode = { attrs ->
-        request['plugin.platformUi.theme.debug.mode'] = true
+        pluginRequestAttributes['theme.debug.mode'] = true
     }
     
 

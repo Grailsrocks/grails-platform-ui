@@ -20,9 +20,11 @@ import grails.util.Environment
 class PlatformUiUrlMappings {
     static mappings = {
         if ( Environment.current == Environment.DEVELOPMENT) {
-            "/platform/ui"(controller:'platformUi')
-            "/platform/ui/themes/$id?"(controller:'platformUi', action:'themes')
-            "/platform/ui/sets/$id?"(controller:'platformUi', action:'uisets')
+            name platformUiNormal: "/platform/ui/$action?/$id?"(controller:'platformUi')
+            // Cast a magic spell
+    		name platformUiFancy: "/%F0%9F%8F%86/ui/$action?/$id?" {
+    		    controller = 'platformUi'
+    		}
     	}
     	
 	}

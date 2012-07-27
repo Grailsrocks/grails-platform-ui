@@ -10,8 +10,8 @@
         <p>Welcome the the Grails Plugin Platform UItest page. Here's what you can do:
             
         <ul>
-            <li><g:link controller="platformUi" action="themes">Theme previewer</g:link></li>
-            <li><g:link controller="platformUi" action="uisets">UI Set previewer</g:link></li>
+            <li><g:link mapping="platformUiNormal" controller="platformUi" action="themes">Theme previewer</g:link></li>
+            <li><g:link mapping="platformUiNormal" controller="platformUi" action="uisets">UI Set previewer</g:link></li>
         </ul>
         </p>
 

@@ -71,6 +71,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
     def grailsPluginConfiguration
     def pluginConfig
     def grailsThemes
+    def grailsUiExtensions
     
     GrailsPlugin platformUiPlugin
     Map<String, UISetDefinition> uiSetsByName = [:]
@@ -86,19 +87,20 @@ class UISets implements ApplicationContextAware, InitializingBean {
     }
 
     void setRequestUISet(request, String name) {
-        request.'plugin.pluginPlatform.ui.sets.preview' = [uiSetsByName[name]]
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')['ui.sets.preview'] = [uiSetsByName[name]]
     }
     
     /**
      * Get theme's UISetDefinition, as a list in order of resolution so that app can override templates
      */
     List<UISetDefinition> getUISetsToUse(request = null) {
-        def cachedResult = request?.'plugin.pluginPlatform.ui.sets'
+        def reqAttribs = request ? grailsUiExtensions.getPluginRequestAttributes('platformUi') : null
+        def cachedResult = reqAttribs?.'ui.sets'
         if (cachedResult) {
             return cachedResult
         }
         
-        def testingResult = request?.'plugin.pluginPlatform.ui.sets.preview'
+        def testingResult = reqAttribs?.'ui.sets.preview'
         
         List<UISetDefinition> defs = testingResult ?: []
         
@@ -122,8 +124,8 @@ class UISets implements ApplicationContextAware, InitializingBean {
         }
 
         defs = defs.findAll { it }
-        if (request) {
-            request.'plugin.pluginPlatform.ui.sets' = defs
+        if (reqAttribs) {
+            reqAttribs.'ui.sets' = defs
         }
         return defs
     }

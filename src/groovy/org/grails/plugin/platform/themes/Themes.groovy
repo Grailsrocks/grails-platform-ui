@@ -37,10 +37,10 @@ class Themes implements InitializingBean {
     
     final log = LoggerFactory.getLogger(Themes)
 
-    static ATTRIB_CURRENT_THEME = 'org.grails.plugin.platform.theme'
-    static ATTRIB_CURRENT_SITEMESH_LAYOUT = 'org.grails.plugin.platform.theme.sitemesh.layout'
-    static ATTRIB_CURRENT_THEME_LAYOUT = 'org.grails.plugin.platform.theme.layout'
-    static ATTRIB_CURRENT_THEME_LAYOUT_FOUND = 'org.grails.plugin.platform.theme.layout.found'
+    static ATTRIB_CURRENT_THEME = 'theme.current'
+    static ATTRIB_CURRENT_SITEMESH_LAYOUT = 'theme.sitemesh.layout'
+    static ATTRIB_CURRENT_THEME_LAYOUT = 'theme.layout'
+    static ATTRIB_CURRENT_THEME_LAYOUT_FOUND = 'theme.layout.found'
     static DEFAULT_THEME_NAME = '_default'    
     static DEFAULT_LAYOUT = 'main'
 
@@ -56,6 +56,7 @@ class Themes implements InitializingBean {
     def pluginManager
     def grailsPluginConfiguration
     def pluginConfig
+    def grailsUiExtensions
     GrailsPlugin platformUiPlugin
     
     List<ThemeDefinition> availableThemes = []
@@ -162,7 +163,7 @@ class Themes implements InitializingBean {
     ThemeDefinition getRequestTheme(request = null, boolean returnDefault = true) {
         ThemeDefinition theme = request?.getAttribute(ATTRIB_CURRENT_THEME)
         if (!theme) {
-            theme = request?.getSession(false)?.getAttribute(ATTRIB_CURRENT_THEME)
+            theme = grailsUiExtensions.getPluginSession('platformUi')[ATTRIB_CURRENT_THEME]
         }
         if (!theme && returnDefault) {
             theme = defaultTheme
@@ -179,7 +180,7 @@ class Themes implements InitializingBean {
         if (!themeDef) {
             throw new IllegalArgumentException("Cannot set current theme to [$theme], no theme by that name found. Themes available: ${availableThemes*.name}")
         }
-        request.setAttribute(ATTRIB_CURRENT_THEME, themeDef)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME] = themeDef
     }
 
     void setSessionTheme(request, String theme) {
@@ -190,7 +191,7 @@ class Themes implements InitializingBean {
         if (!themeDef) {
             throw new IllegalArgumentException("Cannot set current theme to [$theme], no theme by that name found. Themes available: ${availableThemes*.name}")
         }
-        request.session?.setAttribute(ATTRIB_CURRENT_THEME, themeDef)
+        grailsUiExtensions.getPluginSession('platformUi')[ATTRIB_CURRENT_THEME] = themeDef
     }
 
     /**
@@ -260,26 +261,26 @@ class Themes implements InitializingBean {
     }
     
     void setRequestSitemeshLayout(request, layout) {
-        request.setAttribute(ATTRIB_CURRENT_SITEMESH_LAYOUT, layout)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_SITEMESH_LAYOUT] = layout
     }
 
     String getRequestSitemeshLayout(request) {
-        request.getAttribute(ATTRIB_CURRENT_SITEMESH_LAYOUT)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_SITEMESH_LAYOUT]
     }
     
     void setRequestLayoutFound(request, boolean found) {
-        request.setAttribute(ATTRIB_CURRENT_THEME_LAYOUT_FOUND, found)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME_LAYOUT_FOUND] = found
     }
 
     boolean getRequestLayoutFound() {
-        request.getAttribute(ATTRIB_CURRENT_THEME_LAYOUT_FOUND)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME_LAYOUT_FOUND]
     }
 
     void setRequestStyle(request, String layoutName) {
         if (log.debugEnabled) {
             log.debug "Setting current request page layout to [${layoutName}]"
         }
-        request.setAttribute(ATTRIB_CURRENT_THEME_LAYOUT, layoutName)
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME_LAYOUT] = layoutName
         resolveLayoutForStyle(request, layoutName)
     }
 
@@ -288,7 +289,7 @@ class Themes implements InitializingBean {
     }
     
     String getRequestStyle(request) {
-        request.getAttribute(ATTRIB_CURRENT_THEME_LAYOUT) ?: 'main'
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME_LAYOUT] ?: 'main'
     }
     
     // @todo cache these too - get them from the theme
@@ -353,7 +354,7 @@ class Themes implements InitializingBean {
     }
 
     public appendToZone(request, String zone, content) {
-        appendToContentBuffer(request, 'page.'+zone, )
+        appendToContentBuffer(request, 'page.'+zone, content)
     }
     
     protected appendToContentBuffer(request, bufferName, body) {

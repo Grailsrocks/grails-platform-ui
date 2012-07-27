@@ -46,17 +46,17 @@ class UITagLib implements InitializingBean {
     static BUTTON_TYPES = ['button', 'anchor', 'submit']
     static BUTTON_MODES = ['danger', 'primary', 'secondary', 'cancel']
 
-    static BASE_HEADING_ATTRIBUTE = 'org.grails.plugin.platform.base.heading'
+    static BASE_HEADING_ATTRIBUTE = 'base.heading'
     
     static LOGO_RESOURCE_URI_PREFIX = "/images/ui-logo"
     
-    static returnObjectForTags = ['list']
+    static returnObjectForTags = ['listSets']
 
     Map logosBySize = new ConcurrentHashMap()
     
     def grailsThemes
     def grailsUISets
-    def grailsUiHelper
+    def grailsUiExtensions
 
     GrailsPlugin platformUiPlugin
     def grailsApplication
@@ -66,14 +66,14 @@ class UITagLib implements InitializingBean {
     }
     
     private renderResources() {
-        if (!request['plugin.pluginPlaform.uiset.loaded']) {
+        if (!pluginRequestAttributes['uiset.loaded']) {
             def uiSets = grailsUISets.getUISetsToUse(request)
             def uiModules = []
             for (ui in uiSets) {
                 uiModules << "ui.${ui.name}"
             }
             out << r.require(modules:uiModules, strict:false) 
-            request['plugin.pluginPlaform.uiset.loaded'] = true
+            pluginRequestAttributes['uiset.loaded'] = true
         }
     }
     
@@ -283,14 +283,14 @@ class UITagLib implements InitializingBean {
     def primaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
         def navClass = grailsUISets.getUICSSClass(request, 'primaryNavigation', 'nav primary')
-        out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
+        out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, navClass:navClass])
     }
 
     def secondaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
 
         def navClass = grailsUISets.getUICSSClass(request, 'secondaryNavigation', 'nav secondary')
-        out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, navClass:navClass, items:items])
+        out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, navClass:navClass])
     }
     
     def navigation = { attrs, body ->
@@ -298,12 +298,16 @@ class UITagLib implements InitializingBean {
         def scope = attrs.remove('scope') 
 
         def navClass = grailsUISets.getUICSSClass(request, 'navigation', 'nav')
-        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, scope:scope, navClass:navClass, items:items])
+        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, scope:scope, navClass:navClass])
     }
 
     def displayMessage = { attrs, body ->
-        for (scope in [request, flash]) {
-            def msgParams = grailsUiHelper.getDisplayMessage(scope)
+        def searchScopes = [
+            grailsUiExtensions.getPluginRequestAttributes('platformCore'), 
+            grailsUiExtensions.getPluginFlash('platformCore')
+        ]
+        for (scope in searchScopes) {
+            def msgParams = grailsUiExtensions.getDisplayMessage(scope)
             if (msgParams) {
                 def msgAttribs = [
                     text:msgParams.text,
@@ -331,11 +335,11 @@ class UITagLib implements InitializingBean {
         if (!attrs.level) {
             throwTagError "You must specify the [level] attribute which must be a number from 1 to 3, denoting the first heading level the GSP content should use"
         }
-        request[BASE_HEADING_ATTRIBUTE] = attrs.int('level')
+        pluginRequestAttributes[BASE_HEADING_ATTRIBUTE] = attrs.int('level')
     }
 
     private doHeading(int offset, attrs, body) {
-        int level = request[BASE_HEADING_ATTRIBUTE] ?: (int)0
+        int level = pluginRequestAttributes[BASE_HEADING_ATTRIBUTE] ?: (int)0
         level += offset
         out << "<h$level"
         out << TagLibUtils.attrsToString(attrs)
@@ -519,7 +523,7 @@ class UITagLib implements InitializingBean {
         def invalid = attrs.remove('invalid')
         def required = attrs.remove('required')
 
-        def label = attrs.remove('label')
+        def label = attrs.remove('label') ?: name
         def labelArgs = attrs.remove('labelArgs')
 
         def hint = attrs.remove('hint')
@@ -530,16 +534,18 @@ class UITagLib implements InitializingBean {
 
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
         def fieldClass = grailsUISets.getUICSSClass(request, 'field', 'field')
+        
+        def hintText = g.message(code:hint, default:hint, args:hintArgs)
+        def labelText = g.message(code:label, default:label, args:labelArgs)
+        
         def args = [
             attrs:attrs, 
             fieldClass:fieldClass, 
             invalidClass:invalidClass, 
             classes:classes, 
 
-            label:label, 
-            labelArgs:labelArgs, 
-            hint:hint, 
-            hintArgs:hintArgs, 
+            label:labelText, 
+            hint:hintText, 
             invalid:invalid, 
             required:required, 
             name:name, 
