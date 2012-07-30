@@ -77,8 +77,18 @@ class UITagLib implements InitializingBean {
         }
     }
     
+    /**
+     * Include the resources needed for the UI Set
+     * Attributes:
+     * @attr ignore Optional boolean value. Set to true to prevent any resources being required,
+     * to prevent Resources plugin complaining that you have not called layoutResources in ajax response fragments.
+     */
     def resources = { attrs ->
-        renderResources()
+        if (attrs.ignore?.toBoolean()) {
+            pluginRequestAttributes['uiset.loaded'] = true
+        } else {
+            renderResources()
+        }
     }
 
     def listSets = { attrs ->

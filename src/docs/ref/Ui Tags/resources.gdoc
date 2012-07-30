@@ -4,16 +4,18 @@ h2. Purpose
 
 Includes the resources required for the current UI Set.
 
-This uses the Resources framework, so you must have r:layoutResources calls to render the resources.
+This uses the Resources framework, so you must have r:layoutResources calls to render the resources - unless you are rendering an HTML Ajax response in which case you must call this and use the @ignore@ attribute.
 
-If you are using themes you do not need to use this tag. However if you are using UI Sets standalone, you will need to include this tag in your page or Sitemesh layout before your first r:layoutResources tag.
+If you are using themes or UI Sets in the normal way you do not need to use this tag.
 
 h2. Example
+
+Using this tag to ignore the resources for UI Sets:
 
 {code:xml}
 <html>
 <head>
-    <ui:resources/>
+    <ui:resources ignore="true"/>
     <r:layoutResources/>
 </head>
 <body>
@@ -25,5 +27,9 @@ h2. Example
 
 h2. Attributes
 
-None.
+{table}
+*Name* | *Description*
+ignore | Optional boolean. If set to true, will prevent the "r:requires" of any resources the current UI Set needs. Use in Ajax response GSP templates to prevent "missing r:layoutResources" call error.
+{table}
+
 
