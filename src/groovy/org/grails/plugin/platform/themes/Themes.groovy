@@ -161,7 +161,7 @@ class Themes implements InitializingBean {
     }    
     
     ThemeDefinition getRequestTheme(request = null, boolean returnDefault = true) {
-        ThemeDefinition theme = request?.getAttribute(ATTRIB_CURRENT_THEME)
+        ThemeDefinition theme = grailsUiExtensions.getPluginRequestAttributes('platformUi')[ATTRIB_CURRENT_THEME]
         if (!theme) {
             theme = grailsUiExtensions.getPluginSession('platformUi')[ATTRIB_CURRENT_THEME]
         }
