@@ -40,7 +40,12 @@ labelArgs | | Arguments used to build the i18n message label
 
 h2. Supported field types
 
-There is a minimum set of field types that must be supported. Typically only needed for non-bean input fields, unless you need to override the field type that the UI Set implementation is selecting for you based on the bean property type.
+When rendering fields for bean properties where type information is available, the UI Set must support
+editing of any property type, using the best input style for the type - with a fallback to input type="text" for types that do not have a specific rendering in the UI Set.
+
+In this scenario the field type is not needed unless you wish to override the default behaviour
+
+The following types must be supported by the UI Set for overriding the field type used for a bean property, or to set the field type for non-bean inputs.
 
 * text
 * checkbox
@@ -48,6 +53,8 @@ There is a minimum set of field types that must be supported. Typically only nee
 * textarea
 * datepicker
 * select
+
+Any unrecognized types must be passed through to @<input>@ and its @type@ attribute.
 
 h2. Localization of labels
 
