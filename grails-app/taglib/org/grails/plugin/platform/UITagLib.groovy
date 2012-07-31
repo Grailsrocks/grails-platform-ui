@@ -211,6 +211,10 @@ class UITagLib implements InitializingBean {
         }
         
         def title = attrs.remove('title')
+        if (title) {
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
+        }
+        
         def classes = attrs.remove('class')
         def active = attrs.remove('active')?.toBoolean()
 
@@ -247,7 +251,7 @@ class UITagLib implements InitializingBean {
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = p.text(code:title.toString(), args:attrs.titleArgs)
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
         }
         def blockClass = grailsUISets.getUICSSClass(request, 'block', 'block')
         out << renderUITemplate('block', [title:title, bodyContent:body(), classes:classes, blockClass:blockClass, attrs:attrs])
@@ -257,7 +261,7 @@ class UITagLib implements InitializingBean {
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = p.text(code:title, args:attrs.titleArgs)
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
         }
         def imageClass = grailsUISets.getUICSSClass(request, 'image', 'image')
         out << renderUITemplate('image', [classes:classes, attrs:attrs, imageClass:imageClass, title:title])
