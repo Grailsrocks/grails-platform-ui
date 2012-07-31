@@ -17,6 +17,7 @@ h2. Attributes
 {table}
 *Name* | *Required?* | *Description*
 title |  | Title to use for the image text or i18n code
+titleArgs |  | Arguments for title i18n code
 uri |  | If used, @uri@ is assumed to be an application relative URI, as used by Resources r:img tag. One of @uri@ or @dir@/@file@ must be supplied. 
 dir |  | One of @uri@ or @dir@/@file@ must be supplied. Same as normal g:resource tag
 file |  | One of @uri@ or @dir@/@file@ must be supplied. Same as normal g:resource tag

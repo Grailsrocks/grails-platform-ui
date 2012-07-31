@@ -247,7 +247,7 @@ class UITagLib implements InitializingBean {
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = g.message(code:title.toString())
+            title = p.text(code:title.toString(), args:attrs.titleArgs)
         }
         def blockClass = grailsUISets.getUICSSClass(request, 'block', 'block')
         out << renderUITemplate('block', [title:title, bodyContent:body(), classes:classes, blockClass:blockClass, attrs:attrs])
@@ -257,7 +257,7 @@ class UITagLib implements InitializingBean {
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = g.message(code:title)
+            title = p.text(code:title, args:attrs.titleArgs)
         }
         def imageClass = grailsUISets.getUICSSClass(request, 'image', 'image')
         out << renderUITemplate('image', [classes:classes, attrs:attrs, imageClass:imageClass, title:title])
@@ -340,7 +340,7 @@ class UITagLib implements InitializingBean {
             out << output
         }
     }
- 
+    
     def baseHeading = { attrs ->
         if (!attrs.level) {
             throwTagError "You must specify the [level] attribute which must be a number from 1 to 3, denoting the first heading level the GSP content should use"
@@ -545,8 +545,8 @@ class UITagLib implements InitializingBean {
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
         def fieldClass = grailsUISets.getUICSSClass(request, 'field', 'field')
         
-        def hintText = g.message(code:hint, default:hint, args:hintArgs)
-        def labelText = g.message(code:label, default:label, args:labelArgs)
+        def hintText = hint ? p.text(code:hint, default:hint, args:hintArgs) : null
+        def labelText = label ? p.text(code:label, default:label, args:labelArgs) : null
         
         def args = [
             attrs:attrs, 
@@ -685,7 +685,14 @@ class UITagLib implements InitializingBean {
     protected getMessageOrBody(Map attrs, Closure body) {
         def textCode = attrs.remove('text')
         def textCodeArgs = attrs.remove('textArgs')
-        def textFromCode = textCode ? g.message(code:textCode, args:textCodeArgs) : null
+        def textFromCode
+        if (textCode) {
+            if (textCode.startsWith('plugin.')) {
+                textFromCode = g.message(code:textCode, args:textCodeArgs)
+            } else {
+                textFromCode = p.text(code:textCode, args:textCodeArgs)
+            }
+        }
         if (textFromCode) {
             textFromCode = textFromCode.encodeAsHTML()
         }

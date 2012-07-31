@@ -238,7 +238,7 @@ class ThemeTagLib {
     protected getMessageOrBody(Map attrs, Closure tagBody) {
         def textCode = attrs.remove('text')
         def textCodeArgs = attrs.remove('textArgs')
-        def textFromCode = textCode ? g.message(code:textCode, args:textCodeArgs) : null
+        def textFromCode = textCode ? p.text(code:textCode, args:textCodeArgs) : null
         if (textFromCode) {
             textFromCode = textFromCode.encodeAsHTML()
         }

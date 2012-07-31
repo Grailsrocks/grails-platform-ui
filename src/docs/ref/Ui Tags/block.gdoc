@@ -20,7 +20,8 @@ h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-title | No | An 18n message code to resolve and render as the title of the block
+title | No | An 18n message code to resolve and render as the title of the block, or inline text
+titleArgs | No | Optional argument list for the i18n message
 {table}
 
 
