@@ -189,7 +189,6 @@ class UITagLib implements InitializingBean {
             attrs:attrs,
             classes:classes, 
             tabsClass:tabsClass,
-            prefix:prefix,
             tabs:tabBodiesBuffer
         ])
     }

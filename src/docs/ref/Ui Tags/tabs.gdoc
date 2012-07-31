@@ -4,15 +4,15 @@ h2. Purpose
 
 This tag renders a set of tabs. Tabs are a familiar UI element with clickable titles that either take the user to a new page or dynamically replace part of the page with a new set of content.
 
-This supports i18n of the heading out of the boxable lists icons.
+This supports i18n of the heading out of the box, using @p:text@ from Platform Core.
 
 h2. Example
 
 {code:xml}
-<ui:tabs prefix="my.tab.title">
-    <ui:tab title="a" controller="books"/>
-    <ui:tab title="b" controller="books" action="search" active="true"/>
-    <ui:tab title="c" action="latest"/>
+<ui:tabs>
+    <ui:tab title="page.a" controller="books"/>
+    <ui:tab title="page.b" controller="books" action="search" active="true"/>
+    <ui:tab title="page.c" action="latest"/>
 </ui:tabs>
 {code}
 
