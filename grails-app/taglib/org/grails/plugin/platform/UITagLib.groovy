@@ -530,6 +530,7 @@ class UITagLib implements InitializingBean {
     def field = { attrs, body ->
         def bean = attrs.remove('bean')
         def name = attrs.remove('name')
+        def id = attrs.remove('id') ?: name
 
         def classes = attrs.remove('class')
 
@@ -562,6 +563,7 @@ class UITagLib implements InitializingBean {
             invalid:invalid, 
             required:required, 
             name:name, 
+            id:id,
             beanObject:bean, // have to use safe name - "bean" clashes with BeanFields see http://jira.grails.org/browse/GRAILS-8870
             value:value,
             type:type
