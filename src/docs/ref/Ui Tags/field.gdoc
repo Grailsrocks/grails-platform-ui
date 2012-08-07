@@ -54,7 +54,7 @@ The following types must be supported by the UI Set for overriding the field typ
 * datepicker
 * select
 
-Any unrecognized types must be passed through to @<input>@ and its @type@ attribute.
+Any unrecognized types must be passed through to @<input>@ and its @type@ attribute, so that standard HTML5 element type attributes are honoured.
 
 h2. Localization of labels
 

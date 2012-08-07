@@ -23,7 +23,7 @@ class PlatformUiController {
 
     def index = {
     }
-    
+
     def themes = {
         displayMessage("A test message from the controller")
     }
@@ -33,3 +33,6 @@ class PlatformUiController {
         render(view:'ui', model:[uiSets:grailsUISets])
     }
 }
+
+
+
