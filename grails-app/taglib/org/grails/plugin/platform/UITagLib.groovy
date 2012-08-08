@@ -666,8 +666,10 @@ class UITagLib implements InitializingBean {
         if (!customErrors) {
             errors = attrs.remove('errors')
             if (errors == null && beanObject) {
-                errors = resolveErrorsForField(beanObject, name)
-                // @todo convert these to i18n strings
+                def fieldErrors = resolveErrorsForField(beanObject, name)
+                errors = fieldErrors.collect { err ->
+                    p.text(codes:err.codes)
+                }
             }
         }
 
