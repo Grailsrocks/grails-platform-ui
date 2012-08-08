@@ -660,13 +660,14 @@ class UITagLib implements InitializingBean {
         if (!customHint) {
             def hintText = attrs.remove('hint')
             def hintArgs = attrs.remove('hintArgs')
-            hint = hintText ? p.text(code:hintText, default:hintText, args:hintArgs).toString() : null
+            hint = hintText ? p.text(code:"hint.${hintText}", default:hintText, args:hintArgs).toString() : null
         }
 
         if (!customErrors) {
             errors = attrs.remove('errors')
             if (errors == null && beanObject) {
                 errors = resolveErrorsForField(beanObject, name)
+                // @todo convert these to i18n strings
             }
         }
 
