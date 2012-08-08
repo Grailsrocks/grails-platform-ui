@@ -630,6 +630,7 @@ class UITagLib implements InitializingBean {
         def value = attrs.value
         def beanObject = attrs.bean
         def classes = attrs.remove('classes')
+        def i18name = name
 
         if (custom) {
             def args = [:]
@@ -648,19 +649,21 @@ class UITagLib implements InitializingBean {
                 def propName = resolvePropertyName(name)
                 label = GrailsNameUtils.getNaturalName(propName)
             } 
-            if (!labelCode && !label) {
+            if ((labelCode == null) && !label) {
                 throwTagError "A value must be provided for [label] or [name] if no custom label is provided"
             }
-            if (labelCode) {
+            if (labelCode != null) {
                 def labelArgs = attrs.remove('labelArgs')
-                label = p.text(code:"field.${labelCode}", default:labelCode, args:labelArgs).toString()
+                label = p.text(code:labelCode ?: "field.label.${i18nname}", default:labelCode, args:labelArgs).toString()
             }
         }
         
+        // Hints are not required. If there is no hint we try to resolve a default code but still do nothing
+        // if that is undefined, so template knows not to try to render any hint
         if (!customHint) {
             def hintText = attrs.remove('hint')
             def hintArgs = attrs.remove('hintArgs')
-            hint = hintText ? p.text(code:"hint.${hintText}", default:hintText, args:hintArgs).toString() : null
+            hint = hintText != null ? p.text(code:hintText ?: "field.hint.${i18name}", default:hintText, args:hintArgs).toString() : null
         }
 
         if (!customErrors) {
