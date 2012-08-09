@@ -544,7 +544,7 @@ class UITagLib implements InitializingBean {
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
         def fieldClass = grailsUISets.getUICSSClass(request, 'field', 'field')
         
-        def classes = p.joinClasses(classes:[
+        def classes = p.joinClasses(values:[
                 attrs.remove('class'), 
                 fieldClass,
                 invalid ? invalidClass : null])
