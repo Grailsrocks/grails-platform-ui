@@ -54,6 +54,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
         'form',
         'field',
         'fieldGroup',
+        'input',
         'actions',
 
         'table',

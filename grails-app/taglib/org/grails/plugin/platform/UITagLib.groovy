@@ -29,6 +29,7 @@ import org.codehaus.groovy.grails.web.servlet.GrailsApplicationAttributes
 import org.codehaus.groovy.grails.web.servlet.mvc.GrailsWebRequest
 import org.springframework.web.servlet.support.RequestContextUtils as RCU
 import org.codehaus.groovy.grails.plugins.GrailsPlugin
+import grails.util.GrailsNameUtils
 
 class UITagLib implements InitializingBean {
     static namespace = "ui"
@@ -50,7 +51,7 @@ class UITagLib implements InitializingBean {
     
     static LOGO_RESOURCE_URI_PREFIX = "/images/ui-logo"
     
-    static returnObjectForTags = ['listSets']
+    static returnObjectForTags = ['listSets', 'activeSets', 'errors']
 
     Map logosBySize = new ConcurrentHashMap()
     
@@ -73,8 +74,26 @@ class UITagLib implements InitializingBean {
                 uiModules << "ui.${ui.name}"
             }
             out << r.require(modules:uiModules, strict:false) 
+            pluginRequestAttributes['uiset.candidates'] = uiSets
             pluginRequestAttributes['uiset.loaded'] = true
         }
+    }
+    
+    def ifSetActive = { attrs, body ->
+        if (pluginRequestAttributes['uiset.candidates']?.contains(attrs.name)) {
+            out << body()
+        }
+    }
+    
+    def ifSetNotActive = { attrs, body ->
+        if (!pluginRequestAttributes['uiset.candidates']?.contains(attrs.name)) {
+            out << body()
+        }
+    }
+    
+    def activeSets = { attrs ->
+        renderResources()
+        return pluginRequestAttributes['uiset.candidates']
     }
     
     /**
@@ -211,7 +230,7 @@ class UITagLib implements InitializingBean {
         
         def title = attrs.remove('title')
         if (title) {
-            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title).toString()
         }
         
         def classes = attrs.remove('class')
@@ -250,17 +269,22 @@ class UITagLib implements InitializingBean {
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title).toString()
         }
         def blockClass = grailsUISets.getUICSSClass(request, 'block', 'block')
-        out << renderUITemplate('block', [title:title, bodyContent:body(), classes:classes, blockClass:blockClass, attrs:attrs])
+        out << renderUITemplate('block', [
+            title:title,
+            bodyContent:body(), 
+            classes:classes,
+            blockClass:blockClass,
+            attrs:attrs])
     }
 
     def image = { attrs ->
         def classes = attrs.remove('class')
         def title = attrs.remove('title') 
         if (title) {
-            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title)
+            title = p.text(code:title.toString(), args:attrs.titleArgs, default:title).toString()
         }
         def imageClass = grailsUISets.getUICSSClass(request, 'image', 'image')
         out << renderUITemplate('image', [classes:classes, attrs:attrs, imageClass:imageClass, title:title])
@@ -376,27 +400,6 @@ class UITagLib implements InitializingBean {
     def h4 = { attrs, body ->
         doHeading((int)4, attrs, body)
     }
-
-    private resolveTagName(String name) {
-        def parts = name.tokenize('.')
-        def ns
-        def tagName
-        switch (parts.size()) {
-            case 1: 
-                ns = "g"
-                tagName = parts[0]
-                break;
-            case 2:
-                ns = parts[0]
-                tagName = parts[1]
-                break;
-            default:
-                throwTagError "The name attribute needs to have a g: namespace tag name or a 'namespace.tagName' value"
-                break;
-        }
-        return [ns, tagName]
-    }
-    
 
     def paginate = { attrs ->
         def writer = out
@@ -526,22 +529,14 @@ class UITagLib implements InitializingBean {
         def formClass = grailsUISets.getUICSSClass(request, 'form', 'form')
         out << renderUITemplate('form', [attrs:attrs, bodyContent:body(), formClass:formClass, classes:classes])
     }   
-    
-    def field = { attrs, body ->
+
+    def input = { attrs, body ->
         def bean = attrs.remove('bean')
         def name = attrs.remove('name')
         def id = attrs.remove('id') ?: name
 
-        def classes = attrs.remove('class')
-
-        def invalid = attrs.remove('invalid')
-        def required = attrs.remove('required')
-
-        def label = attrs.remove('label') ?: name
-        def labelArgs = attrs.remove('labelArgs')
-
-        def hint = attrs.remove('hint')
-        def hintArgs = attrs.remove('hintArgs')
+        def invalid = attrs.remove('invalid')?.toBoolean()
+        def required = attrs.remove('required')?.toBoolean()
 
         def type = attrs.remove('type')
         def value = attrs.remove('value')
@@ -549,22 +544,167 @@ class UITagLib implements InitializingBean {
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
         def fieldClass = grailsUISets.getUICSSClass(request, 'field', 'field')
         
-        def hintText = hint ? p.text(code:hint, default:hint, args:hintArgs) : null
-        def labelText = label ? p.text(code:label, default:label, args:labelArgs) : null
-        
+        def classes = p.joinClasses(classes:[
+                attrs.remove('class'), 
+                fieldClass,
+                invalid ? invalidClass : null])
+
+
         def args = [
             attrs:attrs, 
-            fieldClass:fieldClass, 
-            invalidClass:invalidClass, 
             classes:classes, 
 
-            label:labelText, 
-            hint:hintText, 
             invalid:invalid, 
             required:required, 
             name:name, 
             id:id,
             beanObject:bean, // have to use safe name - "bean" clashes with BeanFields see http://jira.grails.org/browse/GRAILS-8870
+            value:value,
+            type:type
+        ]
+            
+        out << renderUITemplate('input', args)
+    }
+    
+    def fieldLabel = { attrs, body -> 
+        def args = pluginRequestAttributes['field_custom_args']
+        if (args == null) {
+            throwTagError "[ui:fieldLabel] can only be called inside a [ui:field] with custome=\"true\""
+        }
+        args.label = body()
+    }
+    
+    def fieldInput = { attrs, body -> 
+        def args = pluginRequestAttributes['field_custom_args']
+        if (args == null) {
+            throwTagError "[ui:fieldInput] can only be called inside a [ui:field] with custome=\"true\""
+        }
+        args.input = body()
+    }
+
+    def fieldErrors = { attrs, body -> 
+        def args = pluginRequestAttributes['field_custom_args']
+        if (args == null) {
+            throwTagError "[ui:fieldErrors] can only be called inside a [ui:field] with custome=\"true\""
+        }
+        args.errors = body()
+    }
+
+    def fieldHint = { attrs, body -> 
+        def args = pluginRequestAttributes['field_custom_args']
+        if (args == null) {
+            throwTagError "[ui:fieldHint] can only be called inside a [ui:field] with custome=\"true\""
+        }
+        args.hint = body()
+    }
+
+    String resolvePropertyName(String path) {
+        def period = path.lastIndexOf('.')
+        return (period != -1) && (period < path.size()-1) ? path[period+1..-1] : path
+    }
+
+    private resolveErrorsForField(rootBean, String path) {
+        if (rootBean.metaClass.hasProperty(rootBean, 'errors')) {
+            rootBean.errors.getFieldErrors(path)
+        } else {
+            []
+        }
+    }
+    def errors = { attrs ->
+        resolveErrorsForField(attrs.bean, attrs.name)
+    }
+
+    def field = { attrs, body ->
+        def custom = attrs.custom?.toBoolean()
+
+        def customInput
+        def customLabel
+        def customErrors
+        def customHint
+
+        def label
+        def input
+        def errors
+        def hint
+
+        def name = attrs.name
+        def type = attrs.type 
+        def value = attrs.value
+        def beanObject = attrs.bean
+        def classes = attrs.remove('classes')
+        def i18name = name
+
+        if (custom) {
+            def args = [:]
+            pluginRequestAttributes['field_custom_args'] = args
+            body()
+            customInput = args.input
+            customLabel = args.label
+            customErrors = args.errors
+            customHint = args.hint
+            pluginRequestAttributes['field_custom_args'] = null
+        }
+
+        if (!customLabel) {
+            def labelCode = attrs.remove('label')
+            if (!labelCode && name) {
+                def propName = resolvePropertyName(name)
+                label = GrailsNameUtils.getNaturalName(propName)
+            } 
+            if ((labelCode == null) && !label) {
+                throwTagError "A value must be provided for [label] or [name] if no custom label is provided"
+            }
+            if (labelCode != null) {
+                def labelArgs = attrs.remove('labelArgs')
+                label = p.text(code:labelCode ?: "field.label.${i18nname}", default:labelCode, args:labelArgs).toString()
+            }
+        }
+        
+        // Hints are not required. If there is no hint we try to resolve a default code but still do nothing
+        // if that is undefined, so template knows not to try to render any hint
+        if (!customHint) {
+            def hintText = attrs.remove('hint')
+            def hintArgs = attrs.remove('hintArgs')
+            hint = hintText != null ? p.text(code:hintText ?: "field.hint.${i18name}", default:hintText, args:hintArgs).toString() : null
+        }
+
+        if (!customErrors) {
+            errors = attrs.remove('errors')
+            if (errors == null && beanObject) {
+                def fieldErrors = resolveErrorsForField(beanObject, name)
+                errors = fieldErrors.collect { err ->
+                    p.text(codes:err.codes)
+                }
+            }
+        }
+
+        def invalid = attrs.invalid == null ? errors : attrs.invalid?.toBoolean()
+        def required = attrs.required
+
+        def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
+
+        // Do this after extracting other attrs
+        if (!customInput) {
+            input = ui.input(attrs)
+        }
+                
+        def args = [
+            attrs:attrs, 
+            invalidClass:invalidClass, 
+            classes:classes, 
+
+            customLabel:customLabel,
+            customHint:customHint,
+            customInput:customInput,
+            customErrors:customErrors,
+            input:input,
+            errors:errors, 
+            label:label, 
+            hint:hint, 
+            invalid:invalid, 
+            required:required, 
+            name:name, 
+            beanObject:beanObject, // have to use safe name - "bean" clashes with BeanFields see http://jira.grails.org/browse/GRAILS-8870
             value:value,
             type:type
         ]
@@ -695,7 +835,7 @@ class UITagLib implements InitializingBean {
             if (textCode.startsWith('plugin.')) {
                 textFromCode = g.message(code:textCode, args:textCodeArgs)
             } else {
-                textFromCode = p.text(code:textCode, args:textCodeArgs)
+                textFromCode = p.text(code:textCode, args:textCodeArgs).toString()
             }
         }
         if (textFromCode) {

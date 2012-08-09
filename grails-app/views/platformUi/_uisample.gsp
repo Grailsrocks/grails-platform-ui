@@ -166,6 +166,22 @@
             <ui:button>Go</ui:button>
         </ui:actions>
     </ui:form>
+    <ui:form>
+        <legend>Form using custom fields layout to create aggregate fields</legend>
+        <g:set var="form" value="${new org.grails.plugin.platform.test.TestBean()}"/>
+        <ui:field custom="true" name="personalInfo">
+            <ui:fieldInput>
+                <ui:input bean="${form}" name="name"/>
+                and
+                <ui:input bean="${form}" name="dateOfBirth"/>
+            </ui:fieldInput>
+            <ui:fieldErrors>
+                <g:each in="${ui.errors(bean:'form', name:'name') + ui.errors(bean:'form',  name:'dateOfBirth')}" var="err">
+                    <span class="error">${err.encodeAsHTML()}</span>
+                </g:each>
+            </ui:fieldErrors>
+        </ui:field>
+    </ui:form>
 </ui:block>
 
 <ui:block title="Tables and Pagination">
