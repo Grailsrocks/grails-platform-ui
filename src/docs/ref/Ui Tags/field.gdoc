@@ -27,6 +27,7 @@ h2. Attributes
 {table}
 *Name* | *Required?* | *Description*
 name | yes | The name of the field or property to use. If a property the @bean@ instance must be supplied, and the name can be a property path
+id | | An implicit "id" attribute is given the same value as the name unless you explicitly specify one.
 type | | The type of field to render. See below for list of types that are (and must be) supported by a UI Set. If not specified, the UI Set must attempt to detect an appropriate type of field to use based on the available information - i.e. bean property type and/or value type. If this is specified, the UI Set must render the type requested, even if it differs from the type of the property (i.e. allows rendering number fields as text)
 bean | | The bean to use when resolving the property specified in "name". Used to render fields for values represented by a property of an object in the current page
 hint | | A hint to be displayed to the user, to explaining the field. If not specified, the hint will be resolved as per the rules below
