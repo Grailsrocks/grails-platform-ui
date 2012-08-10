@@ -2,15 +2,15 @@
     <g:set var="value" value="${beanObject[name]}"/>
 </g:if>
 <g:if test="${!(type in ['select', 'textarea', 'datepicker'])}">
-    <input name="${name.encodeAsHTML()}" class="${classes.encodeAsHTML()}" type="${type}" value="${value?.encodeAsHTML()}"/><br/>
+    <input id="${id.encodeAsHTML()}" name="${name.encodeAsHTML()}" class="${classes.encodeAsHTML()}" type="${type}" value="${value?.encodeAsHTML()}"/><br/>
 </g:if>
 <%-- @todo use callTag here and pass in extra attribs --%>
 <g:elseif test="${type == 'select'}">
-    <g:select name="${name}" value="${value}" noSelection="[null:'No value']" from="${[ [value:value] ]}"/>
+    <g:select id="${id.encodeAsHTML()}" name="${name}" value="${value}" noSelection="[null:'No value']" from="${[ [value:value] ]}"/>
 </g:elseif>
 <g:elseif test="${type == 'textarea'}">
-    <textarea name="${name}">${value?.encodeAsHTML()}</textarea>
+    <textarea id="${id.encodeAsHTML()}" name="${name}">${value?.encodeAsHTML()}</textarea>
 </g:elseif>
 <g:elseif test="${type == 'datepicker'}">
-    <g:datePicker name="${name}" value="${value}"/>
+    <g:datePicker id="${id.encodeAsHTML()}" name="${name}" value="${value}"/>
 </g:elseif>

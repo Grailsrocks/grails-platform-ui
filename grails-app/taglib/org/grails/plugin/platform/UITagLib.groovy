@@ -534,6 +534,10 @@ class UITagLib implements InitializingBean {
         def bean = attrs.remove('bean')
         def name = attrs.remove('name')
 
+        if (!attrs.id) {
+            attrs.id = name
+        }
+
         def invalid = attrs.remove('invalid')?.toBoolean()
         def required = attrs.remove('required')?.toBoolean()
 
@@ -553,6 +557,7 @@ class UITagLib implements InitializingBean {
             attrs:attrs, 
             classes:classes, 
 
+            id:attrs.id, 
             invalid:invalid, 
             required:required, 
             name:name, 
@@ -631,6 +636,9 @@ class UITagLib implements InitializingBean {
         def beanObject = attrs.bean
         def classes = attrs.remove('classes')
         def i18name = name
+        if (!attrs.id) {
+            attrs.id = name
+        }
 
         if (custom) {
             def args = [:]
@@ -690,6 +698,7 @@ class UITagLib implements InitializingBean {
             attrs:attrs, 
             invalidClass:invalidClass, 
             classes:classes, 
+            id:attrs.id,
 
             customLabel:customLabel,
             customHint:customHint,
