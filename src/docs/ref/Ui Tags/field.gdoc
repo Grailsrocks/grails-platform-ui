@@ -6,9 +6,10 @@ This tag renders an HTML form field, according to the type and constraint info o
 
 UI Sets and Themes can customise the rendering of the field to suit their HTML/CSS requirements, and the rendering can use any mechanism it likes i.e. grails-fields plugin or an inline implementation.
 
+The various elements of a field can be overridden for situations where a GSP needs to supply customized markup but still operate within he structural markup provided by the UI Set. For example you may want to render a field that has a single label but contains to or more input controls. Use the nested tags [fieldLabel|uiTags], [fieldInput|uiTags], [fieldErrors|uiTags] and [fieldHint|uiTags] to achieve this.
+
 {note}
-There are at least two field rendering plugins for Grails - Bean Fields and the newer and better Fields plugin. In future there
-may be more options here - a UI Set does not need to use any of them either, and can hand code the handling of fields.
+There are at least two field rendering plugins for Grails - Bean Fields and the newer and better Fields plugin. In future there may be more options. A UI Set does not need to use any of them either, and can hand code the handling of fields.
 
 As a result, the i18n message resolution for field labels and hints must be handled by Platform UI so that plugins can supply label i18n messages
 using a standard naming convention.

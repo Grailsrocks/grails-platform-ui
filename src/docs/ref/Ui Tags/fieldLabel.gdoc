@@ -1,0 +1,17 @@
+h1. ui:fieldLabel
+
+h2. Purpose
+
+Specifies custom markup for the label part of a @ui:field@ rendering.
+
+h2. Example
+
+{code:xml}
+<ui:field bean="${form}" name="firstName">
+	<ui:fieldLabel>Please enter your first name</ui:fieldLabel>
+</ui:field>
+{code}
+
+h2. Attributes
+
+None. The body is used as the label content for the outer [field|uiTags] tag.

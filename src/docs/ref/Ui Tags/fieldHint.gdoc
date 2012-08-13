@@ -1,0 +1,19 @@
+h1. ui:fieldHint
+
+h2. Purpose
+
+Specifies custom markup for the hint part of a @ui:field@ rendering.
+
+h2. Example
+
+{code:xml}
+<ui:field bean="${form}" name="${beastNumber}">
+	<ui:fieldHint>
+		Hint: his neighbour is at number 668.
+	</ui:fieldHint>
+</ui:field>
+{code}
+
+h2. Attributes
+
+None. The body is used as the label content for the outer [field|uiTags] tag.

@@ -1,0 +1,21 @@
+h1. ui:fieldErrors
+
+h2. Purpose
+
+Specifies custom markup for the errors part of a @ui:field@ rendering.
+
+h2. Example
+
+{code:xml}
+<ui:field bean="${form}" name="${beastNumber}">
+	<ui:fieldErrors>
+		<g:if test="${form.beastNumber != 666}">
+			This is the wrong number for the beast!
+		</g:if>
+	</ui:fieldErrors>
+</ui:field>
+{code}
+
+h2. Attributes
+
+None. The body is used as the label content for the outer [field|uiTags] tag.

@@ -618,7 +618,7 @@ class UITagLib implements InitializingBean {
     }
 
     def field = { attrs, body ->
-        def custom = attrs.custom?.toBoolean()
+        def custom
 
         def customInput
         def customLabel
@@ -640,16 +640,17 @@ class UITagLib implements InitializingBean {
             attrs.id = name
         }
 
-        if (custom) {
-            def args = [:]
-            pluginRequestAttributes['field_custom_args'] = args
-            body()
-            customInput = args.input
-            customLabel = args.label
-            customErrors = args.errors
-            customHint = args.hint
-            pluginRequestAttributes['field_custom_args'] = null
+        def customArgs = [:]
+        pluginRequestAttributes['field_custom_args'] = customArgs
+        body()
+
+        if (customArgs) {
+            customInput = customArgs.input
+            customLabel = customArgs.label
+            customErrors = customArgs.errors
+            customHint = customArgs.hint
         }
+        pluginRequestAttributes['field_custom_args'] = null
 
         if (!customLabel) {
             def labelCode = attrs.remove('label')

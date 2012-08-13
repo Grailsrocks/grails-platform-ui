@@ -1,0 +1,21 @@
+h1. ui:fieldInput
+
+h2. Purpose
+
+Specifies custom markup for the input part of a @ui:field@ rendering.
+
+h2. Example
+
+{code:xml}
+<ui:field label="two.favourite.colours">
+	<ui:fieldInput>
+		<ui:input bean="${form}" name="favouriteColour1"/>
+		&amp;
+		<ui:input bean="${form}" name="favouriteColour2"/>
+	</ui:fieldInput>
+</ui:field>
+{code}
+
+h2. Attributes
+
+None. The body is used as the label content for the outer [field|uiTags] tag.
