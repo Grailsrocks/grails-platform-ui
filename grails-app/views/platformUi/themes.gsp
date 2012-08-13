@@ -7,6 +7,7 @@
     <head>
         <theme:layout name="${params.layout ?: 'main'}"/>
         <title>Theme Previewer - Layout '${params.layout ?: 'main'}' in theme '<theme:name/>'</title>
+        <r:require module="plugin.platformUi.tools"/>
     </head>
     <body>
         <p:uiOverlay>

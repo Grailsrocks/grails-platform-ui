@@ -4,8 +4,9 @@
 
 <html>
     <head>
-        <meta name="layout" content="platform/dev"/>
+        <meta name="layout" content="platform/overlay"/>
         <title>UI Sets</title>
+        <r:require module="plugin.platformUi.tools"/>
     </head>
     <body>
         <div style="width:800px; margin:0 auto 0 auto">
