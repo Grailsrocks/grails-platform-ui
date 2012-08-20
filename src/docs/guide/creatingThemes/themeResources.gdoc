@@ -1,0 +1,21 @@
+Themes can provide global static resources and per-layout resources by convention.
+
+Using the Resources plugin, Themes simply define Resource modules with the following name convention:
+
+{docx}
+    // Global resources for all layouts
+    'theme.YourThemeName' {
+        
+    }
+    
+    // Per-layout resources, optional
+    'theme.YourThemeName.main' {
+        // resources here
+    }
+
+    'theme.YourThemeName.home' {
+        // resources here
+    }
+{docx}
+
+The Theme API will automatically pull these in as required when your Theme layout uses the [head|themeTags] theme tag or explicitly calls [resources|themeTags] theme tag.

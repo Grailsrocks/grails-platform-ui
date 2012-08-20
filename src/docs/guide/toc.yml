@@ -19,6 +19,7 @@ creatingThemes:
   themeRequirements: Requirements
   themeLayout: Creating Theme Layouts
   themeRequiredZones: The Required Zones Of Each Theme Layout
+  themeResources: Defining and Including Theme Resources
   themeBranding: Branding
   themeConfiguration: Configuration
 creatingUiSets:

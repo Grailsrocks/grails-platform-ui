@@ -1,5 +1,5 @@
 modules = {
-    // Globel resources for all layouts
+    // Global resources for all layouts
     'theme.@artifact.name@' {
         
     }
