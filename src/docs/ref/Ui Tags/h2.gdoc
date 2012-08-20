@@ -8,11 +8,11 @@ Supports i18n strings for headings.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:h2>This is a title</ui:h2>
 <ui:h2 text="sub.heading"/>
 <ui:h2 text="sub.heading" textArgs="[userName:user.name]"/>
-{code}
+{docx}
 
 h2. Attributes
 

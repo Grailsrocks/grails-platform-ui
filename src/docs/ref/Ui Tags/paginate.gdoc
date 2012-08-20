@@ -8,9 +8,9 @@ The UI Set @paginate@ template is passed all the information needed to render th
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:paginate controller="dummy" total="${100}"/>
-{code}
+{docx}
 
 h2. Attributes
 

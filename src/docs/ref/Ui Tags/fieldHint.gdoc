@@ -6,13 +6,13 @@ Specifies custom markup for the hint part of a @ui:field@ rendering.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:field bean="${form}" name="${beastNumber}">
 	<ui:fieldHint>
 		Hint: his neighbour is at number 668.
 	</ui:fieldHint>
 </ui:field>
-{code}
+{docx}
 
 h2. Attributes
 

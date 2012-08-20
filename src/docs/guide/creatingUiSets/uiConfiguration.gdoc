@@ -1,0 +1,13 @@
+UI Sets can change their behaviour based on configuration.
+
+Config paths must be named according to Platform Core namespaced plugin config, within the namespace of the plugin that supplies the UI Set
+
+You can add and declare any configuration options you wish, and for example you could provide more options for CSS Class customisation, or a global switch to change default colours or colour schemes.
+
+In addition there are some Platform UI configuration options that affect UI Sets:
+
+{table}
+*Path* | *Type* | *Default*
+ui.set | String | _default
+{table}
+

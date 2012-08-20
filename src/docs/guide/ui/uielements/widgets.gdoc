@@ -4,60 +4,62 @@ For full details see the tag reference section.
 
 h3. Button
 
-The [button|uiTags]tag renders a button with options for:
-* the mode of rendering (input with type submit, button tag, or anchor)
+The [button|uiTags] tag renders a button with options for:
+* the kind of rendering (input with type submit, button tag, or anchor)
 * resolving the text via i18n messages
-* different cues to the user to indicate e.g. primary buttons
+* different "modes" that give cues to the user to indicate e.g. primary buttons
 
-{code:xml}
+{docx:xml}
 <ui:button mode="primary">OK</ui:button>
 <ui:button>Save</ui:button>
 <ui:button enabled="false">Cancel</ui:button>
 <ui:button mode="primary" text="button.ok"/>
 <ui:button kind="anchor" href="#" mode="cancel" text="button.cancel"/>
 <ui:button kind="submit" mode="primary" text="Send"/>
-{code}
+{docx}
 
 h3. Field
 
-The [field|uiTags]tag lets you specify a field that must be rendered - usually within a form. 
+The [field|uiTags] tag lets you specify a field that must be rendered - usually within a form. 
 
 The UI Set is responsible for all structural markup relating to this field, including any required container nodes, the label, per-field errors (if supported) and hints etc. The output depends entirely on the UI Set in use.
 
 The tag supports named fields or "bean" fields where the value comes from a bean in the current page scope. UI Sets will typically use the Grails Fields plugin to do this, but UI Sets are free to use any implementation.
 
-{code:xml}
+{docx:xml}
 <ui:field name="field1" type="text" hint="This is a little hint" label="Text field"/>
-<ui:field name="field1" type="checkbox" hint="This is an error hint"
+<ui:field name="field2" type="checkbox" hint="This is an error hint"
     label="Checkbox field with an error" error="\${true}"/>
-<ui:field name="field1" type="radio" label="Radio field"/>
-<ui:field name="field1" type="textarea" label="Textarea field">Hello world</ui:field>
+<ui:field name="field3" type="radio" label="Radio field"/>
+<ui:field name="field4" type="textarea" label="Textarea field">Hello world</ui:field>
 <ui:field bean="\${form}" name="name"/>
 <ui:field bean="\${form}" name="enabled"/>
 <ui:field bean="\${form}" name="dateOfBirth"/>
-{code}
+{docx}
 
 You can see that the field type is auto-sensed, which can be overriden with "type".
 
+Note that there are related tags [input|uiTags], [fieldLabel|uiTags], [fieldInput|uiTags], [fieldErrors|uiTags], [fieldHint|uiTags]
+
 h3. Image
 
-The [image|uiTags]tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.
+The [image|uiTags] tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.
 
-{code:xml}
+{docx:xml}
 <ui:image uri="/images/product1.png" width="200" title="Our latest product"
     alt="This is our latest product the CLU-NGE3000"/>
 
 <ui:image dir="/images" file="/product2.png" title="Last year's product"
     alt="The FLA-NGE2000 is now obsolete"/>
-{code}
+{docx}
 
 h3. Table
 
-The [table|uiTags]tag is used to render tables of information.
+The [table|uiTags] tag is used to render tables of information.
 
-Use just like normal tables, but gives the UI Set/Theme an opportunity to apply extra styling and can count rows.
+Use just like normal tables, but gives the UI Set/Theme an opportunity to apply extra styling and functionality such as sortable columns.
 
-{code:xml}
+{docx:xml}
 <ui:table>
     <thead>
     <tr>
@@ -78,78 +80,63 @@ Use just like normal tables, but gives the UI Set/Theme an opportunity to apply 
     </g:each>
     </tbody>
 </ui:table>
-{code}
+{docx}
 
 You must always use @ui:table@ for Theme-compatible table styling.
 
-h3. Table Row
-
-The [tr|uiTags]tag is used to render a table row. It can only be used in bodies of the [table|uiTags]tag as it relies on contextual information (row number).
-
-See the @ui:table@ example for usage. UI Sets can easily detect if the row being rendered is odd or not using a model variable.
-
-h3. Table Heading
-
-The [th|uiTags]tag is used to render a table heading cell.
-
-It makes it easy to provide localized text for the heading, and also gives the UI Set the opportunity to add other decoration or functionality like sorting.
-
-{code:xml}
-<ui:table>
-    <thead>
-    <tr>
-        <ui:th text="table.id"/>
-        <ui:th text="table.title"/>
-        <ui:th text="table.description"/>
-        <ui:th text="table.date"/>
-    </tr>
-    </thead>
-    ...
-</ui:table>
-{code}
-
-The text attribute is translated using your application message bundle.
-
 h3. Messages
 
-The [message|uiTags]tag used render text messages such as info and warning messages.
+The [message|uiTags] tag is used render text messages such as info and warning messages.
 
-{code:xml}
+{docx:xml}
 <ui:message type="info" text="alert.message.something.happened"/>
 <ui:message type="error" text="alert.message.something.failed"/>
 <ui:message type="warning" text="alert.message.something.dodgy"/>
 <ui:message type="debug">
     <p>This is some debug output, only for development mode</p>
 </ui:message>
-{code}
+{docx}
 
 As with most UI tags you can specify text/textArgs attributes or a body. 
 
-There are dynamic methods added to controllers by Platform Core plugin to make it easy to display messages to the user, and this mechanism is reused in Platform UI to allow the UI Set to customise the rendering. Just call the @displayMessage@ or @displayFlashMessage@ and then add the [displayMessage|uiTags]:
+There are dynamic methods added to controllers by Platform Core plugin to make it easy to display messages to the user, and this mechanism is reused in Platform UI to allow the UI Set to customise the rendering. Just call @displayMessage@ or @displayFlashMessage@ from Platform Core:
 
-{code:xml}
+{docx}
+class AlbumController {
+    def delete = {
+        Album.delete(params.id)
+
+        displayMessage "album.was.deleted"
+
+    }
+}
+{docx}
+
+... and then add the [displayMessage|uiTags] tag variant from Platform UI:
+
+{docx:xml}
 <ui:displayMessage/>
-{code}
+{docx}
 
-This will render nothing if there is a no message set by the controller. Otherwise the flash and/or request message will be shown.
+This will render nothing if there is no message set by the controller. Otherwise the flash and/or request messages will be shown, using i18n resolution much like the @p:text@ tag of Platform Core.
 
 h3. Pagination
 
-The [paginate|uiTags]tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.
+The [paginate|uiTags] tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.
 
 The attributes are the same as the normal g:paginate tag:
 
-{code:xml}
+{docx:xml}
 <ui:paginate controller="books" total="${totalBooks}"/>
-{code}
+{docx}
 
-The underlying UI Set is presented with a data structure containing the links required to render the pagination, but not the markup itslef.
+The underlying UI Set is presented with a data structure containing the links required to render the pagination, but not the markup itself.
 
 h3. Tabs
 
-Tabbed pages are a familiar and frequently UI element. You can use the [tabs|uiTags]tag to define a set of tabs, and [tab] tags inside the body of @ui:tabs@ to define the content:
+Tabbed pages are a familiar and frequently UI element. You can use the [tabs|uiTags] tag to define a set of tabs, and [tab] tags inside the body of @ui:tabs@ to define the content:
 
-{code:xml}
+{docx:xml}
 <%-- Tabs with hardcoded titles and links only --%>
 <ui:tabs>
     <ui:tab titles="One" active="true" action="list"/>
@@ -170,7 +157,7 @@ Tabbed pages are a familiar and frequently UI element. You can use the [tabs|uiT
     <ui:tab title="e"><ui:h4>Tab E Content</ui:h4><p:dummyText size="2"/></ui:tab>
     <ui:tab title="f" action="true"><ui:h4>Tab F Content</ui:h4><p:dummyText size="2"/></ui:tab>
 </ui:tabs>
-{code}
+{docx}
 
 The resulting markup may be structurally very different from the UI tags you use in your page, depending on the UI Set's implementation.
 
@@ -178,18 +165,52 @@ h3. Avatar
 
 Display of user avatar images is a common feature of many web apps, especially social ones. External services typically supply the actual images, but how these are rendered/decorated is up to the application.
 
-The [avatar|uiTags]tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:
+The [avatar|uiTags] tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:
 
-{code:xml}
+{docx:xml}
 <ui:avatar user="marc@grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/>
-{code}
+{docx}
 
 h3. Logo
 
+Logos are often, but not always rendered using CSS background-image. If you need to insert your application's logo as an inline image, the [logo|uiTags] tag allows the UI Set to style or position it appropriately, with support for multi-resolution logos.
+
+{docx:xml}
+<ui:logo width="450" height="150"/>
+{docx}
+
+The logo file is located by convention.
 
 h3. Navigation
 
+Perhaps the trickiest and most variable page structures are the primary navigation menu and sub 
+menus. The [primaryNavigation|uiTags], [secondaryNavigation|uiTags] and [navigation|uiTags] provide a markup-neutral way to render these menus in a way befitting the current theme.
+
+{docx:xml}
+<div class="main-nav">
+    <ui:primaryNavigation/>
+</div>
+<div class="sub-nav">
+    <ui:secondaryNavigation/>
+</div>
+{docx}
 
 h3. Carousel
 
+Carousels are a common, if maligned, feature of application sites. Typically featured on the home page they transition between a series of images or content panels.
 
+Plugins and applications can use these via UI Sets without concern for the underlying markup and JS code required:
+
+{docx:xml}
+<ui:carousel>
+    <ui:slide active="true">
+        This is slide one
+    </ui:slide>
+    <ui:slide>
+        This is our second marketing slide
+    </ui:slide>
+    <ui:slide>
+        And here is our third marketing slide
+    </ui:slide>
+</ui:carousel>
+{docx}

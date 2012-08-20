@@ -8,9 +8,9 @@ Where the data for the navigation menu comes from is not defined by this tag. Th
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:secondaryNavigation/>
-{code}
+{docx}
 
 h2. Attributes
 

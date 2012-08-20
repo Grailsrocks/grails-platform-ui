@@ -10,13 +10,13 @@ UI Sets and Themes can customize the rendering of the form to suit their HTML/CS
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:form controller="book">
   <p>This is my form</p>
   <ui:field name="comment" type="textarea"/>
   <ui:button type="submit">Save</ui:button>
 </ui:form>
-{code}
+{docx}
 
 h2. Attributes
 

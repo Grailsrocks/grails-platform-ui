@@ -8,10 +8,10 @@ See also [displayMessage|uiTags] for the variant that renders the message set by
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:message type="warning" text="alert.message.something.dodgy"/>
 <ui:message type="info">This is some my inline message</ui:message>
-{code}
+{docx}
 
 h2. Attributes
 

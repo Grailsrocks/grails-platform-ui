@@ -2,13 +2,13 @@ h1. ui:tr
 
 h2. Purpose
 
-This tag renders an HTML table row.
+This tag is used to render a table row. It can only be used in bodies of the [table|uiTags] tag as it relies on contextual information (row number).
 
-This tag automatically uses row number information tracked by the parent [table|uiTags]tag.
+See the @ui:table@ example for usage. UI Sets can easily detect if the row being rendered is odd or not using a model variable, or use the row number for other effects or functionality.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:table>
     <thead>
     <tr>
@@ -32,7 +32,7 @@ h2. Example
     </ui:tr>
     </tbody>
 </ui:table>
-{code}
+{docx}
 
 h2. Attributes
 

@@ -10,14 +10,14 @@ Like all UI tags this tag uses i18n bundles.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:button mode="primary">OK</ui:button>
 <ui:button>Save</ui:button>
 <ui:button disabled="true">Cancel</ui:button>
 <ui:button mode="primary" text="button.ok"/>
 <ui:button kind="anchor" href="#" mode="cancel" text="button.cancel"/>
 <ui:button kind="submit" mode="primary" text="Send"/>
-{code}
+{docx}
 
 h2. Attributes
 

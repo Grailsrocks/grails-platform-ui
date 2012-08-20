@@ -1,0 +1,78 @@
+Theme layouts are straightforward Sitemesh GSP layouts.
+
+However they use the @theme@ namespace tags to render multiple content regions supplied by the plugin or application GSP page being rendered.
+
+This means that GSP pages can e.g. provide main and sidebar content, without knowing how those will be laid out in the final page.
+
+Here's an example Theme layout using minimal structural markup:
+
+{docx:xml}
+<!DOCTYPE html>
+<html>
+    <theme:head/>
+    <theme:body>
+        <ui:logo/>
+        
+        <div id="nav">
+            <theme:layoutZone name="navigation"/>
+        </div>
+        
+        <div id="user-nav">
+            <theme:layoutZone name="user-navigation"/>
+        </div>
+        
+        <div class="container">
+            <h1><theme:layoutTitle/></h1>
+            
+            <ui:displayMessage/>
+            
+            <div id="second-nav">
+                <theme:layoutZone name="secondary-navigation"/>
+            </div>
+
+            <div class="content">
+                <theme:layoutZone name="body"/>
+            </div>
+
+            <div id="sidebar">
+                <theme:layoutZone name="sidebar"/>
+            </div>
+            
+            <div id="footer">
+                <theme:layoutZone name="footer"/>
+            </div>
+        </div>
+    </theme:body>
+</html>
+{docx}
+
+You can see here that the @theme:layoutZone@ tag is used to render each chunk of content supplied by the GSP, and decorate it with the
+markup required to work with the CSS to achieve the desired layout - and the content in those zones is unaware of these requirements. 
+
+The [head|themeTags] and [body|themeTags] tags are optional but simplify layouts significantly. If you do not use these, there are more tags that you will need to use, such as [layoutTitle|themeTags] which handles the theme-aware i18n friendly title mechanism, and [resources|themeTags] to include the Theme's resources, and the regular @r:layoutResources@ calls to get the Resources plugin to render the actual resource dependencies.
+
+See the [head|themeTags], [body|themeTags] and [layoutTitle|themeTags] theme tags for details of the behaviour of these utility tags.
+
+A GSP page would define content for this layout using multiple calls to @theme:zone@:
+
+{docx:xml}
+<html>
+    <head>
+        <theme:layout name="sidebar"/>
+        <theme:title text="my.page.title"/>
+    </head>
+    <body>
+        <theme:zone name="body">
+            <p>This is the body of my page</p>
+        </theme:zone>
+
+        <theme:zone name="sidebar">
+            <p>New items added today...</p>
+        </theme:zone>
+    </theme:body>
+</html>
+{docx}
+
+Notice that not all the zones have content defined. Content zones that have no content defined in the page will fall back to defaults supplied
+by the application, theme, default theme or specimen text. See [Content Zones|guide:themeZones] for details.
+

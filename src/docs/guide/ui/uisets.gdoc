@@ -20,13 +20,13 @@ Take form fields as an example. These can generally be decomposed into the follo
 So now you take the design your artists have created using e.g. Twitter Bootstrap and you render your fields using the markup required
 to achieve Bootstrap's look and feel:
 
-{code:xml}
+{docx:xml}
 <label for="firstName" class="control-label">First Name</label>
 <div class="controls">
     <input name="firstName" value=""/>
     <span class="help-block">Your first name</span>
 </div>
-{code}
+{docx}
 
 Fine. However if you then switch to another CSS framework, you will often find that this no longer renders anything like the way you wanted
 because there is no standard structural UI layout and styling mechanism in HTML. Specifically:

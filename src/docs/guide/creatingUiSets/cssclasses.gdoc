@@ -1,0 +1,37 @@
+Sometimes the structural markup for a UI Set is semantically compatible with what you want to achieve, but an application developer may want to change the CSS class names used for some elements to achieve the styling they want, while still using your UI Set.
+
+They may for example want to use custom CSS and override your UI Set CSS resources and change class names for a table to avoid a clash with some other CSS library they use.
+
+To enable this, UI Tags resolve CSS classes for the common UI elements in such a way that the UI Set developer can provide defaults, and the application developer can override these in Config.
+
+The CSS class name is resolved for you by the UI Tags and is passed into the GSP template used for the UI element. As UI Set developer it is your responsibility to use this class name variable on the correct element.
+
+The CSS Class configuration is performed using Platform Core namespaced config, and here is an example for a plugin that might configure a Bootstrap UI Set for the correct Bootstrap CSS classes:
+
+{docx}
+def doWithConfig = { config ->
+    platformUi {
+        ui.Bootstrap.actions.cssClass = 'form-actions'
+        ui.Bootstrap.button.cssClass = 'btn'
+        ui.Bootstrap.tab.cssClass = 'tab-pane'
+        ui.Bootstrap.tabs.cssClass = 'nav nav-tabs'
+        ui.Bootstrap.field.cssClass = ''
+        ui.Bootstrap.input.cssClass = 'input-xlarge'
+        ui.Bootstrap.invalid.cssClass = 'invalid'
+        ui.Bootstrap.table.cssClass = 'table table-striped'
+        ui.Bootstrap.tr.cssClass = ''
+        ui.Bootstrap.trOdd.cssClass = ''
+        ui.Bootstrap.trEven.cssClass = ''
+        ui.Bootstrap.carousel.cssClass = 'carousel'
+        ui.Bootstrap.slide.cssClass = 'item'
+        ui.Bootstrap.form.cssClass = 'form-horizontal'
+    }
+}
+{docx}
+
+You can see here for example that the default input field CSS class is "input-xlarge" to create large input fields. The application developer can trivially override this in their application Config to get different sized fields:
+
+{docx}
+plugin.platformUi.input.cssClass = 'input-large'
+{docx}
+

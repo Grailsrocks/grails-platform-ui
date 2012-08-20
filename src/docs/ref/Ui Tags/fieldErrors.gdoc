@@ -6,7 +6,7 @@ Specifies custom markup for the errors part of a @ui:field@ rendering.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:field bean="${form}" name="${beastNumber}">
 	<ui:fieldErrors>
 		<g:if test="${form.beastNumber != 666}">
@@ -14,7 +14,7 @@ h2. Example
 		</g:if>
 	</ui:fieldErrors>
 </ui:field>
-{code}
+{docx}
 
 h2. Attributes
 

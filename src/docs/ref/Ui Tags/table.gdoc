@@ -4,11 +4,11 @@ h2. Purpose
 
 This tag renders an HTML table representing content for the user to view (as opposed to any layout hacks etc).
 
-This tag automatically tracks row number when used with [tr|uiTags]tag.
+This tag automatically tracks row number when used with [tr|uiTags] tag.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:table>
     <thead>
     <tr>
@@ -32,7 +32,7 @@ h2. Example
     </ui:tr>
     </tbody>
 </ui:table>
-{code}
+{docx}
 
 h2. Attributes
 

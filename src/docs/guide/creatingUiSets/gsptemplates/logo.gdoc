@@ -22,10 +22,10 @@ h | Height of the logo or empty
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
 <a href="${p.siteURL().encodeAsHTML()}">
   <r:img uri="${logoUri.encodeAsHTML()}" 
     class="${p.joinClasses(values:[classes, logoClass])}"
     alt="${p.siteName()}" 
     width="${w}" height="${h}"/></a>
-{code}
+{docx}

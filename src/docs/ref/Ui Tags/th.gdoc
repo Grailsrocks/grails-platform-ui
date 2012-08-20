@@ -4,11 +4,13 @@ h2. Purpose
 
 This tag renders an HTML table heading cell.
 
+It makes it easy to provide localized text for the heading, and also gives the UI Set the opportunity to add other decoration or functionality like sorting.
+
 This supports i18n of the heading out of the box, and allows UI Sets to add special markup for column headings, such as sortable lists icons.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:table>
     <thead>
     <tr>
@@ -32,7 +34,7 @@ h2. Example
     </ui:tr>
     </tbody>
 </ui:table>
-{code}
+{docx}
 
 h2. Attributes
 

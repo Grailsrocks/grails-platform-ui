@@ -8,11 +8,11 @@ For example the UI Set or theme may add a border or "well" around the content - 
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:block title="section.titles.welcome">
     <p>Thank you for visiting our awesome site.</p>
 </ui:block>
-{code}
+{docx}
 
 The body is rendered as the body of the block section. 
 

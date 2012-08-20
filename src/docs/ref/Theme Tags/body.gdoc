@@ -13,7 +13,7 @@ You do not need to use this tag to define a theme layout's body - but if you do 
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <!DOCTYPE html>
 <html>
     <theme:head/>
@@ -27,7 +27,7 @@ h2. Example
         <theme:layoutZone name="footer"/>
     </theme:body>
 </html>
-{code}
+{docx}
 
 h2. Attributes
 

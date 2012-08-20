@@ -4,7 +4,7 @@ The current UI Set's resources are included in a page using the [resources|uiTag
 
 To declare resources for the UI Set you just define a resource module with the name convention @"ui.<uisetname>"@:
 
-{code}
+{docx}
 modules = {
     // Resources for your custom UI Set
     'ui.Bootstrap' {
@@ -14,4 +14,4 @@ modules = {
         resource id:'hooks', url:[plugin:'bootstrap-ui', dir:'js', file:'bootstrap-hooks.js']
     }
 }
-{code}
+{docx}

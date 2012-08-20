@@ -2,7 +2,7 @@ There are several UI tags specifically relating to forms, [form|uiTags], [field|
 
 You can create a form using the new UI tags like this:
 
-{code:xml}
+{docx:xml}
 <ui:form action="update">
     <fieldset>
         <ui:field name="firstName"/>
@@ -17,7 +17,7 @@ You can create a form using the new UI tags like this:
         <ui:button mode="cancel">Cancel</ui:button>
     </ui:actions>
 </ui:form>
-{code}
+{docx}
 
 You can see that the GSP has no knowledge of how forms or fields or buttons are rendered. The UI Set in effect determines this. You may get completely different structural HTML and CSS classes depending on the UI Set or theme you are using.
 

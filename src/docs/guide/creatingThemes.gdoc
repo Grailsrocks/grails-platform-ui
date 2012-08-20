@@ -1,0 +1,6 @@
+Creating your own a theme is relatively easy. It is a matter of creating the standard GSP layouts tailored to your styling and defining the Resources that the theme requires.
+
+You can create a theme from scratch or fork an existing one using the [create-theme|scripts] and [fork-theme|scripts] scripts provided.
+
+Once you have done so you can edit the GSP layouts and resource definitions, add static resources, bespoke tags etc as necessary.
+

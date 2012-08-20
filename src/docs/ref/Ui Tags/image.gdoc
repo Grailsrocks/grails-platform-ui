@@ -8,9 +8,9 @@ Use of this tag indicates that the image is a part of the content, and not some 
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:image uri="/images/photo1" width="200" title="A Photo" alt="This isa photo"/>
-{code}
+{docx}
 
 h2. Attributes
 

@@ -12,9 +12,9 @@ See also [message|uiTags] for the variant that renders message text set in the G
 This tag calls the [message|uiTags] tag one or more times, once for each message scope that has a message defined.
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:displayMessage/>
-{code}
+{docx}
 
 That's all you need to do. One or more messages will be shown as appropriate.
 

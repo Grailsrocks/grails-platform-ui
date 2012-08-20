@@ -11,7 +11,7 @@ Used by UI tags to supply the appropriate class. Can also be used to extend conf
 
 Plugins and the application can override these symbolic CSS class mappings on a per-UI Set basis in configuration using the key @platformUi@ namespace (@plugin.platformUi@ if specifying in Config.groovy):
 
-{code}
+{docx}
 def doWithConfig = { config ->
     platformUi {
         // Define the symbolic CSS class mappings for Bootstrap UI Set
@@ -30,15 +30,15 @@ def doWithConfig = { config ->
         ui.Bootstrap.form.cssClass = 'form-horizontal'
     }
 }
-{code}
+{docx}
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <table class="${ui.cssClass(name:'table')}">
 ...
 </table>
-{code}
+{docx}
 
 Normally you will not need to use this tag, as the UI tags resolve the CSS class for the UI template automatically and pass it as a model variable.
 

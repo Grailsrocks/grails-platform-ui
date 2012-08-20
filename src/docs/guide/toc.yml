@@ -3,16 +3,33 @@ overview:
 gettingStarted: Getting Started
 ui:
   title: UI API
+  uisets: About UI Sets
   uielements:
       title: The UI Elements
       widgets: Widgets
       grouping: Grouping
       forms: Forms
       typography: Typography
-  uisets: About UI Sets
+themes: 
+  title: Themes API
+  themesUsing: Using Themes In Your Application
+  themeZones: Content Zones
+creatingThemes:
+  title: Creating A Theme
+  themeRequirements: Requirements
+  themeLayout: Creating Theme Layouts
+  themeRequiredZones: The Required Zones Of Each Theme Layout
+  themeBranding: Branding
+  themeConfiguration: Configuration
+creatingUiSets:
+  title: Creating Custom UI Sets
   resources: UI Set Resources
-  gsptemplates: 
-    title: GSP Templates for UI tags
+  cssclasses: CSS Classes
+  uiConfiguration: Configuration
+  utilitytags: Utility Tags
+  uiDebugging: Testing and Debugging UI Sets
+  gsptemplates:
+    title: UI Set GSP Templates
     form: The Form template
     field: The Field template
     fieldGroup: The Field Group template
@@ -33,18 +50,6 @@ ui:
     primaryNavigation: The Primary Navigation template
     secondaryNavigation: The Secondary Navigation template
     slide: The Slide template
-  utilitytags: Utility Tags
-  uiConfiguration: Configuration
-  cssclasses: CSS Classes
-  customuisets: Creating your own UI Sets
-  uiDebugging: Testing and Debugging UI Sets
-themes: 
-  title: Themes API
-  themesUsing: Using Themes in your Application
-  themeCreate: Creating a theme
-  themeZones: Content Zones
-  themeBranding: Branding
-  themeConfiguration: Configuration
-debugging: Debugging
+debugging: Debugging - What the hell is going on?
 
 

@@ -8,13 +8,13 @@ This supports i18n of the heading out of the box, using @p:text@ from Platform C
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:tabs>
     <ui:tab title="page.a" controller="books"/>
     <ui:tab title="page.b" controller="books" action="search" active="true"/>
     <ui:tab title="page.c" action="latest"/>
 </ui:tabs>
-{code}
+{docx}
 
 h2. Attributes
 

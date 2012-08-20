@@ -17,7 +17,7 @@ attrs | Any extra attributes the use passed in. Usage of this is undefined acros
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
 <ul class="pagination${classes}">
     <g:if test="${prev}">
         <li><a href="${prev.link}" class="prev">${prev.text}</a></li>
@@ -41,5 +41,5 @@ h3. Example template implementation
         <li><a href="${next.link}" class="next">${next.text}</a></li>
     </g:if>
 </ul>
-{code}
+{docx}
 

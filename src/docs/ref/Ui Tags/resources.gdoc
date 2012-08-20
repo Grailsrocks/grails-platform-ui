@@ -12,7 +12,7 @@ h2. Example
 
 Using this tag to ignore the resources for UI Sets:
 
-{code:xml}
+{docx:xml}
 <html>
 <head>
     <ui:resources ignore="true"/>
@@ -23,7 +23,7 @@ Using this tag to ignore the resources for UI Sets:
     <r:layoutResources/>
 </body>
 </html>
-{code}
+{docx}
 
 h2. Attributes
 

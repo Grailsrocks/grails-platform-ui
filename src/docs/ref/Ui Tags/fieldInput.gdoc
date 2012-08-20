@@ -6,7 +6,7 @@ Specifies custom markup for the input part of a @ui:field@ rendering.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:field label="two.favourite.colours">
 	<ui:fieldInput>
 		<ui:input bean="${form}" name="favouriteColour1"/>
@@ -14,7 +14,7 @@ h2. Example
 		<ui:input bean="${form}" name="favouriteColour2"/>
 	</ui:fieldInput>
 </ui:field>
-{code}
+{docx}
 
 h2. Attributes
 

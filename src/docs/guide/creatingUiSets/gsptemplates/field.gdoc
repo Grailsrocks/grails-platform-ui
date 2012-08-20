@@ -25,7 +25,7 @@ attrs | Any extra attributes to pass through - the effect of these is undefined
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
     <g:if test="${bean}">        
         <f:field bean="${bean}" property="${name}" label="${label}" default="${default}"
             invalid="${invalid}" required="${required}"/>
@@ -40,6 +40,6 @@ h3. Example template implementation
             </span>
         </f:field>
     </g:else>
-{code}
+{docx}
 
 This example uses the Grails Fields plugin to render the field. This is not a complete example (for example it does not handle type overrides), but is sufficient to demonstrate the mechanism.

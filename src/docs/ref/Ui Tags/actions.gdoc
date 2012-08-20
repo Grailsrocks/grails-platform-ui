@@ -6,7 +6,7 @@ Renders the section of a form that contains the actions that the user can perfor
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:form>
     <ui:field name="email"/>
     <ui:actions>
@@ -14,7 +14,7 @@ h2. Example
         <ui:button kind="anchor" action="cancelRequest">Cancel</ui:button>
     </ui:actions>
 </ui:form>
-{code}
+{docx}
 
 h2. Attributes
 

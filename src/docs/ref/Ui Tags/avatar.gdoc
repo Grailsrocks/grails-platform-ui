@@ -8,9 +8,9 @@ The avatar will be retrieved by the UI Set implementation from a remote service 
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:avatar user="marc@grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/>
-{code}
+{docx}
 
 The user attribute can contain any value as appropriate for the underlying avatar mechanism the UI Set uses.
 

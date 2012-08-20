@@ -6,11 +6,11 @@ Returns the list of available UI Set names.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <g:select name="allUiSets" from="${ui.listSets()}"/>
-{code}
+{docx}
 
 h2. Attributes
 
-None/
+None
 

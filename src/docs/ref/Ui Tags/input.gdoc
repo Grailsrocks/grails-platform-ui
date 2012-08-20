@@ -1,8 +1,8 @@
-h1. ui:field
+h1. ui:input
 
 h2. Purpose
 
-This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering includes all UI elements relating to the field, for example the label, any field errors, required indicators and field hints.
+This tag renders an HTML form field, according to the type and constraint info of the field/property. The rendering is of the input only, and no field, label, hint or errors. Use [field|uiTags] for fully decorated field rendering.
 
 UI Sets and Themes can customise the rendering of the field to suit their HTML/CSS requirements, and the rendering can use any mechanism it likes i.e. grails-fields plugin or an inline implementation.
 
@@ -18,9 +18,9 @@ using a standard naming convention.
 h2. Example
 
 {docx:xml}
-<ui:field bean="${form}" name="name"/>
-<ui:field bean="${contact}" name="address.cityOrState"/>
-<ui:field name="field1" type="text" hint="This is a little hint" label="Text field"/>
+<ui:input bean="${form}" name="name"/>
+<ui:input bean="${contact}" name="address.cityOrState"/>
+<ui:input name="field1" type="text" label="Text field"/>
 {docx}
 
 h2. Attributes
@@ -31,13 +31,7 @@ name | yes | The name of the field or property to use. If a property the @bean@ 
 type | | The type of field to render. See below for list of types that are (and must be) supported by a UI Set. If not specified, the UI Set must attempt to detect an appropriate type of field to use based on the available information - i.e. bean property type and/or value type. If this is specified, the UI Set must render the type requested, even if it differs from the type of the property (i.e. allows rendering number fields as text)
 bean | | The bean to use when resolving the property specified in "name". Used to render fields for values represented by a property of an object in the current page
 id | | An implicit "id" attribute is given the same value as the name unless you explicitly specify one.
-hint | | A hint to be displayed to the user, to explaining the field. If not specified, the hint will be resolved as per the rules below
-hintArgs | | Arguments to be used when building the i18n string for the hint
-invalid | | Set to boolean true to indicate that the field value is not valid. Used if you need to override the normal mechanisms for detecting field errors.
-required | | Set to boolean true to indicate that a value is or isn't required for this field. Use only if you need to override the normal mechanism that detects this if it is a field for a bean property 
 value | | Use to provide an explicit value for the field, if it must be different from the value of a bean property or if you are not using bean properties
-label | | Specify the text or i18n message code to use as the label text. If not specified, the label will be resolved as per the rules below
-labelArgs | | Arguments used to build the i18n message label
 {table}
 
 h2. Supported field types

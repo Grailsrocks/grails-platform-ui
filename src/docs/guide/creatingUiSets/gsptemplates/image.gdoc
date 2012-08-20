@@ -14,9 +14,9 @@ attrs | The attributes to pass through to the g:form tag. The form is expected t
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
 <p:callTag tag="r:img" class="${p.joinClasses(values:[imageClass,classes])}"
     attrs="${attrs}" title="${title.encodeAsHTML()}"/>
-{code}
+{docx}
 
 This example simply delegates to r:img.

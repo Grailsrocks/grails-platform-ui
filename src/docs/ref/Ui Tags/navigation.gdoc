@@ -10,11 +10,11 @@ As such there is only one attribute here, to indicate what "scope" of navigation
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:navigation/>
 
 <ui:navigation scope="account-owner"/>
-{code}
+{docx}
 
 h2. Attributes
 

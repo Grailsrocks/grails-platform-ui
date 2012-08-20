@@ -9,9 +9,9 @@ also call directly into the @grailsThemes.setRequestTheme@ method to do the same
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <theme:set name="customAdmin"/>
-{code}
+{docx}
 
 h2. Attributes
 

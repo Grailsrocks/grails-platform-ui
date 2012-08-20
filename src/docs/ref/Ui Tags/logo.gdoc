@@ -25,10 +25,10 @@ To support multiple themes with different logo sizes without stretching, simply 
 
 h2. Examples
 
-{code:xml}
+{docx:xml}
 <ui:logo/>
 <ui:logo width="450" height="150"/>
-{code}
+{docx}
 
 h2. Attributes
 

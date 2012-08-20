@@ -4,13 +4,13 @@ h2. Installing the Platform UI plugin
 
 Add the plugin platform as a dependency to your application or plugin, either directly or transitively. To do so directly edit your @BuildConfig.groovy@ to look something like this:
 
-{code:groovy}
+{docx}
     ...
     plugins {
         ...
-        compile "\:platform-ui\:1.0-M1"
+        compile '\:platform-ui\:1.0-M1'
     }
-{code}
+{docx}
 
 You can run your code now and browse to [http://localhost:8080/<appname>/platform/ui], a special page available only in the development environment. From there you can explore some of the plugin platform features, preview UI Sets and Themes etc.
 

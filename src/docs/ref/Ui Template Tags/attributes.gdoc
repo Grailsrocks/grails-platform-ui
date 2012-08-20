@@ -8,11 +8,11 @@ Used in UI templates to cleanly output attributes passed in to UI tags.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <p class="bodytext" ${ui.attributes(from:attrs, exclude:'class')}>
     ${bodyContent}
 </fieldset>
-{code}
+{docx}
 
 h2. Attributes
 

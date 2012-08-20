@@ -6,11 +6,11 @@ Specifies custom markup for the label part of a @ui:field@ rendering.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:field bean="${form}" name="firstName">
 	<ui:fieldLabel>Please enter your first name</ui:fieldLabel>
 </ui:field>
-{code}
+{docx}
 
 h2. Attributes
 

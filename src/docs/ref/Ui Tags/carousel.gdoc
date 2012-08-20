@@ -14,7 +14,7 @@ Your PR/UI department may however insist you do include one.
 
 h2. Example
 
-{code:xml}
+{docx:xml}
 <ui:carousel>
     <ui:slide active="true">
         This is slide one
@@ -26,7 +26,7 @@ h2. Example
         And here is our third marketing slide
     </ui:slide>
 </ui:carousel>
-{code}
+{docx}
 
 h2. Attributes
 

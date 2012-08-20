@@ -1,0 +1,83 @@
+Each required layout has a list of required zones. The layout must render these zones if provided, but it can be adaptive to the presence or absence of content for the zones - for example if there are three promotional content zones but content for only two is provided, the layout could adapt to this using [ifZoneContent|themeTags].
+
+h2. Required layout: home
+
+This layout is intended to represent the "home page" of a site. Typically with a banner area and marketing panels, of which the layout should support at least three. It could support more using [ifZoneContent|themeTags].
+
+{table}
+*Zone* | *Description*
+body | The main body content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+footer | The footer
+banner | The primary marketing banner area
+panel1 | A marketing content area
+panel2 | A marketing content area
+panel3 | A marketing content area 
+{table}
+
+h2. Required layout: main
+
+This layout is intended to represent normal site content pages. Typically with just a body.
+
+{table}
+*Zone* | *Description*
+body | The main body content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+footer | The footer
+{table}
+
+h2. Required layout: dialog
+
+This layout is intended to represent a "full screen" form such as a login. Typically with just a body, the body is used as the content within the "full screen" form.
+
+{table}
+*Zone* | *Description*
+body | The main body content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+secondary-navigation | The secondary navigation options
+footer | The footer
+{table}
+
+h2. Required layout: report
+
+This layout is intended to represent report results with pagination, e.g. a scaffolded list view.
+
+{table}
+*Zone* | *Description*
+body | The main body content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+secondary-navigation | The secondary navigation options
+footer | The footer
+pagination | The report pagination controls
+{table}
+
+h2. Required layout: dataentry
+
+This layout is intended to represent data entry screens, e.g. a scaffolded create/show/edit view.
+
+{table}
+*Zone* | *Description*
+body | The main body content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+secondary-navigation | The secondary navigation options
+footer | The footer
+{table}
+
+h2. Required layout: sidebar
+
+This layout is intended to represent a body area that also has a sidebar.
+
+{table}
+*Zone* | *Description*
+body | The main body content
+sidebar | The sidebar content
+navigation | The primary navigation options (home etc.)
+user-navigation | The user navigation options (log in etc.)
+secondary-navigation | The secondary navigation options
+footer | The footer
+{table}
