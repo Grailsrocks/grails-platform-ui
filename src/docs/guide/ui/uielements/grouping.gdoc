@@ -1,7 +1,32 @@
+There are a couple of grouping elements available in UI Sets.
 
 h4. Actions
 
-The actions a user can perform are often gathered together in one place in a well designed form.
+The actions a user can perform are often gathered together in one place in a well designed form. The [actions|uiTags] tag provides a holder for these, and allows the current theme to render this section of a form appropriately:
+
+{docx:xml}
+<ui:form action="update">
+    <fieldset>
+        <ui:field name="firstName"/>
+        <ui:field name="lastName"/>
+    </fieldset>
+    <ui:actions>
+        <ui:button mode="primary">Update</ui:button>
+        <ui:button mode="cancel">Cancel</ui:button>
+    </ui:actions>
+</ui:form>
+{docx}
+
+Any content in the @ui:actions@ body will be rendered, usually in some kind of styled container, by the UI Set.
 
 h4. Block
 
+Some themes may support visually separating a block of content, for example with a "well" or other border technique. The [block|uiTags] tag is a simple container for this purpose:
+
+{docx:xml}
+<ui:block title="section.titles.welcome">
+    <p>Thank you for visiting our awesome site.</p>
+</ui:block>
+{docx}
+
+It does however support rendering a title at the start of the block, using i18n.

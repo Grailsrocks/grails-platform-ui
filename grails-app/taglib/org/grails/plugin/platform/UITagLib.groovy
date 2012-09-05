@@ -526,8 +526,46 @@ class UITagLib implements InitializingBean {
     def form = { attrs, body ->
         def classes = attrs.remove('class')
         def formClass = grailsUISets.getUICSSClass(request, 'form', 'form')
-        out << renderUITemplate('form', [attrs:attrs, bodyContent:body(), formClass:formClass, classes:classes])
+
+        def formBodiesBuffer = [:]
+        def fallbackBody = body(_ui_formBodies:formBodiesBuffer)
+
+        out << renderUITemplate('form', [
+            attrs:attrs, 
+            bodyContent:formBodiesBuffer.formBody == null ? fallbackBody : formBodiesBuffer.formBody, 
+            actionsContent:formBodiesBuffer.actions, 
+            formClass:formClass, 
+            classes:classes])
     }   
+
+    def actions = { attrs, body ->
+        def classes = attrs.remove('class')
+        def actionsClass = grailsUISets.getUICSSClass(request, 'actions', 'actions')
+        def bodies = pageScope.variables._ui_formBodies
+        if (bodies == null) {
+            throwTagError "[ui:actions] can only be invoked inside a [ui:form] tag"
+        }
+
+        bodies.actions = renderUITemplate('actions', [
+            attrs:attrs, 
+            bodyContent:body(), 
+            actionsClass: actionsClass, 
+            classes:classes])
+    }
+    
+    def formBody = { attrs, body ->
+        def classes = attrs.remove('class')
+        def formBodyClass = grailsUISets.getUICSSClass(request, 'formBody', 'formBody')
+        def bodies = pageScope.variables._ui_formBodies
+        if (bodies == null) {
+            throwTagError "[ui:formBody] can only be invoked inside a [ui:form] tag"
+        }
+        bodies.formBody = renderUITemplate('formBody', [
+            attrs:attrs, 
+            bodyContent:body(), 
+            formBodyClass: formBodyClass, 
+            classes:classes])
+    }
 
     def input = { attrs, body ->
         def bean = attrs.remove('bean')
@@ -724,13 +762,7 @@ class UITagLib implements InitializingBean {
         def fieldGroupClass = grailsUISets.getUICSSClass(request, 'fieldGroup', 'fieldGroup')
         out << renderUITemplate('fieldGroup', [attrs:attrs, bodyContent:body(), fieldGroupClass: fieldGroupClass, classes:classes])
     }
-    
-    def actions = { attrs, body ->
-        def classes = attrs.remove('class')
-        def actionsClass = grailsUISets.getUICSSClass(request, 'actions', 'actions')
-        out << renderUITemplate('actions', [attrs:attrs, bodyContent:body(), actionsClass: actionsClass, classes:classes])
-    }
-    
+
     def cssClass = { attrs ->
         def name = attrs.name
         def defaultValue = attrs.default ?: ''

@@ -51,6 +51,7 @@ class UISets implements ApplicationContextAware, InitializingBean {
         
         'paginate',
         'form',
+        'formBody',
         'field',
         'fieldGroup',
         'input',

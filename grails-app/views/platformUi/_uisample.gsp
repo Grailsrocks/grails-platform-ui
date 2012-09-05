@@ -144,12 +144,27 @@
 <ui:block title="Forms">
     <p>The other HTML input elements work as normal with Grails GSP tags. Themes are responsible for styling them with CSS.</p>
     <ui:form>
-        <legend>Form using ad hoc fields</legend>
+        <legend>Form using implicit body of adhoc fields and explicit actions</legend>
+        <ui:field name="textField" type="text" hint="This is a little hint" label="Text field"/>
+        <ui:field name="checkboxField" type="checkbox" hint="This is an error hint" label="Checkbox field with an error" error="${true}"/>
+        <ui:field name="radioField" type="radio" label="Radio field"/>
+        <ui:field name="passwordField" type="password" label="Password field"/>
+        <ui:field name="textareaField" type="textarea" label="Textarea field">Hello world</ui:field>
+        <ui:actions>
+            <ui:button kind="submit">Search</ui:button>
+            <ui:button>Go</ui:button>
+        </ui:actions>
+    </ui:form>
+    <ui:form>
+        <ui:formBody>
+            <legend>Form using explicity body of ad hoc fields and explicit actions</legend>
             <ui:field name="textField" type="text" hint="This is a little hint" label="Text field"/>
             <ui:field name="checkboxField" type="checkbox" hint="This is an error hint" label="Checkbox field with an error" error="${true}"/>
             <ui:field name="radioField" type="radio" label="Radio field"/>
             <ui:field name="passwordField" type="password" label="Password field"/>
-            <ui:field name="textareaField" type="textarea" label="Textarea field">Hello world</ui:field>        <ui:actions>
+            <ui:field name="textareaField" type="textarea" label="Textarea field">Hello world</ui:field>
+        </ui:formBody>
+        <ui:actions>
             <ui:button kind="submit">Search</ui:button>
             <ui:button>Go</ui:button>
         </ui:actions>
