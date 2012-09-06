@@ -4,6 +4,8 @@ h2. Purpose
 
 Renders the section of a form that contains the actions that the user can perform, such as the OK and Cancel buttons or the Edit and Delete buttons.
 
+The UI Set's implementation of @ui:form@ may render the actions anywhere within the form, perhaps multiple times - so avoid using HTML ids on elements inside the actions body.
+
 h2. Example
 
 {docx:xml}

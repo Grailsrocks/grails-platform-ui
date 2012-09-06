@@ -1,0 +1,29 @@
+h1. ui:baseHeading
+
+h2. Purpose
+
+Sets the base heading level for UI heading tags [h1|uiTags] through [h4|uiTags]. This can be changed mid-request, such that a layout can shift the heading levels of content included from theme zones or other sources.
+
+h2. Example
+
+{docx:xml}
+<ui:baseHeading level="3"/>
+<ui:h1>This is a title</ui:h1>
+
+<ui:baseHeading level="1"/>
+<ui:h1 text="main.heading"/>
+
+<ui:baseHeading level="2"/>
+<ui:h2 text="main.heading" textArgs="[userName:user.name]"/>
+{docx}
+
+These will render out @h3@, @h1@ and @h3@ respectively.
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+level | Yes | Base heading level to use for @ui:h1@
+{table}
+
+

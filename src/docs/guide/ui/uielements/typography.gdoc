@@ -1,3 +1,14 @@
 h4. Headings
 
-h1, h2, h3
+There are UI tags for rendering heading levels 1 to 4, including support for the standard i18n mechanisms of Platform UI.
+
+This allows the UI Set/Theme or any GSP to set the base heading level for the rest of the request, so your content might use @<ui:h1>@ but it actually appears as @<h2>@ in the output. You get to maintain appropriate relative heading levels in your GSP, and let the UI deal with how this actually turns out.
+
+{docx:xml}
+<ui:baseHeading level="3"/>
+<ui:h1>Heading level 1, or is it</ui:h1>
+
+<ui:baseHeading level="1"/>
+<ui:h2 title="my.sub.heading"/>
+{docx:xml}
+

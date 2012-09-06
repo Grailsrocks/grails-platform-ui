@@ -8,6 +8,8 @@ It is a drop-in replacement for the Grails @g:form@ tag, and supports all the at
 
 UI Sets and Themes can customize the rendering of the form to suit their HTML/CSS requirements.
 
+See [actions|uiTags] for the nested tag that allows you to demarcate the actions the user can perform in the form.
+
 h2. Example
 
 {docx:xml}
