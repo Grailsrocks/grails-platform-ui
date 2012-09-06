@@ -528,11 +528,11 @@ class UITagLib implements InitializingBean {
         def formClass = grailsUISets.getUICSSClass(request, 'form', 'form')
 
         def formBodiesBuffer = [:]
-        def fallbackBody = body(_ui_formBodies:formBodiesBuffer)
+        def bodyContent = body(_ui_formBodies:formBodiesBuffer)
 
         out << renderUITemplate('form', [
             attrs:attrs, 
-            bodyContent:formBodiesBuffer.formBody == null ? fallbackBody : formBodiesBuffer.formBody, 
+            bodyContent:bodyContent,
             actionsContent:formBodiesBuffer.actions, 
             formClass:formClass, 
             classes:classes])
@@ -553,20 +553,6 @@ class UITagLib implements InitializingBean {
             classes:classes])
     }
     
-    def formBody = { attrs, body ->
-        def classes = attrs.remove('class')
-        def formBodyClass = grailsUISets.getUICSSClass(request, 'formBody', 'formBody')
-        def bodies = pageScope.variables._ui_formBodies
-        if (bodies == null) {
-            throwTagError "[ui:formBody] can only be invoked inside a [ui:form] tag"
-        }
-        bodies.formBody = renderUITemplate('formBody', [
-            attrs:attrs, 
-            bodyContent:body(), 
-            formBodyClass: formBodyClass, 
-            classes:classes])
-    }
-
     def input = { attrs, body ->
         def bean = attrs.remove('bean')
         def name = attrs.remove('name')
