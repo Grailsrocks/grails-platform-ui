@@ -7,7 +7,7 @@ You can add and declare any configuration options you wish, and for example you 
 In addition there are some Platform UI configuration options that affect UI Sets:
 
 {table}
-*Path* | *Type* | *Default*
-ui.set | String | _default
+*Path* | *Type* | *Description*
+ui.set | String | The default UI Set to use if none is specified on the request or implied by the request Theme. Defaults to "_default" to use the "demo" UI Set that comes shipped in Platform UI
 {table}
 

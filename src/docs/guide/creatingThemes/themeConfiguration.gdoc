@@ -1,13 +1,11 @@
 There are a few configuration options that affect details such as which Theme is selected by default.
 
-h2. Default Theme
-
-Set the @plugin.platformUi.theme.default@ Config value to the name of the theme to be used by default if no other theme is set on the current request.
-
-If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"
-
-h2. Default Layout Name
-
-If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.
-
-If you need to change this behaviour, set @plugin.platformUi.theme.layout.default@ in Config.
+{table}
+*Key* | *Description*
+@plugin.platformUi.theme.default@ | Config value to the name of the theme to be used by default if no other theme is set on the current request. If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"
+@plugin.platformUi.theme.layout.default@ | If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.
+@plugin.platformUi.themes.layout.mapping.*@ | Used to map layout names to alternative layout names - for example to remap all uses of "dialog" layout to your own "fullscreenDialog" layout for all GSPs that use the "dialog" layout, set @plugin.platformUi.themes.layout.mapping.dialog = 'fullscreenDialog'@. This applies globally if there is no theme-specific layout remapping.
+@plugin.platformUi.themes.<ThemeName>.layout.mapping@ | As for the global equivalent, this allows remapping of layouts per-theme, so that e.g. your plugin or app can make a specific theme use a different layout X when layout Y is requested.
+@plugin.platformUi.themes.<ThemeName>.ui.set@ | Defines the UI Set that @ThemeName@ requires. e.g. @plugin.platformUi.themes.MyTheme.ui.set = 'Bootstrap'@
+@plugin.platformUi.themes.<ThemeName>.ui.<className>.cssClass@ | Allows you to override the CSS classes used for UI Set elements on a per-theme basis. For example you may have two theme variants - one with large input fields and one with small fields. You would set @ui.MyBigFormTheme.input.cssClass = 'input-xlarge'@ in one and use another value in the other. This overrides the class configuration provided by the UI Set itself.
+{table}

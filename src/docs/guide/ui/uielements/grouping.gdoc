@@ -19,9 +19,9 @@ The actions a user can perform are often gathered together in one place in a wel
 
 Any content in the @ui:actions@ body will be rendered, usually in some kind of styled container, by the UI Set.
 
-h4. Block
+h4. Field Groups
 
-Some themes may support visually separating a block of content, for example with a "well" or other border technique. The [block|uiTags] tag is a simple container for this purpose:
+Forms often arrange fields into groups, typically with @<fieldset>@ in HTML. The structural markup for this is abstracted using the [fieldGroup|uiTags] tag:
 
 {docx:xml}
 <ui:block title="section.titles.welcome">
@@ -30,3 +30,22 @@ Some themes may support visually separating a block of content, for example with
 {docx}
 
 It does however support rendering a title at the start of the block, using i18n.
+h4. Block
+
+Some themes may support visually separating a block of content, for example with a "well" or other border technique. The [block|uiTags] tag is a simple container for this purpose:
+
+{docx:xml}
+<ui:form controller="book"> 
+  <ui:fieldGroup>
+     <ui:field name="firstName"/>
+     <ui:field name="lastName"/>
+  </ui:fieldGroup>
+  <ui:fieldGroup>
+     <ui:field name="email"/>
+  </ui:fieldGroup>
+  <ui:actions>
+    <ui:button type="submit">Save</ui:button>
+  </ui:actions>
+</ui:form>
+{docx}
+

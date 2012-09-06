@@ -4,15 +4,14 @@ h3. Resolution of templates
 
 Templates for UI Set tags are resolved to the following view path within your plugin or application:
 
-@/grails-app/views/_ui/@*@<ui-set-name>@*@/_<ui-tag-name>.gsp@
+@/grails-app/views/\_ui/<UiSetName>/\_<uiTagName>.gsp@
 
-Themese and applications can both override UI Set template views however, to cover edge 
+Sometimes you may need to work around a problem in a UI Set used by your application, where that UI Set is provided by another plugin or theme. You can do this easily by putting your own GSP in the correct location.
 
-h3. Overriding UI set templates in your application
+{note}
+NOT IMPLEMENTED CORRECTLY YET: Themes override the UI set templates by specifying replacement templates in @/grails-app/views/_themes/<ThemeName>/\_ui/<UiSetName>/\_<uiTagName>.gsp@. Current implementation is wrong.
+{note}
 
-Sometimes you may need to work around a problem in a UI Set used by your application, where that UI Set is provided by another plugin or theme. You can do this easily.
-
-...
 
 h3. Contract for GSP Templates
 
@@ -22,4 +21,4 @@ h3. Attributes
 
 All UI tag attributes that are part of the UI Tag contracts are extracted and passed to the GSP template model. Any remaining attributes are passed to the model in the "attrs" variable.
 
-Use of such attributes is undefined, but can be used for specific customisations over and above the UI Set specifications.
+Use of such attributes is typically to pass them through to underlying implementation tags such as @g:form@, but can be used for specific customisations over and above the UI Set specifications provided the core contract for each UI Tag's attributes is honoured.

@@ -27,8 +27,6 @@ creatingUiSets:
   resources: UI Set Resources
   cssclasses: CSS Classes
   uiConfiguration: Configuration
-  utilitytags: Utility Tags
-  uiDebugging: Testing and Debugging UI Sets
   gsptemplates:
     title: UI Set GSP Templates
     form: The Form template
@@ -47,10 +45,11 @@ creatingUiSets:
     block: The Block template
     carousel: The Carousel template
     logo: The Logo template
-    navigation: The Navigation template
+    nav: The Navigation template
     primaryNavigation: The Primary Navigation template
     secondaryNavigation: The Secondary Navigation template
     slide: The Slide template
+  utilitytags: Utility Tags
 debugging: Debugging - What the hell is going on?
 
 

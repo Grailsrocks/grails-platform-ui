@@ -1,0 +1,26 @@
+h1. ui:fieldGroup
+
+h2. Purpose
+
+A grouping container for a set of form elements. Typically equivalent to a <fieldset> but a UI Set may add extra structural markup.
+
+h2. Example
+
+{docx:xml}
+<ui:form controller="book"> 
+  <ui:fieldGroup>
+     <ui:field name="firstName"/>
+     <ui:field name="lastName"/>
+  </ui:fieldGroup>
+  <ui:fieldGroup>
+     <ui:field name="email"/>
+  </ui:fieldGroup>
+  <ui:actions>
+    <ui:button type="submit">Save</ui:button>
+  </ui:actions>
+</ui:form>
+{docx}
+
+h2. Attributes
+
+None. The body is used as the label content for the outer [field|uiTags] tag.

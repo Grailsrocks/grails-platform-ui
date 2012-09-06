@@ -1,1 +1,11 @@
-TBD: attributes, cssClass
+There are a set of utility tags and functions provided to make it easier to implement UI Set tag templates.
+
+Documentation will be improved in future, but for now see:
+
+[attributes|uiTemplateTags] tag
+
+[cssClass|uiTemplateTags] tag
+
+[listSets|uiTemplateTags] tag
+
+Also see the Platform Core TagLibUtils class javadocs for a set of useful methods.

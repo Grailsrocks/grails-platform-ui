@@ -1,6 +1,0 @@
-Testing and debugging UI Sets is made easier using the built in previewer tool.
-
-Browse to @http://localhost:8080/<yourapp>/platform/ui@ with your app running, and you will see options
-to view the available themese and UI Sets.
-
-You can use the UI Set viewer to show the UI Sample page which includes all UI widgets, using any of the installed UI Sets you have.

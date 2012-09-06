@@ -32,6 +32,6 @@ def doWithConfig = { config ->
 You can see here for example that the default input field CSS class is "input-xlarge" to create large input fields. The application developer can trivially override this in their application Config to get different sized fields:
 
 {docx}
-plugin.platformUi.input.cssClass = 'input-large'
+plugin.platformUi.ui.Bootstrap.input.cssClass = 'input-large'
 {docx}
 

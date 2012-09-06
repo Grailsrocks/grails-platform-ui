@@ -4,3 +4,5 @@ You can create a theme from scratch or fork an existing one using the [create-th
 
 Once you have done so you can edit the GSP layouts and resource definitions, add static resources, bespoke tags etc as necessary.
 
+Each Theme depends on a specific UI Set. The UI Set templates are resolved such that the application or theme can override the template provided by the UI Set. This means your theme can be based on a reusable UI Set and still tweak some rendering. 
+
