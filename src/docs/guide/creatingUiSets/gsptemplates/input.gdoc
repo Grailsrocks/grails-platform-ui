@@ -2,16 +2,25 @@ The @_input.gsp@ template is used to render the [input|uiTags] tag.
 
 h3. Contract
 
-This GSP template must render all the structural markup required to render a label, input widget and optionally field errors and hints.
+This GSP template must render just the input widget for a single field.
 
-The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin.
+This template must be smart: when rendering a field for a bean property it must attempt to automatically work out the correct field type to use, and to apply relevant constraints from the command or domain class.
 
-There are several contractual considerations in this template.
+These tasks are normally performed using a plugin such as Bean Fields or the preferred Grails Fields.
 
-Your implementation must support:
+This template should, where possible, delegate to such a library to avoid reinventing the wheel. However this is not a requirement and you can provide any alternative implementation as long as this contract is honoured.
 
-* The ability for developers to customize the various elements using @ui:fieldLabel@, @ui:fieldHint@, @ui:fieldErrors@ and @ui:fieldInput@.
-* Support for rendering multiple errors inline if the UI Set is rendering field errors inline
+This is probably the most complicated UI Set template to implement. If possible use an existing implementation.
+
+Your implementation should support:
+
+* Rendering arbitrary fields
+* Auto-sensing an appropriate field type for the current field value
+* Manual field type overrides
+* Rendering fields for an arbitrary property path starting at a root bean
+* Relevant user input constraints based on the constraints of the bean (if any)
+* Giving a visual indication of whether or not a field is required
+* Giving a visual indication of whether there is an error on the field
 
 The @ui:field@ tag handles most of the complexity around this for you.
 
@@ -19,57 +28,68 @@ h3. Variables available
 
 {table}
 *Name* | *Description*
-fieldClass | The CSS class to use for the primary container of the field HTML, obtained from UI Set config.
-invalidClass | The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config
+id | The HTML id to apply to the input, and for the label to reference
+attrs | Any extra attributes to pass through to be applied to the outermost container
+inputClass | The CSS class to use for the input element, obtained from UI Set config.
+invalidClass | The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value
 classes | A string containing the list of CSS classes to apply to the outer container
-label | The label text or i18n message code to use for the label. If no value specified, must default the rules set out in [field|uiTags]
-labelArgs | An optional list of arguments to use when building the label i18n message
-hint | An optional hint string or i18n code to render with the field
-hintArgs | Optional argument list to accompany the value of "hint"
-invalid | Optional argument. If value is non-null, indicate that the field is or isn't valid using this value only, disregarding the actual field value.
-required | Optional argument. If value is non-null, indicate that the field is or isn't required, disregarding the value of any constraints on a validatable bean property
-name | The name of the field and/or name of the bean property to render the field for. Used as the name attribute of the field.
-bean | Optional. If non-null, field must be rendered for the property resolved using bean[name], using property type and constraints where available to render the appropriate field
-value | Optional. Use as the value of the field even if a the bean property value is different
-default | Optional. Value to use if "value" and the bean field value are null
-type | Optional. A type override for the field, with possible values "text", "checkbox", "radio", "textarea". If specified, this type of HTML input must be used
-attrs | Any extra attributes to pass through - the effect of these is undefined
+invalid | If value is Groovy true, indicates that the field isn't valid.
+required | If value is Groovy true, indicates that the field is required.
+name | The name of the field and/or name of the bean property of the field.
+beanObject | The original root bean supplying the value, if any.
+value | The value of the field to use if a the bean property value is differentx
+type | The explicit type override for the field (see [input|uiTags] tag) if any
 {table}
 
 h3. Example template implementation
 
 {docx:xml}
-<div class="${p.joinClasses(values:[fieldClass, classes])}">
-    <g:if test="${customLabel}">
-        ${customLabel}
-    </g:if>
-    <g:else>
-        <label for="${id.encodeAsHTML()}">${label.encodeAsHTML()}</label>
-    </g:else>
-
-    <g:if test="${customInput}">
-        ${customInput}
-    </g:if>
-    <g:else>
-        ${input}
-    </g:else>
-
-    <g:if test="${customHint}">
-        ${customHint}
-    </g:if>
-    <g:elseif test="${hint}">
-        <span class="${hintClass}">${hint.encodeAsHTML()}</span>
-    </g:elseif>
-
-    <g:if test="${customErrors}">
-        ${customErrors}
-    </g:if>
-    <g:elseif test="${errors}">
-        <g:each in="${errors}" var="err">
-            <span class="${errorClass}">${err.encodeAsHTML()}</span>
-        </g:each>
-    </g:elseif>
-</div>
+<g:if test="${beanObject}">
+    <g:set var="value" value="${beanObject[name]}"/>
+</g:if>
+<g:if test="${!(type in ['select', 'textarea', 'datepicker'])}">
+    <input id="${id}" name="${name.encodeAsHTML()}" class="${p.joinClasses(values:[inputClass, classes])}" type="${type}" value="${value?.encodeAsHTML()}"/>
+</g:if>
+<g:elseif test="${type == 'select'}">
+    <g:select id="${id}" name="${name}" value="${value}" noSelection="[null:'No value']" from="${[ [value:value] ]}"/>
+</g:elseif>
+<g:elseif test="${type == 'textarea'}">
+    <textarea id="${id}" name="${name}">${value?.encodeAsHTML()}</textarea>
+</g:elseif>
+<g:elseif test="${type == 'datepicker'}">
+    <g:datePicker id="${id}" name="${name}" value="${value}"/>
+</g:elseif>
 {docx}
 
-This example uses the Grails Fields plugin to render the field. This is not a complete example (for example it does not handle type overrides), but is sufficient to demonstrate the mechanism.
+This naïve example does not attempt to support bean properties, and does nothing with required or invalid indications. Here is an example using Bean Fields:
+
+{docx:xml}
+<bean:inputTemplate>
+${field}
+</bean:inputTemplate>
+<bean:selectTemplate>
+${field}
+</bean:selectTemplate>
+<bean:checkBoxTemplate>
+${field}
+</bean:checkBoxTemplate>
+<bean:radioTemplate>
+${field}
+</bean:radioTemplate>
+<bean:textAreaTemplate>
+${field}
+</bean:textAreaTemplate>
+<g:if test="${beanObject}">        
+        <g:if test="${type == 'password'}">
+            <bean:field type="password" beanName="dummy" bean="${beanObject}" property="${name}" noLabel="${true}"/>
+        </g:if>
+        <g:else>
+            <bean:field beanName="dummy" bean="${beanObject}" property="${name}" noLabel="${true}"/>
+        </g:else>
+</g:if>
+<g:else>
+    <input id="${id}" class="${p.joinClasses(values:[classes, invalid ? invalidClass : ''])}" type="${type}" name="${name}" value="${value}"/>
+</g:else>
+{docx}
+
+This is again somewhat naïve as for non-bean fields it assumes <input> will cover all the cases, which it obviously will not.

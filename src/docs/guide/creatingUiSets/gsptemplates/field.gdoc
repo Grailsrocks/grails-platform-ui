@@ -19,7 +19,7 @@ h3. Variables available
 
 {table}
 *Name* | *Description*
-id | The HTML id to apply to the field, and for the label to reference
+id | The HTML id to apply to the input, and for the label to reference
 attrs | Any extra attributes to pass through to be applied to the outermost container
 fieldClass | The CSS class to use for the primary container of the field HTML, obtained from UI Set config.
 invalidClass | The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value

@@ -25,4 +25,4 @@ h3. Example template implementation
 </div>
 {docx}
 
-This example simply delegates to r:img and passes through any classes, after applying a container
+This example simply delegates to r:img and passes through any classes, after applying a container.

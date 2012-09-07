@@ -563,7 +563,7 @@ class UITagLib implements InitializingBean {
         def value = attrs.remove('value')
 
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
-        def fieldClass = grailsUISets.getUICSSClass(request, 'input', 'input')
+        def inputClass = grailsUISets.getUICSSClass(request, 'input', 'input')
         
         def classes = p.joinClasses(values:[
                 attrs.remove('class'), 
@@ -574,6 +574,8 @@ class UITagLib implements InitializingBean {
         def args = [
             attrs:attrs, 
             classes:classes, 
+            inputClass:inputClass,
+            invalidClass:invalidClass,
 
             id:attrs.id, 
             invalid:invalid, 
