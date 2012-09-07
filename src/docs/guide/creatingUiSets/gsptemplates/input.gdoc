@@ -1,4 +1,4 @@
-The @_field.gsp@ template is used to render the [field|uiTags] tag.
+The @_input.gsp@ template is used to render the [input|uiTags] tag.
 
 h3. Contract
 

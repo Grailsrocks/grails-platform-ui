@@ -1,0 +1,25 @@
+The @_fieldGroup.gsp@ template is used to render the [fieldGroup|uiTags] tag.
+
+h3. Contract
+
+The fieldGroup template must render a container around the contents of the tag body.
+
+Sometimes groups of fields will be separated visually from the surrounding content, for example with a border or similar. Usually this is achieved with a <fieldset> tag but this is not always the case, so the template has the flexibility to use any markup it requires.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+fieldGroupClass | The CSS class to use for the field group container. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+bodyContent | The content of the actions section, the markup provided by the caller
+attrs | The attributes to pass through to the tag that is the container for the actions
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<fieldset class="${p.joinClasses(values:[fieldGroupClass,classes])}" ${ui.attributes(attrs:attrs)}>
+    ${bodyContent}
+</fieldset>
+{docx}

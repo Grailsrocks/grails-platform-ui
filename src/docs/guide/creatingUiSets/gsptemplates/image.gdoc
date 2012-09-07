@@ -2,11 +2,15 @@ The @_image.gsp@ template is used to render the [image|uiTags] tag.
 
 h3. Contract
 
+This template needs to render an inline image, such as a photo or illustration on the site. Images such as these may support zooming via a lightbox or similar UI, or other decoration such as a frame that would not be applied to other @<img>@ tags.
+
+The template must render the image using the same attribute contract as the Resources @r:img@ tag - i.e. the attributes will contain either a @uri@ or a @dir@/@file@ pair.
+
 h3. Variables available
 
 {table}
 *Name* | *Description*
-title | Optional title for the image, resolved from an i18n message code if available. The template might render this with special formatting
+title | Title for the image (if any), resolved from an i18n message code if available. The template might render this with special formatting
 imageClass | The CSS class to use for the primary container of the image HTML, obtained from UI Set config.
 classes | A string containing the list of CSS classes to apply to the outer container
 attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
@@ -15,8 +19,10 @@ attrs | The attributes to pass through to the g:form tag. The form is expected t
 h3. Example template implementation
 
 {docx:xml}
-<p:callTag tag="r:img" class="${p.joinClasses(values:[imageClass,classes])}"
-    attrs="${attrs}" title="${title.encodeAsHTML()}"/>
+<div class="${p.joinClasses(values:[imageClass,classes])}">
+    <p:callTag tag="r:img"
+        attrs="${attrs}" title="${title.encodeAsHTML()}"/>
+</div>
 {docx}
 
-This example simply delegates to r:img.
+This example simply delegates to r:img and passes through any classes, after applying a container

@@ -28,11 +28,12 @@ creatingUiSets:
   cssclasses: CSS Classes
   uiConfiguration: Configuration
   gsptemplates:
-    actions: The Actions template
     avatar: The Avatar template
     block: The Block template
     carousel: The Carousel template
+    slide: The Slide template
     form: The Form template
+    actions: The Actions template
     field: The Field template
     fieldGroup: The Field Group template
     image: The Image template
@@ -42,13 +43,12 @@ creatingUiSets:
     paginate: The Paginate template
     primaryNavigation: The Primary Navigation template
     secondaryNavigation: The Secondary Navigation template
-    slide: The Slide template
     table: The Table template
+    tr: The Table Row template
+    th: The Table Heading template
     tabs: The Tabs template
     tab: The Tab template
     title: UI Set GSP Template Reference
-    tr: The Table Row template
-    th: The Table Heading template
   utilitytags: Utility Tags
 debugging: Debugging - What the hell is going on?
 

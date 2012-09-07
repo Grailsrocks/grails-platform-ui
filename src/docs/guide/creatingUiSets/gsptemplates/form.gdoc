@@ -2,14 +2,18 @@ The @_form.gsp@ template is used to render the [form|uiTags] tag.
 
 h3. Contract
 
+This template must render an HTML form using the standard attributes supported by the Grails @g:form@ tag.
+
+It can apply any structural HTML or decoration that it desires. It may for example apply special CSS classes to toggle between vertical or horizontal label and field layout, and it could even use Config to toggle between these so that the application developer can change the look and feel across their app in one place.
+
 h3. Variables available
 
 {table}
 *Name* | *Description*
 formClass | The CSS class to use for the primary container of the form HTML, obtained from UI Set config.
 classes | A string containing the list of CSS classes to apply to the outer container
-body | The body of the form to be rendered
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The body of the form to be rendered
+attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible with the standard g:form attributes.
 {table}
 
 h3. Example template implementation
