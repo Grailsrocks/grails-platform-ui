@@ -33,16 +33,11 @@ import grails.util.GrailsNameUtils
 class UITagLib implements InitializingBean {
     static namespace = "ui"
  
-    static BLOCK_CLASS = "block"
-    static MESSAGE_CLASS = "message"
-
     static MESSAGE_DEBUG = 'debug'
     static MESSAGE_INFO = 'info'
     static MESSAGE_ERROR = 'error'
     static MESSAGE_WARNING = 'warning'
     
-    static PLUGIN_SCOPE = 'plugin.pluginPlatform.'
-
     static BUTTON_TYPES = ['button', 'anchor', 'submit']
     static BUTTON_MODES = ['danger', 'primary', 'secondary', 'cancel']
 
@@ -712,6 +707,7 @@ class UITagLib implements InitializingBean {
         def required = attrs.required
 
         def invalidClass = grailsUISets.getUICSSClass(request, 'invalid', 'invalid')
+        def fieldClass = grailsUISets.getUICSSClass(request, 'field', 'field')
 
         // Do this after extracting other attrs
         if (!customInput) {
@@ -721,6 +717,7 @@ class UITagLib implements InitializingBean {
         def args = [
             attrs:attrs, 
             invalidClass:invalidClass, 
+            fieldClass:fieldClass, 
             classes:classes, 
             id:attrs.id,
 
@@ -838,7 +835,7 @@ class UITagLib implements InitializingBean {
             active:active
         ]
 
-        bodyPanelArgs.body = renderUITemplate('slide', [
+        bodyPanelArgs.bodyContent = renderUITemplate('slide', [
             id:slideId,
             classes:classes,
             attrs:attrs,
