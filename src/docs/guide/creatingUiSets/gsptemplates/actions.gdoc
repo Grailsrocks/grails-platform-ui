@@ -1,0 +1,31 @@
+The @_actions.gsp@ template is used to render the [actions|uiTags] tag.
+
+h3. Contract
+
+The actions template must render the block of form actions supplied in the body of the tag.
+
+The caller uses the @ui:actions@ tag to demarcate the part of a @ui:form@ that contains the actions the user
+can perform - such as "Save or cancel" button and links, or perhaps other data navigation buttons etc.
+
+Sometimes this is separated visually from the rest of the form, and sometimes it is repeated at the top and bottom of forms. 
+
+This is entirely up to the UI Set implementation however. @ui:actions@ is to be called only once or not at all
+in each @ui:form@.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+actionsClass | The CSS class to use for the actions container. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+bodyContent | The content of the actions section, the markup provided by the caller
+attrs | The attributes to pass through to the tag that is the container for the actions
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<div class="${p.joinClasses(values:[actionsClass, classes])}">
+    ${bodyContent}
+</div>
+{docx}

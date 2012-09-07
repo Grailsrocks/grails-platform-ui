@@ -1,7 +1,7 @@
 The Platform UI is a sister plugin to [Platform Core|http://grailsrocks.github.com/grails-platform-core].
 
 Where Platform Core provides "plumbing" for plugins and applications, Platform
-UI provides common UI and Theming support for plugins and applications so that they can achieve higher level visual integration.
+UI provides common UI and Theming support for plugins and applications so that they can achieve high level visual integration.
 
 It is designed to be as lightweight as possible and completely CSS and JS framework agnostic.
 
@@ -11,16 +11,20 @@ These are two separate mechanisms - UI Sets can be used without using Themes - a
 
 h2. What is a UI Set?
 
-A UI Set is a set of GSP templates and resource that provide the HTML and CSS required to render the standard UI tags.
+A UI Set is a set of GSP templates and resources that provide the HTML and *optionally* CSS required to render the standard UI tags.
 
 Applications and plugins can therefore use the standard UI tags from this plugin without worrying about how they are actually rendered or implemented in the application - so in theory your plugin might have its elements rendered by a Twitter Bootstrap plugin in one app, or a jQuery UI plugin in another app.
 
 It doesn't matter which because:
 
-# Your code renders its UI using the ui:xxx tags, which output the correct structural HTML
+# Your code renders its UI using the @ui:xxx@ tags, which output the correct structural HTML using the UI Set
 # The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this
 
 The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.
+
+UI Sets do not have to supply any CSS and JS files - if they do, they should be defined using the Resources framework such that they can be overriden by Themes or the application developer. 
+
+For example a UI Set might apply a CSS class "well" to a <div> it puts around the content of a @ui:block@ tag, but it does not have to provide the styling for this - in fact many themes may use the same UI Set and override the CSS that the UI Set provides to style the "well" elements differently.
 
 h2. What is a Theme?
 

@@ -1,0 +1,25 @@
+The @_block.gsp@ template is used to render the [block|uiTags] tag.
+
+h3. Contract
+
+The block template *should* render a container around the contents of the tag body.
+
+It is often the case that such blocks will be separated visually from the surrounding content, for example with a border or similar.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+blockClass | The CSS class to use for the block container. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+bodyContent | The content of the actions section, the markup provided by the caller
+attrs | The attributes to pass through to the tag that is the container for the actions
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<div class="${p.joinClasses(values:[blockClass, classes])}">
+    ${bodyContent}
+</div>
+{docx}

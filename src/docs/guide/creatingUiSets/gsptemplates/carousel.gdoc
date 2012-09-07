@@ -1,0 +1,36 @@
+The @_carousel.gsp@ template is used to render the [carousel|uiTags] tag.
+
+h3. Contract
+
+A carousel is a UI element typically used on home pages to rotate through a list of content panels, usually by sliding
+slides on and off or fading in and out.
+
+The style of the animation, whether there are any UI elements to pause or advance the slides are not sepcified in any way.
+
+This GSP template must simply render the correct structural markup and take care of any requirements of the JS code required, and render the various slides contained within the @ui:carousel@ tag appropriately.
+
+Usually frameworks simply use a list of divs and selectively show and hide them, much like tabs.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+carouselClass | The CSS class to use for the carousel container. Value comes from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+slides | A list of the slides to include, each with properties @id@, @active@, @bodyContent@
+attrs | The attributes to pass through to the container tag.
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<g:set var="carouselId" value="${attrs.id ? 'id="'+attrs.id.encodeAsHTML()+'" ' : ''}"/>
+<div ${carouselId}class="${p.joinClasses(values:[carouselClass, classes])}">
+    <div class="carousel-inner">
+        <g:each in="${slides}" var="s">${s.bodyContent}</g:each>
+    </div>
+    <a class="carousel-control left" href="#${attrs.id ? attrs.id.encodeAsHTML() : ''}" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#${attrs.id ? attrs.id.encodeAsHTML() : ''}" data-slide="next">&rsaquo;</a>
+</div>
+{docx}
+

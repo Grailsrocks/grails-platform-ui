@@ -1,4 +1,4 @@
-If you cannot find an existing UI Set that generates markup compatible with your chosen or in-house JS/CSS framework, you can create your own.
+If you cannot find an existing UI Set that generates markup compatible with your chosen or in-house JS/CSS framework, you can create your own. Search the [Grails plugin repository|http://grails.org/plugins/tag/uiset] for plugins that provide UI Sets.
 
 Creating a UI Set is significantly more work than creating a theme because you need to supply the structural markup for all the UI tags. 
 

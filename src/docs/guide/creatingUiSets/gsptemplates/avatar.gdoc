@@ -17,15 +17,15 @@ classes | A string containing the list of CSS classes to apply to the outer cont
 user | The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set
 defaultSrc | The absolute URL of the default avatar image
 size | The size in pixels of the avatar to retrieve, i.e. "30"
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+attrs | The attributes to pass through to the image tag.
 {table}
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
 <g:set var="_gravatarURL" value="https://secure.gravatar.com/avatar/"/>
 <g:set var="_gravatarArgs" value="${user.encodeAsMD5()}?d=${defaultSrc?.encodeAsURL()}"/>
 <img src="${_gravatarURL}${_gravatarArgs}"
      class="${p.joinClasses(values:[avatarClass,classes])}"
      ${ui.attributes(exclude:'src')}/>
-{code}
+{docx}

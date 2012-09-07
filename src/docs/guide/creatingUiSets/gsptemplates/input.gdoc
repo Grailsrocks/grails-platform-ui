@@ -1,0 +1,75 @@
+The @_field.gsp@ template is used to render the [field|uiTags] tag.
+
+h3. Contract
+
+This GSP template must render all the structural markup required to render a label, input widget and optionally field errors and hints.
+
+The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin.
+
+There are several contractual considerations in this template.
+
+Your implementation must support:
+
+* The ability for developers to customize the various elements using @ui:fieldLabel@, @ui:fieldHint@, @ui:fieldErrors@ and @ui:fieldInput@.
+* Support for rendering multiple errors inline if the UI Set is rendering field errors inline
+
+The @ui:field@ tag handles most of the complexity around this for you.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+fieldClass | The CSS class to use for the primary container of the field HTML, obtained from UI Set config.
+invalidClass | The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+label | The label text or i18n message code to use for the label. If no value specified, must default the rules set out in [field|uiTags]
+labelArgs | An optional list of arguments to use when building the label i18n message
+hint | An optional hint string or i18n code to render with the field
+hintArgs | Optional argument list to accompany the value of "hint"
+invalid | Optional argument. If value is non-null, indicate that the field is or isn't valid using this value only, disregarding the actual field value.
+required | Optional argument. If value is non-null, indicate that the field is or isn't required, disregarding the value of any constraints on a validatable bean property
+name | The name of the field and/or name of the bean property to render the field for. Used as the name attribute of the field.
+bean | Optional. If non-null, field must be rendered for the property resolved using bean[name], using property type and constraints where available to render the appropriate field
+value | Optional. Use as the value of the field even if a the bean property value is different
+default | Optional. Value to use if "value" and the bean field value are null
+type | Optional. A type override for the field, with possible values "text", "checkbox", "radio", "textarea". If specified, this type of HTML input must be used
+attrs | Any extra attributes to pass through - the effect of these is undefined
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<div class="${p.joinClasses(values:[fieldClass, classes])}">
+    <g:if test="${customLabel}">
+        ${customLabel}
+    </g:if>
+    <g:else>
+        <label for="${id.encodeAsHTML()}">${label.encodeAsHTML()}</label>
+    </g:else>
+
+    <g:if test="${customInput}">
+        ${customInput}
+    </g:if>
+    <g:else>
+        ${input}
+    </g:else>
+
+    <g:if test="${customHint}">
+        ${customHint}
+    </g:if>
+    <g:elseif test="${hint}">
+        <span class="${hintClass}">${hint.encodeAsHTML()}</span>
+    </g:elseif>
+
+    <g:if test="${customErrors}">
+        ${customErrors}
+    </g:if>
+    <g:elseif test="${errors}">
+        <g:each in="${errors}" var="err">
+            <span class="${errorClass}">${err.encodeAsHTML()}</span>
+        </g:each>
+    </g:elseif>
+</div>
+{docx}
+
+This example uses the Grails Fields plugin to render the field. This is not a complete example (for example it does not handle type overrides), but is sufficient to demonstrate the mechanism.
