@@ -6,6 +6,8 @@ Executes the body of the tag only if the current layout name equals the name sup
 
 This is useful for common template GSPs that may need to include different content depending on the current theme in use.
 
+This can be used within Theme layouts and application/plugin GSPs.
+
 h2. Example
 
 You might have a theme header GSP template something like this:

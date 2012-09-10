@@ -2,19 +2,37 @@ h1. theme:layoutTemplate
 
 h2. Purpose
 
-TBC
+Renders a GSP template provided by the theme.
+
+Used to resolve GSP templates using the current theme and path conventions.
+
+This can be called from Theme layouts to pull in reusable GSP fragments, and can even be used to permit reuse of code across different themes, where a @g:render@ fragment included by theme A and B could render a GSP fragment specific to theme A or B depending on which is currently active.
+
+The templates must be located in:
+
+@/grails-app/views/\_themes/<ThemeName>/<templateName>@
 
 h2. Example
 
 {docx:xml}
-TBC
+<theme:layoutTemplate name="widgets/pollWidget"/>
 {docx}
+
+So for a given theme "Rainbow" and another called "Love", the above code would resolve to either:
+
+@/grails-app/views/\_themes/Rainbow/widgets/_pollWidget.gsp@
+
+or
+
+@/grails-app/views/\_themes/Love/widgets/_pollWidget.gsp@
+
+Depending on which theme is active.
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | Name/path of the template to render
 {table}
 
 

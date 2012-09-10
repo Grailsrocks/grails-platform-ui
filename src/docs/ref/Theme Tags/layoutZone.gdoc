@@ -2,21 +2,61 @@ h1. theme:layoutZone
 
 h2. Purpose
 
-Renders the content of a given zone. Used by Theme layouts to place the parts of the application's content within the structural HTML of the page. 
+Renders the content for a given zone. Used by Theme layouts to place the parts of the application's content within the structural HTML of the page. 
 
 See [Content Zones|guide:themeZones] for details of how the content is actually resolved.
+
+If the application or plugin developer has not provided content for this zone, Theme default content, or failing that Platform Core @p:dummyText@ will be used to supply content.
+
+See [ifZoneContent|themeTags] for details of how to detect empty zones and provide alternative non-default content.
 
 h2. Example
 
 {docx:xml}
-TBC
+<!DOCTYPE html>
+<html>
+    <theme:head/>
+    <theme:body>
+        <div class="container">
+            <div class="nav">
+                <theme:layoutZone name="navigation"/>
+                <theme:layoutZone name="user-navigation"/>
+            </div>
+            <div class="heading">
+                <theme:layoutTitle/>
+                <theme:layoutZone name="banner"/>
+            </div>
+            <div class="content">
+                <ui:displayMessage/>
+
+                <div class="main">
+                    <theme:layoutZone name="body"/>
+                </div>
+                <div class="panels">
+                    <div class="panel1">
+                        <theme:layoutZone name="panel1"/>
+                    </div>
+                    <div class="panel1">
+                        <theme:layoutZone name="panel1"/>
+                    </div>
+                    <div class="panel1">
+                        <theme:layoutZone name="panel1"/>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <theme:layoutZone name="footer"/>
+            </div>
+        </div>
+    </theme:body>
+</html>
 {docx}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | Name of the zone to render. The zones available depend on the current theme layout and the standard specifications for these.
 {table}
 
 

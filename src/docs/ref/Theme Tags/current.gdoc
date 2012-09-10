@@ -2,12 +2,12 @@ h1. theme:current
 
 h2. Purpose
 
-Returns the name of the current request's active theme.
+Returns the ThemeDefinition object of the current request's active theme.
 
 h2. Example
 
 {docx:xml}
-<p>You are using theme: <theme:current/></p>
+<p>You are using theme: ${theme.current().name}/></p>
 {docx}
 
 h2. Attributes

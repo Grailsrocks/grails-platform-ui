@@ -2,12 +2,47 @@ h1. theme:zone
 
 h2. Purpose
 
-TBC
+Defines the content for a Theme zone.
+
+This is the primary theming mechanism. Your application or plugin GSP pages will specify which layout they require, and then which content is to be used for each of the layout's zones.
+
+Zones are additive - if you call the tag multiple times with different content in the same request it will be appended to the zone. This allows plugins or filters to build up content.
+
+Using zones means that your GSP typically has no structural markup to define the macro layout of the page, only markup to go inside predefined areas of the Theme's layout.
+
+Order of zones is not related to their rendering, and you may define zones in GSP templates that you render with @g:render@ also, permitting maximum reuse.
 
 h2. Example
 
 {docx:xml}
-TBC
+<!DOCTYPE html>
+<html>
+    <head>
+        <theme:layout name="home"/>
+        <theme:title text="my.test.page"/>
+    </head>
+    <body>
+        <theme:zone name="body">
+            <p>Welcome to our site</p>
+        </theme:zone>
+
+        <theme:zone name="banner">
+            <g:render template="/marketing/mainbanner"/>
+        </theme:zone>
+
+        <theme:zone name="panel1">
+            <g:render template="/promotion/newproduct"/>
+        </theme:zone>
+
+        <theme:zone name="panel2">
+            <g:render template="/promotion/supportoptions"/>
+        </theme:zone>
+
+        <theme:zone name="panel3">
+            <g:render template="/promotion/signup"/>
+        </theme:zone>
+    </body>
+</html>
 {docx}
 
 h2. Attributes

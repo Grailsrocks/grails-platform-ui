@@ -4,7 +4,7 @@ h2. Purpose
 
 Defines the @<head>@ of a Theme layout.
 
-This is a shortcut for rendering the @<head>@ tag of a page.
+This is a shortcut for rendering the @<head>@ tag of a page, along with all the resource management.
 
 It automatically renders:
 
@@ -16,7 +16,7 @@ It automatically renders:
 
 It does all these things in the correct order to ensure that Resources render correctly.
 
-You do not need to use this tag to define a theme layout's head - but if you do not you must remember to call the @r:layoutResources@ tag at the correct point in the head.
+You do not need to use this tag to define a theme layout's head - but if you do not you must remember to call the @r:layoutResources@ tag at the correct point in the head, after calling the [resources|themeTags] Theme tag to include all the Theme's required resources.
 
 h2. Example
 

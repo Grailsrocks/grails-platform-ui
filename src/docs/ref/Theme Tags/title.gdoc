@@ -2,20 +2,34 @@ h1. theme:title
 
 h2. Purpose
 
-TBC
+Allows a GSP page to set the current page title using i18n.
+
+The title is resolved and then stored for [layoutTitle|themeTags] and [layoutHTMLTitle|themeTags] tags to use in the Theme layout.
 
 h2. Example
 
 {docx:xml}
-TBC
+<html>
+    <head>
+        <theme:title text="user.profile.screen"/>
+    </head>
+    <body>
+        ....
+    </body>
+</html>
 {docx}
+
+Once you have done this, your body content does not need to be concerned with rendering the title anywhere because the Theme layout is in control of this and how it will appear.
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+text | No | String to resolve as an i18n code or fall back to as default
+textArgs | No | Arguments to be used when rendering the i18n string
 {table}
+
+If no attributes are supplied, the body is used to resolve the i18n string.
 
 
 

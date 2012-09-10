@@ -2,19 +2,31 @@ h1. theme:resources
 
 h2. Purpose
 
-TBC
+Ensures the correct resources are included in the current request to support the current theme.
+
+This uses the Resources framework to issue an @r:require@ call to include all the modules required for the current layout of the current theme, including any UI Set modules required by this theme.
+
+Normally you do not need to call this tag, unless you are not using the [head|themeTags] tag which, if used, automatically calls this and @r:layoutResources@ for you.
 
 h2. Example
 
+If you wanted to spin your own HTML from scratch without using @theme:head@ or @theme:body@:
+
 {docx:xml}
-TBC
+<html>
+    <head>
+        <theme:resources/>
+        <r:layoutResources/>
+    </head>
+    <body>
+        ...
+        <r:layoutResources/>
+    </body>
+</html>
 {docx}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
+None
 
 

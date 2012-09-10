@@ -2,19 +2,30 @@ h1. theme:layoutHTMLTitle
 
 h2. Purpose
 
-TBC
+Renders the HTML @<title>@ attribute for the @<head>@ section of a Theme layout, using the [title|themeTags] tag to supply the content, safely escaping and resolving the title using standard Platform UI i18n rules.
+
+Theme layouts should use this tag to render the title.
 
 h2. Example
 
+An example theme layout:
 {docx:xml}
-TBC
+<html>
+<head>
+    <theme:layoutHTMLTitle/>
+</head>
+<body>
+    <div class="heading">
+        <theme:layoutTitle/>
+    </div>
+    <div class="content">
+        <theme:layoutZone name="body"/>
+    </div>
+</body>
+</html>
 {docx}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
-
+None
 

@@ -2,19 +2,19 @@ h1. theme:list
 
 h2. Purpose
 
-TBC
+Returns a list of the available Theme names.
+
+Useful if you want the user to be able to select the current theme.
 
 h2. Example
 
 {docx:xml}
-TBC
+Change theme: <g:select from="${theme.list()}"/>
 {docx}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
+None.
+
 
 

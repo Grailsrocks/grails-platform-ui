@@ -8,6 +8,8 @@ Content zones can have optional content, and if the application's GSP does not d
 
 For example your theme may render alternative content on the "sidebar" layout if there is no content defined for the sidebar.
 
+This can be used within Theme layouts and application/plugin GSPs.
+
 h2. Example
 
 {docx:xml}

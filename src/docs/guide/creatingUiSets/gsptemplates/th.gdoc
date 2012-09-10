@@ -4,7 +4,7 @@ h3. Contract
 
 This template is used to render table header cells for the [th|uiTags] tag.
 
-This can be used to render out metadata or extra elements for e.g. sortable columns.
+This can be used to render out metadata or extra elements for e.g. sortable columns, and uses Platform UI conventions to resolve i18n heading text.
 
 h3. Variables available
 
