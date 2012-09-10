@@ -1,4 +1,4 @@
-<ul class="pagination${classes}">
+<ul class="${p.joinClasses(values:[paginateClass, classes])}">
     <g:if test="${prev}">
         <li><a href="${prev.link}" class="prev">${prev.text}</a></li>
     </g:if>

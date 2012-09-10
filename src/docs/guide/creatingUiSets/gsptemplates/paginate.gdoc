@@ -1,24 +1,29 @@
-The @_paginate.gsp@ template is used to render the [paginate|uiTags] tag.
+The @\_paginate.gsp@ template is used to render the [paginate|uiTags] tag.
 
 h3. Contract
+
+This template is responsible for rendering the multi-page navigation controls used for reports, search results and so on.
+
+The [paginate|uiTags] tag implementation takes care of the hard parts related to calculating links, what options should be available to the user etc, and this template must simply render the correct markup using the information provided.
 
 h3. Variables available
 
 {table}
 *Name* | *Description*
+paginateClass | A string containing the CSS class to apply to the outer container
 classes | A string containing the list of CSS classes to apply to the outer container
 next | The information for the "next" link
 prev | The information for the "previous" link
 earlier | The information for the "earlier" link, to the list of pages before the current start page number
 later | The information for the "later" link, to the list of pages after the last page number listed
-items | The list of page items to show UI for, each with properties "link", "active" and "text",
+items | The list of page items to show UI for, each with properties "link", "active" and "text"
 attrs | Any extra attributes the use passed in. Usage of this is undefined across UI Sets
 {table}
 
 h3. Example template implementation
 
 {docx:xml}
-<ul class="pagination${classes}">
+<ul class="${p.joinClasses(values:[paginateClass, classes])}">
     <g:if test="${prev}">
         <li><a href="${prev.link}" class="prev">${prev.text}</a></li>
     </g:if>

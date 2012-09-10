@@ -2,19 +2,32 @@ h1. ui:slide
 
 h2. Purpose
 
-TBC
+Defines a slide for use inside a [carousel|uiTags] tag.
+
+A slide is one of the panels that can be displayed in the automatically "rotating" carousel.
 
 h2. Example
 
 {docx:xml}
-TBC
+    <ui:carousel>
+        <ui:slide active="true">
+            This is slide one
+        </ui:slide>
+        <ui:slide>
+            This is our second marketing slide
+        </ui:slide>
+        <ui:slide>
+            And here is our third marketing slide
+        </ui:slide>
+    </ui:carousel>
 {docx}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+class | No | Any extra CSS classes to apply to the outermost container of the slide
+active | No | Set to true on one slide to define which should be shown first.
 {table}
 
 

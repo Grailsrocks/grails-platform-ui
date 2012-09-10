@@ -8,7 +8,7 @@ There are only three things you need to do:
 
 h2. Providing a Theme implementation
 
-Out of the box there is a default theme called @_default@. This will be used if you don't provide your own. It is deliberately minimal
+Out of the box there is a default theme called @\_default@. This will be used if you don't provide your own. It is deliberately minimal
 
 You can provide a Theme by either installing a Theme plugin (a standard Grails plugin containing a theme), or by creating your own Theme.
 
@@ -17,7 +17,7 @@ Most real apps will supply their own Theme, or a forked version of a Theme from 
 To create your own theme see the [Creating Themes|guide:creatingThemes]. Scripts are provided to fork existing themes or create new plain ones.
 
 You don't need to tell the app which Theme to use at this stage because it will default to the first non-default theme you have installed, or fall
-back to the @_default@ theme.
+back to the @\_default@ theme.
 
 h2. Telling Platform UI which Theme Layout to use
 

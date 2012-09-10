@@ -1,6 +1,10 @@
 overview: 
   title: Overview
-gettingStarted: Getting Started
+changelog: Change Log
+gettingStarted:
+  title: Getting Started
+  gettingstartedui: Building a "portable" UI
+integratingPluginUi: Integrating Plugin UIs
 ui:
   title: UI API
   uisets: About UI Sets
@@ -35,14 +39,15 @@ creatingUiSets:
     form: The Form template
     actions: The Actions template
     field: The Field template
+    input: The input template
     fieldGroup: The Field Group template
     image: The Image template
     logo: The Logo template
     message: The Message template
-    nav: The Navigation template
     paginate: The Paginate template
     primaryNavigation: The Primary Navigation template
     secondaryNavigation: The Secondary Navigation template
+    nav: The navigation template
     table: The Table template
     tr: The Table Row template
     th: The Table Heading template

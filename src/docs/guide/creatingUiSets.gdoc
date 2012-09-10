@@ -2,5 +2,5 @@ If you cannot find an existing UI Set that generates markup compatible with your
 
 Creating a UI Set is significantly more work than creating a theme because you need to supply the structural markup for all the UI tags. 
 
-However you can create a UI Set based on the @_default@ provided by Platform UI, or fork a UI Set that already exists in your application i.e. one provided by a plugin you have installed. See the [create-ui-set|scripts] and [fork-ui-set|scripts] script documentation.
+However you can create a UI Set based on the @\_default@ provided by Platform UI, or fork a UI Set that already exists in your application i.e. one provided by a plugin you have installed. See the [create-ui-set|scripts] and [fork-ui-set|scripts] script documentation.
 

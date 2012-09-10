@@ -1,0 +1,30 @@
+The @\_slide.gsp@ template is used to render the [slide|uiTags] tag.
+
+h3. Contract
+
+This template must render the markup required to encapsulate a single slide for a [carousel|uiTags] component.
+
+Typically a container div will be required with some kind of indicator class or HTML5-data attribute.
+
+The output of the slide template is collected together and passed to the template for the [carousel|uiTags] tag.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+id | Unique slide id - will be passed in by the user or auto generated for you
+slideClass | The CSS class to apply for slides, from UI Set config
+classes | A string containing the list of CSS classes to apply to the outer container
+bodyContent | The body of the slide
+attrs | The attributes to pass through to the outermost container element. 
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<div id="slide_${id}" class="${p.joinClasses(
+    values:[slideClass, active ? ' active' : '', classes])}"${ui.attributes()}>
+    ${bodyContent}
+</div>
+{docx}
+

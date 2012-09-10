@@ -314,14 +314,14 @@ class UITagLib implements InitializingBean {
     def primaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
         def navClass = grailsUISets.getUICSSClass(request, 'primaryNavigation', 'nav primary')
-        out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, navClass:navClass])
+        out << renderUITemplate('primaryNavigation', [classes:classes, attrs:attrs, primaryNavigationClass:navClass])
     }
 
     def secondaryNavigation = { attrs, body ->
         def classes = attrs.remove('class')
 
         def navClass = grailsUISets.getUICSSClass(request, 'secondaryNavigation', 'nav secondary')
-        out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, navClass:navClass])
+        out << renderUITemplate('secondaryNavigation', [classes:classes, attrs:attrs, secondaryNavigationClass:navClass])
     }
     
     def navigation = { attrs, body ->
@@ -329,7 +329,7 @@ class UITagLib implements InitializingBean {
         def scope = attrs.remove('scope') 
 
         def navClass = grailsUISets.getUICSSClass(request, 'navigation', 'nav')
-        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, scope:scope, navClass:navClass])
+        out << renderUITemplate('navigation', [classes:classes, attrs:attrs, scope:scope, navigationClass:navClass])
     }
 
     def displayMessage = { attrs, body ->
@@ -354,10 +354,17 @@ class UITagLib implements InitializingBean {
     def message = { attrs, body ->
         def type = attrs.remove('type') ?: MESSAGE_INFO
         
+        def messageClass = grailsUISets.getUICSSClass(request, 'navigation', 'nav')
+
         if (MESSAGE_DEBUG != type || Environment.current == Environment.DEVELOPMENT) {
             def classes = attrs.remove('class')
             def text = getMessageOrBody(attrs, body)
-            def output = renderUITemplate('message', [bodyContent:text, type:type, classes:classes, attrs:attrs])
+            def output = renderUITemplate('message', [
+                bodyContent:text, 
+                type:type, 
+                classes:classes, 
+                attrs:attrs,
+                messageClass:messageClass])
             out << output
         }
     }
@@ -508,7 +515,10 @@ class UITagLib implements InitializingBean {
             nextItem.link = createLink(linkTagAttrs.clone())
         }
 
+        def paginateClass = grailsUISets.getUICSSClass(request, 'paginate', 'paginate')
+
         out << renderUITemplate('paginate', [
+            paginateClass:paginateClass, 
             classes:attrs.'class', 
             items:items, 
             next:nextItem.enabled ? nextItem : null, 
@@ -567,7 +577,7 @@ class UITagLib implements InitializingBean {
         
         def classes = p.joinClasses(values:[
                 attrs.remove('class'), 
-                fieldClass,
+                inputClass,
                 invalid ? invalidClass : null])
 
 
@@ -757,7 +767,11 @@ class UITagLib implements InitializingBean {
     def table = { attrs, body ->
         def classes = attrs.remove('class')
         def tableClass = grailsUISets.getUICSSClass(request, 'table', 'table')
-        out << renderUITemplate('table', [attrs:attrs, bodyContent:body(tableBodyRow:(int)0), tableClass: tableClass, classes:classes])
+        out << renderUITemplate('table', [
+            attrs:attrs, 
+            bodyContent:body(tableBodyRow:(int)0), 
+            tableClass: tableClass,
+            classes:classes])
     }
     
     def tr = { attrs, body ->
@@ -781,7 +795,9 @@ class UITagLib implements InitializingBean {
         def text = getMessageOrBody(attrs, body).encodeAsHTML()
         def classes = attrs.remove('class')
         def otherAttrs = TagLibUtils.attrsToString(attrs)
+        def thClass = grailsUISets.getUICSSClass(request, 'th', 'th')
         out << renderUITemplate('th', [
+            thClass:thClass,    
             attrs:otherAttrs, 
             bodyContent:text, 
             classes:classes
@@ -794,8 +810,8 @@ class UITagLib implements InitializingBean {
         args.logoClass = grailsUISets.getUICSSClass(request, 'logo', 'logo')
         def w = attrs.width
         def h = attrs.height
-        args.w = w
-        args.h = h
+        args.width = w
+        args.height = h
         
         // This may look for "x" or "300x" or "x500" or "300x500"
         args.logoUri = resolveLogo(w, h)

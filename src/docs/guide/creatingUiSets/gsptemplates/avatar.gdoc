@@ -1,4 +1,4 @@
-The @_avatar.gsp@ template is used to render the [avatar|uiTags] tag.
+The @\_avatar.gsp@ template is used to render the [avatar|uiTags] tag.
 
 h3. Contract
 

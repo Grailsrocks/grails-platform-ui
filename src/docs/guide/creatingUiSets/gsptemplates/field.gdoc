@@ -1,10 +1,10 @@
-The @_field.gsp@ template is used to render the [field|uiTags] tag.
+The @\_field.gsp@ template is used to render the [field|uiTags] tag.
 
 h3. Contract
 
 This GSP template must render all the structural markup required to render a label, input widget and optionally field errors and hints.
 
-The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin. This template however is only responsible for the structural layout of the various field elements, not the input itself. For the details of how inputs are actually rendered see the [input|input] template reference. 
+The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin. This template however is only responsible for the structural layout of the various field elements, not the input itself. For the details of how inputs are actually rendered see the [input|guide:input] template reference. 
 
 There are several contractual considerations in this template.
 

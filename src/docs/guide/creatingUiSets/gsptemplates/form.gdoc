@@ -1,4 +1,4 @@
-The @_form.gsp@ template is used to render the [form|uiTags] tag.
+The @\_form.gsp@ template is used to render the [form|uiTags] tag.
 
 h3. Contract
 

@@ -1,0 +1,9 @@
+h3. 1.0.M1
+
+Changes since previously released snapshots
+
+* New ui:actions handling (capturing body) and requirement for _form.gsp to render ${actions}
+* Change of model variables in _logo.gsp from w/h to width/height to avoid any possible taglib namespace clashes if values are null
+* Added fieldClass on ui:field model
+* Added inputClass on ui:input model
+* Added messageClass on ui:message model

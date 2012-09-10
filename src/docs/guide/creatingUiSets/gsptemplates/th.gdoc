@@ -1,19 +1,24 @@
-The @_th.gsp@ template is used to render the [th|uiTags] tag.
+The @\_th.gsp@ template is used to render the [th|uiTags] tag.
 
 h3. Contract
+
+This template is used to render table header cells for the [th|uiTags] tag.
+
+This can be used to render out metadata or extra elements for e.g. sortable columns.
 
 h3. Variables available
 
 {table}
 *Name* | *Description*
+thClass | CSS class to use for the element, from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
-body | The body of the heading
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The body of the heading
+attrs | The attributes to pass through to the outermost element
 {table}
 
 h3. Example template implementation
 
-{code:xml}
-<th class="${classes}"${ui.attributes()}>${bodyContent}</th>
-{code}
+{docx:xml}
+<th class="${p.joinClasses(valus:[thClass, classes])}"${ui.attributes()}${bodyContent}</th>
+{docx}
 

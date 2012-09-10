@@ -1,6 +1,6 @@
 <ui:block title="Typography">
     <ui:h1>Theme-relative Heading 1</ui:h1>
-    <ui:h2>Theme-relative Heading 2</ui:h2>
+    <ui:h2>Theme-relative Heading 2</ui:h2    
     <ui:h3>Theme-relative Heading 3</ui:h3>
     <ui:h4>Theme-relative Heading 4</ui:h4>
     <p>Paragraph text: <p:dummyText size="1"/></p>

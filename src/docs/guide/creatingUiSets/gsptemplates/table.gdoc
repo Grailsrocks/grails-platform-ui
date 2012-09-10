@@ -1,6 +1,10 @@
-The @_table.gsp@ template is used to render the [table|uiTags] tag.
+The @\_table.gsp@ template is used to render the [table|uiTags] tag.
 
 h3. Contract
+
+This template is used to render tables. Typically this would use HTML @<table>@ but this is not a concrete requirement - just that it is represented to the user as a columnar table.
+
+The nested @ui:tr@ and @ui:th@ calls allow this template to apply extra logic.
 
 h3. Variables available
 
@@ -8,15 +12,15 @@ h3. Variables available
 *Name* | *Description*
 tableClass | The CSS class to use for the primary container of the table HTML, obtained from UI Set config.
 classes | A string containing the list of CSS classes to apply to the outer container
-body | The body of the table
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The body of the table
+attrs | The attributes to pass through to the outermost container element.
 {table}
 
 h3. Example template implementation
 
-{code:xml}
+{docx:xml}
 <table class="${p.joinClasses(values:[tableClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </table>
-{code}
+{docx}
 

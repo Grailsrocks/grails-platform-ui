@@ -1,0 +1,30 @@
+The @\_secondaryNavigation.gsp@ template is used to render the [secondaryNavigation|uiTags] tag.
+
+h3. Contract
+
+This template must render the secondary navigation items for the application.
+
+The secondary navigation is the set of navigation items that apply to the currently active primary navigation item.
+
+Only the top level secondary items must be rendered.
+
+The [secondaryNavigation|uiTags] tag is typically only called from Theme layouts to render the site navigation menu.
+
+See [navigation|guide:nav] template documentation for details of adherence to Navigation API.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+secondaryNavigationClass | A string containing the CSS class to apply to the outermost container element
+classes | A string containing the list of CSS classes to apply to the outer container
+attrs | The attributes to pass through to the outermost containing element. 
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<p:callTag tag="nav:secondary" attrs="${attrs + 
+    [class:p.joinClasses(values:[secondaryNavigationClass, classes]]}"/>
+{docx}
+

@@ -1,0 +1,36 @@
+The @\_navigation.gsp@ template is used to render the [navigation|uiTags] tag.
+
+h3. Contract
+
+This template must render the navigation items from the supplied scope, or default the default application navigation scope if no scope is supplied.
+
+Only the top level items at the scope supplied must be rendered, nested item rendering is not permitted.
+
+An example use case: a plugin may expose a page that lists a set of administration options that are below secondary navigation level, such as:
+
+{docx:xml}
+<theme:zone name="body">
+    <ui:block title="Email Confirmation Administration">
+        <p>Choose from the following options:</p>
+        <ui:navigation scope="plugin/emailconfirmation.admin"/>
+    </ui:block>
+</theme:zone>
+{docx}
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+navigationClass | A string containing the CSS class to apply to the outermost container element
+scope | A string identifying the navigation scope to render
+classes | A string containing the list of CSS classes to apply to the outer container
+attrs | The attributes to pass through to the outermost containing element. 
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<p:callTag tag="nav:menu" attrs="${attrs + 
+    [class:p.joinClasses(values:[navigationClass, classes], scope:scope]}"/>
+{docx}
+

@@ -14,7 +14,7 @@ h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | No | Optional name of the zone. Defaults to "body"
 {table}
 
 

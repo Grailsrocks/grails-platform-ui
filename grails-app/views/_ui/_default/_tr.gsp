@@ -1,3 +1,3 @@
-<tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
+<tr class="${p.joinClasses(values:[trClass, oddEvenClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </tr>

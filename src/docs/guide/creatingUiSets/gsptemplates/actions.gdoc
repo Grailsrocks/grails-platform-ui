@@ -1,4 +1,4 @@
-The @_actions.gsp@ template is used to render the [actions|uiTags] tag.
+The @\_actions.gsp@ template is used to render the [actions|uiTags] tag.
 
 h3. Contract
 

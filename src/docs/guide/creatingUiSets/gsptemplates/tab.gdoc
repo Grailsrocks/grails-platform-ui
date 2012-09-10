@@ -1,23 +1,34 @@
-The @_tab.gsp@ template is used to render the [tab|uiTags] tag.
+The @\_tab.gsp@ template is used to render the [tab|uiTags] tag.
 
 h3. Contract
+
+This template must render the markup required to define a tab within the context of a [tabs|uiTags] tag.
+
+The [tabs|guide:tabs] template collects all the outputs of each [tab|uiTags] invocation rendered by this template, and the @tabs@ template then iterates over them to render the necessary markup.
 
 h3. Variables available
 
 {table}
 *Name* | *Description*
-oddEvenClass | The CSS class to use for the row, do indicate if it is even/odd. Value comes from UI Set config
+id | Unique id of the tab in this page. Supplied by user or auto generated
+tabClass | CSS class to apply to the outermost container element, from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
-row | The current row index in the table (zero based)
-body | The body of the row
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The tab content
+active | True if the tab is currently the active tab
+title | Title text for the tab, resolved from i18n
+link | Target link for the tab if it is a link to another URL, may be null
+attrs | The attributes to pass through to the outermost container element.
 {table}
 
 h3. Example template implementation
 
-{code:xml}
-<tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
-    ${bodyContent}
-</tr>
-{code}
+{docx:xml}
+<g:if test="${!link}">
+    <div id="tab_${id}" class="${p.joinClasses(
+        values:[active ? ' active' : '', tabClass, classes])}"
+        ${ui.attributes()}>
+        ${bodyContent}
+    </div>
+</g:if>
+{docx}
 

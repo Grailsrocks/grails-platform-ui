@@ -1,4 +1,4 @@
-The @_block.gsp@ template is used to render the [block|uiTags] tag.
+The @\_block.gsp@ template is used to render the [block|uiTags] tag.
 
 h3. Contract
 

@@ -1,0 +1,23 @@
+h3. Exposing a reusable UI in a plugin
+
+* Avoid custom layout markup
+* Add classes to elements where customisation may be desirable (allows app dev to override CSS for plugin UI elements to fix up layout issues)
+* Non-standard layouts (and mapping them)
+* What no grid
+
+h3. How to implement non-standard UI elements
+
+@todo: Stuff not covered by UI Set tags requires either integration with UISets using some extension template resolution so themes/uisets can provide support for these widgets over time, and/or switching JS code used based on included resource modules to detect JS frameworks used and include different JS based on this
+
+h3. Customising UI provided by a plugin
+
+Hook points:
+
+* CSS classes
+* UISet CSS class overrides
+* Theme layout overrides
+* UISet template overrides
+
+h3. Overriding UI from a plugin
+
+* Override entire GSP using normal mechanisms

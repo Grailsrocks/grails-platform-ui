@@ -1,13 +1,12 @@
-The @_logo.gsp@ template is used by the [logo|uiTags] tag.
+The @\_logo.gsp@ template is used by the [logo|uiTags] tag.
 
 h3. Contract
 
-This template must render the application logo inline.
+This template must render the application logo as an inline image.
 
-The logo should be a link to the site's primary URL.
+The logo should include a link to the site's primary URL.
 
-Themes that use pure CSS for logos using e.g. background-image should follow the same conventions for the logo file name and location
-as per the [logo|uiTags] tag definition.
+Themes that use pure CSS for logos using e.g. background-image should follow the same conventions for the logo file name and location as per the [logo|uiTags] tag definition.
 
 h3. Variables available
 
@@ -16,8 +15,8 @@ h3. Variables available
 logoUri | URI of the logo to use
 classes | String of CSS classes supplied
 logoClass | Class to apply to the logo element
-w | Width of the logo or empty
-h | Height of the logo or empty
+width | Width of the logo or empty
+height | Height of the logo or empty
 {table}
 
 h3. Example template implementation
@@ -27,5 +26,5 @@ h3. Example template implementation
   <r:img uri="${logoUri.encodeAsHTML()}" 
     class="${p.joinClasses(values:[classes, logoClass])}"
     alt="${p.siteName()}" 
-    width="${w}" height="${h}"/></a>
+    width="${width}" height="${height}"/></a>
 {docx}

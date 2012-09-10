@@ -1,23 +1,29 @@
-The @_tr.gsp@ template is used to render the [tr|uiTags] tag.
+The @\_tr.gsp@ template is used to render the [tr|uiTags] tag.
 
 h3. Contract
+
+This template is used to render table rows for the [tr|uiTags] tag.
+
+This can be used to render extra decoration.
 
 h3. Variables available
 
 {table}
 *Name* | *Description*
+trClass | CSS class to use for the element, from UI Set config
 oddEvenClass | The CSS class to use for the row, to indicate if it is even/odd. Value comes from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
 row | The current row index in the table (zero based)
-body | The body of the row
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The body of the row
+attrs | The attributes to pass through to the outermost element. 
 {table}
 
 h3. Example template implementation
 
-{code:xml}
-<tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
+{docx:xml}
+<tr class="${p.joinClasses(values:[trClass, oddEvenClass, classes])}"${ui.attributes()}>
     ${bodyContent}
 </tr>
-{code}
+{docx}
+
 

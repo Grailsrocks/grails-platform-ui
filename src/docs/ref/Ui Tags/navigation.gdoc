@@ -4,9 +4,11 @@ h2. Purpose
 
 Renders a navigation menu.
 
-Where the data for the navigation menu comes from is not defined by this tag. The default UI Set template uses the Platform Core Navigation API, but other UI Sets can use any API they like.
+Where the data for the navigation menu comes from is not defined by this tag. The default UI Set template uses the Platform Core Navigation API, but other UI Sets can use any API they like. However it is strongly recommended that plugins use the Platform Core Navigation API because it will be hard if not impossible for application developers to support plugins that utilize different navigation systems.
 
 As such there is only one attribute here, to indicate what "scope" of navigation to show. How this is interpreted is up to the UI Set's navigation implementation, but by default this maps to a Platform Core Navigation scope.
+
+The navigation depth supported is only one - i.e. the level defined by the scope supplied, and no children or descendents. Templates must ensure only this level is rendered.
 
 h2. Example
 

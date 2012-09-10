@@ -1,4 +1,4 @@
-The @_image.gsp@ template is used to render the [image|uiTags] tag.
+The @\_image.gsp@ template is used to render the [image|uiTags] tag.
 
 h3. Contract
 

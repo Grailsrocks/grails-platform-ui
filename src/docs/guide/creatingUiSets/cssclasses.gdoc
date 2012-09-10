@@ -22,6 +22,7 @@ def doWithConfig = { config ->
         ui.Bootstrap.tr.cssClass = ''
         ui.Bootstrap.trOdd.cssClass = ''
         ui.Bootstrap.trEven.cssClass = ''
+        ui.Bootstrap.th.cssClass = ''
         ui.Bootstrap.carousel.cssClass = 'carousel'
         ui.Bootstrap.slide.cssClass = 'item'
         ui.Bootstrap.form.cssClass = 'form-horizontal'

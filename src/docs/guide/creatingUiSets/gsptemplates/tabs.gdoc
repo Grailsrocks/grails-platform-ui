@@ -1,6 +1,12 @@
-The @_tabs.gsp@ template is used to render the [tabs|uiTags] tag.
+The @\_tabs.gsp@ template is used to render the [tabs|uiTags] tag.
 
 h3. Contract
+
+This template renders the markup requires to define a set of tabs.
+
+Tabs have a title for each tab, and can either link to a new URL or hide and display different tabs of content embedded in the page.
+
+The tabs are provided in a model variable, having been collected from the [tab|guide:tab] template used to implement the [tab|uiTags] tag.
 
 h3. Variables available
 
@@ -8,16 +14,27 @@ h3. Variables available
 *Name* | *Description*
 tabsClass | The CSS class to use for the tabs container. Value comes from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
-row | The current row index in the table (zero based)
-body | The body of the row
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+tabs | The list of tabs, each with @active@, @id@ and @bodyContent@ properties
+attrs | The attributes to pass through to the outermost container element.
 {table}
 
 h3. Example template implementation
 
-{code:xml}
-<tr class="${p.joinClasses(values:[oddEvenClass, classes])}"${ui.attributes()}>
-    ${bodyContent}
-</tr>
-{code}
+{docx:xml}
+<ul class="${p.joinClasses(values:[tabsClass, classes])}" ${ui.attributes()}>
+<g:each in="${tabs}" var="t">
+    <li ${t == active ? 'class="active"' : ''}>
+        <a href="${t.link ?: ('#'+t).encodeAsHTML()}">
+        ${t.title.encodeAsHTML()}
+        </a>
+    </li>
+</g:each>
+</ul>
+<div class="tabBodies">
+    <g:each in="${tabs}" var="t">
+        ${t.bodyContent}
+    </g:each>
+</div>
+{docx}
 
+This example renders a @<ul>@ list containing the tabs and links, and then a set of @<div>@ containing the tab contents.

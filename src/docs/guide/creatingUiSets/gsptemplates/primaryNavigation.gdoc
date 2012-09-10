@@ -1,0 +1,30 @@
+The @\_primaryNavigation.gsp@ template is used to render the [primaryNavigation|uiTags] tag.
+
+h3. Contract
+
+This template must render the primary navigation items for the application.
+
+The primary navigation is the top-level site navigation, which typically includes highlighting the current active top level item.
+
+Only the top level items of the default site navigation must be rendered.
+
+The [primaryNavigation|uiTags] tag is typically only called from Theme layouts to render the site navigation menu.
+
+See [navigation|guide:nav] template documentation for details of adherence to Navigation API.
+
+h3. Variables available
+
+{table}
+*Name* | *Description*
+primaryNavigationClass | A string containing the CSS class to apply to the outermost container element
+classes | A string containing the list of CSS classes to apply to the outer container
+attrs | The attributes to pass through to the outermost containing element. 
+{table}
+
+h3. Example template implementation
+
+{docx:xml}
+<p:callTag tag="nav:primary" attrs="${attrs + 
+    [class:p.joinClasses(values:[primaryNavigationClass, classes]]}"/>
+{docx}
+

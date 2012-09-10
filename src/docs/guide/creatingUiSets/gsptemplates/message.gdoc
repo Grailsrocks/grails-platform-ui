@@ -1,22 +1,25 @@
-The @_mesage.gsp@ template is used to render the [message|uiTags] tag.
+The @\_message.gsp@ template is used to render the [message|uiTags] tag.
 
 h3. Contract
+
+This template must render out a UI message which is essentially a block of unstyled text resolved via i18n, with a message type associated with it. 
 
 h3. Variables available
 
 {table}
 *Name* | *Description*
+messageClass | A string containing the CSS class to apply to the outermost container element
 classes | A string containing the list of CSS classes to apply to the outer container
 type | The kind of message to use. See [message|uiTags]for the 
-bodyContent | The body of the message
-attrs | The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.
+bodyContent | The body of the message, without formatting
+attrs | The attributes to pass through to the outermost containing element. 
 {table}
 
 h3. Example template implementation
 
-{code:xml}
-<div class="message${classes} msg_${type}"${ui.attributes()}>
+{docx:xml}
+<div class="${p.joinClasses(values:[messageClass, classes])}"${ui.attributes()}>
     <p>${bodyContent}</p>
 </div>
-{code}
+{docx}
 
