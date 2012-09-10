@@ -2,19 +2,30 @@ h1. theme:layout
 
 h2. Purpose
 
-TBC
+Sets the desired theme layout for the current request.
+
+Call this tag to indicate which Theme layout your page requires.
 
 h2. Example
 
 {docx:xml}
-TBC
+<html>
+<head>
+    <theme:layout name="dialog"/>
+</head>
+<body>
+    <theme:zone name="body">
+        <g:render template="/mycommon/loginForm"/>
+    </theme:zone>
+</body>
+</html>
 {docx}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | The name of the theme layout desired.
 {table}
 
 

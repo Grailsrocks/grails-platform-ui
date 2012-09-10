@@ -2,19 +2,32 @@ h1. theme:ifLayoutIsNot
 
 h2. Purpose
 
-TBC
+Executes the body of the tag only if the current layout name is not equal to the name supplied.
+
+This is useful for common template GSPs that may need to include different content depending on the current theme in use.
 
 h2. Example
 
+You might have a theme header GSP template something like this:
+
 {docx:xml}
-TBC
+<theme:ifLayoutIs name="home">
+    <div class="header">
+        <theme:layoutZone name="banner"/>
+    </div>
+</theme:ifLayoutIs>
+<theme:ifLayoutIsNot name="home">
+    <div class="header">
+        <theme:layoutTitle/>
+    </div>
+</theme:ifLayoutIsNot>
 {docx}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | A layout name i.e. "dialog"
 {table}
 
 

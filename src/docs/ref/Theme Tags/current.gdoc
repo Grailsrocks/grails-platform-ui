@@ -2,19 +2,16 @@ h1. theme:current
 
 h2. Purpose
 
-TBC
+Returns the name of the current request's active theme.
 
 h2. Example
 
 {docx:xml}
-TBC
+<p>You are using theme: <theme:current/></p>
 {docx}
 
 h2. Attributes
 
-{table}
-*Name* | *Required?* | *Description*
-TBC | TBC | TBC
-{table}
+None
 
 

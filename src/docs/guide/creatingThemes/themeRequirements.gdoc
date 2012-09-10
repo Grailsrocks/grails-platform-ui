@@ -38,5 +38,18 @@ GSP pages do not know where to place the title of the page shown in the content 
 
 As such they simply specify what the title is, and the layout has to "do the right thing" by creating a relevant @div@ or heading tag.
 
+h3. Default content
 
+Themes allow you to supply default content for each zone that shows off the theme at its best, so that application developers can get a taste for how their app might really look when using your theme correctly.
 
+This is also useful for content that is typically the same in all your layouts (i.e. navigation, footers) that you still would like the application developer to be able to override by supplying content for that zone or overriding the default GSP.
+
+To define your own default content, simply place GSP templates in:
+
+@/grails-app/views/\_themes/<ThemeName>/default/\_<zone-name>.gsp@
+
+for defaults that apply to any Theme layout or:
+
+@/grails-app/views/\_themes/<ThemeName>/default/<LayoutName>/\_<zone-name>.gsp@
+
+for defaults that are specific to one of your named theme layouts.

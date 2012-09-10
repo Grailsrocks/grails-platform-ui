@@ -2,19 +2,25 @@ h1. theme:ifNoZoneContent
 
 h2. Purpose
 
-TBC
+Executes the body only if there is no content explicitly defined for the specified content zone.
+
+Content zones can have optional content, and if the application's GSP does not define any content for a zone, you can test this and take alternative action.
+
+For example your theme may render alternative content on the "sidebar" layout if there is no content defined for the sidebar.
 
 h2. Example
 
 {docx:xml}
-TBC
+<theme:ifNoZoneContent name="panel1">
+    Google Adsense Here
+</theme:ifNoZoneContent>
 {docx}
 
 h2. Attributes
 
 {table}
 *Name* | *Required?* | *Description*
-TBC | TBC | TBC
+name | Yes | The name of the zone that you wish to test for content
 {table}
 
 
