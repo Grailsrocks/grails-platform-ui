@@ -31,6 +31,6 @@ h3. Example template implementation
 
 {docx:xml}
 <p:callTag tag="nav:menu" attrs="${attrs + 
-    [class:p.joinClasses(values:[navigationClass, classes], scope:scope]}"/>
+    [class:p.joinClasses(values:[navigationClass, classes]), scope:scope]}"/>
 {docx}
 
