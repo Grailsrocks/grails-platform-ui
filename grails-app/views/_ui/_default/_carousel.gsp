@@ -1,5 +1,5 @@
-<div class="carousel${classes}" ${ui.attributes()}>
+<div id="${id}" class="${p.joinClasses(values:[carouselClass, classes])}" ${ui.attributes()}>
     <g:each in="${slides}" var="s">
-        ${s.body}
+        ${s.bodyContent}
     </g:each>
 </div>

@@ -199,6 +199,7 @@ class UITagLib implements InitializingBean {
         def bodyContent = body(_ui_tabBodies:tabBodiesBuffer)
         // Output the list of tabs
         out << renderUITemplate('tabs', [
+            id:attrs.id ?: TagLibUtils.newUniqueId(request),
             attrs:attrs,
             classes:classes, 
             tabsClass:tabsClass,
@@ -244,7 +245,7 @@ class UITagLib implements InitializingBean {
             active:active
         ]
 
-        bodyPanelArgs.body = renderUITemplate('tab', [
+        bodyPanelArgs.bodyContent = renderUITemplate('tab', [
             id:tabId,
             classes:classes,
             attrs:attrs,
@@ -828,6 +829,7 @@ class UITagLib implements InitializingBean {
         def bodyContent = body(_ui_carouselBodies:carouselBodiesBuffer)
         // Output the list of tabs
         out << renderUITemplate('carousel', [
+            id:attrs.id ?: TagLibUtils.newUniqueId(request),
             attrs:attrs,
             classes:classes, 
             carouselClass:carouselClass,

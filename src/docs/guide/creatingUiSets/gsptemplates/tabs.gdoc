@@ -12,6 +12,7 @@ h3. Variables available
 
 {table}
 *Name* | *Description*
+id | The id of the outermost element supplied by application developer or auto-generated
 tabsClass | The CSS class to use for the tabs container. Value comes from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
 tabs | The list of tabs, each with @active@, @id@ and @bodyContent@ properties
@@ -24,9 +25,7 @@ h3. Example template implementation
 <ul class="${p.joinClasses(values:[tabsClass, classes])}" ${ui.attributes()}>
 <g:each in="${tabs}" var="t">
     <li ${t == active ? 'class="active"' : ''}>
-        <a href="${t.link ?: ('#'+t).encodeAsHTML()}">
-        ${t.title.encodeAsHTML()}
-        </a>
+        <a href="${t.link ?: ('#'+t.id).encodeAsHTML()}">${t.title.encodeAsHTML()}</a>
     </li>
 </g:each>
 </ul>

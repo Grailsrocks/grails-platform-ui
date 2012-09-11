@@ -20,6 +20,7 @@ h3. Variables available
 
 {table}
 *Name* | *Description*
+id | The id for the outermost element supplied by the developer or auto-generated
 carouselClass | The CSS class to use for the carousel container. Value comes from UI Set config
 classes | A string containing the list of CSS classes to apply to the outer container
 slides | A list of the slides to include, each with properties @id@, @active@, @bodyContent@
@@ -29,17 +30,13 @@ attrs | The attributes to pass through to the container tag.
 h3. Example template implementation
 
 {docx:xml}
-<g:set var="carouselId"
-    value="${attrs.id ? 'id="'+attrs.id.encodeAsHTML()+'" ' : ''}"/>
-<div ${carouselId}class="${p.joinClasses(values:[carouselClass, classes])}">
+<div id="${id}" class="${p.joinClasses(values:[carouselClass, classes])}">
     <div class="carousel-inner">
         <g:each in="${slides}" var="s">${s.bodyContent}</g:each>
     </div>
-    <a class="carousel-control left" 
-        href="#${attrs.id ? attrs.id.encodeAsHTML() : ''}"
+    <a class="carousel-control left" href="#${id}"
         data-slide="prev">&lsaquo;</a>
-    <a class="carousel-control right"
-        href="#${attrs.id ? attrs.id.encodeAsHTML() : ''}"
+    <a class="carousel-control right" href="#${id}"
         data-slide="next">&rsaquo;</a>
 </div>
 {docx}

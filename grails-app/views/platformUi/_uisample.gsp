@@ -82,11 +82,14 @@
     <p>To allow themes to customize the rendering of buttons, we provide the <code>ui:button</code> tag. Themes can use this to 
         change the CSS classes applied to the HTML <code>button</code>, <code>a</code>, <code>input type="submit"</code> tags or
         to use completely different markup entirely if they so wish, provided they are functionally equivalent.</p>
-    <p>Guaranteed available modes are <code>primary</code> and <code>cancel</code>.</p>
+    <p>Guaranteed available modes are <code>primary</code>, <code>secondary</code>, <code>danger</code> and <code>cancel</code>.</p>
     
-    <ui:button mode="primary">OK</ui:button>
     <ui:button>Save</ui:button>
-    <ui:button disabled="true">Cancel</ui:button>
+    <ui:button mode="primary">OK</ui:button>
+    <ui:button mode="secondary">Back</ui:button>
+    <ui:button mode="danger">Yes, format my C: drive</ui:button>
+    <ui:button mode="cancel">Cancel</ui:button>
+    <ui:button disabled="true">This is not enabled</ui:button>
     <ui:button mode="primary" text="button.ok"/>
     <ui:button kind="anchor" href="#" mode="cancel" text="button.cancel"/>
     <ui:button kind="submit" mode="primary" text="Send"/>

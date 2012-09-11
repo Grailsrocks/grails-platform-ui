@@ -1,1 +1,1 @@
-<th class="${p.joinClasses(valus:[thClass, classes])}"${ui.attributes()}${bodyContent}</th>
+<th class="${p.joinClasses(values:[thClass, classes])}"${ui.attributes()}>${bodyContent}</th>
