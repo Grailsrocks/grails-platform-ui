@@ -1,4 +1,5 @@
-<!DOCTYPE html><html>
+<!DOCTYPE html>
+<html>
     <theme:head/>
     <theme:body>
         <ui:logo/>
