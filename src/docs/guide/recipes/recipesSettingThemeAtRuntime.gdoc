@@ -1,0 +1,4 @@
+The current theme is determined on a per-request basis.
+
+One use of this is to allow the user to select the look and feel of an application. You could also change the theme based on the current User Agent, or based on the Locale of the user for example.
+

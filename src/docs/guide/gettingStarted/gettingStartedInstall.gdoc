@@ -1,0 +1,31 @@
+Add the plugin platform as a dependency to your application or plugin, either directly or transitively. To do so directly edit your @BuildConfig.groovy@ to look something like this:
+
+{docx}
+    ...
+    plugins {
+        ...
+        compile '\:platform-ui\:1.0-M1'
+    }
+{docx}
+
+You can run your code now and browse to [http://localhost:8080/<appname>/platform/ui], a special page available only in the development environment. From there you can explore some of the plugin platform features, preview UI Sets and Themes etc.
+
+The Platform UI includes a default unstyled Theme and UI Set out of the box. They're basic, so we'll install another to show what's possible.
+
+h3. Installing a theme for the sample application
+
+Installing a theme requires you to introduce a theme plugin, or create your own theme in your app.
+
+Let's use the vanilla Twitter Bootstrap theme.
+
+Add the following to the "plugins" section of your BuildConfig.groovy:
+
+{docx:code}
+    runtime ":bootstrap-theme:1.0"
+{docx}
+
+Alternatively you can run {code}grails install-plugin bootstrap-ui{code}.
+
+With that done, you'll have the bootrap-theme templates read to go, as well as a transitive dependency on {code}bootstrap-ui{code} which provides the required UI Set templates and resources. This is how many Bootstrap based themes could be written easily to provide different layouts etc, while reusing the same underlying UI Set.
+
+We don't need to configure the default theme in the app to use the Bootstrap theme because it is the only non-default theme we have installed. Platform UI will use the first installed theme in alphabetical order if we have not told it otherwise.

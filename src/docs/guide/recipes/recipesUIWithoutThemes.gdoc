@@ -1,0 +1,6 @@
+It is perfectly possible to use UI Sets without themes. You may not want to use the Theme layout system at all, but want to leverage the abstracted UI elements.
+
+To do this you simply need to tell the UI API which UI Set to use for the current request. Normally this is inferred from the request's current Theme.
+
+You can do this in a few ways:
+

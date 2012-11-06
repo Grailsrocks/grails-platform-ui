@@ -1,0 +1,50 @@
+So far nothing will have changed in your app. A theme has no effect unless your GSP specifies a theme layout to use. This is because Themes are built on top of Sitemesh layouts, and a Theme layout is really a Sitemesh layout.
+
+So we just need to create a home page GSP that uses the theme tags to present our content. Create a new file in {code}grails-app/views/index.gsp{code} or edit what is there, to contain this:
+
+{docx:code}
+<html>
+    <head>
+        <theme:layout name="home"/>
+        <theme:title text="home.page.title"></theme:title>
+    <head>
+    <body>   
+        <theme:zone name="body">
+            <ui:h1 text="home.page.body.heading"/>
+            <p><p:dummyText/></p>
+        </theme:zone>
+        <theme:zone name="banner">
+            <ui:carousel>
+                <ui:slide>
+                    <ui:h1 text="home.page.banner.1.heading"/>
+                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                </ui:slide>
+                <ui:slide>
+                    <ui:h1 text="home.page.banner.2.heading"/>
+                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                </ui:slide>
+                <ui:slide>
+                    <ui:h1 text="home.page.banner.3.heading"/>
+                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                </ui:slide>
+            </ui:carousel>
+        </theme:zone>
+        <theme:zone name="panel1">
+            <p:text code="home.page.panel.1"/>
+        </theme:zone>
+        <theme:zone name="panel2">
+            <p:text code="home.page.panel.2"/>
+        </theme:zone>
+        <theme:zone name="panel3">
+            <p:text code="home.page.panel.3"/>
+        </theme:zone>
+    </body>
+</html>
+{docx}
+
+Now run your app and browse to the home page. You should see something like this:
+
+*IMG HERE*
+
+h3. Creating a login form
+

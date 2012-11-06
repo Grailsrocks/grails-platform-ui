@@ -1,17 +1,5 @@
-To get started you need to install the Platform UI plugin
+This section will take you through the process of creating a simple application that shows you how the Theme and UI APIs work together
+to provide pluggable UI rendering.
 
-h2. Installing the Platform UI plugin
+To get started you need to install the Platform UI plugin, and for this example you'll also need a Theme plugin.
 
-Add the plugin platform as a dependency to your application or plugin, either directly or transitively. To do so directly edit your @BuildConfig.groovy@ to look something like this:
-
-{docx}
-    ...
-    plugins {
-        ...
-        compile '\:platform-ui\:1.0-M1'
-    }
-{docx}
-
-You can run your code now and browse to [http://localhost:8080/<appname>/platform/ui], a special page available only in the development environment. From there you can explore some of the plugin platform features, preview UI Sets and Themes etc.
-
-The Platform UI includes a default unstyled Theme and UI Set out of the box. 

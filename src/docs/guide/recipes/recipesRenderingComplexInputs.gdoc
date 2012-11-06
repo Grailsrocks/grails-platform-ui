@@ -1,0 +1,3 @@
+Inputs in forms can sometimes deviate from the straight forward label plus widget pattern. Some forms require an alternative layout for some fields, aggregation of multiple fields into one visual group - say a "from" and "to" date that represent a period.
+
+You can usually achieve this with UI Set tags by making use of the @ui:field@ customisation tags @ui:fieldInput@, @ui:fieldErrors@, @ui:fieldLabel@ and @ui:fieldHint@.

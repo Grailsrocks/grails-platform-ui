@@ -1,0 +1,5 @@
+It is important when developing Themes or trying them out in your app that you can easily select or switch between them.
+
+You can do this easily in development mode without any code. Simply add the _debugThemes=y parameter to your URL in the browser.
+
+You will see a Theme selector with which you can change both the theme *and* the layout of the current page even if the page specifies its own layout. Note that the changes you make are not saved in any way - you will need to update your app code to use the theme and/or layout that you choose.

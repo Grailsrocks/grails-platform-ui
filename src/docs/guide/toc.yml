@@ -3,8 +3,15 @@ overview:
 changelog: Change Log
 gettingStarted:
   title: Getting Started
-  gettingstartedui: Building a "portable" UI
-integratingPluginUi: Integrating Plugin UIs
+  gettingStartedInstall: TODO - Installing dependencies
+  gettingStartedViews: TODO - Adapting views to Themes
+  gettingStartedForms: TODO - Creating forms with UI Sets
+integratingPluginUi: TODO - Making plugin UIs that integrate with apps
+recipes:
+  title: TODO - recipes
+  recipesSettingThemeAtRuntime: TODO - Setting the theme at runtime
+  recipesRenderingComplexInputs: TODO - Rendering complex inputs
+  recipesUIWithoutThemes: TODO - Using UI Sets without Themes
 ui:
   title: UI API
   uisets: About UI Sets
@@ -55,6 +62,18 @@ creatingUiSets:
     tab: The Tab template
     title: UI Set GSP Template Reference
   utilitytags: Utility Tags
-debugging: Debugging - What the hell is going on?
+debugging: 
+  title: TODO - Debugging - What the hell is going on?
+  debuggingUISets: TODO - Troubleshooting UI Sets
+  debuggingThemes: TODO - Troubleshooting Themes
+advanced:
+  title: TODO - Doing advanced things
+  advancedTestingThemesInApps: TODO - Testing themes in apps with _debugTheme=xxx option and filter
+  advancedCustomUIElements: TODO - Using non-standard UI elements
+  advancedAdaptiveThemeLayouts: TODO - Creating adaptive theme layouts
+  advancedOverridingThemeLayouts: TODO - Overriding theme layouts in your app
+  advancedOverridingUISetTemplates: TODO - Overriding UI set templates in your app
+  advancedOverridingResources: TODO - Modifying resources provided by Themes or UI Sets
+  advancedCustomUITags: TODO - Creating custom UI tags
 
 
