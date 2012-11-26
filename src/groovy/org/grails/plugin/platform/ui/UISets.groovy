@@ -86,8 +86,18 @@ class UISets implements ApplicationContextAware, InitializingBean {
         loadUISets()
     }
 
-    void setRequestUISet(request, String name) {
+    /**
+     * Just for previewing UI sets
+     */
+    void setPreviewRequestUISet(request, String name) {
         grailsUiExtensions.getPluginRequestAttributes('platformUi')['ui.sets.preview'] = [uiSetsByName[name]]
+    }
+    
+    /**
+     * Set the UI set for this request
+     */
+    void setRequestUISet(request, String name) {
+        grailsUiExtensions.getPluginRequestAttributes('platformUi')['ui.set.name'] = name
     }
     
     /**
@@ -106,6 +116,9 @@ class UISets implements ApplicationContextAware, InitializingBean {
         
         // Don't get the theme ui overrides mixed up in here when previewing UI Sets
         if (!testingResult) {
+            if (reqAttribs?.'ui.set.name') {
+                defs << reqAttribs.'ui.set.name'
+            }
             def theme = grailsThemes.getRequestTheme(request)
             def uiSetName
             if (theme) {
