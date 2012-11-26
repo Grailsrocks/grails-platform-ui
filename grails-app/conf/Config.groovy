@@ -32,7 +32,7 @@ grails.views.default.codec="none" // none, html, base64
 
 grails.doc.title = "Grails Platform UI"
 grails.doc.subtitle = "APIs and Tags for Theming and Plugin UI integration"
-grails.doc.images = new File("resources/img")
+grails.doc.images = new File("src/docs/img")
 grails.doc.css = new File('src/docs/css')
 grails.doc.authors = "Marc Palmer (marc@grailsrocks.com)"
 grails.doc.license = "ASL 2"

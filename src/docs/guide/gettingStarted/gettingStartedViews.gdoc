@@ -15,17 +15,17 @@ So we just need to create a home page GSP that uses the theme tags to present ou
         </theme:zone>
         <theme:zone name="banner">
             <ui:carousel>
-                <ui:slide>
-                    <ui:h1 text="home.page.banner.1.heading"/>
-                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                <ui:slide active="${true}">
+                    <ui:h1 text="Demo Banner Text"/>
+                    <ui:h2>Always says something interesting</ui:h2>
                 </ui:slide>
                 <ui:slide>
-                    <ui:h1 text="home.page.banner.2.heading"/>
-                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                    <ui:h1 text="Inspiration"/>
+                    <ui:h2>Blue-skying maverick technologies</ui:h2>
                 </ui:slide>
                 <ui:slide>
-                    <ui:h1 text="home.page.banner.3.heading"/>
-                    <ui:h2><p:dummyText size="1"/></ui:h2>
+                    <ui:h1 text="Destabilizing"/>
+                    <ui:h2>Revolutionizing vertical potential</ui:h2>
                 </ui:slide>
             </ui:carousel>
         </theme:zone>
@@ -48,7 +48,7 @@ So we just need to create a home page GSP that uses the theme tags to present ou
 
 Now run your app and browse to the home page. You should see something like this:
 
-*IMG HERE*
+!test-app-bootstrap-theme.png!
 
 h3. Creating a login form
 

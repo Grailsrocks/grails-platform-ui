@@ -4,7 +4,7 @@ Add the plugin platform as a dependency to your application or plugin, either di
     ...
     plugins {
         ...
-        compile '\:platform-ui\:1.0-M1'
+        compile '\:platform-ui\:1.0.RC1'
     }
 {docx}
 
@@ -21,7 +21,7 @@ Let's use the vanilla Twitter Bootstrap theme.
 Add the following to the "plugins" section of your BuildConfig.groovy:
 
 {docx}
-    runtime '\:bootstrap-theme\:1.0'
+    runtime '\:bootstrap-theme\:1.0.RC2'
 {docx}
 
 Alternatively you can run @grails install-plugin bootstrap-theme@.
