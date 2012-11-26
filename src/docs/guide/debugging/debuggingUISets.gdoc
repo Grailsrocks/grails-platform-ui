@@ -1,0 +1,16 @@
+UI sets provide the CSS, JS and markup for individual UI elements, separate from any theming.
+
+As such the best way to debug UI Sets is using the built in platform UI viewer - not the Theme previewer.
+
+h2. Using the Platform UI UI Set browser
+
+Viewing the full UI Sample page which demonstrates all the UI elements and checking your page loads correctly, JS works, and the various elements operate as expected is your best starting point.
+
+With your app or plugin running in "run-app" development mode, browse to:
+
+@http://localhost:8080/<yourprefix>/platform/ui/uisets@
+
+This will let you see each installed UI Set in action.
+
+Make sure your UISet renders all the widgets correctly in the UI Set viewer.
+

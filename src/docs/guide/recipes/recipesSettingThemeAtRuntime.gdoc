@@ -1,4 +1,19 @@
-The current theme is determined on a per-request basis.
+The current theme is determined on a per-request basis. If no theme is explicitly set, it will default to the theme specified in Config.
 
 One use of this is to allow the user to select the look and feel of an application. You could also change the theme based on the current User Agent, or based on the Locale of the user for example.
 
+You can call the @theme:set@ tag from inside a controller or GSP:
+
+{docx}
+<theme:set name="mega"/>
+{docx}
+
+You can also access the @grailsThemes@ bean and set the theme per-request or per-session, from a service, filter or controller:
+
+{docx}
+    // Set it once now and forget for the future requests
+    grailsThemes.setSessionTheme(request, "mega")
+
+    // Or just set it for this request
+    grailsThemes.setRequestTheme(request, themeNameFromUserPreferences)
+{docx}

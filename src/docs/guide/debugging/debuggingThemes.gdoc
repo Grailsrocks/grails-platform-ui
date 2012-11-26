@@ -1,0 +1,21 @@
+Themes are responsible for only the structural layout and styling of a page.
+
+They may also choose to override styles provided by the UI Set on which they depend, for example to change colours.
+
+h2. Using the Platform UI Theme browser
+
+Viewing the content content in your Theme is the best way to isolate Theme issues from your app itself.
+
+With your app or plugin running in "run-app" development mode, browse to:
+
+@http://localhost:8080/<yourprefix>/platform/ui/themes@
+
+Here you can view each Theme's layout with default content supplied, with or without the full set of UI Set samples included.
+
+View the layout that you are having problems with and verify the structural markup is all correct, and that all your CSS and JS is loading and being applied correctly.
+
+h2. Supplying default content for your Theme zones
+
+This is a useful way to see your Theme populated with good quality content. See the section in [Creating Themes|guide:creatingThemes] for details of how to do this.
+
+

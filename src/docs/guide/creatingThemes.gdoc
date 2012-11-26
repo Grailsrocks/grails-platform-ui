@@ -6,3 +6,4 @@ Once you have done so you can edit the GSP layouts and resource definitions, add
 
 Each Theme depends on a specific UI Set. The UI Set templates are resolved such that the application or theme can override the template provided by the UI Set. This means your theme can be based on a reusable UI Set and still tweak some rendering. 
 
+Theme layouts render one or more content zones.

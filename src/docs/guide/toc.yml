@@ -3,15 +3,15 @@ overview:
 changelog: Change Log
 gettingStarted:
   title: Getting Started
-  gettingStartedInstall: TODO - Installing dependencies
-  gettingStartedViews: TODO - Adapting views to Themes
-  gettingStartedForms: TODO - Creating forms with UI Sets
-integratingPluginUi: TODO - Making plugin UIs that integrate with apps
+  gettingStartedInstall: Installing dependencies
+  gettingStartedViews: Adapting views to Themes
+  gettingStartedForms: Creating forms with UI Sets
+integratingPluginUi: Making plugin UIs that integrate with apps
 recipes:
-  title: TODO - recipes
-  recipesSettingThemeAtRuntime: TODO - Setting the theme at runtime
-  recipesRenderingComplexInputs: TODO - Rendering complex inputs
-  recipesUIWithoutThemes: TODO - Using UI Sets without Themes
+  title: Recipes
+  recipesSettingThemeAtRuntime: Setting the theme at runtime
+  recipesRenderingComplexInputs: Rendering complex inputs
+  recipesUIWithoutThemes: Using UI Sets without Themes
 ui:
   title: UI API
   uisets: About UI Sets
@@ -25,12 +25,14 @@ themes:
   title: Themes API
   themesUsing: Using Themes In Your Application
   themeZones: Content Zones
+  themesDefault: About The _default Theme 
 creatingThemes:
   title: Creating A Theme
   themeRequirements: Requirements
   themeLayout: Creating Theme Layouts
   themeRequiredZones: The Required Zones Of Each Theme Layout
   themeResources: Defining and Including Theme Resources
+  themeTemplates: Reusable Theme Templates
   themeBranding: Branding
   themeConfiguration: Configuration
 creatingUiSets:
@@ -63,17 +65,15 @@ creatingUiSets:
     title: UI Set GSP Template Reference
   utilitytags: Utility Tags
 debugging: 
-  title: TODO - Debugging - What the hell is going on?
-  debuggingUISets: TODO - Troubleshooting UI Sets
-  debuggingThemes: TODO - Troubleshooting Themes
+  title: Debugging - What the hell is going on?
+  debuggingUISets: Troubleshooting UI Sets
+  debuggingThemes: Troubleshooting Themes
 advanced:
-  title: TODO - Doing advanced things
-  advancedTestingThemesInApps: TODO - Testing themes in apps with _debugTheme=xxx option and filter
-  advancedCustomUIElements: TODO - Using non-standard UI elements
-  advancedAdaptiveThemeLayouts: TODO - Creating adaptive theme layouts
-  advancedOverridingThemeLayouts: TODO - Overriding theme layouts in your app
-  advancedOverridingUISetTemplates: TODO - Overriding UI set templates in your app
-  advancedOverridingResources: TODO - Modifying resources provided by Themes or UI Sets
-  advancedCustomUITags: TODO - Creating custom UI tags
+  title: Doing advanced things
+  advancedCustomUIElements: Creating non-standard UI elements
+  advancedAdaptiveThemeLayouts: Creating adaptive theme layouts
+  advancedOverridingThemeLayouts: Overriding theme layouts in your app
+  advancedOverridingUISetTemplates: Overriding UI set templates in your app
+  advancedOverridingResources: Modifying resources provided by Themes or UI Sets
 
 

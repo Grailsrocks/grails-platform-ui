@@ -1,0 +1,9 @@
+The UI Set tags attempt to provide the common denominator of UI elements that most plugins would need to offer basic UI functionality, and to support common features of modern website themes.
+
+There will definitely be some cases where you may want to expose extra UI elements through your UI Set.
+
+The approach to this would be to:
+
+* Declare your own tag, but use the @uix@ namespace to avoid future clashes with tags added to Platform UI in future.
+* Implement your tag in a similar way to the Platform UI tags, calling the @renderUITemplate@ method on the UITagLib to leverage the template location mechanisms of the UI Set
+* Use CSS class configuration conventions similar to other Platform UI tags (see the @getUICSSClass@ method of the [grailsUISets|beans])

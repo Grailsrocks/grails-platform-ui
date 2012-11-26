@@ -1,0 +1,7 @@
+There may also be times when one or more of the templates provided by the UI Set you are using does not function correctly or requires some changes to render exactly as you'd like.
+
+You could fork the UI Set, or you could override just the UI Set templates that you need to.
+
+To override a UI Set template you just provide a new GSP containing the modified content of the UI Set's GSP  in the appropriate GSP view location:
+
+@/grails-app/views/_ui/<uiSetName>/<templateName>.gsp@

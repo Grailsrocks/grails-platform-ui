@@ -1,0 +1,12 @@
+h1. ui:activeSets
+
+h2. Purpose
+
+Returns the list of UI set candidate names for the current request.
+
+This includes the UI set names that will be traversed, in order of traversal, to resolve the GSP template to use for UI tags.
+
+h2. Attributes
+
+None
+

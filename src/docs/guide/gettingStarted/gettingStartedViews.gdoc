@@ -1,8 +1,8 @@
 So far nothing will have changed in your app. A theme has no effect unless your GSP specifies a theme layout to use. This is because Themes are built on top of Sitemesh layouts, and a Theme layout is really a Sitemesh layout.
 
-So we just need to create a home page GSP that uses the theme tags to present our content. Create a new file in {code}grails-app/views/index.gsp{code} or edit what is there, to contain this:
+So we just need to create a home page GSP that uses the theme tags to present our content. Create a new file in @grails-app/views/index.gsp@ or edit what is there, to contain this:
 
-{docx:code}
+{docx}
 <html>
     <head>
         <theme:layout name="home"/>
@@ -30,16 +30,20 @@ So we just need to create a home page GSP that uses the theme tags to present ou
             </ui:carousel>
         </theme:zone>
         <theme:zone name="panel1">
-            <p:text code="home.page.panel.1"/>
+            <ui:h3 text="home.page.panel.1"/>
+            <p><p:dummyText size="1"/></p>
         </theme:zone>
         <theme:zone name="panel2">
-            <p:text code="home.page.panel.2"/>
+            <ui:h3 text="home.page.panel.2"/>
+            <p><p:dummyText size="1"/></p>
         </theme:zone>
         <theme:zone name="panel3">
-            <p:text code="home.page.panel.3"/>
+            <ui:h3 text="home.page.panel.3"/>
+            <p><p:dummyText size="1"/></p>
         </theme:zone>
     </body>
 </html>
+
 {docx}
 
 Now run your app and browse to the home page. You should see something like this:
@@ -47,4 +51,34 @@ Now run your app and browse to the home page. You should see something like this
 *IMG HERE*
 
 h3. Creating a login form
+
+Creating a login form is a good example of how you can use Themes and UI Sets to build some UI that is independent of look and feel.
+
+Create a @TestController@ with a @login@ action and save @login.gsp@ in @grails-app/views/test/@ and place this in it:
+
+{docx}
+<html>
+    <head>
+        <theme:layout name="dialog"/>
+        <theme:title text="login.page.title"></theme:title>
+    <head>
+    <body>   
+        <theme:zone name="body">
+            <ui:h1>Please log in</ui:h1>
+            <ui:form>
+                <ui:field name="username"/>
+                <ui:field name="password" type="password"/>
+                <ui:actions>
+                    <ui:button>Log in</ui:button>
+                    <ui:button>I forgot my password</ui:button>
+                </ui:actions>
+            </ui:form>
+        </theme:zone>
+    </body>
+</html>
+{docx}
+
+Now browse to @/test/login@ and view the form. Notice how you have no styling or structure related code in your markup.
+
+If you had more themes installed you could switch to others to test the same form in them.
 

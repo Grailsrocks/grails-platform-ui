@@ -1,3 +1,21 @@
 Inputs in forms can sometimes deviate from the straight forward label plus widget pattern. Some forms require an alternative layout for some fields, aggregation of multiple fields into one visual group - say a "from" and "to" date that represent a period.
 
 You can usually achieve this with UI Set tags by making use of the @ui:field@ customisation tags @ui:fieldInput@, @ui:fieldErrors@, @ui:fieldLabel@ and @ui:fieldHint@.
+
+These allow you to use @ui:field@ but replace the various components of a field (label, hint, errors, input) with your own markup - which can use other UI tags.
+
+Say we needed to render two date fields using a single label for the two, to specify a date period:
+
+{docx}
+<ui:form>
+    <ui:field label="report.date.range">
+        <ui:fieldInput>
+            <ui:input bean="${form}" name="startDate"/>
+            &amp;amp;
+            <ui:input bean="${form}" name="endDate"/>
+        </ui:fieldInput>
+    </ui:field>
+</ui:form>
+{docx}
+
+Because the @ui:input@ tag does smart field rendering but without any decoration, you can reuse it here to render the fields.

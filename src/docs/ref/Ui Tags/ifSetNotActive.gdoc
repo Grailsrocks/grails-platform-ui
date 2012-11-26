@@ -1,0 +1,28 @@
+h1. ui:ifSetNotActive
+
+h2. Purpose
+
+Executes the body of the tag only if the current UI Set does not equal or derive from the UI Set name supplied.
+
+This is useful for plugin UI GSPs that may need to include different content depending on the current UI Set in use.
+
+h2. Example
+
+You might have a plugin GSP that uses custom JS code, so you switch on the UI Set:
+
+{docx:xml}
+<ui:ifSetNotActive name="YUI">
+    <r:require module="myplugin_jquery_widget"/>
+</ui:ifSetActive>
+{docx}
+
+This allows you to draw in different JS code based on what the application developer is using.
+
+h2. Attributes
+
+{table}
+*Name* | *Required?* | *Description*
+name | Yes | A UI set name i.e. "Bootstrap"
+{table}
+
+

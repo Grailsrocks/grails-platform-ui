@@ -1,0 +1,7 @@
+There may be times when one or more of the layouts provided by the Theme you are using does not function correctly or requires some changes to match with your branding.
+
+You could fork the theme, or you could simply override that Theme layout.
+
+To override a Theme layout you just provide a new GSP - containing the modified content of the Theme's layout GSP - in the same GSP view location as you would define it in your own theme:
+
+@/grails-app/views/layouts/themes/<themeName>/<layoutName>.gsp@

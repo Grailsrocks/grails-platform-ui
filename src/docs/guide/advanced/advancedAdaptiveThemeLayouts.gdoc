@@ -1,0 +1,10 @@
+There may be times where you would like to make your Theme adapt its presentation or styling based on some external factor - say based on configuration, absence of content for a specific zone, a user session variable or the presence of a model variable.
+
+An example might be integrated Twitter and Facebook sharing integration. Your theme might want to render the "like" and "tweet" buttons only if the controller indicates that sharing is desirable on the current page.
+
+Some of mechanisms available to you to perform these kinds of customisations include:
+
+* Standard @g:if@ blocks to affect what is rendered by the layout
+* Judicious use of the [layoutTemplate|themeTags] tag to include reusable Theme Template code
+* The [ifZoneContent|themeTags] and related tags for detecting presence of application-supplied zone content
+* The [ifLayoutIs|themeTags] and related tags that can enable a reusable Template to alter its output based on which Theme layout is active

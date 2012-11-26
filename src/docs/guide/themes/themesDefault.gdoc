@@ -1,0 +1,7 @@
+The Platform UI plugin does supply a single default Theme and UI Set called @_default@.
+
+There are however not intended for use. They simply exist to provide some form of rendering of content when there is no other Theme or UI Set available.
+
+As such the UI Set does not have a useful implementation of all UI tags, in particular the @ui:field@, @ui:tabs@ and @ui:carousel@ tags are incomplete.
+
+UI Sets should *not* rely on the content of these templates as a default fallback, and should instead always supply all the templates they require.

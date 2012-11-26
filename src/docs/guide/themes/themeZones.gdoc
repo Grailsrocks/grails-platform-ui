@@ -59,3 +59,9 @@ It is possible to append content to a zone, for example a sidebar may contain in
 You can do this by defining a zone multiple times, or by directly accessing the @grailsThemes@ bean to add content to a given zone.
 
 For example you may have plugins that add filters to append content to such zones automatically.
+
+h2. Themes can provide default content for zones
+
+Themes can and should provide attractive default content for the zones used in the layouts.
+
+This allows a user to see how best to use that particular theme because out of the box all the zones are populated, perhaps with example graphics etc.

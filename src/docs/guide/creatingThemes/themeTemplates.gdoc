@@ -1,0 +1,5 @@
+The Themes API includes a mechanism to reuse Theme template fragments using a standard template resolution mechanism.
+
+This provides a standard by which Themes can expose these templates while making it easy for applications to override them if necessary.
+
+One very common use of this is to have a common page header and/or footer section used across multiple layouts provided by your Theme. Using the [layoutTemplate|themeTags] theme tag instead of @g:render@ ensures your templates follow the Theme conventions.

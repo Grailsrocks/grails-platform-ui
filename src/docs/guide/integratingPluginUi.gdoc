@@ -1,23 +1,35 @@
+One if the main wins of Platform UI is that plugins can expose UI without having a style that clashes with that of the application, and with less work required to create "good enough" UIs that the application developer can then style more specifically if they need to.
+
 h3. Exposing a reusable UI in a plugin
 
-* Avoid custom layout markup
-* Add classes to elements where customisation may be desirable (allows app dev to override CSS for plugin UI elements to fix up layout issues)
-* Non-standard layouts (and mapping them)
-* What no grid
+There are some key considerations to providing a UI that the developer will be able to use with their chosen look and feel.
+
+# Avoid custom layout markup, the Theme controls layout
+# Add CSS classes to container elements where customisation may be desirable (allows app dev to override CSS for plugin UI elements to fix up layout issues)
+# Only where absolutely necessdary, supply a non-standard theme layout of your own, and the developer can adapt it for their theme. Document the zones required.
+# There is no standard grid, try to stick to fluid or % based layout
 
 h3. How to implement non-standard UI elements
 
-@todo: Stuff not covered by UI Set tags requires either integration with UISets using some extension template resolution so themes/uisets can provide support for these widgets over time, and/or switching JS code used based on included resource modules to detect JS frameworks used and include different JS based on this
+With 1.0 you'll have to create your own tag that uses a GSP template to render your field, so that the application developer can override that GSP template to match the UI set and theme they have chosen.
+
+In the future it should be possible to reuse existing UI tags and helper methods to achieve this using the same conventions used by UI Sets.
+
+You can make your plugin UI adaptive based on the theme or UI set in user, or the presence of other plugins in the app.
+
+* Your plugin can provide resource "overrides" for resource modules provided by specific UI sets or themes. You can replace existing resources or monkey in your own code into a module by adding a dependency.
+* Your plugin can detect presence of plugins using the Grails [plugin:isAvailable|http://grails.org/doc/2.0.4/ref/Tags/isAvailable.html] tag
+* Your plugin can detect the current Theme and UI Set in use in the request using the ui:[ifSetActive|uiTags] and theme:[name|themeTags] tags. 
 
 h3. Customising UI provided by a plugin
 
-Hook points:
+The application developer needs to be able to customize or "fix up" the UI you provide. It's simply not possible for you to provide a UI that looks perfect in every different Theme and CSS/JS framework the user chooses.
 
-* CSS classes
-* UISet CSS class overrides
-* Theme layout overrides
-* UISet template overrides
+The developer has the following options to provide customisations of your UI:
 
-h3. Overriding UI from a plugin
+* UISet CSS class overrides, for when you are using normal UI Set tags
+* CSS using CSS classes you have applies to container elements and documented
+* Theme layout overrides, allowing them to replace specific Theme layouts to work around problems
+* UISet template overrides, allowing them to replace UI tag implementations
+* GSP view overrides, the nuclear option which allows them to override your plugin's view
 
-* Override entire GSP using normal mechanisms

@@ -1,0 +1,10 @@
+Both Themes and UI Sets provide their resources using Resources framework modules named by convention.
+
+It is therefore possible to modify the resources included by a UI Set or Theme by using the Resources framework overrides mechanism.
+
+Using the Resources override mechanism you can:
+
+* Add or replace dependencies of the UI Set or Theme's resource module. You can introduce your own resources that load before the module by amending the dependsOn, or knock out dependencies.
+* Alter properties of individual resources in one of the UI Set or Theme's modules, such as the disposition
+
+For details of the [Resources overrides mechanism|http://grails-plugins.github.com/grails-resources/guide/5.%20Overriding%20resources.html] see the docs.
