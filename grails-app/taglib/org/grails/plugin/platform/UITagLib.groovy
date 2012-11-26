@@ -163,7 +163,7 @@ class UITagLib implements InitializingBean {
             disabled:disabled])
     }
 
-    protected renderUITemplate(String templateName, Map model) {
+    public renderUITemplate(String templateName, Map model) {
         renderResources()
         if (log.debugEnabled) {
             log.debug "Rendering UI template [$templateName]"
@@ -178,15 +178,15 @@ class UITagLib implements InitializingBean {
         }
     }
     
-    protected renderExtendedUITemplate(String templateName, Map model) {
-        renderResources()
-        def t = grailsUISets.getTemplateView(request, templateName, false)
-        try {
-            return g.render(plugin:t.plugin, template:t.path, model:model)        
-        } catch (Throwable e) {
-            throw new UITagException(templateName, t.owner, e) 
-        }
-    }
+    // public renderExtendedUITemplate(String templateName, Map model) {
+    //     renderResources()
+    //     def t = grailsUISets.getTemplateView(request, templateName, false)
+    //     try {
+    //         return g.render(plugin:t.plugin, template:t.path, model:model)        
+    //     } catch (Throwable e) {
+    //         throw new UITagException(templateName, t.owner, e) 
+    //     }
+    // }
     
     def tabs = { attrs, body ->
         def prefix = attrs.remove('prefix')
