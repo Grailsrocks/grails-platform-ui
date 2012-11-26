@@ -1,0 +1,31 @@
+
+Creating a login form is a good example of how you can use Themes and UI Sets to build some UI that is independent of look and feel.
+
+Create a @TestController@ with a @login@ action and save @login.gsp@ in @grails-app/views/test/@ and place this in it:
+
+{docx}
+<html>
+    <head>
+        <theme:layout name="dialog"/>
+        <theme:title text="login.page.title"></theme:title>
+    <head>
+    <body>   
+        <theme:zone name="body">
+            <ui:h1>Please log in</ui:h1>
+            <ui:form>
+                <ui:field name="username"/>
+                <ui:field name="password" type="password"/>
+                <ui:actions>
+                    <ui:button>Log in</ui:button>
+                    <ui:button>I forgot my password</ui:button>
+                </ui:actions>
+            </ui:form>
+        </theme:zone>
+    </body>
+</html>
+{docx}
+
+Now browse to @/test/login@ and view the form. Notice how you have no styling or structure related code in your markup.
+
+If you had more themes installed you could switch to others to test the same form in them.
+
