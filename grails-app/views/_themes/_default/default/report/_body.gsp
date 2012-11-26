@@ -2,9 +2,9 @@
     <thead>
         <tr>
             <ui:th>id</ui:th>
-            <ui:th>title</ui:th>
-            <ui:th>description</ui:th>
-            <ui:th>date</ui:th>
+            <ui:th>Artist</ui:th>
+            <ui:th>Title</ui:th>
+            <ui:th>Genre</ui:th>
         </tr>
     </tr>
     </thead>
@@ -12,9 +12,9 @@
     <g:each in="${1..10}" var="i">
     <ui:tr>
         <td>${i.encodeAsHTML()}</td>
-        <td>The Inbetweeners</td>
-        <td>A comedy about teenagers and clunge</td>
-        <td>26 September 2011</td>
+        <td>Farmers Market</td>
+        <td>Slav To Rhythm</td>
+        <td>Jazz</td>
     </ui:tr>
     </g:each>
     </tbody>

@@ -1,5 +1,5 @@
 <g:if test="${params.id}">
-<% grailsApplication.mainContext.grailsUISets.setRequestUISet(request, params.id) %>
+<% grailsApplication.mainContext.grailsUISets.setPreviewRequestUISet(request, params.id) %>
 </g:if>
 
 <html>
