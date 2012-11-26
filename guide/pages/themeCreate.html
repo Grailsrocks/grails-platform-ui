@@ -1,0 +1,351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>4.2 Creating a theme 1.0.M1-SNAPSHOT</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript" src="../css/shCore.js"></script>
+    <script type="text/javascript" src="../css/shBrushXml.js"></script>
+    <script type="text/javascript" src="../css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>2</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/ui.html"><strong>3</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>4</strong><span>Themes API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for advanced Plugin integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>4.2 Creating a theme - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com), Stéphane Maldini (stephane.maldini@gmail.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.M1-SNAPSHOT</p>
+
+                    
+                </div>
+
+                
+
+                
+
+<h2 id="themeCreate">4.2 Creating a theme</h2>
+Creating our own a theme is a matter of creating the standard GSP layouts tailored to your styling, 
+and defining the Resources that the theme requires.<p class="paragraph"/>You can create a theme from scratch or fork an existing one using the <a href="../ref/Scripts/create-theme.html" class="scripts">create-theme</a> and <a href="../ref/Scripts/fork-theme.html" class="scripts">fork-theme</a> scripts provided.<p class="paragraph"/>Once you have done so you can edit the GSP layouts and resource definitions, add static resources, bespoke tags etc as necessary.<p class="paragraph"/><h2>Theme requirements</h2><p class="paragraph"/>All themes must supply a minimum set of standard layouts.<p class="paragraph"/>Failure to do so means that plugins that rely on any missing layouts will break. However themes can provide a superset of the
+required themes - so this list of required layouts is kept to a bare minimum.<p class="paragraph"/>Each required layout as a list of required zone names also, so that plugins and apps know what they can/should provide for each.<p class="paragraph"/>The required layouts are:
+<ul class="star">
+<li>home</li>
+<li>main</li>
+<li>dialog</li>
+<li>dataentry</li>
+<li>report</li>
+<li>sidebar</li>
+</ul><p class="paragraph"/>The requirements and user expectations of each layout are set out below.<p class="paragraph"/>If a theme does not support a given layout or zone this in itself is not a major problem - application developers will choose the theme that does what they require, and may provide a replacement layout in their application.<p class="paragraph"/>However all themes should support all the layouts and their zones if they wish to be used as general-purpose themes.<p class="paragraph"/><h2>Rendering content zones</h2><p class="paragraph"/>Here's an example Theme layout using minimal structural markup:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;    &#60;theme:head/&#62;&#10;    &#60;theme:body&#62;&#10;        &#60;ui:logo/&#62;&#10;        &#10;        &#60;div id="nav"&#62;&#10;            &#60;theme:layoutZone name="navigation"/&#62;&#10;        &#60;/div&#62;&#10;        &#10;        &#60;div id="user&#45;nav"&#62;&#10;            &#60;theme:layoutZone name="user&#45;navigation"/&#62;&#10;        &#60;/div&#62;&#10;        &#10;        &#60;div class="container"&#62;&#10;            &#60;h1&#62;&#60;theme:layoutTitle/&#62;&#60;/h1&#62;&#10;            &#10;            &#60;ui:displayMessage/&#62;&#10;            &#10;            &#60;div id="second&#45;nav"&#62;&#10;                &#60;theme:layoutZone name="secondary&#45;navigation"/&#62;&#10;            &#60;/div&#62;&#10;&#10;            &#60;div class="content"&#62;&#10;                &#60;theme:layoutZone name="body"/&#62;&#10;            &#60;/div&#62;&#10;&#10;            &#60;div id="sidebar"&#62;&#10;                &#60;theme:layoutZone name="sidebar"/&#62;&#10;            &#60;/div&#62;&#10;            &#10;            &#60;div id="footer"&#62;&#10;                &#60;theme:layoutZone name="footer"/&#62;&#10;            &#60;/div&#62;&#10;        &#60;/div&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>You can see here that the <code>theme:layoutZone</code> tag is used to render each chunk of content supplied by the GSP, and decorate it with the
+markup required to work with the CSS to achieve the desired layout - and the content in those zones is unaware of these requirements.<p class="paragraph"/>See the <a href="../ref/Theme Tags/head.html" class="themeTags">head</a>, <a href="../ref/Theme Tags/body.html" class="themeTags">body</a> and <a href="../ref/Theme Tags/layoutTitle.html" class="themeTags">layoutTitle</a> for details of the behaviour of these optional utility tags.<p class="paragraph"/>A GSP page would define content for this layout using multiple calls to <code>theme:zone</code>:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="sidebar"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;This is the body of my page&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="sidebar"&#62;&#10;            &#60;p&#62;New items added today...&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Notice that not all the zones have content defined. Content zones that have no content defined in the page will fall back to defaults supplied
+by the application, theme, default theme or specimen text. See <a href="../guide/single.html#themeZones" class="guide">Content Zones</a> for details.<p class="paragraph"/><h2>Zone requirements</h2><p class="paragraph"/>Each required layout has a list of required zones. The layout must render these zones if provided, but it can be adaptive to the presence or absence of content for the zones - for example if there are three promotional content zones but content for only two is provided, the layout could adapt to this using <a href="../ref/Theme Tags/ifZoneContent.html" class="themeTags">ifZoneContent</a>.<p class="paragraph"/><h2>Required layout: home</h2><p class="paragraph"/>This layout is intended to represent the "home page" of a site. Typically with a banner area, up to three panels.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr><tr class="table-odd"><td>banner</td><td>The primary marketing banner area</td></tr><tr class="table-even"><td>panel1</td><td>A marketing content area</td></tr><tr class="table-odd"><td>panel2</td><td>A marketing content area</td></tr><tr class="table-even"><td>panel3</td><td>A marketing content area</td></tr></table><p class="paragraph"/><h2>Required layout: main</h2><p class="paragraph"/>This layout is intended to represent normal site content pages. Typically with just a body.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: dialog</h2><p class="paragraph"/>This layout is intended to represent a "full screen" form such as a login. Typically with just a body, the body is used as the content within the "full screen" form.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: report</h2><p class="paragraph"/>This layout is intended to represent report results with pagination, e.g. a scaffolded list view.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr><tr class="table-even"><td>pagination</td><td>The report pagination controls</td></tr></table><p class="paragraph"/><h2>Required layout: dataentry</h2><p class="paragraph"/>This layout is intended to represent data entry screens, e.g. a scaffolded create/show/edit view.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: sidebar</h2><p class="paragraph"/>This layout is intended to represent a body area that also has a sidebar.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>sidebar</td><td>The sidebar content</td></tr><tr class="table-odd"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-even"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-odd"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr></table>
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                <div class="toc-item prev-left"><a href="../../guide/ui.html">&lt;&lt; <strong>3</strong><span>UI API</span></a></div>
+                
+                <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>5</strong><span>Debugging</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/create-ui.html">create-ui</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer & Stéphane Maldini
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

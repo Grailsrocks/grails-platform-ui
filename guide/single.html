@@ -1,0 +1,903 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Grails Platform UI 1.0.RC1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <script type="text/javascript" src="../css/shCore.js"></script>
+    <script type="text/javascript" src="../css/shBrushXml.js"></script>
+    <script type="text/javascript" src="../css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#overview"><strong>1</strong><span>Overview</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#changelog"><strong>2</strong><span>Change Log</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#gettingStarted"><strong>3</strong><span>Getting Started</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#integratingPluginUi"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#recipes"><strong>5</strong><span>Recipes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#ui"><strong>6</strong><span>UI API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#themes"><strong>7</strong><span>Themes API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#creatingThemes"><strong>8</strong><span>Creating A Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#creatingUiSets"><strong>9</strong><span>Creating Custom UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#debugging"><strong>10</strong><span>Debugging - What the hell is going on?</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="#advanced"><strong>11</strong><span>Doing advanced things</span></a></div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for Theming and Plugin UI integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                <div class="project">
+                    <h1>Grails Platform UI - Reference Documentation</h1>
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com)</p>
+                    <p><strong>Version:</strong> 1.0.RC1</p>
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#overview"><strong>1</strong><span>Overview</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#changelog"><strong>2</strong><span>Change Log</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#gettingStarted"><strong>3</strong><span>Getting Started</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#gettingStartedInstall"><strong>3.1</strong><span>Installing dependencies</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#gettingStartedViews"><strong>3.2</strong><span>Adapting views to Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#gettingStartedForms"><strong>3.3</strong><span>Creating forms with UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#integratingPluginUi"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#recipes"><strong>5</strong><span>Recipes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#recipesSettingThemeAtRuntime"><strong>5.1</strong><span>Setting the theme at runtime</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#recipesRenderingComplexInputs"><strong>5.2</strong><span>Rendering complex inputs</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#recipesUIWithoutThemes"><strong>5.3</strong><span>Using UI Sets without Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#ui"><strong>6</strong><span>UI API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#uisets"><strong>6.1</strong><span>About UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#uielements"><strong>6.2</strong><span>The UI Elements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#widgets"><strong>6.2.1</strong><span>Widgets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#grouping"><strong>6.2.2</strong><span>Grouping</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#forms"><strong>6.2.3</strong><span>Forms</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#typography"><strong>6.2.4</strong><span>Typography</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themes"><strong>7</strong><span>Themes API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themesUsing"><strong>7.1</strong><span>Using Themes In Your Application</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeZones"><strong>7.2</strong><span>Content Zones</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themesDefault"><strong>7.3</strong><span>About The _default Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#creatingThemes"><strong>8</strong><span>Creating A Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeRequirements"><strong>8.1</strong><span>Requirements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeLayout"><strong>8.2</strong><span>Creating Theme Layouts</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeRequiredZones"><strong>8.3</strong><span>The Required Zones Of Each Theme Layout</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeResources"><strong>8.4</strong><span>Defining and Including Theme Resources</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeTemplates"><strong>8.5</strong><span>Reusable Theme Templates</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeBranding"><strong>8.6</strong><span>Branding</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#themeConfiguration"><strong>8.7</strong><span>Configuration</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#creatingUiSets"><strong>9</strong><span>Creating Custom UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#resources"><strong>9.1</strong><span>UI Set Resources</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#cssclasses"><strong>9.2</strong><span>CSS Classes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#uiConfiguration"><strong>9.3</strong><span>Configuration</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#gsptemplates"><strong>9.4</strong><span>UI Set GSP Template Reference</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#avatar"><strong>9.4.1</strong><span>The Avatar template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#block"><strong>9.4.2</strong><span>The Block template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#carousel"><strong>9.4.3</strong><span>The Carousel template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#slide"><strong>9.4.4</strong><span>The Slide template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#form"><strong>9.4.5</strong><span>The Form template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#actions"><strong>9.4.6</strong><span>The Actions template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#field"><strong>9.4.7</strong><span>The Field template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#input"><strong>9.4.8</strong><span>The input template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#fieldGroup"><strong>9.4.9</strong><span>The Field Group template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#image"><strong>9.4.10</strong><span>The Image template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#logo"><strong>9.4.11</strong><span>The Logo template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#message"><strong>9.4.12</strong><span>The Message template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#paginate"><strong>9.4.13</strong><span>The Paginate template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#primaryNavigation"><strong>9.4.14</strong><span>The Primary Navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#secondaryNavigation"><strong>9.4.15</strong><span>The Secondary Navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#nav"><strong>9.4.16</strong><span>The navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#table"><strong>9.4.17</strong><span>The Table template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#tr"><strong>9.4.18</strong><span>The Table Row template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#th"><strong>9.4.19</strong><span>The Table Heading template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#tabs"><strong>9.4.20</strong><span>The Tabs template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="#tab"><strong>9.4.21</strong><span>The Tab template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#utilitytags"><strong>9.5</strong><span>Utility Tags</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#debugging"><strong>10</strong><span>Debugging - What the hell is going on?</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#debuggingUISets"><strong>10.1</strong><span>Troubleshooting UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#debuggingThemes"><strong>10.2</strong><span>Troubleshooting Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#advanced"><strong>11</strong><span>Doing advanced things</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#advancedCustomUIElements"><strong>11.1</strong><span>Creating non-standard UI elements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#advancedAdaptiveThemeLayouts"><strong>11.2</strong><span>Creating adaptive theme layouts</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#advancedOverridingThemeLayouts"><strong>11.3</strong><span>Overriding theme layouts in your app</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#advancedOverridingUISetTemplates"><strong>11.4</strong><span>Overriding UI set templates in your app</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#advancedOverridingResources"><strong>11.5</strong><span>Modifying resources provided by Themes or UI Sets</span></a></div>
+                    
+                    <div style="clear:both" ></div>
+                </div>
+                
+                
+
+<h1 id="overview">1 Overview</h1>
+The Platform UI is a sister plugin to <a href="http://grailsrocks.github.com/grails-platform-core" target="blank">Platform Core</a>.<p class="paragraph"/>Where Platform Core provides "plumbing" for plugins and applications, Platform
+UI provides common UI and Theming support for plugins and applications so that they can achieve high level visual integration.<p class="paragraph"/>It is designed to be as lightweight as possible and completely CSS and JS framework agnostic.<p class="paragraph"/>Platform UI provides <strong class="bold">UI Sets</strong> and <strong class="bold">Themes</strong> via APIs and GSP template discovery.<p class="paragraph"/>These are two separate mechanisms - UI Sets can be used without using Themes - and most of the time there will be more Themes than UI Sets. Themes use specific UI Sets to render UI elements with the correct markup, CSS and JS in a manner coherent with the layout markup and CSS they are using.<p class="paragraph"/><h2>What is a UI Set?</h2><p class="paragraph"/>A UI Set is a set of GSP templates and resources that provide the HTML and <strong class="bold">optionally</strong> CSS required to render the standard UI tags.<p class="paragraph"/>Applications and plugins can therefore use the standard UI tags from this plugin without worrying about how they are actually rendered or implemented in the application - so in theory your plugin might have its elements rendered by a Twitter Bootstrap plugin in one app, or a jQuery UI plugin in another app.<p class="paragraph"/>It doesn't matter which because:
+<ol>
+<li>Your code renders its UI using the <code>ui:xxx</code> tags, which output the correct structural HTML using the UI Set</li>
+<li>The current UI set automatically handles inclusion of the correct JS and CSS resources to achieve this</li>
+</ol><p class="paragraph"/>The application author can choose the UI set used on any given request, but usually this will be the same across the whole application. This choice may be made indirectly through the use of Themes.<p class="paragraph"/>UI Sets do not have to supply any CSS and JS files - if they do, they should be defined using the Resources framework such that they can be overriden by Themes or the application developer.<p class="paragraph"/>For example a UI Set might apply a CSS class "well" to a &#60;div&#62; it puts around the content of a <code>ui:block</code> tag, but it does not have to provide the styling for this - in fact many themes may use the same UI Set and override the CSS that the UI Set provides to style the "well" elements differently.<p class="paragraph"/><h2>What is a Theme?</h2><p class="paragraph"/>A Theme is a set of GSP Sitemesh templates and other GSP fragments that supplies a set of standard screen layouts for an application.<p class="paragraph"/>The standard layouts such as "home", "dialog", "dataentry", "report" etc. provide the basic screen layouts most apps require, such that plugins can rely on these being present so that they can integrate with your chosen app UI relatively seamlessly.<p class="paragraph"/>It may do this using any CSS/JS framework it chooses, and it will choose a UI Set that expresses UI elements in a way consistent with the layout framework.<p class="paragraph"/>For example there may be five different Twitter Bootstrap based themes that provide different look and feel - but they all may use a single underlying Twitter Bootstrap UI Set because the structural markup and JS behaviours are identical.<p class="paragraph"/><h2>This is NOT a grand unified UI framework</h2><p class="paragraph"/>It is very important to understand that Platform UI <strong class="bold">does not attempt to be a universal UI toolkit</strong>.<p class="paragraph"/>The goal is to provide <strong class="bold">just enough</strong> common UI widgets for plugins to expose basic UI screens that will be automatically styled
+to fit the Application's theme - and to provide <strong class="bold">only</strong> the most common site styling elements needed for an effective system
+of replaceable application Themes.<p class="paragraph"/>It is not possible to make a single unified UI framework - take a look at what is already out there in the web space and you will see that everyone has different ideas about what different widgets are, how they should work, and apps often add custom widgets that replace or augment others from the library they chose.<p class="paragraph"/>Therefore you will not find a UI widget for a scrollbar or a rich editor, or a tree view etc. What you will find is abstracted
+rendering of fields, forms, tables, logos, buttons etc.<p class="paragraph"/>Applications are of course free to use the full range of CSS styling available to them, in addition to the base styling of the
+theme that they choose.<p class="paragraph"/>What you will typically do in professional applications is define your own Theme by forking another, and then you can make all the UI tags do exactly what you want for your application.<p class="paragraph"/>This is only possible because plugins will be able to use the UI tags to delegate how to actually render elements.
+                                                                                               
+
+
+<h1 id="changelog">2 Change Log</h1>
+<h3>1.0.M1</h3><p class="paragraph"/>Changes since previously released snapshots
+<ul class="star">
+<li>New ui:actions handling (capturing body) and requirement for _form.gsp to render ${actions}</li>
+<li>Change of model variables in _logo.gsp from w/h to width/height to avoid any possible taglib namespace clashes if values are null</li>
+<li>Added fieldClass on ui:field model</li>
+<li>Added inputClass on ui:input model</li>
+<li>Added messageClass on ui:message model</li>
+</ul><p class="paragraph"/>
+
+
+<h1 id="gettingStarted">3 Getting Started</h1>
+This section will take you through the process of creating a simple application that shows you how the Theme and UI APIs work together
+to provide pluggable UI rendering.<p class="paragraph"/>To get started you need to install the Platform UI plugin, and for this example you'll also need a Theme plugin.<p class="paragraph"/>
+
+
+<h2 id="gettingStartedInstall">3.1 Installing dependencies</h2>
+Add the plugin platform as a dependency to your application or plugin, either directly or transitively. To do so directly edit your <code>BuildConfig.groovy</code> to look something like this:<p class="paragraph"/><pre class="brush: groovy;">&#10;    ...&#10;    plugins &#123;&#10;        ...&#10;        compile ':platform&#45;ui:1.0.RC1'&#10;    &#125;&#10;</pre><p class="paragraph"/>You can run your code now and browse to <code>http://localhost:8080/&#60;appname&#62;/platform/ui</code>, a special page available only in the development environment. From there you can explore some of the plugin platform features, preview UI Sets and Themes etc.<p class="paragraph"/>A default unstyled Theme and UI Set are included out of the box. They're not particularly useful although they do provide some proof of concept defaults, so we'll install another to show what's possible.<p class="paragraph"/><h3>Installing a theme for the sample application</h3><p class="paragraph"/>Installing a theme requires you to introduce a plugin that containes one or more themes, or create your own theme in your app.<p class="paragraph"/>Let's use the vanilla Twitter Bootstrap theme.<p class="paragraph"/>Add the following to the "plugins" section of your BuildConfig.groovy:<p class="paragraph"/><pre class="brush: groovy;">&#10;    runtime ':bootstrap&#45;theme:1.0.RC2'&#10;</pre><p class="paragraph"/>Alternatively you can run <code>grails install-plugin bootstrap-theme</code>.<p class="paragraph"/>With that done, you'll have the bootrap-theme templates read to go, as well as a transitive dependency on <code>bootstrap-ui</code> which provides the required UI Set templates and resources. This is how many Bootstrap based themes could be written easily to provide different layouts etc, while reusing the same underlying UI Set. It turns out that the UI Set is the biggest piece of work - Themes are easy to implement.<p class="paragraph"/>We don't need to do anything to configure the default theme in the app to use the Bootstrap theme because it is the only non-default theme we have installed. Platform UI will use the first installed theme in alphabetical order if we have not told it otherwise.
+
+
+<h2 id="gettingStartedViews">3.2 Adapting views to Themes</h2>
+So far nothing will have changed in your app. A theme has no effect unless your GSP specifies a theme layout to use. This is because Themes are built on top of Sitemesh layouts, and a Theme layout is really a Sitemesh layout.<p class="paragraph"/>So we just need to create a home page GSP that uses the theme tags to present our content. Create a new file in <code>grails-app/views/index.gsp</code> or edit what is there, to contain this:<p class="paragraph"/><pre class="brush: groovy;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="home"/&#62;&#10;        &#60;theme:title text="home.page.title"&#62;&#60;/theme:title&#62;&#10;    &#60;head&#62;&#10;    &#60;body&#62;   &#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;ui:h1 text="home.page.body.heading"/&#62;&#10;            &#60;p&#62;&#60;p:dummyText/&#62;&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="banner"&#62;&#10;            &#60;ui:carousel&#62;&#10;                &#60;ui:slide active="$&#123;true&#125;"&#62;&#10;                    &#60;ui:h1 text="Demo Banner Text"/&#62;&#10;                    &#60;ui:h2&#62;Always says something interesting&#60;/ui:h2&#62;&#10;                &#60;/ui:slide&#62;&#10;                &#60;ui:slide&#62;&#10;                    &#60;ui:h1 text="Inspiration"/&#62;&#10;                    &#60;ui:h2&#62;Blue&#45;skying maverick technologies&#60;/ui:h2&#62;&#10;                &#60;/ui:slide&#62;&#10;                &#60;ui:slide&#62;&#10;                    &#60;ui:h1 text="Destabilizing"/&#62;&#10;                    &#60;ui:h2&#62;Revolutionizing vertical potential&#60;/ui:h2&#62;&#10;                &#60;/ui:slide&#62;&#10;            &#60;/ui:carousel&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel1"&#62;&#10;            &#60;ui:h3 text="home.page.panel.1"/&#62;&#10;            &#60;p&#62;&#60;p:dummyText size="1"/&#62;&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel2"&#62;&#10;            &#60;ui:h3 text="home.page.panel.2"/&#62;&#10;            &#60;p&#62;&#60;p:dummyText size="1"/&#62;&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel3"&#62;&#10;            &#60;ui:h3 text="home.page.panel.3"/&#62;&#10;            &#60;p&#62;&#60;p:dummyText size="1"/&#62;&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;&#10;&#10;</pre><p class="paragraph"/>Now run your app and browse to the home page. You should see something like this:<p class="paragraph"/><img border="0" class="center" src="../img/test-app-bootstrap-theme.png"></img><p class="paragraph"/><h3>Creating a login form</h3><p class="paragraph"/>Creating a login form is a good example of how you can use Themes and UI Sets to build some UI that is independent of look and feel.<p class="paragraph"/>Create a <code>TestController</code> with a <code>login</code> action and save <code>login.gsp</code> in <code>grails-app/views/test/</code> and place this in it:<p class="paragraph"/><pre class="brush: groovy;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="dialog"/&#62;&#10;        &#60;theme:title text="login.page.title"&#62;&#60;/theme:title&#62;&#10;    &#60;head&#62;&#10;    &#60;body&#62;   &#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;ui:h1&#62;Please log in&#60;/ui:h1&#62;&#10;            &#60;ui:form&#62;&#10;                &#60;ui:field name="username"/&#62;&#10;                &#60;ui:field name="password" type="password"/&#62;&#10;                &#60;ui:actions&#62;&#10;                    &#60;ui:button&#62;Log in&#60;/ui:button&#62;&#10;                    &#60;ui:button&#62;I forgot my password&#60;/ui:button&#62;&#10;                &#60;/ui:actions&#62;&#10;            &#60;/ui:form&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Now browse to <code>/test/login</code> and view the form. Notice how you have no styling or structure related code in your markup.<p class="paragraph"/>If you had more themes installed you could switch to others to test the same form in them.<p class="paragraph"/>
+
+
+<h2 id="gettingStartedForms">3.3 Creating forms with UI Sets</h2>
+
+
+
+<h1 id="integratingPluginUi">4 Making plugin UIs that integrate with apps</h1>
+One if the main wins of Platform UI is that plugins can expose UI without having a style that clashes with that of the application, and with less work required to create "good enough" UIs that the application developer can then style more specifically if they need to.<p class="paragraph"/><h3>Exposing a reusable UI in a plugin</h3><p class="paragraph"/>There are some key considerations to providing a UI that the developer will be able to use with their chosen look and feel.
+<ol>
+<li>Avoid custom layout markup, the Theme controls layout</li>
+<li>Add CSS classes to container elements where customisation may be desirable (allows app dev to override CSS for plugin UI elements to fix up layout issues)</li>
+<li>Only where absolutely necessdary, supply a non-standard theme layout of your own, and the developer can adapt it for their theme. Document the zones required.</li>
+<li>There is no standard grid, try to stick to fluid or % based layout</li>
+</ol><p class="paragraph"/><h3>How to implement non-standard UI elements</h3><p class="paragraph"/>With 1.0 you'll have to create your own tag that uses a GSP template to render your field, so that the application developer can override that GSP template to match the UI set and theme they have chosen.<p class="paragraph"/>In the future it should be possible to reuse existing UI tags and helper methods to achieve this using the same conventions used by UI Sets.<p class="paragraph"/>You can make your plugin UI adaptive based on the theme or UI set in user, or the presence of other plugins in the app.
+<ul class="star">
+<li>Your plugin can provide resource "overrides" for resource modules provided by specific UI sets or themes. You can replace existing resources or monkey in your own code into a module by adding a dependency.</li>
+<li>Your plugin can detect presence of plugins using the Grails <a href="http://grails.org/doc/2.0.4/ref/Tags/isAvailable.html" target="blank">plugin:isAvailable</a> tag</li>
+<li>Your plugin can detect the current Theme and UI Set in use in the request using the ui:<a href="../ref/Ui Tags/ifSetActive.html" class="uiTags">ifSetActive</a> and theme:<a href="../ref/Theme Tags/name.html" class="themeTags">name</a> tags.</li>
+</ul><p class="paragraph"/><h3>Customising UI provided by a plugin</h3><p class="paragraph"/>The application developer needs to be able to customize or "fix up" the UI you provide. It's simply not possible for you to provide a UI that looks perfect in every different Theme and CSS/JS framework the user chooses.<p class="paragraph"/>The developer has the following options to provide customisations of your UI:
+<ul class="star">
+<li>UISet CSS class overrides, for when you are using normal UI Set tags</li>
+<li>CSS using CSS classes you have applies to container elements and documented</li>
+<li>Theme layout overrides, allowing them to replace specific Theme layouts to work around problems</li>
+<li>UISet template overrides, allowing them to replace UI tag implementations</li>
+<li>GSP view overrides, the nuclear option which allows them to override your plugin's view</li>
+</ul><p class="paragraph"/>
+
+
+<h1 id="recipes">5 Recipes</h1>
+These sections explain how to achieve some common functionality using the UI APIs.
+
+
+
+<h2 id="recipesSettingThemeAtRuntime">5.1 Setting the theme at runtime</h2>
+The current theme is determined on a per-request basis. If no theme is explicitly set, it will default to the theme specified in Config.<p class="paragraph"/>One use of this is to allow the user to select the look and feel of an application. You could also change the theme based on the current User Agent, or based on the Locale of the user for example.<p class="paragraph"/>You can call the <code>theme:set</code> tag from inside a controller or GSP:<p class="paragraph"/><pre class="brush: groovy;">&#10;&#60;theme:set name="mega"/&#62;&#10;</pre><p class="paragraph"/>You can also access the <code>grailsThemes</code> bean and set the theme per-request or per-session, from a service, filter or controller:<p class="paragraph"/><pre class="brush: groovy;">&#10;    // Set it once now and forget for the future requests&#10;    grailsThemes.setSessionTheme(request, "mega")&#10;&#10;    // Or just set it for this request&#10;    grailsThemes.setRequestTheme(request, themeNameFromUserPreferences)&#10;</pre>
+
+
+
+<h2 id="recipesRenderingComplexInputs">5.2 Rendering complex inputs</h2>
+Inputs in forms can sometimes deviate from the straight forward label plus widget pattern. Some forms require an alternative layout for some fields, aggregation of multiple fields into one visual group - say a "from" and "to" date that represent a period.<p class="paragraph"/>You can usually achieve this with UI Set tags by making use of the <code>ui:field</code> customisation tags <code>ui:fieldInput</code>, <code>ui:fieldErrors</code>, <code>ui:fieldLabel</code> and <code>ui:fieldHint</code>.<p class="paragraph"/>These allow you to use <code>ui:field</code> but replace the various components of a field (label, hint, errors, input) with your own markup - which can use other UI tags.<p class="paragraph"/>Say we needed to render two date fields using a single label for the two, to specify a date period:<p class="paragraph"/><pre class="brush: groovy;">&#10;&#60;ui:form&#62;&#10;    &#60;ui:field label="report.date.range"&#62;&#10;        &#60;ui:fieldInput&#62;&#10;            &#60;ui:input bean="$&#123;form&#125;" name="startDate"/&#62;&#10;            &amp;amp;&#10;            &#60;ui:input bean="$&#123;form&#125;" name="endDate"/&#62;&#10;        &#60;/ui:fieldInput&#62;&#10;    &#60;/ui:field&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>Because the <code>ui:input</code> tag does smart field rendering but without any decoration, you can reuse it here to render the fields.
+
+
+
+<h2 id="recipesUIWithoutThemes">5.3 Using UI Sets without Themes</h2>
+It is perfectly possible to use UI Sets without themes. You may not want to use the Theme layout system at all, but want to leverage the abstracted UI elements.<p class="paragraph"/>To do this you simply need to tell the UI API which UI Set to use for the current request. Normally this is inferred from the request's current Theme.<p class="paragraph"/>You can do this in a couple of ways. In Config you can set the UI Set to use:<p class="paragraph"/><pre class="brush: groovy;">&#10;plugin.platformUi.ui.set = 'myUISet'&#10;</pre><p class="paragraph"/>Alternatively you can set it at runtime e.g. in a tag, controller or filter using the grailsUISets bean:<p class="paragraph"/><pre class="brush: groovy;">&#10;grailsUISets.setRequestUISet(request, "myUISet")&#10;</pre><p class="paragraph"/><p class="paragraph"/>
+
+
+<h1 id="ui">6 UI API</h1>
+The UI API provides a set of tags for common UI elements, without tieing an application to any specific CSS or JavaScript library.<p class="paragraph"/>The UI tags have implementations that come from a "UI Set" which is a convention-based collection of GSP templates.<p class="paragraph"/>This semantic identification of UI elements provides a level of abstraction from their actual HTML rendering. While HTML5 is a major step forward, we are still in a situation where UI elements are often built out of multiple markup tags which vary between CSS and JS frameworks. For this reason, we cannot have UI tags that render the actual HTML in a fixed way, if we want our UIs - especially those from plugins - to work with different UI frameworks.<p class="paragraph"/>This allows plugins to provide high quality UI to your application, without relying on you to integrate the plugin views with your look and feel.<p class="paragraph"/><blockquote class="note">
+It is very important to understand that using these tags does not tie you to any UI library or specific look and feel. That is entirely down to the UI Set that your application/theme uses, and can be switched at runtime.
+</blockquote><p class="paragraph"/>You no longer have to write your HTML markup to match specific CSS frameworks you are using. Use the UI tags and you can pair this with your own UI Set, or use an off the shelf one and leverage the theme system to get polished off-the-shelf UIs - or create your own themes to allow your users a choice of look and feel.<p class="paragraph"/>There are tags for rendering the following content elements
+<ul class="star">
+<li>fields (including label, errors, hint and structural markup)</li>
+<li>buttons</li>
+<li>tabs</li>
+<li>navigation</li>
+<li>carousels</li>
+<li>tables</li>
+<li>pagination</li>
+<li>images</li>
+<li>messages</li>
+<li>headings</li>
+<li>logos</li>
+<li>avatars</li>
+</ul><p class="paragraph"/>Only by standardising all these elements does theming becomes possible.<p class="paragraph"/>Note that you do not need to use Themes to benefit from UI tags. However, Themes can select the UI Set used to render the tags, so that they use the correct HTML and CSS for the Theme.<p class="paragraph"/>UI Sets work with Resources plugin to automatically pull in the resources that the UI Set requires. For example the set of UI elements that require Twitter Bootstrap will pull in specific resource modules named by convention.
+
+
+
+<h2 id="uisets">6.1 About UI Sets</h2>
+UI Sets provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.<p class="paragraph"/>This is typically automatically selected by the Theme currently in use, but you do not have to use themes to use UI Sets.<p class="paragraph"/>A UI Set implementation is just a named collection of GSP templates in a convention-based path in a plugin or application.<p class="paragraph"/><h2>Why do we need this?</h2><p class="paragraph"/>Even with increasing adoption of HTML5, the truth is that there are still
+many ways to render the markup for even the relatively small subset of UI elements that the Platform UI API supports.<p class="paragraph"/>Therefore this level of abstraction is required to make Themes work, so that the functionally equivalent visual and input elements can be rendered with completely different structural markup and styling.<p class="paragraph"/>Take form fields as an example. These can generally be decomposed into the following components:
+<ol>
+<li>A label</li>
+<li>An input widget of some sort, either standard HTML or some custom JavaScript based widget</li>
+<li>A field hint and/or field error message</li>
+</ol><p class="paragraph"/>So now you take the design your artists have created using e.g. Twitter Bootstrap and you render your fields using the markup required
+to achieve Bootstrap's look and feel:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;label for="firstName" class="control&#45;label"&#62;First Name&#60;/label&#62;&#10;&#60;div class="controls"&#62;&#10;    &#60;input name="firstName" value=""/&#62;&#10;    &#60;span class="help&#45;block"&#62;Your first name&#60;/span&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>Fine. However if you then switch to another CSS framework, you will often find that this no longer renders anything like the way you wanted
+because there is no standard structural UI layout and styling mechanism in HTML. Specifically:<p class="paragraph"/># The structural markup will often be different. One designer might use nested divs to lay out the label, field and hint. Another may use a single div or no div at all for the components, another may rely on the order of sibling elements
+<ol>
+<li>The CSS class names for the structural markup will usually be different</li>
+<li>The CSS class names for the label, widget and hint/error will often be different</li>
+</ol><p class="paragraph"/>So this is why UI Sets delegate to GSP templates that define the actual structural markup for each UI element, and why tags such as <a href="../ref/Ui Tags/field.html" class="uiTags">field</a>
+automatically handle the label, field and hint so that you are not required to make sure these are surrounded by the correct structural markup for the current theme.<p class="paragraph"/>This way, an application can write <code>&#60;ui:field name="x"/&#62;</code> and work with existing and future CSS frameworks without modification to the GSP view - which after all only wanted to render a field.<p class="paragraph"/>This is how plugins can expose UI that fits in with the application's chosen theme.<p class="paragraph"/>The secret to making your UI work with theming is relinquishing control over the details of HTML markup and CSS classes.<p class="paragraph"/>That is, unless you are also the author of the theme you are using - in which case you still have full control.
+
+
+<h2 id="uielements">6.2 The UI Elements</h2>
+Any application or plugin can use the UI element tags.<p class="paragraph"/>The following sections show examples of the various tags being used. See the reference for each tag for full details.
+
+
+<h2 id="widgets">6.2.1 Widgets</h2>
+The UI API provides support for a range of widgets for plugins and applications to use.<p class="paragraph"/>For full details see the tag reference section.<p class="paragraph"/><h3>Button</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/button.html" class="uiTags">button</a> tag renders a button with options for:
+<ul class="star">
+<li>the kind of rendering (input with type submit, button tag, or anchor)</li>
+<li>resolving the text via i18n messages</li>
+<li>different "modes" that give cues to the user to indicate e.g. primary buttons</li>
+</ul><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:button mode="primary"&#62;OK&#60;/ui:button&#62;&#10;&#60;ui:button&#62;Save&#60;/ui:button&#62;&#10;&#60;ui:button enabled="false"&#62;Cancel&#60;/ui:button&#62;&#10;&#60;ui:button mode="primary" text="button.ok"/&#62;&#10;&#60;ui:button kind="anchor" href="&#35;" mode="cancel" text="button.cancel"/&#62;&#10;&#60;ui:button kind="submit" mode="primary" text="Send"/&#62;&#10;</pre><p class="paragraph"/><h3>Field</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/field.html" class="uiTags">field</a> tag lets you specify a field that must be rendered - usually within a form.<p class="paragraph"/>The UI Set is responsible for all structural markup relating to this field, including any required container nodes, the label, per-field errors (if supported) and hints etc. The output depends entirely on the UI Set in use.<p class="paragraph"/>The tag supports named fields or "bean" fields where the value comes from a bean in the current page scope. UI Sets will typically use the Grails Fields plugin to do this, but UI Sets are free to use any implementation.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:field name="field1" type="text" hint="This is a little hint" label="Text field"/&#62;&#10;&#60;ui:field name="field2" type="checkbox" hint="This is an error hint"&#10;    label="Checkbox field with an error" error="$&#123;true&#125;"/&#62;&#10;&#60;ui:field name="field3" type="radio" label="Radio field"/&#62;&#10;&#60;ui:field name="field4" type="textarea" label="Textarea field"&#62;Hello world&#60;/ui:field&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="name"/&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="enabled"/&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="dateOfBirth"/&#62;&#10;</pre><p class="paragraph"/>You can see that the field type is auto-sensed, which can be overriden with "type".<p class="paragraph"/>Note that there are related tags <a href="../ref/Ui Tags/input.html" class="uiTags">input</a>, <a href="../ref/Ui Tags/fieldLabel.html" class="uiTags">fieldLabel</a>, <a href="../ref/Ui Tags/fieldInput.html" class="uiTags">fieldInput</a>, <a href="../ref/Ui Tags/fieldErrors.html" class="uiTags">fieldErrors</a>, <a href="../ref/Ui Tags/fieldHint.html" class="uiTags">fieldHint</a><p class="paragraph"/><h3>Image</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/image.html" class="uiTags">image</a> tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:image uri="/images/product1.png" width="200" title="Our latest product"&#10;    alt="This is our latest product SLA&#45;YER3000"/&#62;&#10;&#10;&#60;ui:image dir="/images" file="/product2.png" title="Last year's product"&#10;    alt="The OP&#45;ETH2000 is now obsolete"/&#62;&#10;</pre><p class="paragraph"/><h3>Table</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/table.html" class="uiTags">table</a> tag is used to render tables of information.<p class="paragraph"/>Use just like normal tables, but gives the UI Set/Theme an opportunity to apply extra styling and functionality such as sortable columns.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:table&#62;&#10;    &#60;thead&#62;&#10;    &#60;tr&#62;&#10;        &#60;ui:th text="table.id"/&#62;&#10;        &#60;ui:th text="table.artist"/&#62;&#10;        &#60;ui:th text="table.title"/&#62;&#10;        &#60;ui:th text="table.genre"/&#62;&#10;    &#60;/tr&#62;&#10;    &#60;/thead&#62;&#10;    &#60;tbody&#62;&#10;    &#60;g:each in="$&#123;1..10&#125;" var="i"&#62;&#10;    &#60;ui:tr&#62;&#10;        &#60;td&#62;$&#123;i.encodeAsHTML()&#125;&#60;/td&#62;&#10;        &#60;td&#62;Farmers Market&#60;/td&#62;&#10;        &#60;td&#62;Slav To Rhythm&#60;/td&#62;&#10;        &#60;td&#62;Jazz&#60;/td&#62;&#10;    &#60;/ui:tr&#62;&#10;    &#60;/g:each&#62;&#10;    &#60;/tbody&#62;&#10;&#60;/ui:table&#62;&#10;</pre><p class="paragraph"/>You must always use <code>ui:table</code> for Theme-compatible table styling.<p class="paragraph"/><h3>Messages</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/message.html" class="uiTags">message</a> tag is used render text messages such as info and warning messages.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:message type="info" text="alert.message.something.happened"/&#62;&#10;&#60;ui:message type="error" text="alert.message.something.failed"/&#62;&#10;&#60;ui:message type="warning" text="alert.message.something.dodgy"/&#62;&#10;&#60;ui:message type="debug"&#62;&#10;    &#60;p&#62;This is some debug output, only for development mode&#60;/p&#62;&#10;&#60;/ui:message&#62;&#10;</pre><p class="paragraph"/>As with most UI tags you can specify text/textArgs attributes or a body.<p class="paragraph"/>There are dynamic methods added to controllers by Platform Core plugin to make it easy to display messages to the user, and this mechanism is reused in Platform UI to allow the UI Set to customise the rendering. Just call <code>displayMessage</code> or <code>displayFlashMessage</code> from Platform Core:<p class="paragraph"/><pre class="brush: groovy;">&#10;class AlbumController &#123;&#10;    def delete = &#123;&#10;        Album.delete(params.id)&#10;&#10;        displayMessage "album.was.deleted"&#10;&#10;    &#125;&#10;&#125;&#10;</pre><p class="paragraph"/>&#8230; and then add the <a href="../ref/Ui Tags/displayMessage.html" class="uiTags">displayMessage</a> tag variant from Platform UI:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:displayMessage/&#62;&#10;</pre><p class="paragraph"/>This will render nothing if there is no message set by the controller. Otherwise the flash and/or request messages will be shown, using i18n resolution much like the <code>p:text</code> tag of Platform Core.<p class="paragraph"/><h3>Pagination</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.<p class="paragraph"/>The attributes are the same as the normal g:paginate tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:paginate controller="books" total="$&#123;totalBooks&#125;"/&#62;&#10;</pre><p class="paragraph"/>The underlying UI Set is presented with a data structure containing the links required to render the pagination, but not the markup itself.<p class="paragraph"/><h3>Tabs</h3><p class="paragraph"/>Tabbed pages are a familiar and frequently UI element. You can use the <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag to define a set of tabs, and tab tags inside the body of <code>ui:tabs</code> to define the content:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;%&#45;&#45; Tabs with hardcoded titles and links only &#45;&#45;%&#62;&#10;&#60;ui:tabs&#62;&#10;    &#60;ui:tab titles="One" active="true" action="list"/&#62;&#10;    &#60;ui:tab titles="Two" action="search"/&#62;&#10;    &#60;ui:tab titles="Three" action="list"/&#62;&#10;&#60;/ui:tabs&#62;&#10;&#10;&#60;%&#45;&#45; Tabs with i18n titles and links only &#45;&#45;%&#62;&#10;&#60;ui:tabs prefix="my.tab.title"&#62;&#10;    &#60;ui:tab title="a" controller="books"/&#62;&#10;    &#60;ui:tab title="b" controller="books" action="search" active="true"/&#62;&#10;    &#60;ui:tab title="c" action="latest"/&#62;&#10;&#60;/ui:tabs&#62;&#10;&#10;&#60;%&#45;&#45; Tabs with i18n titles and inin content panels only &#45;&#45;%&#62;&#10;&#60;ui:tabs prefix="other.tabtitle"&#62;&#10;    &#60;ui:tab title="d"&#62;&#60;ui:h4&#62;Tab D Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;    &#60;ui:tab title="e"&#62;&#60;ui:h4&#62;Tab E Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;    &#60;ui:tab title="f" action="true"&#62;&#60;ui:h4&#62;Tab F Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;&#60;/ui:tabs&#62;&#10;</pre><p class="paragraph"/>The resulting markup may be structurally very different from the UI tags you use in your page, depending on the UI Set's implementation.<p class="paragraph"/><h3>Avatar</h3><p class="paragraph"/>Display of user avatar images is a common feature of many web apps, especially social ones. External services typically supply the actual images, but how these are rendered/decorated is up to the application.<p class="paragraph"/>The <a href="../ref/Ui Tags/avatar.html" class="uiTags">avatar</a> tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:avatar user="marc&#64;grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/&#62;&#10;</pre><p class="paragraph"/><h3>Logo</h3><p class="paragraph"/>Logos are often, but not always rendered using CSS background-image. If you need to insert your application's logo as an inline image, the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag allows the UI Set to style or position it appropriately, with support for multi-resolution logos.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:logo width="450" height="150"/&#62;&#10;</pre><p class="paragraph"/>The logo file is located by convention.<p class="paragraph"/><h3>Navigation</h3><p class="paragraph"/>Perhaps the trickiest and most variable page structures are the primary navigation menu and sub 
+menus. The <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a>, <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> and <a href="../ref/Ui Tags/navigation.html" class="uiTags">navigation</a> provide a markup-neutral way to render these menus in a way befitting the current theme.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="main&#45;nav"&#62;&#10;    &#60;ui:primaryNavigation/&#62;&#10;&#60;/div&#62;&#10;&#60;div class="sub&#45;nav"&#62;&#10;    &#60;ui:secondaryNavigation/&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/><h3>Carousel</h3><p class="paragraph"/>Carousels are a common, if maligned, feature of application sites. Typically featured on the home page they transition between a series of images or content panels.<p class="paragraph"/>Plugins and applications can use these via UI Sets without concern for the underlying markup and JS code required:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:carousel&#62;&#10;    &#60;ui:slide active="true"&#62;&#10;        This is slide one&#10;    &#60;/ui:slide&#62;&#10;    &#60;ui:slide&#62;&#10;        This is our second marketing slide&#10;    &#60;/ui:slide&#62;&#10;    &#60;ui:slide&#62;&#10;        And here is our third marketing slide&#10;    &#60;/ui:slide&#62;&#10;&#60;/ui:carousel&#62;&#10;</pre>
+
+
+<h2 id="grouping">6.2.2 Grouping</h2>
+There are a couple of grouping elements available in UI Sets.<p class="paragraph"/><h4>Actions</h4><p class="paragraph"/>The actions a user can perform are often gathered together in one place in a well designed form. The <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a> tag provides a holder for these, and allows the current theme to render this section of a form appropriately:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form action="update"&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="firstName"/&#62;&#10;        &#60;ui:field name="lastName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;ui:actions&#62;&#10;        &#60;ui:button mode="primary"&#62;Update&#60;/ui:button&#62;&#10;        &#60;ui:button mode="cancel"&#62;Cancel&#60;/ui:button&#62;&#10;    &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>Any content in the <code>ui:actions</code> body will be rendered, usually in some kind of styled container, by the UI Set.<p class="paragraph"/><h4>Field Groups</h4><p class="paragraph"/>Forms often arrange fields into groups, typically with <code>&#60;fieldset&#62;</code> in HTML. The structural markup for this is abstracted using the <a href="../ref/Ui Tags/fieldGroup.html" class="uiTags">fieldGroup</a> tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:block title="section.titles.welcome"&#62;&#10;    &#60;p&#62;Thank you for visiting our awesome site.&#60;/p&#62;&#10;&#60;/ui:block&#62;&#10;</pre><p class="paragraph"/>It does however support rendering a title at the start of the block, using i18n.
+<h4>Block</h4><p class="paragraph"/>Some themes may support visually separating a block of content, for example with a "well" or other border technique. The <a href="../ref/Ui Tags/block.html" class="uiTags">block</a> tag is a simple container for this purpose:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form controller="book"&#62; &#10;  &#60;ui:fieldGroup&#62;&#10;     &#60;ui:field name="firstName"/&#62;&#10;     &#60;ui:field name="lastName"/&#62;&#10;  &#60;/ui:fieldGroup&#62;&#10;  &#60;ui:fieldGroup&#62;&#10;     &#60;ui:field name="email"/&#62;&#10;  &#60;/ui:fieldGroup&#62;&#10;  &#60;ui:actions&#62;&#10;    &#60;ui:button type="submit"&#62;Save&#60;/ui:button&#62;&#10;  &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="forms">6.2.3 Forms</h2>
+There are several UI tags specifically relating to forms, <a href="../ref/Ui Tags/form.html" class="uiTags">form</a>, <a href="../ref/Ui Tags/field.html" class="uiTags">field</a>and <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a>.<p class="paragraph"/>You can create a form using the new UI tags like this:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form action="update"&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="firstName"/&#62;&#10;        &#60;ui:field name="lastName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="email"/&#62;&#10;        &#60;ui:field name="twitterName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;ui:actions&#62;&#10;        &#60;ui:button mode="primary"&#62;Update&#60;/ui:button&#62;&#10;        &#60;ui:button mode="cancel"&#62;Cancel&#60;/ui:button&#62;&#10;    &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>You can see that the GSP has no knowledge of how forms or fields or buttons are rendered. The UI Set in effect determines this. You may get completely different structural HTML and CSS classes depending on the UI Set or theme you are using.<p class="paragraph"/>The UI Set might re-order the actions and form body or duplicate the actions as appropriate for the styling.<p class="paragraph"/>The <code>ui:form</code> tag passes all the attributes specified to the UI Set's template for passing to the g:form tag.
+
+
+<h2 id="typography">6.2.4 Typography</h2>
+<h4>Headings</h4><p class="paragraph"/>There are UI tags for rendering heading levels 1 to 4, including support for the standard i18n mechanisms of Platform UI.<p class="paragraph"/>This allows the UI Set/Theme or any GSP to set the base heading level for the rest of the request, so your content might use <code>&#60;ui:h1&#62;</code> but it actually appears as <code>&#60;h2&#62;</code> in the output. You get to maintain appropriate relative heading levels in your GSP, and let the UI deal with how this actually turns out.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:baseHeading level="3"/&#62;&#10;&#60;ui:h1&#62;Heading level 1, or is it&#60;/ui:h1&#62;&#10;&#10;&#60;ui:baseHeading level="1"/&#62;&#10;&#60;ui:h2 title="my.sub.heading"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h1 id="themes">7 Themes API</h1>
+Themes are collections of Sitemesh layouts that follow conventions for template locations and Resource modules, with support for multiple content "zones" per page.<p class="paragraph"/>Themes define the visual layout of pages rendered by your application and plugins. The views in a plugin or application can choose to use a theme layout using the <a href="../ref/Theme Tags/layout.html" class="themeTags">layout</a> tag instead of the normal <code>&#60;meta&#62;</code> tag to select the Sitemesh layout. So for users of Themes, Sitemesh layouts are no longer explicitly used.<p class="paragraph"/>You can search the <a href="http://grails.org/plugins/tag/theme" target="blank">Grails plugin repository</a> for plugins that provide off the shelf Themes that your application can use.<p class="paragraph"/>As a theme author, using the <code>theme</code> namespace tags you can create themes that will allow Grails applications and plugins to define their UI largely without any concern for the structural page layout itself - and swap the visual styling without changing the code of the GSPs.<p class="paragraph"/>Optionally working together with UI Sets, applications and plugins can then leverage whatever UI technology a theme was written with - because the Theme determines the UI Set to use for the current request.<p class="paragraph"/>The end result is that the application or users can change the Theme on a per request or user basis, and the structural HTML markup, the CSS, the Javascript and all other resources will be adapted to suit the Theme.<p class="paragraph"/>For example you might have a user-centric site front end that uses a custom theme style by in-house designers using raw jQuery, and a simple back end admin theme that is based directly on Twitter Bootstrap and custom JS code.<p class="paragraph"/>The Theme system is inspired by efforts such as the Wordpress theme community, where you can take an off the shelf theme that instantly styles your site, but may also add extra non-standard features - some of which may follow conventions across other themes.<p class="paragraph"/>By formalising some of these conventions - for example by using UI Sets to represent the commonly themed components of a site - we allow our plugin
+ecosystem to rely on a core set of functionality from themes, while avoiding raising the bar too high and being over-prescriptive.<p class="paragraph"/>Highly stylized themes will inevitably need extra configuration, custom tags or style conventions to get high quality results. Application content
+may still need to be written to fit the available space in a theme. Colours may need to be tweaked.<p class="paragraph"/>However it should all be a lot quicker, and more fun.
+
+
+<h2 id="themesUsing">7.1 Using Themes In Your Application</h2>
+Using Platform UI Themes in your Grails applications is simple.<p class="paragraph"/>There are only three things you need to do:
+<ol>
+<li>Provide a theme implementation</li>
+<li>Tell Platform UI which of the standard theme layouts your GSP requires</li>
+<li>Define your content zones</li>
+</ol><p class="paragraph"/><h2>Providing a Theme implementation</h2><p class="paragraph"/>Out of the box there is a default theme called <code>&#95;default</code>. This will be used if you don't provide your own. It is deliberately minimal<p class="paragraph"/>You can provide a Theme by either installing a Theme plugin (a standard Grails plugin containing a theme), or by creating your own Theme.<p class="paragraph"/>Most real apps will supply their own Theme, or a forked version of a Theme from a plugin.<p class="paragraph"/>To create your own theme see the <a href="../guide/single.html#creatingThemes" class="guide">Creating Themes</a>. Scripts are provided to fork existing themes or create new plain ones.<p class="paragraph"/>You don't need to tell the app which Theme to use at this stage because it will default to the first non-default theme you have installed, or fall
+back to the <code>&#95;default</code> theme.<p class="paragraph"/><h2>Telling Platform UI which Theme Layout to use</h2><p class="paragraph"/>Each GSP that uses Themes needs to use the <a href="../ref/Theme Tags/layout.html" class="themeTags">layout</a> tag to specify which of the Theme's layouts applies to the page.<p class="paragraph"/>This is easily done in the &#60;head&#62; section of your views:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;   &#60;head&#62;&#10;      &#60;theme:layout name="home"/&#62;&#10;   &#60;/head&#62;&#10;   .&#10;   .&#10;   .&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>You can parameterize this if you need to present different layouts based on some runtime variables.<p class="paragraph"/><h2>Defining your Content Zones</h2><p class="paragraph"/>Now that you have chosen a layout for your GSP, you need to provide the content for the zones defined by that layout.<p class="paragraph"/>Zones are chunks of content your page supplies, that the Theme layout will position for you according to its styling.<p class="paragraph"/>At the very least all pages have a "body" zone.<p class="paragraph"/>See the <a href="../guide/single.html#creatingThemes" class="guide">Zone Requirements</a> section for details of the zones supported by each required layout.<p class="paragraph"/>You define the content for a zone using the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag. Note that if you only need to supply a body, you do not need to use this tag,
+but if you are supplying multiple zones, all content including that for the body zone must be wrapped in zone tags:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;      &#60;theme:layout name="home"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;   &#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;Welcome to our site&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel1"&#62;&#10;            &#60;p&#62;Marketing text 1&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel2"&#62;&#10;            &#60;p&#62;Marketing text 2&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel3"&#62;&#10;            &#60;p&#62;Marketing text 3&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Note that your view does not have to supply content for every zone. There is fallback algorithm that allows your Application and the Theme to provide default content for zones, and as a last resort falling back to Lorem Ipsum filler text. Theme layouts can also adapt to the absence of content for some zones.<p class="paragraph"/>See the documentation for the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag and <a href="../guide/single.html#creatingThemes" class="guide">Creating Themes</a> for more details of the zone mechanism and behaviour
+for location content.
+
+
+
+<h2 id="themeZones">7.2 Content Zones</h2>
+Themes use zones to pull in multiple pieces of content to build up the page.<p class="paragraph"/>All layouts usually need a zone for the "body" content, but they may also have others for e.g. a sidebar or promotional areas.<p class="paragraph"/>Theme layouts determine the structural HTML of the page, and where the content for each zone is rendered using the <a href="../ref/Theme Tags/layoutZone.html" class="themeTags">layoutZone</a> tag.<p class="paragraph"/>The GSP pages themselves use the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag to define the content to be used in a given zone.<p class="paragraph"/><h2>How content for zones is resolved</h2><p class="paragraph"/>Content for the zone is resolved in this order:
+<ol>
+<li>Content defined by the page being rendered, using the zone:themeTags tag</li>
+<li>If the zone is "body" the page body is used (using the default g:layoutBody tag)</li>
+<li>If the application supplies a GSP fragment in <code>/grails-app/views/_themes/zones/&#60;zone-name&#62;.gsp</code> this is used</li>
+<li>Finally the <a href="../ref/Theme Tags/defaultContent.html" class="themeTags">defaultContent</a> tag is used to provide default content, which will check if the Theme itself provides default content, and failing that the default Platform UI theme. If there is still no default content GSP it will revert to <code>p:dummyText</code> from Platform Core to render some Lorem Ipsum-style text.</li>
+</ol><p class="paragraph"/>Through this cascade of content resolution your application can provide default content for zones such as header/footer, or fall back to theme defaults - and even use application or theme defaults for e.g. footer but override these on a page-by-page basis if necessary.<p class="paragraph"/><h2>Setting the content for a given zone from within your GSP page</h2><p class="paragraph"/>You do this using the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="home"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;This is the body of my page&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="banner"&#62;&#10;            &#60;ui:h1&#62;Our Awesome Startup!&#60;/ui:h1&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel1"&#62;&#10;            &#60;p&#62;Read about the features you're going to love...&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel2"&#62;&#10;            &#60;p&#62;Find our more about our pricing model&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel3"&#62;&#10;            &#60;p&#62;Tell us what you think&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Note that if a page only requires a body zone you can omit the <code>zone</code> tags and just specify body content as normal.<p class="paragraph"/><h2>Appending more content to a zone</h2><p class="paragraph"/>It is possible to append content to a zone, for example a sidebar may contain information from various sources.<p class="paragraph"/>You can do this by defining a zone multiple times, or by directly accessing the <code>grailsThemes</code> bean to add content to a given zone.<p class="paragraph"/>For example you may have plugins that add filters to append content to such zones automatically.<p class="paragraph"/><h2>Themes can provide default content for zones</h2><p class="paragraph"/>Themes can and should provide attractive default content for the zones used in the layouts.<p class="paragraph"/>This allows a user to see how best to use that particular theme because out of the box all the zones are populated, perhaps with example graphics etc.
+
+
+
+<h2 id="themesDefault">7.3 About The _default Theme</h2>
+The Platform UI plugin does supply a single default Theme and UI Set called <code>_default</code>.<p class="paragraph"/>There are however not intended for use. They simply exist to provide some form of rendering of content when there is no other Theme or UI Set available.<p class="paragraph"/>As such the UI Set does not have a useful implementation of all UI tags, in particular the <code>ui:field</code>, <code>ui:tabs</code> and <code>ui:carousel</code> tags are incomplete.<p class="paragraph"/>UI Sets should <strong class="bold">not</strong> rely on the content of these templates as a default fallback, and should instead always supply all the templates they require.
+
+
+
+<h1 id="creatingThemes">8 Creating A Theme</h1>
+Creating your own a theme is relatively easy. It is a matter of creating the standard GSP layouts tailored to your styling and defining the Resources that the theme requires.<p class="paragraph"/>You can create a theme from scratch or fork an existing one using the <a href="../ref/Scripts/create-theme.html" class="scripts">create-theme</a> and <a href="../ref/Scripts/fork-theme.html" class="scripts">fork-theme</a> scripts provided.<p class="paragraph"/>Once you have done so you can edit the GSP layouts and resource definitions, add static resources, bespoke tags etc as necessary.<p class="paragraph"/>Each Theme depends on a specific UI Set. The UI Set templates are resolved such that the application or theme can override the template provided by the UI Set. This means your theme can be based on a reusable UI Set and still tweak some rendering.<p class="paragraph"/>Theme layouts render one or more content zones.
+
+
+
+<h2 id="themeRequirements">8.1 Requirements</h2>
+The Themes must conform to the following specification.<p class="paragraph"/><h3>Required Layout Names</h3><p class="paragraph"/>All themes must supply a minimum set of standard layouts.<p class="paragraph"/>Failure to do so means that plugins that rely on any missing layouts will break. However themes can provide a superset of the
+required themes - so this list of required layouts is kept to a bare minimum.<p class="paragraph"/>Each required layout also has a <a href="../guide/single.html#themeRequiredZones" class="guide">list of required zone names</a>, so that plugins and apps know what they can/should provide for each.<p class="paragraph"/>The required layouts are:
+<ul class="star">
+<li>home</li>
+<li>main</li>
+<li>dialog</li>
+<li>dataentry</li>
+<li>report</li>
+<li>sidebar</li>
+</ul><p class="paragraph"/>The requirements and user expectations of each layout are set out below.<p class="paragraph"/>If a theme does not support a given layout or zone this in itself is not a major problem - application developers will choose the theme that does what they require, and may provide a replacement layout in their application.<p class="paragraph"/>However all themes should support all the layouts and their zones if they wish to be used as general-purpose themes.<p class="paragraph"/><h3>Rendering of Resources</h3><p class="paragraph"/>All Theme layouts <strong class="bold">must</strong> use the Resources plugin mechanisms to render their resources and those of the UI Set they use. The UI Set will typically include the resources in needs on demand, but your Theme <strong class="bold">must</strong> include the required <code>r:layoutResources</code> tags. This is handled for you automatically if you use the <a href="../ref/Theme Tags/head.html" class="themeTags">head</a> theme tag.<p class="paragraph"/><h3>Rendering of Title</h3><p class="paragraph"/>The <a href="../ref/Theme Tags/title.html" class="themeTags">title</a> theme tag is used by GSP pages to set the current page title using standard Platform Core i18n resolution mechanism (using the <code>p:text</code> rules).<p class="paragraph"/>As such, the Theme layouts must use this information to render the <code>&#60;title&#62;</code> tag of the page and are responsible for rendering the <code>&#60;h1&#62;</code> or equivalent heading in the content of the page automatically<p class="paragraph"/>GSP pages do not know where to place the title of the page shown in the content area, as this is up to the Theme layout.<p class="paragraph"/>As such they simply specify what the title is, and the layout has to "do the right thing" by creating a relevant <code>div</code> or heading tag.<p class="paragraph"/><h3>Default content</h3><p class="paragraph"/>Themes allow you to supply default content for each zone that shows off the theme at its best, so that application developers can get a taste for how their app might really look when using your theme correctly.<p class="paragraph"/>This is also useful for content that is typically the same in all your layouts (i.e. navigation, footers) that you still would like the application developer to be able to override by supplying content for that zone or overriding the default GSP.<p class="paragraph"/>To define your own default content, simply place GSP templates in:<p class="paragraph"/><code>/grails-app/views/&#95;themes/&#60;ThemeName&#62;/default/&#95;&#60;zone-name&#62;.gsp</code><p class="paragraph"/>for defaults that apply to any Theme layout or:<p class="paragraph"/><code>/grails-app/views/&#95;themes/&#60;ThemeName&#62;/default/&#60;LayoutName&#62;/&#95;&#60;zone-name&#62;.gsp</code><p class="paragraph"/>for defaults that are specific to one of your named theme layouts.
+
+
+
+<h2 id="themeLayout">8.2 Creating Theme Layouts</h2>
+Theme layouts are straightforward Sitemesh GSP layouts.<p class="paragraph"/>However they use the <code>theme</code> namespace tags to render multiple content regions (zones) supplied by the plugin or application GSP page being rendered.<p class="paragraph"/>This means that GSP pages can e.g. provide main and sidebar content, without knowing how those will be laid out in the final page.<p class="paragraph"/>Here's an example Theme layout using minimal structural markup:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;!DOCTYPE html&#62;&#10;&#60;html&#62;&#10;    &#60;theme:head/&#62;&#10;    &#60;theme:body&#62;&#10;        &#60;ui:logo/&#62;&#10;        &#10;        &#60;div id="nav"&#62;&#10;            &#60;theme:layoutZone name="navigation"/&#62;&#10;        &#60;/div&#62;&#10;        &#10;        &#60;div id="user&#45;nav"&#62;&#10;            &#60;theme:layoutZone name="user&#45;navigation"/&#62;&#10;        &#60;/div&#62;&#10;        &#10;        &#60;div class="container"&#62;&#10;            &#60;h1&#62;&#60;theme:layoutTitle/&#62;&#60;/h1&#62;&#10;            &#10;            &#60;ui:displayMessage/&#62;&#10;            &#10;            &#60;div id="second&#45;nav"&#62;&#10;                &#60;theme:layoutZone name="secondary&#45;navigation"/&#62;&#10;            &#60;/div&#62;&#10;&#10;            &#60;div class="content"&#62;&#10;                &#60;theme:layoutZone name="body"/&#62;&#10;            &#60;/div&#62;&#10;&#10;            &#60;div id="sidebar"&#62;&#10;                &#60;theme:layoutZone name="sidebar"/&#62;&#10;            &#60;/div&#62;&#10;            &#10;            &#60;div id="footer"&#62;&#10;                &#60;theme:layoutZone name="footer"/&#62;&#10;            &#60;/div&#62;&#10;        &#60;/div&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>You can see here that the <code>theme:layoutZone</code> tag is used to render each chunk of content supplied by the GSP, and decorate it with the markup required to work with the CSS to achieve the desired layout - and the content in those zones is unaware of these requirements.<p class="paragraph"/>The <a href="../ref/Theme Tags/head.html" class="themeTags">head</a> and <a href="../ref/Theme Tags/body.html" class="themeTags">body</a> tags are optional but simplify layouts significantly. If you do not use these, there are more tags that you will need to use, such as <a href="../ref/Theme Tags/layoutTitle.html" class="themeTags">layoutTitle</a> which handles the theme-aware i18n friendly title mechanism, and <a href="../ref/Theme Tags/resources.html" class="themeTags">resources</a> to include the Theme's resources, and the regular <code>r:layoutResources</code> calls to get the Resources plugin to render the actual resource dependencies.<p class="paragraph"/>See the <a href="../ref/Theme Tags/head.html" class="themeTags">head</a>, <a href="../ref/Theme Tags/body.html" class="themeTags">body</a> and <a href="../ref/Theme Tags/layoutTitle.html" class="themeTags">layoutTitle</a> theme tags for details of the behaviour of these utility tags.<p class="paragraph"/>A GSP page would define content for this layout using multiple calls to <code>theme:zone</code>:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="sidebar"/&#62;&#10;        &#60;theme:title text="my.page.title"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;This is the body of my page&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="sidebar"&#62;&#10;            &#60;p&#62;New items added today...&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Notice that not all the zones have content defined. Content zones that have no content defined in the page will fall back to defaults supplied by the application, theme, default theme or specimen text. See <a href="../guide/single.html#themeZones" class="guide">Content Zones</a> for details.<p class="paragraph"/><h3>Providing default zone content</h3><p class="paragraph"/>Themes can and should provide attractive default zone content. This is automatically rendered if the application GSP page does not provide content for a zone.<p class="paragraph"/>To provide default content for a zone, you simply supply a GSP at a path of the form:<p class="paragraph"/><code>/grails-app/&#95;themes/&#60;themeName&#62;/default/&#95;&#60;zoneName&#62;.gsp</code><p class="paragraph"/>This would provide fall-back zone content for all layouts in your theme. You can provide a more specific fall-back per layout in your theme by saving the GSPs at the following location:<p class="paragraph"/><code>/grails-app/&#95;themes/&#60;themeName&#62;/default/&#95;&#60;layoutName&#62;/&#95;&#60;zoneName&#62;.gsp</code><p class="paragraph"/>
+
+
+<h2 id="themeRequiredZones">8.3 The Required Zones Of Each Theme Layout</h2>
+Each required layout has a list of required zones. The layout must render these zones if provided, but it can be adaptive to the presence or absence of content for the zones - for example if there are three promotional content zones but content for only two is provided, the layout could adapt to this using <a href="../ref/Theme Tags/ifZoneContent.html" class="themeTags">ifZoneContent</a>.<p class="paragraph"/><h2>Required layout: home</h2><p class="paragraph"/>This layout is intended to represent the "home page" of a site. Typically with a banner area and marketing panels, of which the layout should support at least three. It could support more using <a href="../ref/Theme Tags/ifZoneContent.html" class="themeTags">ifZoneContent</a>.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr><tr class="table-odd"><td>banner</td><td>The primary marketing banner area</td></tr><tr class="table-even"><td>panel1</td><td>A marketing content area</td></tr><tr class="table-odd"><td>panel2</td><td>A marketing content area</td></tr><tr class="table-even"><td>panel3</td><td>A marketing content area</td></tr></table><p class="paragraph"/><h2>Required layout: main</h2><p class="paragraph"/>This layout is intended to represent normal site content pages. Typically with just a body.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: dialog</h2><p class="paragraph"/>This layout is intended to represent a "full screen" form such as a login. Typically with just a body, the body is used as the content within the "full screen" form.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: report</h2><p class="paragraph"/>This layout is intended to represent report results with pagination, e.g. a scaffolded list view.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr><tr class="table-even"><td>pagination</td><td>The report pagination controls</td></tr></table><p class="paragraph"/><h2>Required layout: dataentry</h2><p class="paragraph"/>This layout is intended to represent data entry screens, e.g. a scaffolded create/show/edit view.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-odd"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-even"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-odd"><td>footer</td><td>The footer</td></tr></table><p class="paragraph"/><h2>Required layout: sidebar</h2><p class="paragraph"/>This layout is intended to represent a body area that also has a sidebar.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Zone</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>body</td><td>The main body content</td></tr><tr class="table-even"><td>sidebar</td><td>The sidebar content</td></tr><tr class="table-odd"><td>navigation</td><td>The primary navigation options (home etc.)</td></tr><tr class="table-even"><td>user-navigation</td><td>The user navigation options (log in etc.)</td></tr><tr class="table-odd"><td>secondary-navigation</td><td>The secondary navigation options</td></tr><tr class="table-even"><td>footer</td><td>The footer</td></tr></table>
+
+
+<h2 id="themeResources">8.4 Defining and Including Theme Resources</h2>
+Themes can provide global static resources and per-layout resources by convention.<p class="paragraph"/>Using the Resources plugin, Themes simply define Resource modules with the following name convention:<p class="paragraph"/><pre class="brush: groovy;">&#10;    // Global resources for all layouts&#10;    'theme.YourThemeName' &#123;&#10;        &#10;    &#125;&#10;    &#10;    // Per&#45;layout resources, optional&#10;    'theme.YourThemeName.main' &#123;&#10;        // resources here&#10;    &#125;&#10;&#10;    'theme.YourThemeName.home' &#123;&#10;        // resources here&#10;    &#125;&#10;</pre><p class="paragraph"/>The Theme API will automatically pull these in as required when your Theme layout uses the <a href="../ref/Theme Tags/head.html" class="themeTags">head</a> theme tag or explicitly calls <a href="../ref/Theme Tags/resources.html" class="themeTags">resources</a> theme tag.
+
+
+
+<h2 id="themeTemplates">8.5 Reusable Theme Templates</h2>
+The Themes API includes a mechanism to reuse Theme template fragments using a standard template resolution mechanism.<p class="paragraph"/>This provides a standard by which Themes can expose these templates while making it easy for applications to override them if necessary.<p class="paragraph"/>One very common use of this is to have a common page header and/or footer section used across multiple layouts provided by your Theme. Using the <a href="../ref/Theme Tags/layoutTemplate.html" class="themeTags">layoutTemplate</a> theme tag instead of <code>g:render</code> ensures your templates follow the Theme conventions.
+
+
+<h2 id="themeBranding">8.6 Branding</h2>
+The application of site branding within a theme is obviously very important.<p class="paragraph"/>Out of the box, when a user switches to your Theme, all the existing information about their application should be used. The site name, the URLs, and logos should be instantly incorporated to decorate their application with your theme, while retaining their site's branding.<p class="paragraph"/>If you do this correctly, the tools provided in Platform UI and Platform Core allow Themes to provide diverse branding while minimizing the need for developers to customize or fork the theme.<p class="paragraph"/>The tools available include:
+<ul class="star">
+<li>The smart logo:uiTags tag</li>
+<li>Customizable UI Set template for the logo:uiTags tag</li>
+<li>The <code>p:siteName</code>, <code>p:siteLink</code>, <code>p:siteURL</code> and <code>p:organization</code> tags from Platform Core</li>
+<li>Resource overrides for CSS tweaks in UI Sets and Themes</li>
+</ul><p class="paragraph"/>
+
+
+<h2 id="themeConfiguration">8.7 Configuration</h2>
+There are a few configuration options that affect details such as which Theme is selected by default.<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Key</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td><code>plugin.platformUi.theme.default</code></td><td>Config value to the name of the theme to be used by default if no other theme is set on the current request. If this is not specified, it will default to the first theme installed that is not the Platform Ui example theme called "_default". If there are no others it falls back to this "_default"</td></tr><tr class="table-even"><td><code>plugin.platformUi.theme.layout.default</code></td><td>If a page requests a layout that is not supported in the current theme, it will fallback to the "default layout" set in config. This defaults to "main" so that unknown theme layouts result in something reasonable.</td></tr><tr class="table-odd"><td><code>plugin.platformUi.themes.layout.mapping.*</code></td><td>Used to map layout names to alternative layout names - for example to remap all uses of "dialog" layout to your own "fullscreenDialog" layout for all GSPs that use the "dialog" layout, set <code>plugin.platformUi.themes.layout.mapping.dialog = 'fullscreenDialog'</code>. This applies globally if there is no theme-specific layout remapping.</td></tr><tr class="table-even"><td><code>plugin.platformUi.themes.&#60;ThemeName&#62;.layout.mapping</code></td><td>As for the global equivalent, this allows remapping of layouts per-theme, so that e.g. your plugin or app can make a specific theme use a different layout X when layout Y is requested.</td></tr><tr class="table-odd"><td><code>plugin.platformUi.themes.&#60;ThemeName&#62;.ui.set</code></td><td>Defines the UI Set that <code>ThemeName</code> requires. e.g. <code>plugin.platformUi.themes.MyTheme.ui.set = 'Bootstrap'</code></td></tr><tr class="table-even"><td><code>plugin.platformUi.themes.&#60;ThemeName&#62;.ui.&#60;className&#62;.cssClass</code></td><td>Allows you to override the CSS classes used for UI Set elements on a per-theme basis. For example you may have two theme variants - one with large input fields and one with small fields. You would set <code>ui.MyBigFormTheme.input.cssClass = 'input-xlarge'</code> in one and use another value in the other. This overrides the class configuration provided by the UI Set itself.</td></tr></table>
+
+
+
+<h1 id="creatingUiSets">9 Creating Custom UI Sets</h1>
+If you cannot find an existing UI Set that generates markup compatible with your chosen or in-house JS/CSS framework, you can create your own. Search the <a href="http://grails.org/plugins/tag/uiset" target="blank">Grails plugin repository</a> for plugins that provide UI Sets.<p class="paragraph"/>Creating a UI Set is significantly more work than creating a theme because you need to supply the structural markup for all the UI tags.<p class="paragraph"/>However you can create a UI Set based on the <code>&#95;default</code> provided by Platform UI, or fork a UI Set that already exists in your application i.e. one provided by a plugin you have installed. See the <a href="../ref/Scripts/create-ui-set.html" class="scripts">create-ui-set</a> and <a href="../ref/Scripts/fork-ui-set.html" class="scripts">fork-ui-set</a> script documentation.<p class="paragraph"/>
+
+
+<h2 id="resources">9.1 UI Set Resources</h2>
+UI Sets typically rely on some resources for styling and functionality.<p class="paragraph"/>The current UI Set's resources are included in a page using the <a href="../ref/Ui Tags/resources.html" class="uiTags">resources</a> tag - although you do not need to do this if using Themes, as the theme's UI Set resources will be included automatically.<p class="paragraph"/>To declare resources for the UI Set you just define a resource module with the name convention <code>"ui.&#60;uisetname&#62;"</code>:<p class="paragraph"/><pre class="brush: groovy;">&#10;modules = &#123;&#10;    // Resources for your custom UI Set&#10;    'ui.Bootstrap' &#123;&#10;        dependsOn 'jquery', 'bootstrap'&#10;        &#10;        resource id:'styling', url:&#91;plugin:'bootstrap&#45;ui', dir:'css', file:'ui&#45;styling.css'&#93;&#10;        resource id:'hooks', url:&#91;plugin:'bootstrap&#45;ui', dir:'js', file:'bootstrap&#45;hooks.js'&#93;&#10;    &#125;&#10;&#125;&#10;</pre>
+
+
+
+<h2 id="cssclasses">9.2 CSS Classes</h2>
+Sometimes the structural markup for a UI Set is semantically compatible with what you want to achieve, but an application developer may want to change the CSS class names used for some elements to achieve the styling they want, while still using your UI Set.<p class="paragraph"/>They may for example want to use custom CSS and override your UI Set CSS resources and change class names for a table to avoid a clash with some other CSS library they use.<p class="paragraph"/>To enable this, UI Tags resolve CSS classes for the common UI elements in such a way that the UI Set developer can provide defaults, and the application developer can override these in Config.<p class="paragraph"/>The CSS class name is resolved for you by the UI Tags and is passed into the GSP template used for the UI element. As UI Set developer it is your responsibility to use this class name variable on the correct element.<p class="paragraph"/>The CSS Class configuration is performed using Platform Core namespaced config, and here is an example for a plugin that might configure a Bootstrap UI Set for the correct Bootstrap CSS classes:<p class="paragraph"/><pre class="brush: groovy;">&#10;def doWithConfig = &#123; config &#45;&#62;&#10;    platformUi &#123;&#10;        ui.Bootstrap.actions.cssClass = 'form&#45;actions'&#10;        ui.Bootstrap.button.cssClass = 'btn'&#10;        ui.Bootstrap.tab.cssClass = 'tab&#45;pane'&#10;        ui.Bootstrap.tabs.cssClass = 'nav nav&#45;tabs'&#10;        ui.Bootstrap.field.cssClass = ''&#10;        ui.Bootstrap.input.cssClass = 'input&#45;xlarge'&#10;        ui.Bootstrap.invalid.cssClass = 'invalid'&#10;        ui.Bootstrap.table.cssClass = 'table table&#45;striped'&#10;        ui.Bootstrap.tr.cssClass = ''&#10;        ui.Bootstrap.trOdd.cssClass = ''&#10;        ui.Bootstrap.trEven.cssClass = ''&#10;        ui.Bootstrap.th.cssClass = ''&#10;        ui.Bootstrap.carousel.cssClass = 'carousel'&#10;        ui.Bootstrap.slide.cssClass = 'item'&#10;        ui.Bootstrap.form.cssClass = 'form&#45;horizontal'&#10;    &#125;&#10;&#125;&#10;</pre><p class="paragraph"/>You can see here for example that the default input field CSS class is "input-xlarge" to create large input fields. The application developer can trivially override this in their application Config to get different sized fields:<p class="paragraph"/><pre class="brush: groovy;">&#10;plugin.platformUi.ui.Bootstrap.input.cssClass = 'input&#45;large'&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="uiConfiguration">9.3 Configuration</h2>
+UI Sets can change their behaviour based on configuration.<p class="paragraph"/>Config paths must be named according to Platform Core namespaced plugin config, within the namespace of the plugin that supplies the UI Set<p class="paragraph"/>You can add and declare any configuration options you wish, and for example you could provide more options for CSS Class customisation, or a global switch to change default colours or colour schemes.<p class="paragraph"/>In addition there are some Platform UI configuration options that affect UI Sets:<p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Path</strong></th><th><strong class="bold">Type</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>ui.set</td><td>String</td><td>The default UI Set to use if none is specified on the request or implied by the request Theme. Defaults to "_default" to use the "demo" UI Set that comes shipped in Platform UI</td></tr></table><p class="paragraph"/>
+
+
+<h2 id="gsptemplates">9.4 UI Set GSP Template Reference</h2>
+The GSP templates used to create a UI Set are detailed in this section. This guide is intended for developers creating their own UI Sets or themes.<p class="paragraph"/><h3>Resolution of templates</h3><p class="paragraph"/>Templates for UI Set tags are resolved to the following view path within your plugin or application:<p class="paragraph"/><code>/grails-app/views/&#95;ui/&#60;UiSetName&#62;/&#95;&#60;uiTagName&#62;.gsp</code><p class="paragraph"/>Sometimes you may need to work around a problem in a UI Set used by your application, where that UI Set is provided by another plugin or theme. You can do this easily by putting your own GSP in the correct location.<p class="paragraph"/><blockquote class="note">
+NOT IMPLEMENTED CORRECTLY YET: Themes override the UI set templates by specifying replacement templates in <code>/grails-app/views/_themes/&#60;ThemeName&#62;/&#95;ui/&#60;UiSetName&#62;/&#95;&#60;uiTagName&#62;.gsp</code>. Current implementation is wrong.
+</blockquote><p class="paragraph"/>
+<h3>Contract for GSP Templates</h3><p class="paragraph"/>The sections that follow set out the requirements for each UI tag's GSP template in terms of expected behaviour and the information supplied to the GSP template via the model.<p class="paragraph"/><h3>Attributes</h3><p class="paragraph"/>All UI tag attributes that are part of the UI Tag contracts are extracted and passed to the GSP template model. Any remaining attributes are passed to the model in the "attrs" variable.<p class="paragraph"/>Use of such attributes is typically to pass them through to underlying implementation tags such as <code>g:form</code>, but can be used for specific customisations over and above the UI Set specifications provided the core contract for each UI Tag's attributes is honoured.
+
+
+<h2 id="avatar">9.4.1 The Avatar template</h2>
+The <code>&#95;avatar.gsp</code> template is used to render the <a href="../ref/Ui Tags/avatar.html" class="uiTags">avatar</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The avatar template must render an avatar image for the given user identity.<p class="paragraph"/>The template can use any avatar provider. The default implementation uses Gravatar.<p class="paragraph"/>The user identity could be any string - but is typically an email address. For example an avatar template implementation that supports local application avatars for account user ids <strong class="bold">and</strong> public internet Gravatars could sense the presence of the email address and switch its behaviour for user ids.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>avatarClass</td><td>The CSS class to use for the avatar container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>user</td><td>The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set</td></tr><tr class="table-even"><td>defaultSrc</td><td>The absolute URL of the default avatar image</td></tr><tr class="table-odd"><td>size</td><td>The size in pixels of the avatar to retrieve, i.e. "30"</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the image tag.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:set var="_gravatarURL" value="https://secure.gravatar.com/avatar/"/&#62;&#10;&#60;g:set var="_gravatarArgs" value="$&#123;user.encodeAsMD5()&#125;?d=$&#123;defaultSrc?.encodeAsURL()&#125;"/&#62;&#10;&#60;img src="$&#123;_gravatarURL&#125;$&#123;_gravatarArgs&#125;"&#10;     class="$&#123;p.joinClasses(values:&#91;avatarClass,classes&#93;)&#125;"&#10;     $&#123;ui.attributes(exclude:'src')&#125;/&#62;&#10;</pre>
+
+
+
+<h2 id="block">9.4.2 The Block template</h2>
+The <code>&#95;block.gsp</code> template is used to render the <a href="../ref/Ui Tags/block.html" class="uiTags">block</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The block template <strong class="bold">should</strong> render a container around the contents of the tag body.<p class="paragraph"/>It is often the case that such blocks will be separated visually from the surrounding content, for example with a border or similar.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>blockClass</td><td>The CSS class to use for the block container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;blockClass, classes&#93;)&#125;"&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="carousel">9.4.3 The Carousel template</h2>
+The <code>&#95;carousel.gsp</code> template is used to render the <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>A carousel is a UI element typically used on home pages to rotate through a list of content panels, usually by sliding
+slides on and off or fading in and out.<p class="paragraph"/>The style of the animation, whether there are any UI elements to pause or advance the slides are not sepcified in any way.<p class="paragraph"/>This GSP template must simply render the correct structural markup and take care of any requirements of the JS code required, and render the various slides contained within the <code>ui:carousel</code> tag appropriately.<p class="paragraph"/>Usually frameworks simply use a list of divs and selectively show and hide them, much like tabs.<p class="paragraph"/>Slides <strong class="bold">must</strong> be shown in the following order:
+<ul class="star">
+<li>The slide marked "active" first</li>
+<li>All other slides, in order they were defined in the <code>slides</code> variable</li>
+</ul><p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The id for the outermost element supplied by the developer or auto-generated</td></tr><tr class="table-even"><td>carouselClass</td><td>The CSS class to use for the carousel container. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>slides</td><td>A list of the slides to include, each with properties <code>id</code>, <code>active</code>, <code>bodyContent</code></td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the container tag.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div id="$&#123;id&#125;" class="$&#123;p.joinClasses(values:&#91;carouselClass, classes&#93;)&#125;"&#62;&#10;    &#60;div class="carousel&#45;inner"&#62;&#10;        &#60;g:each in="$&#123;slides&#125;" var="s"&#62;$&#123;s.bodyContent&#125;&#60;/g:each&#62;&#10;    &#60;/div&#62;&#10;    &#60;a class="carousel&#45;control left" href="&#35;$&#123;id&#125;"&#10;        data&#45;slide="prev"&#62;&lsaquo;&#60;/a&#62;&#10;    &#60;a class="carousel&#45;control right" href="&#35;$&#123;id&#125;"&#10;        data&#45;slide="next"&#62;&rsaquo;&#60;/a&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="slide">9.4.4 The Slide template</h2>
+The <code>&#95;slide.gsp</code> template is used to render the <a href="../ref/Ui Tags/slide.html" class="uiTags">slide</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the markup required to encapsulate a single slide for a <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> component.<p class="paragraph"/>Typically a container div will be required with some kind of indicator class or HTML5-data attribute.<p class="paragraph"/>The output of the slide template is collected together and passed to the template for the <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> tag.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>Unique slide id - will be passed in by the user or auto generated for you</td></tr><tr class="table-even"><td>slideClass</td><td>The CSS class to apply for slides, from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>bodyContent</td><td>The body of the slide</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div id="slide_$&#123;id&#125;" class="$&#123;p.joinClasses(&#10;    values:&#91;slideClass, active ? ' active' : '', classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="form">9.4.5 The Form template</h2>
+The <code>&#95;form.gsp</code> template is used to render the <a href="../ref/Ui Tags/form.html" class="uiTags">form</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render an HTML form using the standard attributes supported by the Grails <code>g:form</code> tag.<p class="paragraph"/>It can apply any structural HTML or decoration that it desires. It may for example apply special CSS classes to toggle between vertical or horizontal label and field layout, and it could even use Config to toggle between these so that the application developer can change the look and feel across their app in one place.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>formClass</td><td>The CSS class to use for the primary container of the form HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the form to be rendered</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible with the standard g:form attributes.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="g:form" class="$&#123;p.joinClasses(values:&#91;formClass,classes&#93;)&#125;"&#10;    attrs="$&#123;attrs&#125;" bodyContent="$&#123;bodyContent&#125;"/&#62;&#10;</pre><p class="paragraph"/>This example simply delegates to g:form.
+
+
+<h2 id="actions">9.4.6 The Actions template</h2>
+The <code>&#95;actions.gsp</code> template is used to render the <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The actions template must render the block of form actions supplied in the body of the tag.<p class="paragraph"/>The caller uses the <code>ui:actions</code> tag to demarcate the part of a <code>ui:form</code> that contains the actions the user
+can perform - such as "Save or cancel" button and links, or perhaps other data navigation buttons etc.<p class="paragraph"/>Sometimes this is separated visually from the rest of the form, and sometimes it is repeated at the top and bottom of forms.<p class="paragraph"/>This is entirely up to the UI Set implementation however. <code>ui:actions</code> is to be called only once or not at all
+in each <code>ui:form</code>.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>actionsClass</td><td>The CSS class to use for the actions container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;actionsClass, classes&#93;)&#125;"&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="field">9.4.7 The Field template</h2>
+The <code>&#95;field.gsp</code> template is used to render the <a href="../ref/Ui Tags/field.html" class="uiTags">field</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This GSP template must render all the structural markup required to render a label, input widget and optionally field errors and hints.<p class="paragraph"/>The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin. This template however is only responsible for the structural layout of the various field elements, not the input itself. For the details of how inputs are actually rendered see the <a href="../guide/single.html#input" class="guide">input</a> template reference.<p class="paragraph"/>There are several contractual considerations in this template.<p class="paragraph"/>Your implementation must support:
+<ul class="star">
+<li>The ability for developers to customize the various elements using <code>ui:fieldLabel</code>, <code>ui:fieldHint</code>, <code>ui:fieldErrors</code> and <code>ui:fieldInput</code>. These nested tags that can be used within <code>ui:field</code> simply capture the relevant body markup which is passed in to this tempalte as <code>customXXXX</code> variables</li>
+<li>Support for rendering multiple errors inline if the UI Set is rendering field errors inline</li>
+</ul><p class="paragraph"/>The <code>ui:field</code> tag handles most of the complexity around this for you. Each inner element of the field (label/errors/input/hint) that is not provided via a nested tag will be resolved as appropriate. For example label, hint and error text is resolved using standard Platform UI i18n rules.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The HTML id to apply to the input, and for the label to reference</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes to pass through to be applied to the outermost container</td></tr><tr class="table-odd"><td>fieldClass</td><td>The CSS class to use for the primary container of the field HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>invalidClass</td><td>The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>label</td><td>The label text for the label, already resolved against i18n.</td></tr><tr class="table-odd"><td>hint</td><td>An optional hint string to render with the field, already resolved against i18n.</td></tr><tr class="table-even"><td>invalid</td><td>If value is Groovy true, indicates that the field isn't valid.</td></tr><tr class="table-odd"><td>required</td><td>If value is Groovy true, indicates that the field is required.</td></tr><tr class="table-even"><td>name</td><td>The name of the field and/or name of the bean property of the field.</td></tr><tr class="table-odd"><td>beanObject</td><td>The original root bean supplying the value, if any.</td></tr><tr class="table-even"><td>value</td><td>The value of the field to use if a the bean property value is differentx</td></tr><tr class="table-odd"><td>type</td><td>The explicit type override for the field (see <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag) if any</td></tr><tr class="table-even"><td>errors</td><td>The list of field error messages, already resolved against i18n. Groovy false if there are no errors.</td></tr><tr class="table-odd"><td>input</td><td>The markup to use for the input field, if <code>customInput</code> has no value</td></tr><tr class="table-even"><td>customLabel</td><td>The custom label markup to use. If defined, must be used as the full markup for the &#60;label&#62;, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-odd"><td>customHint</td><td>The custom hint markup to use. If defined, must be used as the full markup for the hint, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-even"><td>customInput</td><td>The custom input markup to use. If defined, must be used as the full markup for the input widget, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-odd"><td>customErrors</td><td>The custom error markup to use. If defined, must be used as the full markup for the errors, but still contained within the structural markup required by the UI Set</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;fieldClass, classes&#93;)&#125;"&#62;&#10;    &#60;g:if test="$&#123;customLabel&#125;"&#62;&#10;        $&#123;customLabel&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:else&#62;&#10;        &#60;label for="$&#123;id.encodeAsHTML()&#125;"&#62;$&#123;label.encodeAsHTML()&#125;&#60;/label&#62;&#10;    &#60;/g:else&#62;&#10;&#10;    &#60;g:if test="$&#123;customInput&#125;"&#62;&#10;        $&#123;customInput&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:else&#62;&#10;        $&#123;input&#125;&#10;    &#60;/g:else&#62;&#10;&#10;    &#60;g:if test="$&#123;customHint&#125;"&#62;&#10;        $&#123;customHint&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:elseif test="$&#123;hint&#125;"&#62;&#10;        &#60;span class="$&#123;hintClass&#125;"&#62;$&#123;hint.encodeAsHTML()&#125;&#60;/span&#62;&#10;    &#60;/g:elseif&#62;&#10;&#10;    &#60;g:if test="$&#123;customErrors&#125;"&#62;&#10;        $&#123;customErrors&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:elseif test="$&#123;errors&#125;"&#62;&#10;        &#60;g:each in="$&#123;errors&#125;" var="err"&#62;&#10;            &#60;span class="$&#123;errorClass&#125;"&#62;$&#123;err.encodeAsHTML()&#125;&#60;/span&#62;&#10;        &#60;/g:each&#62;&#10;    &#60;/g:elseif&#62;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="input">9.4.8 The input template</h2>
+The <code>&#95;input.gsp</code> template is used to render the <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This GSP template must render just the input widget for a single field.<p class="paragraph"/>This template must be smart: when rendering a field for a bean property it must attempt to automatically work out the correct field type to use, and to apply relevant constraints from the command or domain class.<p class="paragraph"/>These tasks are normally performed using a plugin such as Bean Fields or the preferred Grails Fields.<p class="paragraph"/>This template should, where possible, delegate to such a library to avoid reinventing the wheel. However this is not a requirement and you can provide any alternative implementation as long as this contract is honoured.<p class="paragraph"/>This is probably the most complicated UI Set template to implement. If possible use an existing implementation.<p class="paragraph"/>Your implementation should support:
+<ul class="star">
+<li>Rendering arbitrary fields</li>
+<li>Auto-sensing an appropriate field type for the current field value</li>
+<li>Manual field type overrides</li>
+<li>Rendering fields for an arbitrary property path starting at a root bean</li>
+<li>Relevant user input constraints based on the constraints of the bean (if any)</li>
+<li>Giving a visual indication of whether or not a field is required</li>
+<li>Giving a visual indication of whether there is an error on the field</li>
+</ul><p class="paragraph"/>The <code>ui:field</code> tag handles most of the complexity around this for you.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The HTML id to apply to the input, and for the label to reference</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes to pass through to be applied to the outermost container</td></tr><tr class="table-odd"><td>inputClass</td><td>The CSS class to use for the input element, obtained from UI Set config.</td></tr><tr class="table-even"><td>invalidClass</td><td>The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>invalid</td><td>If value is Groovy true, indicates that the field isn't valid.</td></tr><tr class="table-odd"><td>required</td><td>If value is Groovy true, indicates that the field is required.</td></tr><tr class="table-even"><td>name</td><td>The name of the field and/or name of the bean property of the field.</td></tr><tr class="table-odd"><td>beanObject</td><td>The original root bean supplying the value, if any.</td></tr><tr class="table-even"><td>value</td><td>The value of the field to use if a the bean property value is differentx</td></tr><tr class="table-odd"><td>type</td><td>The explicit type override for the field (see <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag) if any</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:if test="$&#123;beanObject&#125;"&#62;&#10;    &#60;g:set var="value" value="$&#123;beanObject&#91;name&#93;&#125;"/&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:if test="$"&#62;&#10;    &#60;input id="$&#123;id&#125;" name="$&#123;name.encodeAsHTML()&#125;" &#10;        class="$&#123;p.joinClasses(values:&#91;inputClass, classes&#93;)&#125;"&#10;        type="$&#123;type&#125;" value="$&#123;value?.encodeAsHTML()&#125;"/&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:elseif test="$&#123;type == 'select'&#125;"&#62;&#10;    &#60;g:select id="$&#123;id&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"&#10;        noSelection="&#91;null:'No value'&#93;" from="$&#123;&#91; &#91;value:value&#93; &#93;&#125;"/&#62;&#10;&#60;/g:elseif&#62;&#10;&#60;g:elseif test="$&#123;type == 'textarea'&#125;"&#62;&#10;    &#60;textarea id="$&#123;id&#125;" name="$&#123;name&#125;"&#62;$&#123;value?.encodeAsHTML()&#125;&#60;/textarea&#62;&#10;&#60;/g:elseif&#62;&#10;&#60;g:elseif test="$&#123;type == 'datepicker'&#125;"&#62;&#10;    &#60;g:datePicker id="$&#123;id&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"/&#62;&#10;&#60;/g:elseif&#62;&#10;</pre><p class="paragraph"/>This naïve example does not attempt to support bean properties, and does nothing with required or invalid indications. Here is an example using Bean Fields:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;bean:inputTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:inputTemplate&#62;&#10;&#60;bean:selectTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:selectTemplate&#62;&#10;&#60;bean:checkBoxTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:checkBoxTemplate&#62;&#10;&#60;bean:radioTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:radioTemplate&#62;&#10;&#60;bean:textAreaTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:textAreaTemplate&#62;&#10;&#60;g:if test="$&#123;beanObject&#125;"&#62;        &#10;        &#60;g:if test="$&#123;type == 'password'&#125;"&#62;&#10;            &#60;bean:field type="password" beanName="dummy"&#10;                bean="$&#123;beanObject&#125;" property="$&#123;name&#125;" noLabel="$&#123;true&#125;"/&#62;&#10;        &#60;/g:if&#62;&#10;        &#60;g:else&#62;&#10;            &#60;bean:field beanName="dummy" bean="$&#123;beanObject&#125;"&#10;                property="$&#123;name&#125;" noLabel="$&#123;true&#125;"/&#62;&#10;        &#60;/g:else&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:else&#62;&#10;    &#60;input id="$&#123;id&#125;" class="&#10;        $&#123;p.joinClasses(values:&#91;classes, invalid ? invalidClass : ''&#93;)&#125;"&#10;        type="$&#123;type&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"/&#62;&#10;&#60;/g:else&#62;&#10;</pre><p class="paragraph"/>This is again somewhat naïve as for non-bean fields it assumes &#60;input&#62; will cover all the cases, which it obviously will not.
+
+
+
+<h2 id="fieldGroup">9.4.9 The Field Group template</h2>
+The <code>&#95;fieldGroup.gsp</code> template is used to render the <a href="../ref/Ui Tags/fieldGroup.html" class="uiTags">fieldGroup</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The fieldGroup template must render a container around the contents of the tag body.<p class="paragraph"/>Sometimes groups of fields will be separated visually from the surrounding content, for example with a border or similar. Usually this is achieved with a &#60;fieldset&#62; tag but this is not always the case, so the template has the flexibility to use any markup it requires.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>fieldGroupClass</td><td>The CSS class to use for the field group container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;fieldset class="$&#123;p.joinClasses(values:&#91;fieldGroupClass,classes&#93;)&#125;"&#10;  $&#123;ui.attributes(attrs:attrs)&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/fieldset&#62;&#10;</pre>
+
+
+
+<h2 id="image">9.4.10 The Image template</h2>
+The <code>&#95;image.gsp</code> template is used to render the <a href="../ref/Ui Tags/image.html" class="uiTags">image</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template needs to render an inline image, such as a photo or illustration on the site. Images such as these may support zooming via a lightbox or similar UI, or other decoration such as a frame that would not be applied to other <code>&#60;img&#62;</code> tags.<p class="paragraph"/>The template must render the image using the same attribute contract as the Resources <code>r:img</code> tag - i.e. the attributes will contain either a <code>uri</code> or a <code>dir</code>/<code>file</code> pair.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>title</td><td>Title for the image (if any), resolved from an i18n message code if available. The template might render this with special formatting</td></tr><tr class="table-even"><td>imageClass</td><td>The CSS class to use for the primary container of the image HTML, obtained from UI Set config.</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;imageClass,classes&#93;)&#125;"&#62;&#10;    &#60;p:callTag tag="r:img"&#10;        attrs="$&#123;attrs&#125;" title="$&#123;title.encodeAsHTML()&#125;"/&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>This example simply delegates to r:img and passes through any classes, after applying a container.
+
+
+
+<h2 id="logo">9.4.11 The Logo template</h2>
+The <code>&#95;logo.gsp</code> template is used by the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the application logo as an inline image.<p class="paragraph"/>The logo should include a link to the site's primary URL.<p class="paragraph"/>Themes that use pure CSS for logos using e.g. background-image should follow the same conventions for the logo file name and location as per the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag definition.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>logoUri</td><td>URI of the logo to use</td></tr><tr class="table-even"><td>classes</td><td>String of CSS classes supplied</td></tr><tr class="table-odd"><td>logoClass</td><td>Class to apply to the logo element</td></tr><tr class="table-even"><td>width</td><td>Width of the logo or empty</td></tr><tr class="table-odd"><td>height</td><td>Height of the logo or empty</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;a href="$&#123;p.siteURL().encodeAsHTML()&#125;"&#62;&#10;  &#60;r:img uri="$&#123;logoUri.encodeAsHTML()&#125;" &#10;    class="$&#123;p.joinClasses(values:&#91;classes, logoClass&#93;)&#125;"&#10;    alt="$&#123;p.siteName()&#125;" &#10;    width="$&#123;width&#125;" height="$&#123;height&#125;"/&#62;&#60;/a&#62;&#10;</pre>
+
+
+<h2 id="message">9.4.12 The Message template</h2>
+The <code>&#95;message.gsp</code> template is used to render the <a href="../ref/Ui Tags/message.html" class="uiTags">message</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render out a UI message which is essentially a block of unstyled text resolved via i18n, with a message type associated with it.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>messageClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>type</td><td>The kind of message to use. See <a href="../ref/Ui Tags/message.html" class="uiTags">message</a>for the</td></tr><tr class="table-even"><td>bodyContent</td><td>The body of the message, without formatting</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;messageClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    &#60;p&#62;$&#123;bodyContent&#125;&#60;/p&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="paginate">9.4.13 The Paginate template</h2>
+The <code>&#95;paginate.gsp</code> template is used to render the <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is responsible for rendering the multi-page navigation controls used for reports, search results and so on.<p class="paragraph"/>The <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag implementation takes care of the hard parts related to calculating links, what options should be available to the user etc, and this template must simply render the correct markup using the information provided.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>paginateClass</td><td>A string containing the CSS class to apply to the outer container</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>next</td><td>The information for the "next" link</td></tr><tr class="table-even"><td>prev</td><td>The information for the "previous" link</td></tr><tr class="table-odd"><td>earlier</td><td>The information for the "earlier" link, to the list of pages before the current start page number</td></tr><tr class="table-even"><td>later</td><td>The information for the "later" link, to the list of pages after the last page number listed</td></tr><tr class="table-odd"><td>items</td><td>The list of page items to show UI for, each with properties "link", "active" and "text"</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes the use passed in. Usage of this is undefined across UI Sets</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ul class="$&#123;p.joinClasses(values:&#91;paginateClass, classes&#93;)&#125;"&#62;&#10;    &#60;g:if test="$&#123;prev&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;prev.link&#125;" class="prev"&#62;$&#123;prev.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:if test="$&#123;earlier&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;earlier.link&#125;" class="earlier"&#62;$&#123;earlier.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:each in="$&#123;items&#125;" var="i"&#62;&#10;        &#60;li&#62;&#60;g:if test="$&#123;i.active&#125;"&#62;&#10;                $&#123;i.text&#125;&#10;            &#60;/g:if&#62;&#10;            &#60;g:else&#62;&#10;                &#60;a href="$&#123;i.link&#125;"&#62;$&#123;i.text&#125;&#60;/a&#62;&#10;            &#60;/g:else&#62;&#10;        &#60;/li&#62;&#10;    &#60;/g:each&#62;&#10;    &#60;g:if test="$&#123;later&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;later.link&#125;" class="later"&#62;$&#123;later.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:if test="$&#123;next&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;next.link&#125;" class="next"&#62;$&#123;next.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;&#60;/ul&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="primaryNavigation">9.4.14 The Primary Navigation template</h2>
+The <code>&#95;primaryNavigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the primary navigation items for the application.<p class="paragraph"/>The primary navigation is the top-level site navigation, which typically includes highlighting the current active top level item.<p class="paragraph"/>Only the top level items of the default site navigation must be rendered.<p class="paragraph"/>The <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a> tag is typically only called from Theme layouts to render the site navigation menu.<p class="paragraph"/>See <a href="../guide/single.html#nav" class="guide">navigation</a> template documentation for details of adherence to Navigation API.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>primaryNavigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:primary" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;primaryNavigationClass, classes&#93;)&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="secondaryNavigation">9.4.15 The Secondary Navigation template</h2>
+The <code>&#95;secondaryNavigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the secondary navigation items for the application.<p class="paragraph"/>The secondary navigation is the set of navigation items that apply to the currently active primary navigation item.<p class="paragraph"/>Only the top level secondary items must be rendered.<p class="paragraph"/>The <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> tag is typically only called from Theme layouts to render the site navigation menu.<p class="paragraph"/>See <a href="../guide/single.html#nav" class="guide">navigation</a> template documentation for details of adherence to Navigation API.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>secondaryNavigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:secondary" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;secondaryNavigationClass, classes&#93;)&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="nav">9.4.16 The navigation template</h2>
+The <code>&#95;navigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/navigation.html" class="uiTags">navigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the navigation items from the supplied scope, or default the default application navigation scope if no scope is supplied.<p class="paragraph"/>Only the top level items at the scope supplied must be rendered, nested item rendering is not permitted.<p class="paragraph"/>An example use case: a plugin may expose a page that lists a set of administration options that are below secondary navigation level, such as:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;theme:zone name="body"&#62;&#10;    &#60;ui:block title="Email Confirmation Administration"&#62;&#10;        &#60;p&#62;Choose from the following options:&#60;/p&#62;&#10;        &#60;ui:navigation scope="plugin/emailconfirmation.admin"/&#62;&#10;    &#60;/ui:block&#62;&#10;&#60;/theme:zone&#62;&#10;</pre><p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>navigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>scope</td><td>A string identifying the navigation scope to render</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:menu" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;navigationClass, classes&#93;), scope:scope&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="table">9.4.17 The Table template</h2>
+The <code>&#95;table.gsp</code> template is used to render the <a href="../ref/Ui Tags/table.html" class="uiTags">table</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render tables. Typically this would use HTML <code>&#60;table&#62;</code> but this is not a concrete requirement - just that it is represented to the user as a columnar table.<p class="paragraph"/>The nested <code>ui:tr</code> and <code>ui:th</code> calls allow this template to apply extra logic.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>tableClass</td><td>The CSS class to use for the primary container of the table HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the table</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;table class="$&#123;p.joinClasses(values:&#91;tableClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/table&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="tr">9.4.18 The Table Row template</h2>
+The <code>&#95;tr.gsp</code> template is used to render the <a href="../ref/Ui Tags/tr.html" class="uiTags">tr</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render table rows for the <a href="../ref/Ui Tags/tr.html" class="uiTags">tr</a> tag.<p class="paragraph"/>This can be used to render extra decoration.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>trClass</td><td>CSS class to use for the element, from UI Set config</td></tr><tr class="table-even"><td>oddEvenClass</td><td>The CSS class to use for the row, to indicate if it is even/odd. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>row</td><td>The current row index in the table (zero based)</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the row</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;tr class="$&#123;p.joinClasses(values:&#91;trClass, oddEvenClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/tr&#62;&#10;</pre><p class="paragraph"/>
+
+
+
+<h2 id="th">9.4.19 The Table Heading template</h2>
+The <code>&#95;th.gsp</code> template is used to render the <a href="../ref/Ui Tags/th.html" class="uiTags">th</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render table header cells for the <a href="../ref/Ui Tags/th.html" class="uiTags">th</a> tag.<p class="paragraph"/>This can be used to render out metadata or extra elements for e.g. sortable columns, and uses Platform UI conventions to resolve i18n heading text.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>thClass</td><td>CSS class to use for the element, from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the heading</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost element</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;th class="$&#123;p.joinClasses(values:&#91;thClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/th&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="tabs">9.4.20 The Tabs template</h2>
+The <code>&#95;tabs.gsp</code> template is used to render the <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template renders the markup requires to define a set of tabs.<p class="paragraph"/>Tabs have a title for each tab, and can either link to a new URL or hide and display different tabs of content embedded in the page.<p class="paragraph"/>The tabs are provided in a model variable, having been collected from the <a href="../guide/single.html#tab" class="guide">tab</a> template used to implement the <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> tag.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The id of the outermost element supplied by application developer or auto-generated</td></tr><tr class="table-even"><td>tabsClass</td><td>The CSS class to use for the tabs container. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>tabs</td><td>The list of tabs, each with <code>active</code>, <code>id</code> and <code>bodyContent</code> properties</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ul class="$&#123;p.joinClasses(values:&#91;tabsClass, classes&#93;)&#125;" $&#123;ui.attributes()&#125;&#62;&#10;&#60;g:each in="$&#123;tabs&#125;" var="t"&#62;&#10;    &#60;li $&#123;t == active ? 'class="active"' : ''&#125;&#62;&#10;        &#60;a href="$&#123;t.link ?: ('&#35;'+t.id).encodeAsHTML()&#125;"&#62;$&#123;t.title.encodeAsHTML()&#125;&#60;/a&#62;&#10;    &#60;/li&#62;&#10;&#60;/g:each&#62;&#10;&#60;/ul&#62;&#10;&#60;div class="tabBodies"&#62;&#10;    &#60;g:each in="$&#123;tabs&#125;" var="t"&#62;&#10;        $&#123;t.bodyContent&#125;&#10;    &#60;/g:each&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>This example renders a <code>&#60;ul&#62;</code> list containing the tabs and links, and then a set of <code>&#60;div&#62;</code> containing the tab contents.
+
+
+<h2 id="tab">9.4.21 The Tab template</h2>
+The <code>&#95;tab.gsp</code> template is used to render the <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the markup required to define a tab within the context of a <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag.<p class="paragraph"/>The <a href="../guide/single.html#tabs" class="guide">tabs</a> template collects all the outputs of each <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> invocation rendered by this template, and the <code>tabs</code> template then iterates over them to render the necessary markup.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>Unique id of the tab in this page. Supplied by user or auto generated</td></tr><tr class="table-even"><td>tabClass</td><td>CSS class to apply to the outermost container element, from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>bodyContent</td><td>The tab content</td></tr><tr class="table-odd"><td>active</td><td>True if the tab is currently the active tab</td></tr><tr class="table-even"><td>title</td><td>Title text for the tab, resolved from i18n</td></tr><tr class="table-odd"><td>link</td><td>Target link for the tab if it is a link to another URL, may be null</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:if test="$"&#62;&#10;    &#60;div id="tab_$&#123;id&#125;" class="$&#123;p.joinClasses(&#10;        values:&#91;active ? ' active' : '', tabClass, classes&#93;)&#125;"&#10;        $&#123;ui.attributes()&#125;&#62;&#10;        $&#123;bodyContent&#125;&#10;    &#60;/div&#62;&#10;&#60;/g:if&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="utilitytags">9.5 Utility Tags</h2>
+There are a set of utility tags and functions provided to make it easier to implement UI Set tag templates.<p class="paragraph"/>Documentation will be improved in future, but for now see:<p class="paragraph"/><a href="../ref/Ui Template Tags/attributes.html" class="uiTemplateTags">attributes</a> tag<p class="paragraph"/><a href="../ref/Ui Template Tags/cssClass.html" class="uiTemplateTags">cssClass</a> tag<p class="paragraph"/><a href="../ref/Ui Template Tags/listSets.html" class="uiTemplateTags">listSets</a> tag<p class="paragraph"/>Also see the Platform Core TagLibUtils class javadocs for a set of useful methods.
+
+
+<h1 id="debugging">10 Debugging - What the hell is going on?</h1>
+It can be a bit tricky to work out what is going wrong when a UI Set or Theme is not rendering as you would expect. Is there a problem in the UI set or the theme, what themes and UI sets are available etc?<p class="paragraph"/>There are some tools to help you as a Theme or UI Set author and to help developers preview your themes.
+
+
+
+<h2 id="debuggingUISets">10.1 Troubleshooting UI Sets</h2>
+UI sets provide the CSS, JS and markup for individual UI elements, separate from any theming.<p class="paragraph"/>As such the best way to debug UI Sets is using the built in platform UI viewer - not the Theme previewer.<p class="paragraph"/><h2>Using the Platform UI UI Set browser</h2><p class="paragraph"/>Viewing the full UI Sample page which demonstrates all the UI elements and checking your page loads correctly, JS works, and the various elements operate as expected is your best starting point.<p class="paragraph"/>With your app or plugin running in "run-app" development mode, browse to:<p class="paragraph"/><code>http://localhost:8080/&#60;yourprefix&#62;/platform/ui/uisets</code><p class="paragraph"/>This will let you see each installed UI Set in action.<p class="paragraph"/>Make sure your UISet renders all the widgets correctly in the UI Set viewer.<p class="paragraph"/>
+
+
+<h2 id="debuggingThemes">10.2 Troubleshooting Themes</h2>
+Themes are responsible for only the structural layout and styling of a page.<p class="paragraph"/>They may also choose to override styles provided by the UI Set on which they depend, for example to change colours.<p class="paragraph"/><h2>Using the Platform UI Theme browser</h2><p class="paragraph"/>Viewing the content content in your Theme is the best way to isolate Theme issues from your app itself.<p class="paragraph"/>With your app or plugin running in "run-app" development mode, browse to:<p class="paragraph"/><code>http://localhost:8080/&#60;yourprefix&#62;/platform/ui/themes</code><p class="paragraph"/>Here you can view each Theme's layout with default content supplied, with or without the full set of UI Set samples included.<p class="paragraph"/>View the layout that you are having problems with and verify the structural markup is all correct, and that all your CSS and JS is loading and being applied correctly.<p class="paragraph"/><h2>Supplying default content for your Theme zones</h2><p class="paragraph"/>This is a useful way to see your Theme populated with good quality content. See the section in <a href="../guide/single.html#creatingThemes" class="guide">Creating Themes</a> for details of how to do this.<p class="paragraph"/>
+
+
+
+<h1 id="advanced">11 Doing advanced things</h1>
+Once you've mastered the basics of the UI Sets and Theme system, you'll start wondering how to do some of the more advanced stuff.
+
+
+
+<h2 id="advancedCustomUIElements">11.1 Creating non-standard UI elements</h2>
+The UI Set tags attempt to provide the common denominator of UI elements that most plugins would need to offer basic UI functionality, and to support common features of modern website themes.<p class="paragraph"/>There will definitely be some cases where you may want to expose extra UI elements through your UI Set.<p class="paragraph"/>The approach to this would be to:
+<ul class="star">
+<li>Declare your own tag, but use the <code>uix</code> namespace to avoid future clashes with tags added to Platform UI in future.</li>
+<li>Implement your tag in a similar way to the Platform UI tags, calling the <code>renderUITemplate</code> method on the UITagLib to leverage the template location mechanisms of the UI Set</li>
+<li>Use CSS class configuration conventions similar to other Platform UI tags (see the <code>getUICSSClass</code> method of the <a href="../ref/Beans/grailsUISets.html" class="beans">grailsUISets</a>)</li>
+</ul><p class="paragraph"/>
+
+
+<h2 id="advancedAdaptiveThemeLayouts">11.2 Creating adaptive theme layouts</h2>
+There may be times where you would like to make your Theme adapt its presentation or styling based on some external factor - say based on configuration, absence of content for a specific zone, a user session variable or the presence of a model variable.<p class="paragraph"/>An example might be integrated Twitter and Facebook sharing integration. Your theme might want to render the "like" and "tweet" buttons only if the controller indicates that sharing is desirable on the current page.<p class="paragraph"/>Some of mechanisms available to you to perform these kinds of customisations include:
+<ul class="star">
+<li>Standard <code>g:if</code> blocks to affect what is rendered by the layout</li>
+<li>Judicious use of the <a href="../ref/Theme Tags/layoutTemplate.html" class="themeTags">layoutTemplate</a> tag to include reusable Theme Template code</li>
+<li>The <a href="../ref/Theme Tags/ifZoneContent.html" class="themeTags">ifZoneContent</a> and related tags for detecting presence of application-supplied zone content</li>
+<li>The <a href="../ref/Theme Tags/ifLayoutIs.html" class="themeTags">ifLayoutIs</a> and related tags that can enable a reusable Template to alter its output based on which Theme layout is active</li>
+</ul><p class="paragraph"/>
+
+
+<h2 id="advancedOverridingThemeLayouts">11.3 Overriding theme layouts in your app</h2>
+There may be times when one or more of the layouts provided by the Theme you are using does not function correctly or requires some changes to match with your branding.<p class="paragraph"/>You could fork the theme, or you could simply override that Theme layout.<p class="paragraph"/>To override a Theme layout you just provide a new GSP - containing the modified content of the Theme's layout GSP - in the same GSP view location as you would define it in your own theme:<p class="paragraph"/><code>/grails-app/views/layouts/themes/&#60;themeName&#62;/&#60;layoutName&#62;.gsp</code>
+
+
+<h2 id="advancedOverridingUISetTemplates">11.4 Overriding UI set templates in your app</h2>
+There may also be times when one or more of the templates provided by the UI Set you are using does not function correctly or requires some changes to render exactly as you'd like.<p class="paragraph"/>You could fork the UI Set, or you could override just the UI Set templates that you need to.<p class="paragraph"/>To override a UI Set template you just provide a new GSP containing the modified content of the UI Set's GSP  in the appropriate GSP view location:<p class="paragraph"/><code>/grails-app/views/_ui/&#60;uiSetName&#62;/&#60;templateName&#62;.gsp</code>
+
+
+<h2 id="advancedOverridingResources">11.5 Modifying resources provided by Themes or UI Sets</h2>
+Both Themes and UI Sets provide their resources using Resources framework modules named by convention.<p class="paragraph"/>It is therefore possible to modify the resources included by a UI Set or Theme by using the Resources framework overrides mechanism.<p class="paragraph"/>Using the Resources override mechanism you can:
+<ul class="star">
+<li>Add or replace dependencies of the UI Set or Theme's resource module. You can introduce your own resources that load before the module by amending the dependsOn, or knock out dependencies.</li>
+<li>Alter properties of individual resources in one of the UI Set or Theme's modules, such as the disposition</li>
+</ul><p class="paragraph"/>For details of the <a href="http://grails-plugins.github.com/grails-resources/guide/5.%20Overriding%20resources.html" target="blank">Resources overrides mechanism</a> see the docs.
+
+
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-ui-set.html">create-ui-set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/activeSets.html">activeSets</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/baseHeading.html">baseHeading</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetActive.html">ifSetActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetNotActive.html">ifSetNotActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/input.html">input</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer
+    Please contact the authors with any corrections or suggestions
+</div>
+
+
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

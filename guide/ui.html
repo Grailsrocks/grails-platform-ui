@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>6 UI API 1.0.RC1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript" src="../css/shCore.js"></script>
+    <script type="text/javascript" src="../css/shBrushXml.js"></script>
+    <script type="text/javascript" src="../css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>2</strong><span>Change Log</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/integratingPluginUi.html"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/recipes.html"><strong>5</strong><span>Recipes</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/ui.html"><strong>6</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/themes.html"><strong>7</strong><span>Themes API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/creatingUiSets.html"><strong>9</strong><span>Creating Custom UI Sets</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>11</strong><span>Doing advanced things</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for Theming and Plugin UI integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                <div class="toc-item prev-left"><a href="../guide/recipes.html">&lt;&lt; <strong>5</strong><span>Recipes</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                <div class="toc-item next-right"><a href="../guide/themes.html"><strong>7</strong><span>Themes API</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>6 UI API - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.RC1</p>
+
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#uisets"><strong>6.1</strong><span>About UI Sets</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#uielements"><strong>6.2</strong><span>The UI Elements</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#widgets"><strong>6.2.1</strong><span>Widgets</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#grouping"><strong>6.2.2</strong><span>Grouping</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#forms"><strong>6.2.3</strong><span>Forms</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="#typography"><strong>6.2.4</strong><span>Typography</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="ui">6 UI API</h1>
+The UI API provides a set of tags for common UI elements, without tieing an application to any specific CSS or JavaScript library.<p class="paragraph"/>The UI tags have implementations that come from a "UI Set" which is a convention-based collection of GSP templates.<p class="paragraph"/>This semantic identification of UI elements provides a level of abstraction from their actual HTML rendering. While HTML5 is a major step forward, we are still in a situation where UI elements are often built out of multiple markup tags which vary between CSS and JS frameworks. For this reason, we cannot have UI tags that render the actual HTML in a fixed way, if we want our UIs - especially those from plugins - to work with different UI frameworks.<p class="paragraph"/>This allows plugins to provide high quality UI to your application, without relying on you to integrate the plugin views with your look and feel.<p class="paragraph"/><blockquote class="note">
+It is very important to understand that using these tags does not tie you to any UI library or specific look and feel. That is entirely down to the UI Set that your application/theme uses, and can be switched at runtime.
+</blockquote><p class="paragraph"/>You no longer have to write your HTML markup to match specific CSS frameworks you are using. Use the UI tags and you can pair this with your own UI Set, or use an off the shelf one and leverage the theme system to get polished off-the-shelf UIs - or create your own themes to allow your users a choice of look and feel.<p class="paragraph"/>There are tags for rendering the following content elements
+<ul class="star">
+<li>fields (including label, errors, hint and structural markup)</li>
+<li>buttons</li>
+<li>tabs</li>
+<li>navigation</li>
+<li>carousels</li>
+<li>tables</li>
+<li>pagination</li>
+<li>images</li>
+<li>messages</li>
+<li>headings</li>
+<li>logos</li>
+<li>avatars</li>
+</ul><p class="paragraph"/>Only by standardising all these elements does theming becomes possible.<p class="paragraph"/>Note that you do not need to use Themes to benefit from UI tags. However, Themes can select the UI Set used to render the tags, so that they use the correct HTML and CSS for the Theme.<p class="paragraph"/>UI Sets work with Resources plugin to automatically pull in the resources that the UI Set requires. For example the set of UI elements that require Twitter Bootstrap will pull in specific resource modules named by convention.
+
+
+
+<h2 id="uisets">6.1 About UI Sets</h2>
+UI Sets provide the implementation of the UI tags, and the named UI Set in effect can be set at runtime.<p class="paragraph"/>This is typically automatically selected by the Theme currently in use, but you do not have to use themes to use UI Sets.<p class="paragraph"/>A UI Set implementation is just a named collection of GSP templates in a convention-based path in a plugin or application.<p class="paragraph"/><h2>Why do we need this?</h2><p class="paragraph"/>Even with increasing adoption of HTML5, the truth is that there are still
+many ways to render the markup for even the relatively small subset of UI elements that the Platform UI API supports.<p class="paragraph"/>Therefore this level of abstraction is required to make Themes work, so that the functionally equivalent visual and input elements can be rendered with completely different structural markup and styling.<p class="paragraph"/>Take form fields as an example. These can generally be decomposed into the following components:
+<ol>
+<li>A label</li>
+<li>An input widget of some sort, either standard HTML or some custom JavaScript based widget</li>
+<li>A field hint and/or field error message</li>
+</ol><p class="paragraph"/>So now you take the design your artists have created using e.g. Twitter Bootstrap and you render your fields using the markup required
+to achieve Bootstrap's look and feel:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;label for="firstName" class="control&#45;label"&#62;First Name&#60;/label&#62;&#10;&#60;div class="controls"&#62;&#10;    &#60;input name="firstName" value=""/&#62;&#10;    &#60;span class="help&#45;block"&#62;Your first name&#60;/span&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>Fine. However if you then switch to another CSS framework, you will often find that this no longer renders anything like the way you wanted
+because there is no standard structural UI layout and styling mechanism in HTML. Specifically:<p class="paragraph"/># The structural markup will often be different. One designer might use nested divs to lay out the label, field and hint. Another may use a single div or no div at all for the components, another may rely on the order of sibling elements
+<ol>
+<li>The CSS class names for the structural markup will usually be different</li>
+<li>The CSS class names for the label, widget and hint/error will often be different</li>
+</ol><p class="paragraph"/>So this is why UI Sets delegate to GSP templates that define the actual structural markup for each UI element, and why tags such as <a href="../ref/Ui Tags/field.html" class="uiTags">field</a>
+automatically handle the label, field and hint so that you are not required to make sure these are surrounded by the correct structural markup for the current theme.<p class="paragraph"/>This way, an application can write <code>&#60;ui:field name="x"/&#62;</code> and work with existing and future CSS frameworks without modification to the GSP view - which after all only wanted to render a field.<p class="paragraph"/>This is how plugins can expose UI that fits in with the application's chosen theme.<p class="paragraph"/>The secret to making your UI work with theming is relinquishing control over the details of HTML markup and CSS classes.<p class="paragraph"/>That is, unless you are also the author of the theme you are using - in which case you still have full control.
+
+
+<h2 id="uielements">6.2 The UI Elements</h2>
+Any application or plugin can use the UI element tags.<p class="paragraph"/>The following sections show examples of the various tags being used. See the reference for each tag for full details.
+
+
+<h2 id="widgets">6.2.1 Widgets</h2>
+The UI API provides support for a range of widgets for plugins and applications to use.<p class="paragraph"/>For full details see the tag reference section.<p class="paragraph"/><h3>Button</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/button.html" class="uiTags">button</a> tag renders a button with options for:
+<ul class="star">
+<li>the kind of rendering (input with type submit, button tag, or anchor)</li>
+<li>resolving the text via i18n messages</li>
+<li>different "modes" that give cues to the user to indicate e.g. primary buttons</li>
+</ul><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:button mode="primary"&#62;OK&#60;/ui:button&#62;&#10;&#60;ui:button&#62;Save&#60;/ui:button&#62;&#10;&#60;ui:button enabled="false"&#62;Cancel&#60;/ui:button&#62;&#10;&#60;ui:button mode="primary" text="button.ok"/&#62;&#10;&#60;ui:button kind="anchor" href="&#35;" mode="cancel" text="button.cancel"/&#62;&#10;&#60;ui:button kind="submit" mode="primary" text="Send"/&#62;&#10;</pre><p class="paragraph"/><h3>Field</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/field.html" class="uiTags">field</a> tag lets you specify a field that must be rendered - usually within a form.<p class="paragraph"/>The UI Set is responsible for all structural markup relating to this field, including any required container nodes, the label, per-field errors (if supported) and hints etc. The output depends entirely on the UI Set in use.<p class="paragraph"/>The tag supports named fields or "bean" fields where the value comes from a bean in the current page scope. UI Sets will typically use the Grails Fields plugin to do this, but UI Sets are free to use any implementation.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:field name="field1" type="text" hint="This is a little hint" label="Text field"/&#62;&#10;&#60;ui:field name="field2" type="checkbox" hint="This is an error hint"&#10;    label="Checkbox field with an error" error="$&#123;true&#125;"/&#62;&#10;&#60;ui:field name="field3" type="radio" label="Radio field"/&#62;&#10;&#60;ui:field name="field4" type="textarea" label="Textarea field"&#62;Hello world&#60;/ui:field&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="name"/&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="enabled"/&#62;&#10;&#60;ui:field bean="$&#123;form&#125;" name="dateOfBirth"/&#62;&#10;</pre><p class="paragraph"/>You can see that the field type is auto-sensed, which can be overriden with "type".<p class="paragraph"/>Note that there are related tags <a href="../ref/Ui Tags/input.html" class="uiTags">input</a>, <a href="../ref/Ui Tags/fieldLabel.html" class="uiTags">fieldLabel</a>, <a href="../ref/Ui Tags/fieldInput.html" class="uiTags">fieldInput</a>, <a href="../ref/Ui Tags/fieldErrors.html" class="uiTags">fieldErrors</a>, <a href="../ref/Ui Tags/fieldHint.html" class="uiTags">fieldHint</a><p class="paragraph"/><h3>Image</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/image.html" class="uiTags">image</a> tag is used to render images that represent content for the user. UI Sets might add some classes, caption or other decoration, perhaps a light box that allows zooming in to a larger version of the image.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:image uri="/images/product1.png" width="200" title="Our latest product"&#10;    alt="This is our latest product SLA&#45;YER3000"/&#62;&#10;&#10;&#60;ui:image dir="/images" file="/product2.png" title="Last year's product"&#10;    alt="The OP&#45;ETH2000 is now obsolete"/&#62;&#10;</pre><p class="paragraph"/><h3>Table</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/table.html" class="uiTags">table</a> tag is used to render tables of information.<p class="paragraph"/>Use just like normal tables, but gives the UI Set/Theme an opportunity to apply extra styling and functionality such as sortable columns.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:table&#62;&#10;    &#60;thead&#62;&#10;    &#60;tr&#62;&#10;        &#60;ui:th text="table.id"/&#62;&#10;        &#60;ui:th text="table.artist"/&#62;&#10;        &#60;ui:th text="table.title"/&#62;&#10;        &#60;ui:th text="table.genre"/&#62;&#10;    &#60;/tr&#62;&#10;    &#60;/thead&#62;&#10;    &#60;tbody&#62;&#10;    &#60;g:each in="$&#123;1..10&#125;" var="i"&#62;&#10;    &#60;ui:tr&#62;&#10;        &#60;td&#62;$&#123;i.encodeAsHTML()&#125;&#60;/td&#62;&#10;        &#60;td&#62;Farmers Market&#60;/td&#62;&#10;        &#60;td&#62;Slav To Rhythm&#60;/td&#62;&#10;        &#60;td&#62;Jazz&#60;/td&#62;&#10;    &#60;/ui:tr&#62;&#10;    &#60;/g:each&#62;&#10;    &#60;/tbody&#62;&#10;&#60;/ui:table&#62;&#10;</pre><p class="paragraph"/>You must always use <code>ui:table</code> for Theme-compatible table styling.<p class="paragraph"/><h3>Messages</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/message.html" class="uiTags">message</a> tag is used render text messages such as info and warning messages.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:message type="info" text="alert.message.something.happened"/&#62;&#10;&#60;ui:message type="error" text="alert.message.something.failed"/&#62;&#10;&#60;ui:message type="warning" text="alert.message.something.dodgy"/&#62;&#10;&#60;ui:message type="debug"&#62;&#10;    &#60;p&#62;This is some debug output, only for development mode&#60;/p&#62;&#10;&#60;/ui:message&#62;&#10;</pre><p class="paragraph"/>As with most UI tags you can specify text/textArgs attributes or a body.<p class="paragraph"/>There are dynamic methods added to controllers by Platform Core plugin to make it easy to display messages to the user, and this mechanism is reused in Platform UI to allow the UI Set to customise the rendering. Just call <code>displayMessage</code> or <code>displayFlashMessage</code> from Platform Core:<p class="paragraph"/><pre class="brush: groovy;">&#10;class AlbumController &#123;&#10;    def delete = &#123;&#10;        Album.delete(params.id)&#10;&#10;        displayMessage "album.was.deleted"&#10;&#10;    &#125;&#10;&#125;&#10;</pre><p class="paragraph"/>&#8230; and then add the <a href="../ref/Ui Tags/displayMessage.html" class="uiTags">displayMessage</a> tag variant from Platform UI:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:displayMessage/&#62;&#10;</pre><p class="paragraph"/>This will render nothing if there is no message set by the controller. Otherwise the flash and/or request messages will be shown, using i18n resolution much like the <code>p:text</code> tag of Platform Core.<p class="paragraph"/><h3>Pagination</h3><p class="paragraph"/>The <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag renders report pagination controls much like g:paginate, but in a way tha can be customised easily for theming.<p class="paragraph"/>The attributes are the same as the normal g:paginate tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:paginate controller="books" total="$&#123;totalBooks&#125;"/&#62;&#10;</pre><p class="paragraph"/>The underlying UI Set is presented with a data structure containing the links required to render the pagination, but not the markup itself.<p class="paragraph"/><h3>Tabs</h3><p class="paragraph"/>Tabbed pages are a familiar and frequently UI element. You can use the <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag to define a set of tabs, and tab tags inside the body of <code>ui:tabs</code> to define the content:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;%&#45;&#45; Tabs with hardcoded titles and links only &#45;&#45;%&#62;&#10;&#60;ui:tabs&#62;&#10;    &#60;ui:tab titles="One" active="true" action="list"/&#62;&#10;    &#60;ui:tab titles="Two" action="search"/&#62;&#10;    &#60;ui:tab titles="Three" action="list"/&#62;&#10;&#60;/ui:tabs&#62;&#10;&#10;&#60;%&#45;&#45; Tabs with i18n titles and links only &#45;&#45;%&#62;&#10;&#60;ui:tabs prefix="my.tab.title"&#62;&#10;    &#60;ui:tab title="a" controller="books"/&#62;&#10;    &#60;ui:tab title="b" controller="books" action="search" active="true"/&#62;&#10;    &#60;ui:tab title="c" action="latest"/&#62;&#10;&#60;/ui:tabs&#62;&#10;&#10;&#60;%&#45;&#45; Tabs with i18n titles and inin content panels only &#45;&#45;%&#62;&#10;&#60;ui:tabs prefix="other.tabtitle"&#62;&#10;    &#60;ui:tab title="d"&#62;&#60;ui:h4&#62;Tab D Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;    &#60;ui:tab title="e"&#62;&#60;ui:h4&#62;Tab E Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;    &#60;ui:tab title="f" action="true"&#62;&#60;ui:h4&#62;Tab F Content&#60;/ui:h4&#62;&#60;p:dummyText size="2"/&#62;&#60;/ui:tab&#62;&#10;&#60;/ui:tabs&#62;&#10;</pre><p class="paragraph"/>The resulting markup may be structurally very different from the UI tags you use in your page, depending on the UI Set's implementation.<p class="paragraph"/><h3>Avatar</h3><p class="paragraph"/>Display of user avatar images is a common feature of many web apps, especially social ones. External services typically supply the actual images, but how these are rendered/decorated is up to the application.<p class="paragraph"/>The <a href="../ref/Ui Tags/avatar.html" class="uiTags">avatar</a> tag renders such an avatar from a user identity string. What this string is depends on the underlying UI Set's avatar implementation, but this will often be an email address:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:avatar user="marc&#64;grailsrocks.com" size="50" rating="G" title="An avatar" alt="This is an Avatar"/&#62;&#10;</pre><p class="paragraph"/><h3>Logo</h3><p class="paragraph"/>Logos are often, but not always rendered using CSS background-image. If you need to insert your application's logo as an inline image, the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag allows the UI Set to style or position it appropriately, with support for multi-resolution logos.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:logo width="450" height="150"/&#62;&#10;</pre><p class="paragraph"/>The logo file is located by convention.<p class="paragraph"/><h3>Navigation</h3><p class="paragraph"/>Perhaps the trickiest and most variable page structures are the primary navigation menu and sub 
+menus. The <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a>, <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> and <a href="../ref/Ui Tags/navigation.html" class="uiTags">navigation</a> provide a markup-neutral way to render these menus in a way befitting the current theme.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="main&#45;nav"&#62;&#10;    &#60;ui:primaryNavigation/&#62;&#10;&#60;/div&#62;&#10;&#60;div class="sub&#45;nav"&#62;&#10;    &#60;ui:secondaryNavigation/&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/><h3>Carousel</h3><p class="paragraph"/>Carousels are a common, if maligned, feature of application sites. Typically featured on the home page they transition between a series of images or content panels.<p class="paragraph"/>Plugins and applications can use these via UI Sets without concern for the underlying markup and JS code required:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:carousel&#62;&#10;    &#60;ui:slide active="true"&#62;&#10;        This is slide one&#10;    &#60;/ui:slide&#62;&#10;    &#60;ui:slide&#62;&#10;        This is our second marketing slide&#10;    &#60;/ui:slide&#62;&#10;    &#60;ui:slide&#62;&#10;        And here is our third marketing slide&#10;    &#60;/ui:slide&#62;&#10;&#60;/ui:carousel&#62;&#10;</pre>
+
+
+<h2 id="grouping">6.2.2 Grouping</h2>
+There are a couple of grouping elements available in UI Sets.<p class="paragraph"/><h4>Actions</h4><p class="paragraph"/>The actions a user can perform are often gathered together in one place in a well designed form. The <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a> tag provides a holder for these, and allows the current theme to render this section of a form appropriately:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form action="update"&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="firstName"/&#62;&#10;        &#60;ui:field name="lastName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;ui:actions&#62;&#10;        &#60;ui:button mode="primary"&#62;Update&#60;/ui:button&#62;&#10;        &#60;ui:button mode="cancel"&#62;Cancel&#60;/ui:button&#62;&#10;    &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>Any content in the <code>ui:actions</code> body will be rendered, usually in some kind of styled container, by the UI Set.<p class="paragraph"/><h4>Field Groups</h4><p class="paragraph"/>Forms often arrange fields into groups, typically with <code>&#60;fieldset&#62;</code> in HTML. The structural markup for this is abstracted using the <a href="../ref/Ui Tags/fieldGroup.html" class="uiTags">fieldGroup</a> tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:block title="section.titles.welcome"&#62;&#10;    &#60;p&#62;Thank you for visiting our awesome site.&#60;/p&#62;&#10;&#60;/ui:block&#62;&#10;</pre><p class="paragraph"/>It does however support rendering a title at the start of the block, using i18n.
+<h4>Block</h4><p class="paragraph"/>Some themes may support visually separating a block of content, for example with a "well" or other border technique. The <a href="../ref/Ui Tags/block.html" class="uiTags">block</a> tag is a simple container for this purpose:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form controller="book"&#62; &#10;  &#60;ui:fieldGroup&#62;&#10;     &#60;ui:field name="firstName"/&#62;&#10;     &#60;ui:field name="lastName"/&#62;&#10;  &#60;/ui:fieldGroup&#62;&#10;  &#60;ui:fieldGroup&#62;&#10;     &#60;ui:field name="email"/&#62;&#10;  &#60;/ui:fieldGroup&#62;&#10;  &#60;ui:actions&#62;&#10;    &#60;ui:button type="submit"&#62;Save&#60;/ui:button&#62;&#10;  &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="forms">6.2.3 Forms</h2>
+There are several UI tags specifically relating to forms, <a href="../ref/Ui Tags/form.html" class="uiTags">form</a>, <a href="../ref/Ui Tags/field.html" class="uiTags">field</a>and <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a>.<p class="paragraph"/>You can create a form using the new UI tags like this:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:form action="update"&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="firstName"/&#62;&#10;        &#60;ui:field name="lastName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;fieldset&#62;&#10;        &#60;ui:field name="email"/&#62;&#10;        &#60;ui:field name="twitterName"/&#62;&#10;    &#60;/fieldset&#62;&#10;    &#60;ui:actions&#62;&#10;        &#60;ui:button mode="primary"&#62;Update&#60;/ui:button&#62;&#10;        &#60;ui:button mode="cancel"&#62;Cancel&#60;/ui:button&#62;&#10;    &#60;/ui:actions&#62;&#10;&#60;/ui:form&#62;&#10;</pre><p class="paragraph"/>You can see that the GSP has no knowledge of how forms or fields or buttons are rendered. The UI Set in effect determines this. You may get completely different structural HTML and CSS classes depending on the UI Set or theme you are using.<p class="paragraph"/>The UI Set might re-order the actions and form body or duplicate the actions as appropriate for the styling.<p class="paragraph"/>The <code>ui:form</code> tag passes all the attributes specified to the UI Set's template for passing to the g:form tag.
+
+
+<h2 id="typography">6.2.4 Typography</h2>
+<h4>Headings</h4><p class="paragraph"/>There are UI tags for rendering heading levels 1 to 4, including support for the standard i18n mechanisms of Platform UI.<p class="paragraph"/>This allows the UI Set/Theme or any GSP to set the base heading level for the rest of the request, so your content might use <code>&#60;ui:h1&#62;</code> but it actually appears as <code>&#60;h2&#62;</code> in the output. You get to maintain appropriate relative heading levels in your GSP, and let the UI deal with how this actually turns out.<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:baseHeading level="3"/&#62;&#10;&#60;ui:h1&#62;Heading level 1, or is it&#60;/ui:h1&#62;&#10;&#10;&#60;ui:baseHeading level="1"/&#62;&#10;&#60;ui:h2 title="my.sub.heading"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                <div class="toc-item prev-left"><a href="../guide/recipes.html">&lt;&lt; <strong>5</strong><span>Recipes</span></a></div>
+                
+                <div class="toc-item next-right"><a href="../guide/themes.html"><strong>7</strong><span>Themes API</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-ui-set.html">create-ui-set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/activeSets.html">activeSets</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/baseHeading.html">baseHeading</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetActive.html">ifSetActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetNotActive.html">ifSetNotActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/input.html">input</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

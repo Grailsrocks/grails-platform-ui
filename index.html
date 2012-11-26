@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>Grails Platform UI 1.0.RC1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="./css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8" />
+    <link rel="stylesheet" href="./css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8" />
+    <script type="text/javascript" src="./css/shCore.js"></script>
+    <script type="text/javascript" src="./css/shBrushXml.js"></script>
+    <script type="text/javascript" src="./css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="./css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="./guide/index.html" class="button">Table of contents</a>
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/overview.html"><strong>1</strong><span>Overview</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/changelog.html"><strong>2</strong><span>Change Log</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/integratingPluginUi.html"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/recipes.html"><strong>5</strong><span>Recipes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/ui.html"><strong>6</strong><span>UI API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/themes.html"><strong>7</strong><span>Themes API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/creatingUiSets.html"><strong>9</strong><span>Creating Custom UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="./guide/advanced.html"><strong>11</strong><span>Doing advanced things</span></a></div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for Theming and Plugin UI integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                <div class="project">
+                    <h1>Grails Platform UI - Reference Documentation</h1>
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com)</p>
+                    <p><strong>Version:</strong> 1.0.RC1</p>
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/overview.html"><strong>1</strong><span>Overview</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/changelog.html"><strong>2</strong><span>Change Log</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/gettingStarted.html#gettingStartedInstall"><strong>3.1</strong><span>Installing dependencies</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/gettingStarted.html#gettingStartedViews"><strong>3.2</strong><span>Adapting views to Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/gettingStarted.html#gettingStartedForms"><strong>3.3</strong><span>Creating forms with UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/integratingPluginUi.html"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/recipes.html"><strong>5</strong><span>Recipes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/recipes.html#recipesSettingThemeAtRuntime"><strong>5.1</strong><span>Setting the theme at runtime</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/recipes.html#recipesRenderingComplexInputs"><strong>5.2</strong><span>Rendering complex inputs</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/recipes.html#recipesUIWithoutThemes"><strong>5.3</strong><span>Using UI Sets without Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/ui.html"><strong>6</strong><span>UI API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/ui.html#uisets"><strong>6.1</strong><span>About UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/ui.html#uielements"><strong>6.2</strong><span>The UI Elements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/ui.html#widgets"><strong>6.2.1</strong><span>Widgets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/ui.html#grouping"><strong>6.2.2</strong><span>Grouping</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/ui.html#forms"><strong>6.2.3</strong><span>Forms</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/ui.html#typography"><strong>6.2.4</strong><span>Typography</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/themes.html"><strong>7</strong><span>Themes API</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/themes.html#themesUsing"><strong>7.1</strong><span>Using Themes In Your Application</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/themes.html#themeZones"><strong>7.2</strong><span>Content Zones</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/themes.html#themesDefault"><strong>7.3</strong><span>About The _default Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeRequirements"><strong>8.1</strong><span>Requirements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeLayout"><strong>8.2</strong><span>Creating Theme Layouts</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeRequiredZones"><strong>8.3</strong><span>The Required Zones Of Each Theme Layout</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeResources"><strong>8.4</strong><span>Defining and Including Theme Resources</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeTemplates"><strong>8.5</strong><span>Reusable Theme Templates</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeBranding"><strong>8.6</strong><span>Branding</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingThemes.html#themeConfiguration"><strong>8.7</strong><span>Configuration</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/creatingUiSets.html"><strong>9</strong><span>Creating Custom UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingUiSets.html#resources"><strong>9.1</strong><span>UI Set Resources</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingUiSets.html#cssclasses"><strong>9.2</strong><span>CSS Classes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingUiSets.html#uiConfiguration"><strong>9.3</strong><span>Configuration</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingUiSets.html#gsptemplates"><strong>9.4</strong><span>UI Set GSP Template Reference</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#avatar"><strong>9.4.1</strong><span>The Avatar template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#block"><strong>9.4.2</strong><span>The Block template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#carousel"><strong>9.4.3</strong><span>The Carousel template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#slide"><strong>9.4.4</strong><span>The Slide template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#form"><strong>9.4.5</strong><span>The Form template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#actions"><strong>9.4.6</strong><span>The Actions template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#field"><strong>9.4.7</strong><span>The Field template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#input"><strong>9.4.8</strong><span>The input template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#fieldGroup"><strong>9.4.9</strong><span>The Field Group template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#image"><strong>9.4.10</strong><span>The Image template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#logo"><strong>9.4.11</strong><span>The Logo template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#message"><strong>9.4.12</strong><span>The Message template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#paginate"><strong>9.4.13</strong><span>The Paginate template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#primaryNavigation"><strong>9.4.14</strong><span>The Primary Navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#secondaryNavigation"><strong>9.4.15</strong><span>The Secondary Navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#nav"><strong>9.4.16</strong><span>The navigation template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#table"><strong>9.4.17</strong><span>The Table template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#tr"><strong>9.4.18</strong><span>The Table Row template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#th"><strong>9.4.19</strong><span>The Table Heading template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#tabs"><strong>9.4.20</strong><span>The Tabs template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:20px"><a href="./guide/creatingUiSets.html#tab"><strong>9.4.21</strong><span>The Tab template</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/creatingUiSets.html#utilitytags"><strong>9.5</strong><span>Utility Tags</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/debugging.html#debuggingUISets"><strong>10.1</strong><span>Troubleshooting UI Sets</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/debugging.html#debuggingThemes"><strong>10.2</strong><span>Troubleshooting Themes</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="./guide/advanced.html"><strong>11</strong><span>Doing advanced things</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/advanced.html#advancedCustomUIElements"><strong>11.1</strong><span>Creating non-standard UI elements</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/advanced.html#advancedAdaptiveThemeLayouts"><strong>11.2</strong><span>Creating adaptive theme layouts</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/advanced.html#advancedOverridingThemeLayouts"><strong>11.3</strong><span>Overriding theme layouts in your app</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/advanced.html#advancedOverridingUISetTemplates"><strong>11.4</strong><span>Overriding UI set templates in your app</span></a></div>
+                    
+                    <div class="toc-item" style="margin-left:10px"><a href="./guide/advanced.html#advancedOverridingResources"><strong>11.5</strong><span>Modifying resources provided by Themes or UI Sets</span></a></div>
+                    
+                    <div style="clear:both" ></div>
+                </div>
+                
+                
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="./guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="./ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="./ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Scripts/create-ui-set.html">create-ui-set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/activeSets.html">activeSets</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/baseHeading.html">baseHeading</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/ifSetActive.html">ifSetActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/ifSetNotActive.html">ifSetNotActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/input.html">input</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="./ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer
+    Please contact the authors with any corrections or suggestions
+</div>
+
+
+
+<script type="text/javascript" src="./js/docs.js"></script>
+
+</body>
+</html>

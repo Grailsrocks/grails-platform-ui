@@ -1,0 +1,554 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>9.4 UI Set GSP Template Reference 1.0.RC1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript" src="../css/shCore.js"></script>
+    <script type="text/javascript" src="../css/shBrushXml.js"></script>
+    <script type="text/javascript" src="../css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/changelog.html"><strong>2</strong><span>Change Log</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/integratingPluginUi.html"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/recipes.html"><strong>5</strong><span>Recipes</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/ui.html"><strong>6</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/themes.html"><strong>7</strong><span>Themes API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/creatingUiSets.html"><strong>9</strong><span>Creating Custom UI Sets</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../../guide/advanced.html"><strong>11</strong><span>Doing advanced things</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for Theming and Plugin UI integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                <div class="toc-item prev-left"><a href="../../guide/creatingThemes.html">&lt;&lt; <strong>8</strong><span>Creating A Theme</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>9.4 UI Set GSP Template Reference - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.RC1</p>
+
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#avatar"><strong>9.1</strong><span>The Avatar template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#block"><strong>9.2</strong><span>The Block template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#carousel"><strong>9.3</strong><span>The Carousel template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#slide"><strong>9.4</strong><span>The Slide template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#form"><strong>9.5</strong><span>The Form template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#actions"><strong>9.6</strong><span>The Actions template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#field"><strong>9.7</strong><span>The Field template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#input"><strong>9.8</strong><span>The input template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#fieldGroup"><strong>9.9</strong><span>The Field Group template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#image"><strong>9.10</strong><span>The Image template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#logo"><strong>9.11</strong><span>The Logo template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#message"><strong>9.12</strong><span>The Message template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#paginate"><strong>9.13</strong><span>The Paginate template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#primaryNavigation"><strong>9.14</strong><span>The Primary Navigation template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#secondaryNavigation"><strong>9.15</strong><span>The Secondary Navigation template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#nav"><strong>9.16</strong><span>The navigation template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#table"><strong>9.17</strong><span>The Table template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#tr"><strong>9.18</strong><span>The Table Row template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#th"><strong>9.19</strong><span>The Table Heading template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#tabs"><strong>9.20</strong><span>The Tabs template</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#tab"><strong>9.21</strong><span>The Tab template</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h2 id="gsptemplates">9.4 UI Set GSP Template Reference</h2>
+The GSP templates used to create a UI Set are detailed in this section. This guide is intended for developers creating their own UI Sets or themes.<p class="paragraph"/><h3>Resolution of templates</h3><p class="paragraph"/>Templates for UI Set tags are resolved to the following view path within your plugin or application:<p class="paragraph"/><code>/grails-app/views/&#95;ui/&#60;UiSetName&#62;/&#95;&#60;uiTagName&#62;.gsp</code><p class="paragraph"/>Sometimes you may need to work around a problem in a UI Set used by your application, where that UI Set is provided by another plugin or theme. You can do this easily by putting your own GSP in the correct location.<p class="paragraph"/><blockquote class="note">
+NOT IMPLEMENTED CORRECTLY YET: Themes override the UI set templates by specifying replacement templates in <code>/grails-app/views/_themes/&#60;ThemeName&#62;/&#95;ui/&#60;UiSetName&#62;/&#95;&#60;uiTagName&#62;.gsp</code>. Current implementation is wrong.
+</blockquote><p class="paragraph"/>
+<h3>Contract for GSP Templates</h3><p class="paragraph"/>The sections that follow set out the requirements for each UI tag's GSP template in terms of expected behaviour and the information supplied to the GSP template via the model.<p class="paragraph"/><h3>Attributes</h3><p class="paragraph"/>All UI tag attributes that are part of the UI Tag contracts are extracted and passed to the GSP template model. Any remaining attributes are passed to the model in the "attrs" variable.<p class="paragraph"/>Use of such attributes is typically to pass them through to underlying implementation tags such as <code>g:form</code>, but can be used for specific customisations over and above the UI Set specifications provided the core contract for each UI Tag's attributes is honoured.
+
+
+<h2 id="avatar">9.4.1 The Avatar template</h2>
+The <code>&#95;avatar.gsp</code> template is used to render the <a href="../ref/Ui Tags/avatar.html" class="uiTags">avatar</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The avatar template must render an avatar image for the given user identity.<p class="paragraph"/>The template can use any avatar provider. The default implementation uses Gravatar.<p class="paragraph"/>The user identity could be any string - but is typically an email address. For example an avatar template implementation that supports local application avatars for account user ids <strong class="bold">and</strong> public internet Gravatars could sense the presence of the email address and switch its behaviour for user ids.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>avatarClass</td><td>The CSS class to use for the avatar container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>user</td><td>The id of the user for whom you wish to render an avatar. Often an email address, but depends on avatar service used by UI Set</td></tr><tr class="table-even"><td>defaultSrc</td><td>The absolute URL of the default avatar image</td></tr><tr class="table-odd"><td>size</td><td>The size in pixels of the avatar to retrieve, i.e. "30"</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the image tag.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:set var="_gravatarURL" value="https://secure.gravatar.com/avatar/"/&#62;&#10;&#60;g:set var="_gravatarArgs" value="$&#123;user.encodeAsMD5()&#125;?d=$&#123;defaultSrc?.encodeAsURL()&#125;"/&#62;&#10;&#60;img src="$&#123;_gravatarURL&#125;$&#123;_gravatarArgs&#125;"&#10;     class="$&#123;p.joinClasses(values:&#91;avatarClass,classes&#93;)&#125;"&#10;     $&#123;ui.attributes(exclude:'src')&#125;/&#62;&#10;</pre>
+
+
+
+<h2 id="block">9.4.2 The Block template</h2>
+The <code>&#95;block.gsp</code> template is used to render the <a href="../ref/Ui Tags/block.html" class="uiTags">block</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The block template <strong class="bold">should</strong> render a container around the contents of the tag body.<p class="paragraph"/>It is often the case that such blocks will be separated visually from the surrounding content, for example with a border or similar.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>blockClass</td><td>The CSS class to use for the block container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;blockClass, classes&#93;)&#125;"&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="carousel">9.4.3 The Carousel template</h2>
+The <code>&#95;carousel.gsp</code> template is used to render the <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>A carousel is a UI element typically used on home pages to rotate through a list of content panels, usually by sliding
+slides on and off or fading in and out.<p class="paragraph"/>The style of the animation, whether there are any UI elements to pause or advance the slides are not sepcified in any way.<p class="paragraph"/>This GSP template must simply render the correct structural markup and take care of any requirements of the JS code required, and render the various slides contained within the <code>ui:carousel</code> tag appropriately.<p class="paragraph"/>Usually frameworks simply use a list of divs and selectively show and hide them, much like tabs.<p class="paragraph"/>Slides <strong class="bold">must</strong> be shown in the following order:
+<ul class="star">
+<li>The slide marked "active" first</li>
+<li>All other slides, in order they were defined in the <code>slides</code> variable</li>
+</ul><p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The id for the outermost element supplied by the developer or auto-generated</td></tr><tr class="table-even"><td>carouselClass</td><td>The CSS class to use for the carousel container. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>slides</td><td>A list of the slides to include, each with properties <code>id</code>, <code>active</code>, <code>bodyContent</code></td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the container tag.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div id="$&#123;id&#125;" class="$&#123;p.joinClasses(values:&#91;carouselClass, classes&#93;)&#125;"&#62;&#10;    &#60;div class="carousel&#45;inner"&#62;&#10;        &#60;g:each in="$&#123;slides&#125;" var="s"&#62;$&#123;s.bodyContent&#125;&#60;/g:each&#62;&#10;    &#60;/div&#62;&#10;    &#60;a class="carousel&#45;control left" href="&#35;$&#123;id&#125;"&#10;        data&#45;slide="prev"&#62;&lsaquo;&#60;/a&#62;&#10;    &#60;a class="carousel&#45;control right" href="&#35;$&#123;id&#125;"&#10;        data&#45;slide="next"&#62;&rsaquo;&#60;/a&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="slide">9.4.4 The Slide template</h2>
+The <code>&#95;slide.gsp</code> template is used to render the <a href="../ref/Ui Tags/slide.html" class="uiTags">slide</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the markup required to encapsulate a single slide for a <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> component.<p class="paragraph"/>Typically a container div will be required with some kind of indicator class or HTML5-data attribute.<p class="paragraph"/>The output of the slide template is collected together and passed to the template for the <a href="../ref/Ui Tags/carousel.html" class="uiTags">carousel</a> tag.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>Unique slide id - will be passed in by the user or auto generated for you</td></tr><tr class="table-even"><td>slideClass</td><td>The CSS class to apply for slides, from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>bodyContent</td><td>The body of the slide</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div id="slide_$&#123;id&#125;" class="$&#123;p.joinClasses(&#10;    values:&#91;slideClass, active ? ' active' : '', classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="form">9.4.5 The Form template</h2>
+The <code>&#95;form.gsp</code> template is used to render the <a href="../ref/Ui Tags/form.html" class="uiTags">form</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render an HTML form using the standard attributes supported by the Grails <code>g:form</code> tag.<p class="paragraph"/>It can apply any structural HTML or decoration that it desires. It may for example apply special CSS classes to toggle between vertical or horizontal label and field layout, and it could even use Config to toggle between these so that the application developer can change the look and feel across their app in one place.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>formClass</td><td>The CSS class to use for the primary container of the form HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the form to be rendered</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible with the standard g:form attributes.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="g:form" class="$&#123;p.joinClasses(values:&#91;formClass,classes&#93;)&#125;"&#10;    attrs="$&#123;attrs&#125;" bodyContent="$&#123;bodyContent&#125;"/&#62;&#10;</pre><p class="paragraph"/>This example simply delegates to g:form.
+
+
+<h2 id="actions">9.4.6 The Actions template</h2>
+The <code>&#95;actions.gsp</code> template is used to render the <a href="../ref/Ui Tags/actions.html" class="uiTags">actions</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The actions template must render the block of form actions supplied in the body of the tag.<p class="paragraph"/>The caller uses the <code>ui:actions</code> tag to demarcate the part of a <code>ui:form</code> that contains the actions the user
+can perform - such as "Save or cancel" button and links, or perhaps other data navigation buttons etc.<p class="paragraph"/>Sometimes this is separated visually from the rest of the form, and sometimes it is repeated at the top and bottom of forms.<p class="paragraph"/>This is entirely up to the UI Set implementation however. <code>ui:actions</code> is to be called only once or not at all
+in each <code>ui:form</code>.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>actionsClass</td><td>The CSS class to use for the actions container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;actionsClass, classes&#93;)&#125;"&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="field">9.4.7 The Field template</h2>
+The <code>&#95;field.gsp</code> template is used to render the <a href="../ref/Ui Tags/field.html" class="uiTags">field</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This GSP template must render all the structural markup required to render a label, input widget and optionally field errors and hints.<p class="paragraph"/>The rendering of fields is rather complex. There are various approaches to rendering the markup of input fields, such as Bean Fields and the preferred Grails Fields plugin. This template however is only responsible for the structural layout of the various field elements, not the input itself. For the details of how inputs are actually rendered see the <a href="../guide/single.html#input" class="guide">input</a> template reference.<p class="paragraph"/>There are several contractual considerations in this template.<p class="paragraph"/>Your implementation must support:
+<ul class="star">
+<li>The ability for developers to customize the various elements using <code>ui:fieldLabel</code>, <code>ui:fieldHint</code>, <code>ui:fieldErrors</code> and <code>ui:fieldInput</code>. These nested tags that can be used within <code>ui:field</code> simply capture the relevant body markup which is passed in to this tempalte as <code>customXXXX</code> variables</li>
+<li>Support for rendering multiple errors inline if the UI Set is rendering field errors inline</li>
+</ul><p class="paragraph"/>The <code>ui:field</code> tag handles most of the complexity around this for you. Each inner element of the field (label/errors/input/hint) that is not provided via a nested tag will be resolved as appropriate. For example label, hint and error text is resolved using standard Platform UI i18n rules.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The HTML id to apply to the input, and for the label to reference</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes to pass through to be applied to the outermost container</td></tr><tr class="table-odd"><td>fieldClass</td><td>The CSS class to use for the primary container of the field HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>invalidClass</td><td>The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>label</td><td>The label text for the label, already resolved against i18n.</td></tr><tr class="table-odd"><td>hint</td><td>An optional hint string to render with the field, already resolved against i18n.</td></tr><tr class="table-even"><td>invalid</td><td>If value is Groovy true, indicates that the field isn't valid.</td></tr><tr class="table-odd"><td>required</td><td>If value is Groovy true, indicates that the field is required.</td></tr><tr class="table-even"><td>name</td><td>The name of the field and/or name of the bean property of the field.</td></tr><tr class="table-odd"><td>beanObject</td><td>The original root bean supplying the value, if any.</td></tr><tr class="table-even"><td>value</td><td>The value of the field to use if a the bean property value is differentx</td></tr><tr class="table-odd"><td>type</td><td>The explicit type override for the field (see <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag) if any</td></tr><tr class="table-even"><td>errors</td><td>The list of field error messages, already resolved against i18n. Groovy false if there are no errors.</td></tr><tr class="table-odd"><td>input</td><td>The markup to use for the input field, if <code>customInput</code> has no value</td></tr><tr class="table-even"><td>customLabel</td><td>The custom label markup to use. If defined, must be used as the full markup for the &#60;label&#62;, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-odd"><td>customHint</td><td>The custom hint markup to use. If defined, must be used as the full markup for the hint, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-even"><td>customInput</td><td>The custom input markup to use. If defined, must be used as the full markup for the input widget, but still contained within the structural markup required by the UI Set</td></tr><tr class="table-odd"><td>customErrors</td><td>The custom error markup to use. If defined, must be used as the full markup for the errors, but still contained within the structural markup required by the UI Set</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;fieldClass, classes&#93;)&#125;"&#62;&#10;    &#60;g:if test="$&#123;customLabel&#125;"&#62;&#10;        $&#123;customLabel&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:else&#62;&#10;        &#60;label for="$&#123;id.encodeAsHTML()&#125;"&#62;$&#123;label.encodeAsHTML()&#125;&#60;/label&#62;&#10;    &#60;/g:else&#62;&#10;&#10;    &#60;g:if test="$&#123;customInput&#125;"&#62;&#10;        $&#123;customInput&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:else&#62;&#10;        $&#123;input&#125;&#10;    &#60;/g:else&#62;&#10;&#10;    &#60;g:if test="$&#123;customHint&#125;"&#62;&#10;        $&#123;customHint&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:elseif test="$&#123;hint&#125;"&#62;&#10;        &#60;span class="$&#123;hintClass&#125;"&#62;$&#123;hint.encodeAsHTML()&#125;&#60;/span&#62;&#10;    &#60;/g:elseif&#62;&#10;&#10;    &#60;g:if test="$&#123;customErrors&#125;"&#62;&#10;        $&#123;customErrors&#125;&#10;    &#60;/g:if&#62;&#10;    &#60;g:elseif test="$&#123;errors&#125;"&#62;&#10;        &#60;g:each in="$&#123;errors&#125;" var="err"&#62;&#10;            &#60;span class="$&#123;errorClass&#125;"&#62;$&#123;err.encodeAsHTML()&#125;&#60;/span&#62;&#10;        &#60;/g:each&#62;&#10;    &#60;/g:elseif&#62;&#10;&#60;/div&#62;&#10;</pre>
+
+
+
+<h2 id="input">9.4.8 The input template</h2>
+The <code>&#95;input.gsp</code> template is used to render the <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This GSP template must render just the input widget for a single field.<p class="paragraph"/>This template must be smart: when rendering a field for a bean property it must attempt to automatically work out the correct field type to use, and to apply relevant constraints from the command or domain class.<p class="paragraph"/>These tasks are normally performed using a plugin such as Bean Fields or the preferred Grails Fields.<p class="paragraph"/>This template should, where possible, delegate to such a library to avoid reinventing the wheel. However this is not a requirement and you can provide any alternative implementation as long as this contract is honoured.<p class="paragraph"/>This is probably the most complicated UI Set template to implement. If possible use an existing implementation.<p class="paragraph"/>Your implementation should support:
+<ul class="star">
+<li>Rendering arbitrary fields</li>
+<li>Auto-sensing an appropriate field type for the current field value</li>
+<li>Manual field type overrides</li>
+<li>Rendering fields for an arbitrary property path starting at a root bean</li>
+<li>Relevant user input constraints based on the constraints of the bean (if any)</li>
+<li>Giving a visual indication of whether or not a field is required</li>
+<li>Giving a visual indication of whether there is an error on the field</li>
+</ul><p class="paragraph"/>The <code>ui:field</code> tag handles most of the complexity around this for you.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The HTML id to apply to the input, and for the label to reference</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes to pass through to be applied to the outermost container</td></tr><tr class="table-odd"><td>inputClass</td><td>The CSS class to use for the input element, obtained from UI Set config.</td></tr><tr class="table-even"><td>invalidClass</td><td>The CSS class to use for the primary container of the form HTML, in the event of a value being invalid, obtained from UI Set config - in addition to the fieldClass value</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>invalid</td><td>If value is Groovy true, indicates that the field isn't valid.</td></tr><tr class="table-odd"><td>required</td><td>If value is Groovy true, indicates that the field is required.</td></tr><tr class="table-even"><td>name</td><td>The name of the field and/or name of the bean property of the field.</td></tr><tr class="table-odd"><td>beanObject</td><td>The original root bean supplying the value, if any.</td></tr><tr class="table-even"><td>value</td><td>The value of the field to use if a the bean property value is differentx</td></tr><tr class="table-odd"><td>type</td><td>The explicit type override for the field (see <a href="../ref/Ui Tags/input.html" class="uiTags">input</a> tag) if any</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:if test="$&#123;beanObject&#125;"&#62;&#10;    &#60;g:set var="value" value="$&#123;beanObject&#91;name&#93;&#125;"/&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:if test="$"&#62;&#10;    &#60;input id="$&#123;id&#125;" name="$&#123;name.encodeAsHTML()&#125;" &#10;        class="$&#123;p.joinClasses(values:&#91;inputClass, classes&#93;)&#125;"&#10;        type="$&#123;type&#125;" value="$&#123;value?.encodeAsHTML()&#125;"/&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:elseif test="$&#123;type == 'select'&#125;"&#62;&#10;    &#60;g:select id="$&#123;id&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"&#10;        noSelection="&#91;null:'No value'&#93;" from="$&#123;&#91; &#91;value:value&#93; &#93;&#125;"/&#62;&#10;&#60;/g:elseif&#62;&#10;&#60;g:elseif test="$&#123;type == 'textarea'&#125;"&#62;&#10;    &#60;textarea id="$&#123;id&#125;" name="$&#123;name&#125;"&#62;$&#123;value?.encodeAsHTML()&#125;&#60;/textarea&#62;&#10;&#60;/g:elseif&#62;&#10;&#60;g:elseif test="$&#123;type == 'datepicker'&#125;"&#62;&#10;    &#60;g:datePicker id="$&#123;id&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"/&#62;&#10;&#60;/g:elseif&#62;&#10;</pre><p class="paragraph"/>This naïve example does not attempt to support bean properties, and does nothing with required or invalid indications. Here is an example using Bean Fields:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;bean:inputTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:inputTemplate&#62;&#10;&#60;bean:selectTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:selectTemplate&#62;&#10;&#60;bean:checkBoxTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:checkBoxTemplate&#62;&#10;&#60;bean:radioTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:radioTemplate&#62;&#10;&#60;bean:textAreaTemplate&#62;&#10;$&#123;field&#125;&#10;&#60;/bean:textAreaTemplate&#62;&#10;&#60;g:if test="$&#123;beanObject&#125;"&#62;        &#10;        &#60;g:if test="$&#123;type == 'password'&#125;"&#62;&#10;            &#60;bean:field type="password" beanName="dummy"&#10;                bean="$&#123;beanObject&#125;" property="$&#123;name&#125;" noLabel="$&#123;true&#125;"/&#62;&#10;        &#60;/g:if&#62;&#10;        &#60;g:else&#62;&#10;            &#60;bean:field beanName="dummy" bean="$&#123;beanObject&#125;"&#10;                property="$&#123;name&#125;" noLabel="$&#123;true&#125;"/&#62;&#10;        &#60;/g:else&#62;&#10;&#60;/g:if&#62;&#10;&#60;g:else&#62;&#10;    &#60;input id="$&#123;id&#125;" class="&#10;        $&#123;p.joinClasses(values:&#91;classes, invalid ? invalidClass : ''&#93;)&#125;"&#10;        type="$&#123;type&#125;" name="$&#123;name&#125;" value="$&#123;value&#125;"/&#62;&#10;&#60;/g:else&#62;&#10;</pre><p class="paragraph"/>This is again somewhat naïve as for non-bean fields it assumes &#60;input&#62; will cover all the cases, which it obviously will not.
+
+
+
+<h2 id="fieldGroup">9.4.9 The Field Group template</h2>
+The <code>&#95;fieldGroup.gsp</code> template is used to render the <a href="../ref/Ui Tags/fieldGroup.html" class="uiTags">fieldGroup</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>The fieldGroup template must render a container around the contents of the tag body.<p class="paragraph"/>Sometimes groups of fields will be separated visually from the surrounding content, for example with a border or similar. Usually this is achieved with a &#60;fieldset&#62; tag but this is not always the case, so the template has the flexibility to use any markup it requires.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>fieldGroupClass</td><td>The CSS class to use for the field group container. Value comes from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The content of the actions section, the markup provided by the caller</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the tag that is the container for the actions</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;fieldset class="$&#123;p.joinClasses(values:&#91;fieldGroupClass,classes&#93;)&#125;"&#10;  $&#123;ui.attributes(attrs:attrs)&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/fieldset&#62;&#10;</pre>
+
+
+
+<h2 id="image">9.4.10 The Image template</h2>
+The <code>&#95;image.gsp</code> template is used to render the <a href="../ref/Ui Tags/image.html" class="uiTags">image</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template needs to render an inline image, such as a photo or illustration on the site. Images such as these may support zooming via a lightbox or similar UI, or other decoration such as a frame that would not be applied to other <code>&#60;img&#62;</code> tags.<p class="paragraph"/>The template must render the image using the same attribute contract as the Resources <code>r:img</code> tag - i.e. the attributes will contain either a <code>uri</code> or a <code>dir</code>/<code>file</code> pair.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>title</td><td>Title for the image (if any), resolved from an i18n message code if available. The template might render this with special formatting</td></tr><tr class="table-even"><td>imageClass</td><td>The CSS class to use for the primary container of the image HTML, obtained from UI Set config.</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the g:form tag. The form is expected to support the standard g:form attributes but need not call g:form as long as it is compatible.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;imageClass,classes&#93;)&#125;"&#62;&#10;    &#60;p:callTag tag="r:img"&#10;        attrs="$&#123;attrs&#125;" title="$&#123;title.encodeAsHTML()&#125;"/&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>This example simply delegates to r:img and passes through any classes, after applying a container.
+
+
+
+<h2 id="logo">9.4.11 The Logo template</h2>
+The <code>&#95;logo.gsp</code> template is used by the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the application logo as an inline image.<p class="paragraph"/>The logo should include a link to the site's primary URL.<p class="paragraph"/>Themes that use pure CSS for logos using e.g. background-image should follow the same conventions for the logo file name and location as per the <a href="../ref/Ui Tags/logo.html" class="uiTags">logo</a> tag definition.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>logoUri</td><td>URI of the logo to use</td></tr><tr class="table-even"><td>classes</td><td>String of CSS classes supplied</td></tr><tr class="table-odd"><td>logoClass</td><td>Class to apply to the logo element</td></tr><tr class="table-even"><td>width</td><td>Width of the logo or empty</td></tr><tr class="table-odd"><td>height</td><td>Height of the logo or empty</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;a href="$&#123;p.siteURL().encodeAsHTML()&#125;"&#62;&#10;  &#60;r:img uri="$&#123;logoUri.encodeAsHTML()&#125;" &#10;    class="$&#123;p.joinClasses(values:&#91;classes, logoClass&#93;)&#125;"&#10;    alt="$&#123;p.siteName()&#125;" &#10;    width="$&#123;width&#125;" height="$&#123;height&#125;"/&#62;&#60;/a&#62;&#10;</pre>
+
+
+<h2 id="message">9.4.12 The Message template</h2>
+The <code>&#95;message.gsp</code> template is used to render the <a href="../ref/Ui Tags/message.html" class="uiTags">message</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render out a UI message which is essentially a block of unstyled text resolved via i18n, with a message type associated with it.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>messageClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>type</td><td>The kind of message to use. See <a href="../ref/Ui Tags/message.html" class="uiTags">message</a>for the</td></tr><tr class="table-even"><td>bodyContent</td><td>The body of the message, without formatting</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;div class="$&#123;p.joinClasses(values:&#91;messageClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    &#60;p&#62;$&#123;bodyContent&#125;&#60;/p&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="paginate">9.4.13 The Paginate template</h2>
+The <code>&#95;paginate.gsp</code> template is used to render the <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is responsible for rendering the multi-page navigation controls used for reports, search results and so on.<p class="paragraph"/>The <a href="../ref/Ui Tags/paginate.html" class="uiTags">paginate</a> tag implementation takes care of the hard parts related to calculating links, what options should be available to the user etc, and this template must simply render the correct markup using the information provided.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>paginateClass</td><td>A string containing the CSS class to apply to the outer container</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>next</td><td>The information for the "next" link</td></tr><tr class="table-even"><td>prev</td><td>The information for the "previous" link</td></tr><tr class="table-odd"><td>earlier</td><td>The information for the "earlier" link, to the list of pages before the current start page number</td></tr><tr class="table-even"><td>later</td><td>The information for the "later" link, to the list of pages after the last page number listed</td></tr><tr class="table-odd"><td>items</td><td>The list of page items to show UI for, each with properties "link", "active" and "text"</td></tr><tr class="table-even"><td>attrs</td><td>Any extra attributes the use passed in. Usage of this is undefined across UI Sets</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ul class="$&#123;p.joinClasses(values:&#91;paginateClass, classes&#93;)&#125;"&#62;&#10;    &#60;g:if test="$&#123;prev&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;prev.link&#125;" class="prev"&#62;$&#123;prev.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:if test="$&#123;earlier&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;earlier.link&#125;" class="earlier"&#62;$&#123;earlier.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:each in="$&#123;items&#125;" var="i"&#62;&#10;        &#60;li&#62;&#60;g:if test="$&#123;i.active&#125;"&#62;&#10;                $&#123;i.text&#125;&#10;            &#60;/g:if&#62;&#10;            &#60;g:else&#62;&#10;                &#60;a href="$&#123;i.link&#125;"&#62;$&#123;i.text&#125;&#60;/a&#62;&#10;            &#60;/g:else&#62;&#10;        &#60;/li&#62;&#10;    &#60;/g:each&#62;&#10;    &#60;g:if test="$&#123;later&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;later.link&#125;" class="later"&#62;$&#123;later.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;    &#60;g:if test="$&#123;next&#125;"&#62;&#10;        &#60;li&#62;&#60;a href="$&#123;next.link&#125;" class="next"&#62;$&#123;next.text&#125;&#60;/a&#62;&#60;/li&#62;&#10;    &#60;/g:if&#62;&#10;&#60;/ul&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="primaryNavigation">9.4.14 The Primary Navigation template</h2>
+The <code>&#95;primaryNavigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the primary navigation items for the application.<p class="paragraph"/>The primary navigation is the top-level site navigation, which typically includes highlighting the current active top level item.<p class="paragraph"/>Only the top level items of the default site navigation must be rendered.<p class="paragraph"/>The <a href="../ref/Ui Tags/primaryNavigation.html" class="uiTags">primaryNavigation</a> tag is typically only called from Theme layouts to render the site navigation menu.<p class="paragraph"/>See <a href="../guide/single.html#nav" class="guide">navigation</a> template documentation for details of adherence to Navigation API.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>primaryNavigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:primary" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;primaryNavigationClass, classes&#93;)&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="secondaryNavigation">9.4.15 The Secondary Navigation template</h2>
+The <code>&#95;secondaryNavigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the secondary navigation items for the application.<p class="paragraph"/>The secondary navigation is the set of navigation items that apply to the currently active primary navigation item.<p class="paragraph"/>Only the top level secondary items must be rendered.<p class="paragraph"/>The <a href="../ref/Ui Tags/secondaryNavigation.html" class="uiTags">secondaryNavigation</a> tag is typically only called from Theme layouts to render the site navigation menu.<p class="paragraph"/>See <a href="../guide/single.html#nav" class="guide">navigation</a> template documentation for details of adherence to Navigation API.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>secondaryNavigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:secondary" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;secondaryNavigationClass, classes&#93;)&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="nav">9.4.16 The navigation template</h2>
+The <code>&#95;navigation.gsp</code> template is used to render the <a href="../ref/Ui Tags/navigation.html" class="uiTags">navigation</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the navigation items from the supplied scope, or default the default application navigation scope if no scope is supplied.<p class="paragraph"/>Only the top level items at the scope supplied must be rendered, nested item rendering is not permitted.<p class="paragraph"/>An example use case: a plugin may expose a page that lists a set of administration options that are below secondary navigation level, such as:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;theme:zone name="body"&#62;&#10;    &#60;ui:block title="Email Confirmation Administration"&#62;&#10;        &#60;p&#62;Choose from the following options:&#60;/p&#62;&#10;        &#60;ui:navigation scope="plugin/emailconfirmation.admin"/&#62;&#10;    &#60;/ui:block&#62;&#10;&#60;/theme:zone&#62;&#10;</pre><p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>navigationClass</td><td>A string containing the CSS class to apply to the outermost container element</td></tr><tr class="table-even"><td>scope</td><td>A string identifying the navigation scope to render</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost containing element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;p:callTag tag="nav:menu" attrs="$&#123;attrs + &#10;    &#91;class:p.joinClasses(values:&#91;navigationClass, classes&#93;), scope:scope&#93;&#125;"/&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="table">9.4.17 The Table template</h2>
+The <code>&#95;table.gsp</code> template is used to render the <a href="../ref/Ui Tags/table.html" class="uiTags">table</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render tables. Typically this would use HTML <code>&#60;table&#62;</code> but this is not a concrete requirement - just that it is represented to the user as a columnar table.<p class="paragraph"/>The nested <code>ui:tr</code> and <code>ui:th</code> calls allow this template to apply extra logic.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>tableClass</td><td>The CSS class to use for the primary container of the table HTML, obtained from UI Set config.</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the table</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;table class="$&#123;p.joinClasses(values:&#91;tableClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/table&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="tr">9.4.18 The Table Row template</h2>
+The <code>&#95;tr.gsp</code> template is used to render the <a href="../ref/Ui Tags/tr.html" class="uiTags">tr</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render table rows for the <a href="../ref/Ui Tags/tr.html" class="uiTags">tr</a> tag.<p class="paragraph"/>This can be used to render extra decoration.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>trClass</td><td>CSS class to use for the element, from UI Set config</td></tr><tr class="table-even"><td>oddEvenClass</td><td>The CSS class to use for the row, to indicate if it is even/odd. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>row</td><td>The current row index in the table (zero based)</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the row</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;tr class="$&#123;p.joinClasses(values:&#91;trClass, oddEvenClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/tr&#62;&#10;</pre><p class="paragraph"/>
+
+
+
+<h2 id="th">9.4.19 The Table Heading template</h2>
+The <code>&#95;th.gsp</code> template is used to render the <a href="../ref/Ui Tags/th.html" class="uiTags">th</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template is used to render table header cells for the <a href="../ref/Ui Tags/th.html" class="uiTags">th</a> tag.<p class="paragraph"/>This can be used to render out metadata or extra elements for e.g. sortable columns, and uses Platform UI conventions to resolve i18n heading text.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>thClass</td><td>CSS class to use for the element, from UI Set config</td></tr><tr class="table-even"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-odd"><td>bodyContent</td><td>The body of the heading</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost element</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;th class="$&#123;p.joinClasses(values:&#91;thClass, classes&#93;)&#125;"$&#123;ui.attributes()&#125;&#62;&#10;    $&#123;bodyContent&#125;&#10;&#60;/th&#62;&#10;</pre><p class="paragraph"/>
+
+
+<h2 id="tabs">9.4.20 The Tabs template</h2>
+The <code>&#95;tabs.gsp</code> template is used to render the <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template renders the markup requires to define a set of tabs.<p class="paragraph"/>Tabs have a title for each tab, and can either link to a new URL or hide and display different tabs of content embedded in the page.<p class="paragraph"/>The tabs are provided in a model variable, having been collected from the <a href="../guide/single.html#tab" class="guide">tab</a> template used to implement the <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> tag.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>The id of the outermost element supplied by application developer or auto-generated</td></tr><tr class="table-even"><td>tabsClass</td><td>The CSS class to use for the tabs container. Value comes from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>tabs</td><td>The list of tabs, each with <code>active</code>, <code>id</code> and <code>bodyContent</code> properties</td></tr><tr class="table-odd"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ul class="$&#123;p.joinClasses(values:&#91;tabsClass, classes&#93;)&#125;" $&#123;ui.attributes()&#125;&#62;&#10;&#60;g:each in="$&#123;tabs&#125;" var="t"&#62;&#10;    &#60;li $&#123;t == active ? 'class="active"' : ''&#125;&#62;&#10;        &#60;a href="$&#123;t.link ?: ('&#35;'+t.id).encodeAsHTML()&#125;"&#62;$&#123;t.title.encodeAsHTML()&#125;&#60;/a&#62;&#10;    &#60;/li&#62;&#10;&#60;/g:each&#62;&#10;&#60;/ul&#62;&#10;&#60;div class="tabBodies"&#62;&#10;    &#60;g:each in="$&#123;tabs&#125;" var="t"&#62;&#10;        $&#123;t.bodyContent&#125;&#10;    &#60;/g:each&#62;&#10;&#60;/div&#62;&#10;</pre><p class="paragraph"/>This example renders a <code>&#60;ul&#62;</code> list containing the tabs and links, and then a set of <code>&#60;div&#62;</code> containing the tab contents.
+
+
+<h2 id="tab">9.4.21 The Tab template</h2>
+The <code>&#95;tab.gsp</code> template is used to render the <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> tag.<p class="paragraph"/><h3>Contract</h3><p class="paragraph"/>This template must render the markup required to define a tab within the context of a <a href="../ref/Ui Tags/tabs.html" class="uiTags">tabs</a> tag.<p class="paragraph"/>The <a href="../guide/single.html#tabs" class="guide">tabs</a> template collects all the outputs of each <a href="../ref/Ui Tags/tab.html" class="uiTags">tab</a> invocation rendered by this template, and the <code>tabs</code> template then iterates over them to render the necessary markup.<p class="paragraph"/><h3>Variables available</h3><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>id</td><td>Unique id of the tab in this page. Supplied by user or auto generated</td></tr><tr class="table-even"><td>tabClass</td><td>CSS class to apply to the outermost container element, from UI Set config</td></tr><tr class="table-odd"><td>classes</td><td>A string containing the list of CSS classes to apply to the outer container</td></tr><tr class="table-even"><td>bodyContent</td><td>The tab content</td></tr><tr class="table-odd"><td>active</td><td>True if the tab is currently the active tab</td></tr><tr class="table-even"><td>title</td><td>Title text for the tab, resolved from i18n</td></tr><tr class="table-odd"><td>link</td><td>Target link for the tab if it is a link to another URL, may be null</td></tr><tr class="table-even"><td>attrs</td><td>The attributes to pass through to the outermost container element.</td></tr></table><p class="paragraph"/><h3>Example template implementation</h3><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:if test="$"&#62;&#10;    &#60;div id="tab_$&#123;id&#125;" class="$&#123;p.joinClasses(&#10;        values:&#91;active ? ' active' : '', tabClass, classes&#93;)&#125;"&#10;        $&#123;ui.attributes()&#125;&#62;&#10;        $&#123;bodyContent&#125;&#10;    &#60;/div&#62;&#10;&#60;/g:if&#62;&#10;</pre><p class="paragraph"/>
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                <div class="toc-item prev-left"><a href="../../guide/creatingThemes.html">&lt;&lt; <strong>8</strong><span>Creating A Theme</span></a></div>
+                
+                <div class="toc-item next-right"><a href="../../guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/create-ui-set.html">create-ui-set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/activeSets.html">activeSets</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/baseHeading.html">baseHeading</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/ifSetActive.html">ifSetActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/ifSetNotActive.html">ifSetNotActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/input.html">input</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../../ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <title>7 Themes API 1.0.RC1</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" href="../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
+    <link rel="stylesheet" href="../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
+    <script type="text/javascript" src="../css/shCore.js"></script>
+    <script type="text/javascript" src="../css/shBrushXml.js"></script>
+    <script type="text/javascript" src="../css/shBrushGroovy.js"></script>
+    <link type="text/css" rel="stylesheet" href="../css/shCoreMidnight.css"/>
+    <script type="text/javascript">
+        SyntaxHighlighter.config.stripBrs = true;
+        SyntaxHighlighter.defaults['smart-tabs'] = true;
+        SyntaxHighlighter.all();
+        function addJsClass() {
+            var classes = document.body.className.split(" ");
+            classes.push("js");
+            document.body.className = classes.join(" ");
+        }
+    </script>
+</head>
+
+<body class="body" onload="addJsClass();">
+<div id="navigation">
+    <ul>
+        <li>
+            <div id="nav-summary" onmouseover="toggleNavSummary(false)" onmouseout="toggleNavSummary(true)">
+                <a href="../guide/index.html" class="button">Table of contents</a>
+
+                <div id="nav-summary-childs" style="display:none;">
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/overview.html"><strong>1</strong><span>Overview</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/changelog.html"><strong>2</strong><span>Change Log</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/gettingStarted.html"><strong>3</strong><span>Getting Started</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/integratingPluginUi.html"><strong>4</strong><span>Making plugin UIs that integrate with apps</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/recipes.html"><strong>5</strong><span>Recipes</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/ui.html"><strong>6</strong><span>UI API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/themes.html"><strong>7</strong><span>Themes API</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/creatingUiSets.html"><strong>9</strong><span>Creating Custom UI Sets</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/debugging.html"><strong>10</strong><span>Debugging - What the hell is going on?</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0"><a href="../guide/advanced.html"><strong>11</strong><span>Doing advanced things</span></a>
+                    </div>
+                    
+                </div>
+            </div>
+        </li>
+        <li class="separator selected">
+            <a id="ref-button" onclick="localToggle(); return false;" href="#">Quick Reference</a>
+        </li>
+    </ul>
+</div>
+<div id="header">
+    <div class="images clearfix">
+        
+        
+    </div>
+    <p>APIs and Tags for Theming and Plugin UI integration</p>
+</div>
+
+
+<table id="colset" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+        <td id="col1">
+            <div id="main" class="corner-all">
+
+                
+                <div class="toc-item prev-left"><a href="../guide/ui.html">&lt;&lt; <strong>6</strong><span>UI API</span></a></div>
+                
+
+                <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
+
+                
+                <div class="toc-item next-right"><a href="../guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span> >></a></div>
+                
+
+
+                <div class="project">
+                    <h1>7 Themes API - Reference Documentation</h1>
+
+                    <p><strong>Authors:</strong> Marc Palmer (marc@grailsrocks.com)</p>
+
+                    <p><strong>Version:</strong> 1.0.RC1</p>
+
+                    
+                </div>
+
+                
+                <div id="table-of-content">
+                    <h2>Table of Contents</h2>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themesUsing"><strong>7.1</strong><span>Using Themes In Your Application</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themeZones"><strong>7.2</strong><span>Content Zones</span></a>
+                    </div>
+                    
+                    <div class="toc-item" style="margin-left:0px"><a href="#themesDefault"><strong>7.3</strong><span>About The _default Theme</span></a>
+                    </div>
+                    
+                </div>
+                
+
+                
+
+<h1 id="themes">7 Themes API</h1>
+Themes are collections of Sitemesh layouts that follow conventions for template locations and Resource modules, with support for multiple content "zones" per page.<p class="paragraph"/>Themes define the visual layout of pages rendered by your application and plugins. The views in a plugin or application can choose to use a theme layout using the <a href="../ref/Theme Tags/layout.html" class="themeTags">layout</a> tag instead of the normal <code>&#60;meta&#62;</code> tag to select the Sitemesh layout. So for users of Themes, Sitemesh layouts are no longer explicitly used.<p class="paragraph"/>You can search the <a href="http://grails.org/plugins/tag/theme" target="blank">Grails plugin repository</a> for plugins that provide off the shelf Themes that your application can use.<p class="paragraph"/>As a theme author, using the <code>theme</code> namespace tags you can create themes that will allow Grails applications and plugins to define their UI largely without any concern for the structural page layout itself - and swap the visual styling without changing the code of the GSPs.<p class="paragraph"/>Optionally working together with UI Sets, applications and plugins can then leverage whatever UI technology a theme was written with - because the Theme determines the UI Set to use for the current request.<p class="paragraph"/>The end result is that the application or users can change the Theme on a per request or user basis, and the structural HTML markup, the CSS, the Javascript and all other resources will be adapted to suit the Theme.<p class="paragraph"/>For example you might have a user-centric site front end that uses a custom theme style by in-house designers using raw jQuery, and a simple back end admin theme that is based directly on Twitter Bootstrap and custom JS code.<p class="paragraph"/>The Theme system is inspired by efforts such as the Wordpress theme community, where you can take an off the shelf theme that instantly styles your site, but may also add extra non-standard features - some of which may follow conventions across other themes.<p class="paragraph"/>By formalising some of these conventions - for example by using UI Sets to represent the commonly themed components of a site - we allow our plugin
+ecosystem to rely on a core set of functionality from themes, while avoiding raising the bar too high and being over-prescriptive.<p class="paragraph"/>Highly stylized themes will inevitably need extra configuration, custom tags or style conventions to get high quality results. Application content
+may still need to be written to fit the available space in a theme. Colours may need to be tweaked.<p class="paragraph"/>However it should all be a lot quicker, and more fun.
+
+
+<h2 id="themesUsing">7.1 Using Themes In Your Application</h2>
+Using Platform UI Themes in your Grails applications is simple.<p class="paragraph"/>There are only three things you need to do:
+<ol>
+<li>Provide a theme implementation</li>
+<li>Tell Platform UI which of the standard theme layouts your GSP requires</li>
+<li>Define your content zones</li>
+</ol><p class="paragraph"/><h2>Providing a Theme implementation</h2><p class="paragraph"/>Out of the box there is a default theme called <code>&#95;default</code>. This will be used if you don't provide your own. It is deliberately minimal<p class="paragraph"/>You can provide a Theme by either installing a Theme plugin (a standard Grails plugin containing a theme), or by creating your own Theme.<p class="paragraph"/>Most real apps will supply their own Theme, or a forked version of a Theme from a plugin.<p class="paragraph"/>To create your own theme see the <a href="../guide/single.html#creatingThemes" class="guide">Creating Themes</a>. Scripts are provided to fork existing themes or create new plain ones.<p class="paragraph"/>You don't need to tell the app which Theme to use at this stage because it will default to the first non-default theme you have installed, or fall
+back to the <code>&#95;default</code> theme.<p class="paragraph"/><h2>Telling Platform UI which Theme Layout to use</h2><p class="paragraph"/>Each GSP that uses Themes needs to use the <a href="../ref/Theme Tags/layout.html" class="themeTags">layout</a> tag to specify which of the Theme's layouts applies to the page.<p class="paragraph"/>This is easily done in the &#60;head&#62; section of your views:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;   &#60;head&#62;&#10;      &#60;theme:layout name="home"/&#62;&#10;   &#60;/head&#62;&#10;   .&#10;   .&#10;   .&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>You can parameterize this if you need to present different layouts based on some runtime variables.<p class="paragraph"/><h2>Defining your Content Zones</h2><p class="paragraph"/>Now that you have chosen a layout for your GSP, you need to provide the content for the zones defined by that layout.<p class="paragraph"/>Zones are chunks of content your page supplies, that the Theme layout will position for you according to its styling.<p class="paragraph"/>At the very least all pages have a "body" zone.<p class="paragraph"/>See the <a href="../guide/single.html#creatingThemes" class="guide">Zone Requirements</a> section for details of the zones supported by each required layout.<p class="paragraph"/>You define the content for a zone using the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag. Note that if you only need to supply a body, you do not need to use this tag,
+but if you are supplying multiple zones, all content including that for the body zone must be wrapped in zone tags:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;      &#60;theme:layout name="home"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;   &#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;Welcome to our site&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel1"&#62;&#10;            &#60;p&#62;Marketing text 1&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel2"&#62;&#10;            &#60;p&#62;Marketing text 2&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;        &#60;theme:zone name="panel3"&#62;&#10;            &#60;p&#62;Marketing text 3&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Note that your view does not have to supply content for every zone. There is fallback algorithm that allows your Application and the Theme to provide default content for zones, and as a last resort falling back to Lorem Ipsum filler text. Theme layouts can also adapt to the absence of content for some zones.<p class="paragraph"/>See the documentation for the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag and <a href="../guide/single.html#creatingThemes" class="guide">Creating Themes</a> for more details of the zone mechanism and behaviour
+for location content.
+
+
+
+<h2 id="themeZones">7.2 Content Zones</h2>
+Themes use zones to pull in multiple pieces of content to build up the page.<p class="paragraph"/>All layouts usually need a zone for the "body" content, but they may also have others for e.g. a sidebar or promotional areas.<p class="paragraph"/>Theme layouts determine the structural HTML of the page, and where the content for each zone is rendered using the <a href="../ref/Theme Tags/layoutZone.html" class="themeTags">layoutZone</a> tag.<p class="paragraph"/>The GSP pages themselves use the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag to define the content to be used in a given zone.<p class="paragraph"/><h2>How content for zones is resolved</h2><p class="paragraph"/>Content for the zone is resolved in this order:
+<ol>
+<li>Content defined by the page being rendered, using the zone:themeTags tag</li>
+<li>If the zone is "body" the page body is used (using the default g:layoutBody tag)</li>
+<li>If the application supplies a GSP fragment in <code>/grails-app/views/_themes/zones/&#60;zone-name&#62;.gsp</code> this is used</li>
+<li>Finally the <a href="../ref/Theme Tags/defaultContent.html" class="themeTags">defaultContent</a> tag is used to provide default content, which will check if the Theme itself provides default content, and failing that the default Platform UI theme. If there is still no default content GSP it will revert to <code>p:dummyText</code> from Platform Core to render some Lorem Ipsum-style text.</li>
+</ol><p class="paragraph"/>Through this cascade of content resolution your application can provide default content for zones such as header/footer, or fall back to theme defaults - and even use application or theme defaults for e.g. footer but override these on a page-by-page basis if necessary.<p class="paragraph"/><h2>Setting the content for a given zone from within your GSP page</h2><p class="paragraph"/>You do this using the <a href="../ref/Theme Tags/zone.html" class="themeTags">zone</a> tag:<p class="paragraph"/><pre class="brush: xml;">&#10;&#60;html&#62;&#10;    &#60;head&#62;&#10;        &#60;theme:layout name="home"/&#62;&#10;    &#60;/head&#62;&#10;    &#60;body&#62;&#10;        &#60;theme:zone name="body"&#62;&#10;            &#60;p&#62;This is the body of my page&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="banner"&#62;&#10;            &#60;ui:h1&#62;Our Awesome Startup!&#60;/ui:h1&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel1"&#62;&#10;            &#60;p&#62;Read about the features you're going to love...&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel2"&#62;&#10;            &#60;p&#62;Find our more about our pricing model&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;&#10;        &#60;theme:zone name="panel3"&#62;&#10;            &#60;p&#62;Tell us what you think&#60;/p&#62;&#10;        &#60;/theme:zone&#62;&#10;    &#60;/theme:body&#62;&#10;&#60;/html&#62;&#10;</pre><p class="paragraph"/>Note that if a page only requires a body zone you can omit the <code>zone</code> tags and just specify body content as normal.<p class="paragraph"/><h2>Appending more content to a zone</h2><p class="paragraph"/>It is possible to append content to a zone, for example a sidebar may contain information from various sources.<p class="paragraph"/>You can do this by defining a zone multiple times, or by directly accessing the <code>grailsThemes</code> bean to add content to a given zone.<p class="paragraph"/>For example you may have plugins that add filters to append content to such zones automatically.<p class="paragraph"/><h2>Themes can provide default content for zones</h2><p class="paragraph"/>Themes can and should provide attractive default content for the zones used in the layouts.<p class="paragraph"/>This allows a user to see how best to use that particular theme because out of the box all the zones are populated, perhaps with example graphics etc.
+
+
+
+<h2 id="themesDefault">7.3 About The _default Theme</h2>
+The Platform UI plugin does supply a single default Theme and UI Set called <code>_default</code>.<p class="paragraph"/>There are however not intended for use. They simply exist to provide some form of rendering of content when there is no other Theme or UI Set available.<p class="paragraph"/>As such the UI Set does not have a useful implementation of all UI tags, in particular the <code>ui:field</code>, <code>ui:tabs</code> and <code>ui:carousel</code> tags are incomplete.<p class="paragraph"/>UI Sets should <strong class="bold">not</strong> rely on the content of these templates as a default fallback, and should instead always supply all the templates they require.
+
+
+
+                <div style="clear:both;margin-top:15px;"></div>
+                
+                <div class="toc-item prev-left"><a href="../guide/ui.html">&lt;&lt; <strong>6</strong><span>UI API</span></a></div>
+                
+                <div class="toc-item next-right"><a href="../guide/creatingThemes.html"><strong>8</strong><span>Creating A Theme</span> >></a></div>
+                
+                <div style="clear:both"></div>
+            </div>
+        </td>
+        <td id="col2">
+            <div class="local clearfix">
+                <div class="local-title">
+                    <a href="../guide/index.html" target="mainFrame">Quick Reference</a>
+                    <span class="toggle">(<a href="#" onclick="localToggle(); return false;">hide</a>)</span>
+                </div>
+                <div class="menu">
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Beans</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsThemes.html">grailsThemes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Beans/grailsUISets.html">grailsUISets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Scripts</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-theme.html">create-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/create-ui-set.html">create-ui-set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-theme.html">fork-theme</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Scripts/fork-ui-set.html">fork-ui-set</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Theme Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/body.html">body</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/current.html">current</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/defaultContent.html">defaultContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/head.html">head</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIs.html">ifLayoutIs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifLayoutIsNot.html">ifLayoutIsNot</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifNoZoneContent.html">ifNoZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/ifZoneContent.html">ifZoneContent</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layout.html">layout</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutHTMLTitle.html">layoutHTMLTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTemplate.html">layoutTemplate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutTitle.html">layoutTitle</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/list.html">list</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/name.html">name</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/set.html">set</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/title.html">title</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Theme%20Tags/zone.html">zone</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/actions.html">actions</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/activeSets.html">activeSets</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/avatar.html">avatar</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/baseHeading.html">baseHeading</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/block.html">block</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/button.html">button</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/carousel.html">carousel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/displayMessage.html">displayMessage</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/field.html">field</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldErrors.html">fieldErrors</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldGroup.html">fieldGroup</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldHint.html">fieldHint</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldInput.html">fieldInput</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/fieldLabel.html">fieldLabel</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/form.html">form</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h1.html">h1</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h2.html">h2</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h3.html">h3</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/h4.html">h4</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetActive.html">ifSetActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/ifSetNotActive.html">ifSetNotActive</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/image.html">image</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/input.html">input</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/logo.html">logo</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/message.html">message</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/navigation.html">navigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/paginate.html">paginate</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/primaryNavigation.html">primaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/resources.html">resources</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/secondaryNavigation.html">secondaryNavigation</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/slide.html">slide</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tab.html">tab</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/table.html">table</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tabs.html">tabs</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/th.html">th</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Tags/tr.html">tr</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                    <div class="menu-block"><h1 class="menu-title" onclick="toggleRef(this.parentNode.childNodes[1])">Ui Template Tags</h1><div class="menu-sub">
+                        
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/attributes.html">attributes</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/cssClass.html">cssClass</a>
+                        </div>
+                        
+                        <div class="menu-item"><a href="../ref/Ui%20Template%20Tags/listSets.html">listSets</a>
+                        </div>
+                        
+                    </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<div id="footer">
+    2012 Marc Palmer
+    Please contact the authors with any corrections or suggestions
+</div>
+
+<script type="text/javascript" src="../js/docs.js"></script>
+
+</body>
+</html>
