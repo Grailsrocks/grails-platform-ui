@@ -60,7 +60,7 @@ Platform UI - abstracted UI elements and theming for plugin/application interope
             [name: "Marc Palmer", email: "marc@grailsrocks.com"]
     ]
 
-    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPPLATFORMUI" ]
+    def issueManagement = [ system: "JIRA", url: "http://jira.grails.org/browse/GPPLATUI" ]
 
     def scm = [url: "https://github.com/Grailsrocks/grails-platform-ui"]
 
