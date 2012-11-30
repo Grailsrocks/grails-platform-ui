@@ -42,8 +42,10 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-        compile(':platform-core:1.0.RC1')
-        runtime(':resources:1.2-RC1')
+        compile(':platform-core:1.0.RC2')
+        runtime(':resources:1.2.RC2')
+
+//        runtime(':bootstrap-theme:1.0.RC2')
 /*        
         compile(':spock:0.6-SNAPSHOT'){
             export = false

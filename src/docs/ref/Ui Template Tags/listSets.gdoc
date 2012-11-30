@@ -2,12 +2,12 @@ h1. ui:listSets
 
 h2. Purpose
 
-Returns the list of available UI Set names.
+Returns the list of available UI Set definitions.
 
 h2. Example
 
 {docx:xml}
-<g:select name="allUiSets" from="${ui.listSets()}"/>
+<g:select name="allUiSets" from="${ui.listSets().name}"/>
 {docx}
 
 h2. Attributes

@@ -30,7 +30,7 @@ class ThemeTagLib {
     static REQ_ATTR_ZONE_LIST = 'zone.list'
     static REQ_ATTR_TITLE = 'title'
     
-    static returnObjectForTags = ['name', 'current', 'list']
+    static returnObjectForTags = ['name', 'current', 'listThemes']
 
     def grailsThemes
     def grailsViewFinder
@@ -166,8 +166,8 @@ class ThemeTagLib {
         out << grailsThemes.getRequestTheme(request).name
     }
     
-    def list = { attrs ->
-        grailsThemes.availableThemes.name
+    def listThemes = { attrs ->
+        grailsThemes.availableThemes
     }
     
     void mustBeInALayout(tagName) {

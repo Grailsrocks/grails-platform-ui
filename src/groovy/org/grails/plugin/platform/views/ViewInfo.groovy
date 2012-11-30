@@ -24,4 +24,6 @@ class ViewInfo {
     String name
     String plugin
     String path
+
+    String toString() { "View at path [${path}] in [${plugin}] with name [${name}] owned by [${owner}]"}
 }

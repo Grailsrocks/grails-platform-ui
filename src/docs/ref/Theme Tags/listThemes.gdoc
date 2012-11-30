@@ -1,0 +1,20 @@
+h1. theme:listThemes
+
+h2. Purpose
+
+Returns a list of the available Theme definitions.
+
+Useful if you want the user to be able to select the current theme, or inspect the loaded themes
+
+h2. Example
+
+{docx:xml}
+Change theme: <g:select from="${theme.listThemes().name}"/>
+{docx}
+
+h2. Attributes
+
+None.
+
+
+

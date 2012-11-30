@@ -105,7 +105,7 @@ class UITagLib implements InitializingBean {
     }
 
     def listSets = { attrs ->
-        grailsUISets.availableUISets.name
+        grailsUISets.availableUISets
     }
     
     /**
