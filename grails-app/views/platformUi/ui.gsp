@@ -18,7 +18,7 @@
         <p:uiOverlay>
             <div id="themeselecta">
                 <form method="GET">
-                    <label for="uiset">UI Set</label><g:select name="id" from="${ui.listSets()}" value="${params.id ?: '_default'}"/>
+                    <label for="uiset">UI Set</label><g:select name="id" from="${ui.listSets().name}" value="${params.id ?: '_default'}"/>
                     <div class="actions"><button type="submit">Show</button></div>
                 </form>
             </div>
