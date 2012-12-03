@@ -123,13 +123,13 @@
     <p>Carousels provide a way to show multiple sections of content, transitioning from one to another.</p> 
     <ui:carousel>
         <ui:slide active="true">
-            This is slide one
+            <p>This is slide one</p>
         </ui:slide>
         <ui:slide>
-            This is our second marketing slide
+            <p>This is our second marketing slide</p>
         </ui:slide>
         <ui:slide>
-            And here is our third marketing slide
+            <p>And here is our third marketing slide</p>
         </ui:slide>
     </ui:carousel>
 </ui:block>
