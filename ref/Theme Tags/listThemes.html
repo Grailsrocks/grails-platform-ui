@@ -89,16 +89,7 @@
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
-                <h1>ui:logo</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>Renders your application's logo.<p class="paragraph"/>This tag supports rendering multiple resolution logos inline.<p class="paragraph"/>Your GSPs or themes can use this tag to render the logo which is located by convention. Some themes may use pure CSS background images to render logos, in which case they should use the same file name conventions as specified below.<p class="paragraph"/>Logos are located according to the following rules:
-<ol>
-<li>If there is no width or height specified, it uses: <code>/web-app/images/ui-logo.png</code></li>
-<li>If there is only a width specified it looks for <code>/web-app/images/ui-logo-450x.png</code> for a width of 450</li>
-<li>If there is only a height specified it looks for <code>/web-app/images/ui-logo-x200.png</code> for a height of 200</li>
-<li>If there are both a width and a height specified it looks for <code>/web-app/images/ui-logo-450x200.png</code> for a width of 450 or a height of 200</li>
-<li>If the logo chosen by the above rules does not exist in the app, it will look for the logo in the current theme's plugin at the same location as above</li>
-<li>If the logo still does not exist it will fallback to the default logo provided by the Platform UI plugin</li>
-</ol><p class="paragraph"/>This ensures that even if a specific logo size is required that you have not provided, you should at least see the default logo indicating this.<p class="paragraph"/>If one or more dimension is unspecified, the logo will be stretched to fit the target size. The results will usually be bad, and you will want to get a logo made at the correct size for the Theme you have chosen.<p class="paragraph"/>To support multiple themes with different logo sizes without stretching, simply make sure you have a logo file for each size required by the themes you support.<p class="paragraph"/><h2>Examples</h2><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;ui:logo/&#62;&#10;&#60;ui:logo width="450" height="150"/&#62;&#10;</pre><p class="paragraph"/><h2>Attributes</h2><p class="paragraph"/><table class="wiki-table" cellpadding="0" cellspacing="0" border="0"><tr><th><strong class="bold">Name</strong></th><th><strong class="bold">Required?</strong></th><th><strong class="bold">Description</strong></th></tr><tr class="table-odd"><td>width</td><td>No</td><td>The width of the logo desired.</td></tr><tr class="table-even"><td>height</td><td>No</td><td>The height of the logo desired.</td></tr></table>
-
+                <h1>theme:listThemes</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>Returns a list of the available Theme definitions.<p class="paragraph"/>Useful if you want the user to be able to select the current theme, or inspect the loaded themes<p class="paragraph"/><h2>Example</h2><p class="paragraph"/><pre class="brush: xml;">&#10;Change theme: &#60;g:select from="$&#123;theme.listThemes().name&#125;"/&#62;&#10;</pre><p class="paragraph"/><h2>Attributes</h2><p class="paragraph"/>None.<p class="paragraph"/><p class="paragraph"/>
             </div>
         </td>
         <td id="col2">
@@ -145,7 +136,7 @@
                     
                     <div class="menu-block">
                         <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Theme Tags</h1>
-                        <div class="menu-sub">
+                        <div class="menu-sub selected">
                             
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/body.html">body</a>
@@ -210,7 +201,7 @@
                     
                     <div class="menu-block">
                         <h1 class="menu-title" onclick="toggleRef(nextElement(this))">Ui Tags</h1>
-                        <div class="menu-sub selected">
+                        <div class="menu-sub">
                             
                             
                             <div class="menu-item"><a href="../../ref/Ui%20Tags/actions.html">actions</a>

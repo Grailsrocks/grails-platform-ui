@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
-    <title>Grails Platform UI 1.0.RC1</title>
+    <title>Grails Platform UI 1.0.RC2</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link rel="stylesheet" href="../../css/main.css" type="text/css" media="screen, print" title="Style" charset="utf-8"/>
     <link rel="stylesheet" href="../../css/pdf.css" type="text/css" media="print" title="PDF" charset="utf-8"/>
@@ -89,7 +89,7 @@
 
                 <span id='toggle-col1' class="toggle">(<a href="#" onclick="localToggle(); return false;">Quick Reference</a>)</span>
 
-                <h1>ui:listSets</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>Returns the list of available UI Set names.<p class="paragraph"/><h2>Example</h2><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:select name="allUiSets" from="$&#123;ui.listSets()&#125;"/&#62;&#10;</pre><p class="paragraph"/><h2>Attributes</h2><p class="paragraph"/>None<p class="paragraph"/>
+                <h1>ui:listSets</h1><p class="paragraph"/><h2>Purpose</h2><p class="paragraph"/>Returns the list of available UI Set definitions.<p class="paragraph"/><h2>Example</h2><p class="paragraph"/><pre class="brush: xml;">&#10;&#60;g:select name="allUiSets" from="$&#123;ui.listSets().name&#125;"/&#62;&#10;</pre><p class="paragraph"/><h2>Attributes</h2><p class="paragraph"/>None<p class="paragraph"/>
             </div>
         </td>
         <td id="col2">
@@ -178,7 +178,7 @@
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/layoutZone.html">layoutZone</a>
                             </div>
                             
-                            <div class="menu-item"><a href="../../ref/Theme%20Tags/list.html">list</a>
+                            <div class="menu-item"><a href="../../ref/Theme%20Tags/listThemes.html">listThemes</a>
                             </div>
                             
                             <div class="menu-item"><a href="../../ref/Theme%20Tags/name.html">name</a>
