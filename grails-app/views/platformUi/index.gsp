@@ -33,7 +33,7 @@
                         </div>
                         <div id="theme${i}" class="accordion-body collapse in">
                             <div class="accordion-inner">
-                                Uses UI Set [${t.uiSet.encodeAsHTML()}], defined by plugin [${t.definingPlugin?.name.encodeAsHTML()}], layouts:
+                                Uses UI Set [${t.uiSet.encodeAsHTML()}], defined by plugin [${t.definingPlugin?.name.encodeAsHTML()}], Theme layouts:
                                 <ul>
                                     <g:each in="${t.layoutPaths}" var="l">
                                         <li>
@@ -58,12 +58,13 @@
                         </div>
                         <div id="uiSet${i}" class="accordion-body collapse in">
                             <div class="accordion-inner">
-                                 Defined by plugin [${s.definingPlugin?.name.encodeAsHTML()}], layouts:
+                                 Defined by plugin [${s.definingPlugin?.name.encodeAsHTML()}], UI templates:
                                 <ul>
                                     <g:each in="${s.layoutPaths}" var="l">
                                         <li><strong>${l.key.encodeAsHTML()}</strong> &raquo; ${l.value.encodeAsHTML()}</li>
                                     </g:each>
-                                </ul>                      
+                                </ul>
+                                Anything not listed will resolve to the UI template in the _default theme.                      
                             </div>
                         </div>
                     </div>
