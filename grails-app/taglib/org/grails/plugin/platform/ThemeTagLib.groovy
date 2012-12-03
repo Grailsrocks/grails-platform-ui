@@ -130,11 +130,16 @@ class ThemeTagLib {
      */
     def layoutZone = { attrs -> 
         mustBeInALayout('layoutZone')
-        
+
         def id = attrs.name
         if (!id) {
             throwTagError "Tag [theme:layoutZone] requires a [name] attribute containing the name of the zone to render"
         }
+
+        if (debugMode) {
+            out << "<!-- BEGIN Content from theme zone ${id} -->\n"
+        }
+
         if (!isZoneDefined(id)) {
             // If this is body zone but none defined, just dump out body
             if (id == 'body') {
@@ -147,8 +152,14 @@ class ThemeTagLib {
             
             // First see if the application provides default content for this zone (e.g. a footer or social panel)
             if (grailsViewFinder.templateExists(templatePath)) {
+                if (debugMode) {
+                    out << "<!-- Content defined by Theme's default template (${templatePath}) for this zone ${id} -->\n"
+                }
                 out << g.render(template:templatePath) 
             } else {
+                if (debugMode) {
+                    out << "<!-- Content defined by defaultContent tag for this zone ${id} -->\n"
+                }
                 out << theme.defaultContent([zone:id])
                 if (!debugMode) {
                     if (log.warnEnabled) {
@@ -157,8 +168,14 @@ class ThemeTagLib {
                 }
             }
         } else {
+            if (debugMode) {
+                out << "<!-- Content defined by GSP for this zone ${id} -->\n"
+            }
             def bufferedZone = g.pageProperty(name:"page.theme.zone."+id)
             out << bufferedZone
+        }
+        if (debugMode) {
+            out << "<!-- END Content from theme zone ${id} -->\n"
         }
     }
     

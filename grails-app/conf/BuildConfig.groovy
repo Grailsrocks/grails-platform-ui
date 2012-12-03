@@ -30,7 +30,7 @@ grails.project.dependency.resolution = {
             export = false
         }
 
-    }
+   }
 
     plugins {
         build(":tomcat:$grailsVersion",
@@ -43,9 +43,11 @@ grails.project.dependency.resolution = {
         }
 
         compile(':platform-core:1.0.RC2')
-        runtime(':resources:1.2.RC2')
+        runtime(':resources:1.2.RC3')
 
-//        runtime(':bootstrap-theme:1.0.RC2')
+        // For run-app testing of this plugin, we cam pull in a theme
+        // runtime(':bootstrap-theme:1.0.RC2')
+
 /*        
         compile(':spock:0.6-SNAPSHOT'){
             export = false
