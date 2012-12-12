@@ -384,10 +384,13 @@ class UITagLib implements InitializingBean {
     private doHeading(int offset, attrs, body) {
         int level = pluginRequestAttributes[BASE_HEADING_ATTRIBUTE] ?: (int)0
         level += offset
+
+        // Capture message first, as it modifies attrs
+        def msg = getMessageOrBody(attrs, body)
         out << "<h$level"
         out << TagLibUtils.attrsToString(attrs)
         out << '>'
-        out << getMessageOrBody(attrs, body)
+        out << msg
         out << "</h$level>"
     }
     
