@@ -177,16 +177,20 @@ class UITagLib implements InitializingBean {
             throw new UITagException(templateName, t.owner, e) 
         }
     }
-    
-    // public renderExtendedUITemplate(String templateName, Map model) {
-    //     renderResources()
-    //     def t = grailsUISets.getTemplateView(request, templateName, false)
-    //     try {
-    //         return g.render(plugin:t.plugin, template:t.path, model:model)        
-    //     } catch (Throwable e) {
-    //         throw new UITagException(templateName, t.owner, e) 
-    //     }
-    // }
+
+    /** 
+     * For non-standard UI templates (extra tags) that resolve through UI Sets
+     * ...but how do they call this?
+     */
+    public renderExtendedUITemplate(String templateName, Map model) {
+        renderResources()
+        def t = grailsUISets.getTemplateView(request, templateName, false)
+        try {
+            return g.render(plugin:t.plugin, template:t.path, model:model)        
+        } catch (Throwable e) {
+            throw new UITagException(templateName, t.owner, e) 
+        }
+    }
     
     def tabs = { attrs, body ->
         def prefix = attrs.remove('prefix')
