@@ -36,6 +36,7 @@ grails.project.dependency.resolution = {
         build(":tomcat:$grailsVersion",
                 ":release:2.1.0") {
             export = false
+            excludes "rest-builder"
         }
 
         compile(":hibernate:$grailsVersion"){
