@@ -47,6 +47,8 @@ class UITagLib implements InitializingBean {
     
     static returnObjectForTags = ['listSets', 'activeSets', 'errors']
 
+    private static final String NOT_EXIST_ERROR_TRANSLATION = "PLATFORM_UI_NOT_EXIST_ERROR_TRANSLATION"
+
     Map logosBySize = new ConcurrentHashMap()
     
     def grailsThemes
@@ -718,7 +720,17 @@ class UITagLib implements InitializingBean {
             if (errors == null && beanObject) {
                 def fieldErrors = resolveErrorsForField(beanObject, name)
                 errors = fieldErrors.collect { err ->
-                    p.text(codes:err.codes)
+                    def errorText = p.text(codes:err.codes, args: err.arguments as List, default: NOT_EXIST_ERROR_TRANSLATION)
+                    if (errorText == NOT_EXIST_ERROR_TRANSLATION) {
+                        for (code in err.codes) {
+                            def message = g.message(code: code, args: err.arguments as List, default: NOT_EXIST_ERROR_TRANSLATION)
+                            if (message != NOT_EXIST_ERROR_TRANSLATION) {
+                                return message
+                            }
+                        }
+                        return p.text(codes:err.codes, args: err.arguments as List)
+                    }
+                    errorText
                 }
             }
         }
