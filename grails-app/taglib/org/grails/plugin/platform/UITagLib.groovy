@@ -930,7 +930,7 @@ class UITagLib implements InitializingBean {
             def theme = grailsThemes.getRequestTheme(request)
             if (theme) {
                 if (theme.definingPlugin) {
-                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}.png"
+                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}"
                     if (servletContext.getResource(themeUri)) {
                         if (log.debugEnabled) {
                             log.debug "Resolving logo for size: $w x $h to theme logo $themeUri"
