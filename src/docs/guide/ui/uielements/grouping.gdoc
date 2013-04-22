@@ -24,17 +24,6 @@ h4. Field Groups
 Forms often arrange fields into groups, typically with @<fieldset>@ in HTML. The structural markup for this is abstracted using the [fieldGroup|uiTags] tag:
 
 {docx:xml}
-<ui:block title="section.titles.welcome">
-    <p>Thank you for visiting our awesome site.</p>
-</ui:block>
-{docx}
-
-It does however support rendering a title at the start of the block, using i18n.
-h4. Block
-
-Some themes may support visually separating a block of content, for example with a "well" or other border technique. The [block|uiTags] tag is a simple container for this purpose:
-
-{docx:xml}
 <ui:form controller="book"> 
   <ui:fieldGroup>
      <ui:field name="firstName"/>
@@ -49,3 +38,13 @@ Some themes may support visually separating a block of content, for example with
 </ui:form>
 {docx}
 
+It does however support rendering a title at the start of the block, using i18n.
+h4. Block
+
+Some themes may support visually separating a block of content, for example with a "well" or other border technique. The [block|uiTags] tag is a simple container for this purpose:
+
+{docx:xml}
+<ui:block title="section.titles.welcome">
+    <p>Thank you for visiting our awesome site.</p>
+</ui:block>
+{docx}
