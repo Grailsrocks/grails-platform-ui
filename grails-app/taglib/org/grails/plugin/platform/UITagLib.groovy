@@ -240,13 +240,15 @@ class UITagLib implements InitializingBean {
         def linkArgs = extractCreateLinkArgs(attrs)
         def link = linkArgs ? g.createLink(linkArgs) : null
 
-        def tabId = attrs.tabId != null ? attrs.tabId : TagLibUtils.newUniqueId(request)
+        def tabId = attrs.tabId != null ? attrs.remove('tabId') : TagLibUtils.newUniqueId(request)
         
+        // State saved for the tabs tag to use when rendering this tab's content
         def bodyPanelArgs = [
             id:tabId,
             title:title,
             link:link,
-            active:active
+            active:active,
+            attrs:attrs
         ]
 
         bodyPanelArgs.bodyContent = renderUITemplate('tab', [
