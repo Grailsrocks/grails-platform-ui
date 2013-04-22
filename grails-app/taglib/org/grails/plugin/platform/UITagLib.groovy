@@ -718,7 +718,7 @@ class UITagLib implements InitializingBean {
             if (errors == null && beanObject) {
                 def fieldErrors = resolveErrorsForField(beanObject, name)
                 errors = fieldErrors.collect { err ->
-                    p.text(codes:err.codes)
+                    p.text(codes:err.codes, args: err.arguments as List)
                 }
             }
         }
