@@ -800,7 +800,7 @@ class UITagLib implements InitializingBean {
     }
     
     def th = { attrs, body ->
-        def text = getMessageOrBody(attrs, body).encodeAsHTML()
+        def text = getMessageOrBody(attrs, body)
         def classes = attrs.remove('class')
         def otherAttrs = TagLibUtils.attrsToString(attrs)
         def thClass = grailsUISets.getUICSSClass(request, 'th', 'th')
