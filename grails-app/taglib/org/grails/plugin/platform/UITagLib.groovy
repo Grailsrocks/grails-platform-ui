@@ -510,7 +510,7 @@ class UITagLib implements InitializingBean {
 
             // display laststep link when endstep is not laststep
             if (endstep < laststep) {
-                laterItem = [later:true, link:createLink(linkTagAttrs.clone()), text: i]
+                laterItem = [later:true, link:createLink(linkTagAttrs.clone()), text: laststep]
                 linkParams.offset = (laststep -1) * max
                 items << [link:createLink(linkTagAttrs.clone()), text: laststep]
             }
