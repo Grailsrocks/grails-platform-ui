@@ -696,7 +696,9 @@ class UITagLib implements InitializingBean {
             def labelCode = attrs.remove('label')
             if (!labelCode && name) {
                 def propName = resolvePropertyName(name)
-                label = GrailsNameUtils.getNaturalName(propName)
+                label = p.text(code: "${GrailsNameUtils.getPropertyName(beanObject.getClass().simpleName)}.${propName}.label", default: '')
+                if(!label)
+                    label = GrailsNameUtils.getNaturalName(propName)
             } 
             if ((labelCode == null) && !label) {
                 throwTagError "A value must be provided for [label] or [name] if no custom label is provided"
