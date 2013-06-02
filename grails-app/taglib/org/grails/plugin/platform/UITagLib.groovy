@@ -240,13 +240,15 @@ class UITagLib implements InitializingBean {
         def linkArgs = extractCreateLinkArgs(attrs)
         def link = linkArgs ? g.createLink(linkArgs) : null
 
-        def tabId = attrs.tabId != null ? attrs.tabId : TagLibUtils.newUniqueId(request)
+        def tabId = attrs.tabId != null ? attrs.remove('tabId') : TagLibUtils.newUniqueId(request)
         
+        // State saved for the tabs tag to use when rendering this tab's content
         def bodyPanelArgs = [
             id:tabId,
             title:title,
             link:link,
-            active:active
+            active:active,
+            attrs:attrs
         ]
 
         bodyPanelArgs.bodyContent = renderUITemplate('tab', [
@@ -510,8 +512,8 @@ class UITagLib implements InitializingBean {
 
             // display laststep link when endstep is not laststep
             if (endstep < laststep) {
-                laterItem = [later:true, link:createLink(linkTagAttrs.clone()), text: i]
                 linkParams.offset = (laststep -1) * max
+                laterItem = [later:true, link:createLink(linkTagAttrs.clone()), text: laststep]
                 items << [link:createLink(linkTagAttrs.clone()), text: laststep]
             }
         }
@@ -718,7 +720,7 @@ class UITagLib implements InitializingBean {
             if (errors == null && beanObject) {
                 def fieldErrors = resolveErrorsForField(beanObject, name)
                 errors = fieldErrors.collect { err ->
-                    p.text(codes:err.codes)
+                    p.text(codes:err.codes, args: err.arguments as List)
                 }
             }
         }
@@ -800,7 +802,7 @@ class UITagLib implements InitializingBean {
     }
     
     def th = { attrs, body ->
-        def text = getMessageOrBody(attrs, body).encodeAsHTML()
+        def text = getMessageOrBody(attrs, body)
         def classes = attrs.remove('class')
         def otherAttrs = TagLibUtils.attrsToString(attrs)
         def thClass = grailsUISets.getUICSSClass(request, 'th', 'th')
@@ -930,7 +932,7 @@ class UITagLib implements InitializingBean {
             def theme = grailsThemes.getRequestTheme(request)
             if (theme) {
                 if (theme.definingPlugin) {
-                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}.png"
+                    def themeUri = "/plugins/${theme.definingPlugin.fileSystemName}${uri}"
                     if (servletContext.getResource(themeUri)) {
                         if (log.debugEnabled) {
                             log.debug "Resolving logo for size: $w x $h to theme logo $themeUri"
