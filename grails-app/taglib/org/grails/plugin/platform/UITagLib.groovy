@@ -74,13 +74,13 @@ class UITagLib implements InitializingBean {
     }
     
     def ifSetActive = { attrs, body ->
-        if (pluginRequestAttributes['uiset.candidates']?.contains(attrs.name)) {
+        if (grailsUISets.getUISetsToUse().name.contains(attrs.name)) {
             out << body()
         }
     }
     
     def ifSetNotActive = { attrs, body ->
-        if (!pluginRequestAttributes['uiset.candidates']?.contains(attrs.name)) {
+        if (!grailsUISets.getUISetsToUse().name.contains(attrs.name)) {
             out << body()
         }
     }
