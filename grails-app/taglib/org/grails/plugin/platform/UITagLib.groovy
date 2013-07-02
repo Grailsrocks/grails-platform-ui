@@ -673,7 +673,7 @@ class UITagLib implements InitializingBean {
         def name = attrs.name
         def type = attrs.type 
         def value = attrs.value
-        def beanObject = attrs.bean
+        def beanObject = attrs.beanObject?: attrs.bean //leave bean for backward compatibility
         def classes = attrs.remove('classes')
         def i18name = name
         if (!attrs.id) {
