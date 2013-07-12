@@ -340,6 +340,9 @@ class ThemeTagLib {
 
         // First see if the application provides default content for this template
         if (grailsViewFinder.templateExists(layoutTemplatePath)) {
+            if (log.debugEnabled) {
+                log.debug "Resolved current request's theme template for [${attrs.name}] to [${layoutTemplatePath}]"
+            }
             out << g.render(template:layoutTemplatePath) 
         } else {
             if (log.debugEnabled) {
