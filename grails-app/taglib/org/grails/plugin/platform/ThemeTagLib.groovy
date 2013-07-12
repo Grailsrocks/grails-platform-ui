@@ -334,10 +334,19 @@ class ThemeTagLib {
 
     def layoutTemplate = { attrs ->
         def templateView = grailsThemes.getRequestThemeTemplateView(request, attrs.name)
-        if (log.debugEnabled) {
-            log.debug "Resolved current request's theme template for [${attrs.name}] to [${templateView}]"
+        // Location of app's standard content for theme layout templates
+        // /grails-app/views/_themes/<ThemeName>/<templateName>
+        def layoutTemplatePath = "/_themes/${templateView.owner}/${attrs.name}"
+
+        // First see if the application provides default content for this template
+        if (grailsViewFinder.templateExists(layoutTemplatePath)) {
+            out << g.render(template:layoutTemplatePath) 
+        } else {
+            if (log.debugEnabled) {
+                log.debug "Resolved current request's theme template for [${attrs.name}] to [${templateView}]"
+            }
+            out << g.render(template:templateView.path, plugin:templateView.plugin)    
         }
-        out << g.render(template:templateView.path, plugin:templateView.plugin)
     }
 
     def defaultContent = { attrs -> 
