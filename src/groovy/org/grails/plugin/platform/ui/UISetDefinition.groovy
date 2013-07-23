@@ -62,7 +62,7 @@ class UISetDefinition {
         }
 
         for (p in pluginViewInfos) {
-          if (!mergedViews.find { v -> v == p}) {
+          if (!mergedViews.find { v -> v.name == p.name}) {
               mergedViews << p
           }
         }
