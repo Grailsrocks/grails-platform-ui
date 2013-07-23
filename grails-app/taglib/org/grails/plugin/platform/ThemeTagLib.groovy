@@ -315,13 +315,13 @@ class ThemeTagLib {
         def bodyAttrs = attrs.bodyAttrs
         def bodyAttrsStr = ''
         if (bodyAttrs instanceof Map) {
-            bodyAttrsStr = HTMLTagLib.attrsToString(bodyAttrs)
+            bodyAttrsStr = TagLibUtils.attrsToString(bodyAttrs)
         } else if (bodyAttrs instanceof List) {
             def bodyAttrsMap = [:]
             bodyAttrs.each { p -> bodyAttrsMap[p] = g.pageProperty(name:'body.'+p) }
-            bodyAttrsStr = HTMLTagLib.attrsToString(bodyAttrsMap)
+            bodyAttrsStr = TagLibUtils.attrsToString(bodyAttrsMap)
         }
-        out << "<body${bodyAttrsStr}>"
+        out << "<body ${bodyAttrsStr}>"
         if (debugMode) {
             // We need the body of the debug GSP as it has the panel in it
             // @todo we can probably ditch this layoutBody if theme previewer concats to "body" zone
