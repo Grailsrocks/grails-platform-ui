@@ -528,6 +528,7 @@ class UITagLib implements InitializingBean {
         def paginateClass = grailsUISets.getUICSSClass(request, 'paginate', 'paginate')
 
         out << renderUITemplate('paginate', [
+            attrs:attrs, 
             paginateClass:paginateClass, 
             classes:attrs.'class', 
             items:items, 
